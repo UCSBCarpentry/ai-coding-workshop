@@ -4,4 +4,4 @@ title: "Day 3"
 
 # Overview
 
-In Day 3, we will learn how to build our own tools, use custom providers, and extend the capabilities of AI coding agents.
+...

@@ -3,3 +3,8 @@ title: "Welcome to the AI-Assisted Coding Workshop"
 ---
 
 Welcome to our 3-day workshop on AI-assisted coding! Use the navigation bar to browse through the daily lessons.
+
+
+## Setup Instructions
+
+...

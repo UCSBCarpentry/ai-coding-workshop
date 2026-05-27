@@ -4,4 +4,4 @@ title: "Day 2"
 
 # Overview
 
-In Day 2, we will dive deep into advanced prompting techniques, context management, and integrating AI tools into your daily development environment.
+...

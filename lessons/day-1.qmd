@@ -4,4 +4,4 @@ title: "Day 1"
 
 # Overview
 
-In Day 1, we will cover the basics of AI-assisted coding, understanding what coding agents are, and getting started with basic workflows.
+...
