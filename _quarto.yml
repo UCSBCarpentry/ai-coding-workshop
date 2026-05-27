@@ -1,0 +1,22 @@
+project:
+  type: website
+
+website:
+  title: "AI-Assisted Coding Workshop"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: Lessons
+        menu:
+          - href: lessons/day-1.qmd
+            text: Day 1
+          - href: lessons/day-2.qmd
+            text: Day 2
+          - href: lessons/day-3.qmd
+            text: Day 3
+
+format:
+  html:
+    theme: cosmo
+    toc: true
