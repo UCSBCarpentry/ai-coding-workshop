@@ -1,19 +1,5 @@
 [
   {
-    "objectID": "lessons/day-1.html",
-    "href": "lessons/day-1.html",
-    "title": "Day 1",
-    "section": "",
-    "text": "Overview\nIn Day 1, we will cover the basics of AI-assisted coding, understanding what coding agents are, and getting started with basic workflows."
-  },
-  {
-    "objectID": "lessons/day-3.html",
-    "href": "lessons/day-3.html",
-    "title": "Day 3",
-    "section": "",
-    "text": "Overview\nIn Day 3, we will learn how to build our own tools, use custom providers, and extend the capabilities of AI coding agents."
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Welcome to the AI-Assisted Coding Workshop",
@@ -26,5 +12,19 @@
     "title": "Day 2",
     "section": "",
     "text": "Overview\nIn Day 2, we will dive deep into advanced prompting techniques, context management, and integrating AI tools into your daily development environment."
+  },
+  {
+    "objectID": "lessons/day-1.html",
+    "href": "lessons/day-1.html",
+    "title": "Day 1",
+    "section": "",
+    "text": "Overview\nIn Day 1, we will cover the basics of AI-assisted coding, understanding what coding agents are, and getting started with basic workflows."
+  },
+  {
+    "objectID": "lessons/day-3.html",
+    "href": "lessons/day-3.html",
+    "title": "Day 3",
+    "section": "",
+    "text": "Overview\nIn Day 3, we will learn how to build our own tools, use custom providers, and extend the capabilities of AI coding agents."
   }
 ]
