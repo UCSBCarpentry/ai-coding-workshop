@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Day 3 – AI-Assisted Coding Workshop</title>
+<title>Setting up the Agent – AI-Assisted Coding for Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">AI-Assisted Coding Workshop</span>
+    <span class="navbar-title">AI-Assisted Coding for Research</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -95,22 +95,22 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lessons" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Lessons</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
         <li>
-    <a class="dropdown-item" href="../lessons/day-1.html">
- <span class="dropdown-text">Day 1</span></a>
+    <a class="dropdown-item" href="../lessons/01_intro.html">
+ <span class="dropdown-text">1. Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/day-2.html">
- <span class="dropdown-text">Day 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../lessons/day-3.html">
- <span class="dropdown-text">Day 3</span></a>
+    <a class="dropdown-item" href="../lessons/02_agent.html">
+ <span class="dropdown-text">2. Setting up the agent</span></a>
   </li>  
     </ul>
   </li>
@@ -130,7 +130,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#the-coder-workspace-environment" id="toc-the-coder-workspace-environment" class="nav-link active" data-scroll-target="#the-coder-workspace-environment">The Coder Workspace Environment</a></li>
+  <li><a href="#our-coding-agent-opencode" id="toc-our-coding-agent-opencode" class="nav-link" data-scroll-target="#our-coding-agent-opencode">Our Coding Agent: OpenCode</a></li>
+  <li><a href="#our-first-prompt" id="toc-our-first-prompt" class="nav-link" data-scroll-target="#our-first-prompt">Our First Prompt</a></li>
   </ul>
 </nav>
     </div>
@@ -139,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Day 3</h1>
+<h1 class="title">Setting up the Agent</h1>
 </div>
 
 
@@ -156,9 +158,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level1">
-<h1>Overview</h1>
-<p>…</p>
+<p>AI-assisted coding agents are powerful tools, but very real risks associated with using them. To mitigate these risks, it’s important to isolate coding agents and limit the potential damage they could cause in the worse-case scenario. For this workshop, we will use dedicated virtual machines (Coder Workspace) to run our agents. This mean the coding agent will only have access to the files that we upload to the virtual machine.</p>
+<section id="the-coder-workspace-environment" class="level2">
+<h2 class="anchored" data-anchor-id="the-coder-workspace-environment">The Coder Workspace Environment</h2>
+<blockquote class="blockquote">
+<p>Coder workspaces are a UCSB-specific resource, however you could substitute any cloud-based service for running virtual machines.</p>
+</blockquote>
+<p>Follow the <a href="../setup.html">setup instructions</a> if necessary, to create a Coder Workspace.</p>
+<p>We will:</p>
+<ul>
+<li>Connect to the workspace using VS Code Web</li>
+<li>The editor starts in an empty directory (<code>~/workspace</code>)</li>
+<li>We can upload and download files through VS Code or through the file browser.</li>
+<li>Create a terminal window in VS code and start opencode</li>
+</ul>
+</section>
+<section id="our-coding-agent-opencode" class="level2">
+<h2 class="anchored" data-anchor-id="our-coding-agent-opencode">Our Coding Agent: OpenCode</h2>
+<blockquote class="blockquote">
+<p>There are many coding agents out there. We like opencode because it was one of the few widely used coding agents that is model agnostic.</p>
+</blockquote>
+<p>We will:</p>
+<ul>
+<li>Use <code>/connect</code> to configure OpenCode to use the DREAM Lab AI Gateway.</li>
+<li>Enter your API key</li>
+<li>Select a model: <code>gemini-3.5-flash</code></li>
+</ul>
+</section>
+<section id="our-first-prompt" class="level2">
+<h2 class="anchored" data-anchor-id="our-first-prompt">Our First Prompt</h2>
+<p>To demonstrate the capabilities of a coding agent, let’s ask OpenCode to inspect that machine we’re using.</p>
+<pre><code>Tell me about the machine you're running on: OS, resources, etc.</code></pre>
+<p>OpenCode will probably probably ask you for permission to run a bash command to inspect the machine. It’s safe to say yes because this isn’t your real machine!</p>
+<p>The response should look something like this.</p>
+<pre><code>I will run a few non-modifying commands to retrieve information 
+about the operating system, CPU, memory, and disk resources.
+
+bash tool: "uname -a &amp;&amp; cat /etc/os-release &amp;&amp; free -h &amp;&amp; nproc &amp;&amp; df -h /"
+
+This machine is running:
+- **OS**: Ubuntu 26.04 LTS (Kernel 7.0.0, x86_64)
+- **CPU**: 4 Cores
+- **RAM**: 15 GiB (12 GiB available)
+- **Disk**: 14 GiB total, 8.1 GiB free (41% used)</code></pre>
 
 
 </section>

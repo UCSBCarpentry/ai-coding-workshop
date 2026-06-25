@@ -2,36 +2,57 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Welcome to the AI-Assisted Coding Workshop",
+    "title": "AI-Assisted coding for research",
     "section": "",
-    "text": "Welcome to our 3-day workshop on AI-assisted coding! Use the navigation bar to browse through the daily lessons."
+    "text": "This hands-on three half-day workshop covers AI-assisted coding techniques with an emphasis on research data analysis, reproducibility, and best practices of Open Science. Learners will use real-world scenarios to explore concepts and capabilities of coding agents and other LLM-based techniques. Workshop activities touch on many aspects of the research lifecycle: from data discovery and access, to visualization and publication.\nThis is an experimental workshop covering a very new and rapidly evolving landscape. Coding agent sandboxes and LLM API access will be provided to participants. As a prerequisite, learners should have familiarity with a programming language."
   },
   {
-    "objectID": "index.html#setup-instructions",
-    "href": "index.html#setup-instructions",
-    "title": "Welcome to the AI-Assisted Coding Workshop",
-    "section": "Setup Instructions",
-    "text": "Setup Instructions\n…"
+    "objectID": "lessons/02_agent.html",
+    "href": "lessons/02_agent.html",
+    "title": "Setting up the Agent",
+    "section": "",
+    "text": "AI-assisted coding agents are powerful tools, but very real risks associated with using them. To mitigate these risks, it’s important to isolate coding agents and limit the potential damage they could cause in the worse-case scenario. For this workshop, we will use dedicated virtual machines (Coder Workspace) to run our agents. This mean the coding agent will only have access to the files that we upload to the virtual machine."
   },
   {
-    "objectID": "lessons/day-3.html",
-    "href": "lessons/day-3.html",
-    "title": "Day 3",
-    "section": "",
-    "text": "Overview\n…"
+    "objectID": "lessons/02_agent.html#the-coder-workspace-environment",
+    "href": "lessons/02_agent.html#the-coder-workspace-environment",
+    "title": "Setting up the Agent",
+    "section": "The Coder Workspace Environment",
+    "text": "The Coder Workspace Environment\n\nCoder workspaces are a UCSB-specific resource, however you could substitute any cloud-based service for running virtual machines.\n\nFollow the setup instructions if necessary, to create a Coder Workspace.\nWe will:\n\nConnect to the workspace using VS Code Web\nThe editor starts in an empty directory (~/workspace)\nWe can upload and download files through VS Code or through the file browser.\nCreate a terminal window in VS code and start opencode"
   },
   {
-    "objectID": "lessons/day-2.html",
-    "href": "lessons/day-2.html",
-    "title": "Day 2",
-    "section": "",
-    "text": "Overview\n…"
+    "objectID": "lessons/02_agent.html#our-coding-agent-opencode",
+    "href": "lessons/02_agent.html#our-coding-agent-opencode",
+    "title": "Setting up the Agent",
+    "section": "Our Coding Agent: OpenCode",
+    "text": "Our Coding Agent: OpenCode\n\nThere are many coding agents out there. We like opencode because it was one of the few widely used coding agents that is model agnostic.\n\nWe will:\n\nUse /connect to configure OpenCode to use the DREAM Lab AI Gateway.\nEnter your API key\nSelect a model: gemini-3.5-flash"
   },
   {
-    "objectID": "lessons/day-1.html",
-    "href": "lessons/day-1.html",
-    "title": "Day 1",
+    "objectID": "lessons/02_agent.html#our-first-prompt",
+    "href": "lessons/02_agent.html#our-first-prompt",
+    "title": "Setting up the Agent",
+    "section": "Our First Prompt",
+    "text": "Our First Prompt\nTo demonstrate the capabilities of a coding agent, let’s ask OpenCode to inspect that machine we’re using.\nTell me about the machine you're running on: OS, resources, etc.\nOpenCode will probably probably ask you for permission to run a bash command to inspect the machine. It’s safe to say yes because this isn’t your real machine!\nThe response should look something like this.\nI will run a few non-modifying commands to retrieve information \nabout the operating system, CPU, memory, and disk resources.\n\nbash tool: \"uname -a && cat /etc/os-release && free -h && nproc && df -h /\"\n\nThis machine is running:\n- **OS**: Ubuntu 26.04 LTS (Kernel 7.0.0, x86_64)\n- **CPU**: 4 Cores\n- **RAM**: 15 GiB (12 GiB available)\n- **Disk**: 14 GiB total, 8.1 GiB free (41% used)"
+  },
+  {
+    "objectID": "lessons/01_intro.html",
+    "href": "lessons/01_intro.html",
+    "title": "Introduction",
     "section": "",
-    "text": "Overview\n…"
+    "text": "Our overarching goal in this workshop is to learn how to use AI coding tools to make your research code more rigorous.\nThis is a fast-moving topic. We don’t claim to know everything. Some learners may have more experience with AI-assisted coding than some instructors. We have attempted to organized settled best practices in this area to the extent that they exist, as we understand them."
+  },
+  {
+    "objectID": "lessons/01_intro.html#what-is-a-coding-agent",
+    "href": "lessons/01_intro.html#what-is-a-coding-agent",
+    "title": "Introduction",
+    "section": "What is a coding agent?",
+    "text": "What is a coding agent?\n\nunderstand the difference between a “chat” AI system and a coding agent."
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Setup instructions",
+    "section": "",
+    "text": "Please complete the following before you arrive on the first day of the workshop.\nFor the workshop, we will use a coding agent (OpenCode) installed on a virtual workspace (Coder Workspaces). It can take a few minute to create each workspace so we recommend doing it before the workshop. Follow these steps to create your workspace:\n\nLog in to DREAM Lab’s Coder Workspace Environment using your UCSB NetID.\nClick the New Workspace button and then Coder Workspace (Summer 2026).\nOn the New Workspace form:\n\nEnter a name for your workspace (or use the suggested name)\nReview the usage policies and click “I understand the usage policies”.\nClick Yes for “Include Visual Studio Code (Web)“\n(Optional) Click Yes for “Include Visual Studio Code (Desktop)“\nClick the Create Workspace button\nIt will take a few minutes for the workspace to be created."
   }
 ]
