@@ -1,7 +1,0 @@
----
-title: "Day 1"
----
-
-# Overview
-
-...

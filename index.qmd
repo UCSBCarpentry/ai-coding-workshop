@@ -1,10 +1,15 @@
 ---
-title: "Welcome to the AI-Assisted Coding Workshop"
+title: "AI-Assisted coding for research"
 ---
 
-Welcome to our 3-day workshop on AI-assisted coding! Use the navigation bar to browse through the daily lessons.
+This hands-on three half-day workshop covers AI-assisted coding techniques with
+an emphasis on research data analysis, reproducibility, and best practices of
+Open Science. Learners will use real-world scenarios to explore concepts and
+capabilities of coding agents and other LLM-based techniques. Workshop
+activities touch on many aspects of the research lifecycle: from data discovery
+and access, to visualization and publication.  
 
-
-## Setup Instructions
-
-...
+This is an experimental workshop covering a very new and rapidly evolving
+landscape. **Coding agent sandboxes and LLM API access will be provided to
+participants.** As a prerequisite, learners should have familiarity with a
+programming language.

@@ -1,0 +1,21 @@
+---
+title: "Setup instructions"
+---
+
+Please complete the following before you arrive on the first day of the workshop.
+
+For the workshop, we will use a coding agent (OpenCode) installed on a virtual
+workspace ([Coder Workspaces](https://coder.dreamlab.ucsb.edu)). It can take a
+few minute to create each workspace so we recommend doing it before the
+workshop. Follow these steps to create your workspace:
+
+1. Log in to [DREAM Lab’s Coder Workspace Environment](https://coder.dreamlab.ucsb.edu) using your UCSB NetID.
+2. Click the **New Workspace** button and then **Coder Workspace (Summer
+   2026)**.
+3. On the New Workspace form:
+   - Enter a **name** for your workspace (or use the suggested name)
+   - Review the usage policies and click "**I understand the usage policies**".
+   - Click **Yes** for “Include Visual Studio Code (Web)“
+   - (Optional) Click **Yes** for “Include Visual Studio Code (Desktop)“
+   - Click the **Create Workspace** button
+   - It will take a few minutes for the workspace to be created.

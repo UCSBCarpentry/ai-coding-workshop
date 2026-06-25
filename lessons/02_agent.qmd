@@ -1,0 +1,63 @@
+---
+title: "Setting up the Agent"
+---
+
+AI-assisted coding agents are powerful tools, but very real risks associated
+with using them. To mitigate these risks, it's important to isolate coding
+agents and limit the potential damage they could cause in the worse-case
+scenario. For this workshop, we will use dedicated virtual machines (Coder
+Workspace) to run our agents. This mean the coding agent will only have access
+to the files that we upload to the virtual machine. 
+
+## The Coder Workspace Environment
+
+> Coder workspaces are a UCSB-specific resource, however you could substitute
+> any cloud-based service for running virtual machines.
+
+
+Follow the [setup instructions](../setup.qmd) if necessary, to create a Coder Workspace. 
+
+We will: 
+
+- Connect to the workspace using VS Code Web
+- The editor starts in an empty directory (`~/workspace`)
+- We can upload and download files through VS Code or through the file browser.
+- Create a terminal window in VS code and start opencode
+
+## Our Coding Agent: OpenCode
+
+> There are many coding agents out there. We like opencode because it was one of
+> the few widely used coding agents that is model agnostic. 
+
+We will:
+
+- Use `/connect` to configure OpenCode to use the DREAM Lab AI Gateway. 
+- Enter your API key
+- Select a model: `gemini-3.5-flash`
+
+## Our First Prompt
+
+To demonstrate the capabilities of a coding agent, let's ask OpenCode to inspect
+that machine we're using.
+
+```
+Tell me about the machine you're running on: OS, resources, etc.
+```
+
+OpenCode will probably probably ask you for permission to run a bash command to
+inspect the machine. It's safe to say yes because this isn't your real machine!
+
+The response should look something like this.
+
+```
+I will run a few non-modifying commands to retrieve information 
+about the operating system, CPU, memory, and disk resources.
+
+bash tool: "uname -a && cat /etc/os-release && free -h && nproc && df -h /"
+
+This machine is running:
+- **OS**: Ubuntu 26.04 LTS (Kernel 7.0.0, x86_64)
+- **CPU**: 4 Cores
+- **RAM**: 15 GiB (12 GiB available)
+- **Disk**: 14 GiB total, 8.1 GiB free (41% used)
+```

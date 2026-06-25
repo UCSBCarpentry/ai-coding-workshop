@@ -1,0 +1,15 @@
+---
+title: "Introduction"
+---
+
+Our overarching goal in this workshop is to learn how to use AI coding tools to
+make your **research code more rigorous**. 
+
+This is a fast-moving topic. We don’t claim to know everything. Some learners
+may have more experience with AI-assisted coding than some instructors. We have
+attempted to organized settled best practices in this area to the extent that
+they exist, as we understand them.
+
+## What is a coding agent?
+
+- *understand the difference between a "chat" AI system and a coding agent.*
