@@ -2,18 +2,17 @@
 title: "Setting up the Agent"
 ---
 
-AI-assisted coding agents are powerful tools, but very real risks associated
-with using them. To mitigate these risks, it's important to isolate coding
-agents and limit the potential damage they could cause in the worse-case
+AI-assisted coding agents are powerful tools, but there are very real risks
+associated with using them. To mitigate these risks, it's important to isolate
+coding agents and limit the potential damage they could cause in the worst-case
 scenario. For this workshop, we will use dedicated virtual machines (Coder
-Workspace) to run our agents. This mean the coding agent will only have access
-to the files that we upload to the virtual machine. 
+Workspace) to run our agents. This means the coding agent will only have access
+to the files that we upload to the virtual machine.
 
 ## The Coder Workspace Environment
 
 > Coder workspaces are a UCSB-specific resource, however you could substitute
 > any cloud-based service for running virtual machines.
-
 
 Follow the [setup instructions](../setup.qmd) if necessary, to create a Coder Workspace. 
 
@@ -29,11 +28,29 @@ We will:
 > There are many coding agents out there. We like opencode because it was one of
 > the few widely used coding agents that is model agnostic. 
 
-We will:
+OpenCode needs to know which AI model to talk to. We'll point it at the **DREAM
+Lab AI Gateway**, which gives us access to a range of models through a single API
+key.
 
-- Use `/connect` to configure OpenCode to use the DREAM Lab AI Gateway. 
-- Enter your API key
-- Select a model: `gemini-3.5-flash`
+**1. Connect to a model provider.** In the OpenCode prompt, type `/connect` and
+press <kbd>Enter</kbd>. Start typing `dream` to filter the list, then select
+**DREAM Lab AI Gateway** under *Providers*.
+
+![Selecting the DREAM Lab AI Gateway provider](../images/opencode_connect_provider.png)
+
+**2. Enter your API key.** Paste the API key you were given for the workshop and
+press <kbd>Enter</kbd> to submit.
+
+![Entering your API key](../images/opencode_connect_apikey.png)
+
+**3. Select a model.** Choose **Gemini 3.5 Flash** from the list of available
+models. You can use (Ctrl+F) to "favorite" a model. We will use both Gemini 3.5
+Flash and Gemini 3.1 Pro Preview (Custom Tools) -- you might want to favorite
+both of these to make switching models a little easier.
+
+![Selecting the Gemini 3.5 Flash model](../images/opencode_connect_model.png)
+
+OpenCode is now configured and ready to use the DREAM Lab AI Gateway.
 
 ## Our First Prompt
 
@@ -44,7 +61,7 @@ that machine we're using.
 Tell me about the machine you're running on: OS, resources, etc.
 ```
 
-OpenCode will probably probably ask you for permission to run a bash command to
+OpenCode will probably ask you for permission to run a bash command to
 inspect the machine. It's safe to say yes because this isn't your real machine!
 
 The response should look something like this.
@@ -61,3 +78,27 @@ This machine is running:
 - **RAM**: 15 GiB (12 GiB available)
 - **Disk**: 14 GiB total, 8.1 GiB free (41% used)
 ```
+
+### Agent Permissions
+
+Most coding agents, including OpenCode, have a **permission system** used to
+control what actions the agent is allowed to perform in its environment. In the
+example above, OpenCode paused and asked before running a bash command. Even
+though our agent is isolated in a throwaway virtual machine, it's worth
+understanding how it decides when to ask for your approval.
+
+The actions the agent can perform (e.g., reading files, editing them, running shell
+commands, fetching URLs) are determined by permission levels:
+
+- **`allow`** — the action runs automatically, no questions asked.
+- **`ask`** — the agent pauses and waits for your approval.
+- **`deny`** — the action is blocked entirely.
+
+By default **OpenCode allows most actions**, but you can change this through
+OpenCode's configuration file.
+
+A few defaults worth knowing:
+
+- Reading files outside the working directory defaults to `ask`.
+- `.env` files are denied by default, so secrets aren't read accidentally.
+
