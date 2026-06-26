@@ -39,14 +39,14 @@
     "href": "lessons/01_intro.html",
     "title": "Introduction",
     "section": "",
-    "text": "Our overarching goal in this workshop is to learn how to use AI coding tools to make your research code more rigorous.\nThis is a fast-moving topic. We don’t claim to know everything. Some learners may have more experience with AI-assisted coding than some instructors. We have attempted to organized settled best practices in this area to the extent that they exist, as we understand them."
+    "text": "Our overarching goal in this workshop is to learn how to use AI coding tools to make your research code more rigorous.\nThis is a fast-moving topic. We don’t claim to know everything. Some learners may have more experience with AI-assisted coding than some instructors. We have attempted to organize settled best practices in this area to the extent that they exist, as we understand them."
   },
   {
     "objectID": "lessons/01_intro.html#what-is-a-coding-agent",
     "href": "lessons/01_intro.html#what-is-a-coding-agent",
     "title": "Introduction",
     "section": "What is a coding agent?",
-    "text": "What is a coding agent?\n\nunderstand the difference between a “chat” AI system and a coding agent."
+    "text": "What is a coding agent?\nLLM-based web applications like ChatGPT are useful for answering questions, but they are inherently limited. If you want an AI tool that does something (not just says something), then you need an agent. What separates chat-based applications from agents is the ability to use tools to interact with their environment. An agent is a program that makes requests to an LLM model provider, just like typing messages into a “chat” interface, except it acts on the response by invoking the tools the agent has access to. Coding agents include tools for doing things like reading and writing files, running bash commands, and searching the file system.\nWhat is a tool? You can think of a tool as some functionality that the agent can perform, like “write to file”. The agent includes a list of tool descriptions in its requests to the LLM; in turn, the LLM may respond by invoking a tool, supplying the inputs the tool needs to run. The agent is responsible for actually running the tool with the input from the LLM, and returning any output back to the LLM.\nWhat is an LLM model provider? You don’t need to run LLMs on your own machine to use them. Instead, you access them over the internet through web-based APIs (like OpenAI’s chat completions). A model provider is a web service that lets you make requests to one or more LLMs using one of these protocols."
   },
   {
     "objectID": "setup.html",
