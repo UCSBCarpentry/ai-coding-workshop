@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/index.html</loc>
-    <lastmod>2026-06-29T20:42:11.093Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/02_agent.html</loc>
-    <lastmod>2026-06-29T20:42:11.094Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/01_intro.html</loc>
-    <lastmod>2026-06-29T20:42:11.093Z</lastmod>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/topics/browser-mcp.html</loc>
+    <lastmod>2026-06-29T22:10:46.107Z</lastmod>
   </url>
   <url>
     <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/setup.html</loc>
-    <lastmod>2026-06-29T20:42:11.094Z</lastmod>
+    <lastmod>2026-06-29T22:10:46.107Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/01_intro.html</loc>
+    <lastmod>2026-06-29T22:10:46.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/02_agent.html</loc>
+    <lastmod>2026-06-29T22:10:46.107Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/index.html</loc>
+    <lastmod>2026-06-29T22:10:46.106Z</lastmod>
   </url>
 </urlset>

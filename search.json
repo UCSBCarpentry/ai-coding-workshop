@@ -1,10 +1,73 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "AI-Assisted coding for research",
+    "objectID": "topics/browser-mcp.html",
+    "href": "topics/browser-mcp.html",
+    "title": "Browser MCP Integration with Chrome DevTools",
     "section": "",
-    "text": "This hands-on three half-day workshop covers AI-assisted coding techniques with an emphasis on research data analysis, reproducibility, and best practices of Open Science. Learners will use real-world scenarios to explore concepts and capabilities of coding agents and other LLM-based techniques. Workshop activities touch on many aspects of the research lifecycle: from data discovery and access, to visualization and publication.\nThis is an experimental workshop covering a very new and rapidly evolving landscape. Coding agent sandboxes and LLM API access will be provided to participants. As a prerequisite, learners should have familiarity with a programming language."
+    "text": "This guide covers how to set up and configure the Chrome DevTools Model Context Protocol (MCP) server for opencode, enabling browser automation and screenshots.\n\n\n\nChrome DevTools MCP requires a running Chrome or Chromium instance. In non-graphical environments (like Coder Workspaces), Chrome must run in headless mode.\nInstall the official Google Chrome package:\nsudo apt-get update\nsudo apt-get install -y wget curl gnupg\n\n# Download and install Google Chrome Stable\nwget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb\nsudo apt-get install -y ./google-chrome-stable_current_amd64.deb\n\n\n\nThe Chrome DevTools MCP server runs on Node.js and is executed via npx (which comes bundled with npm).\nInstall them directly from the standard Ubuntu repositories:\nsudo apt-get update\nsudo apt-get install -y nodejs npm\n\n\n\nOnce Chrome and npm are installed, register the chrome-devtools server in your opencode configuration file.\n\n\nYou can add this to your: - Global Config: ~/.config/opencode/opencode.json - Project Config: opencode.json (in your workspace root)\n\n\n\nAdd the following configuration block under the \"mcp\" key:\n{\n  \"$schema\": \"https://opencode.ai/config.json\",\n  \"mcp\": {\n    \"chrome-devtools\": {\n      \"type\": \"local\",\n      \"command\": [\"npx\", \"-y\", \"chrome-devtools-mcp@latest\", \"--headless\"],\n      \"enabled\": true\n    }\n  }\n}\nThe --headless flag is crucial when running opencode in a virtualized or containerized terminal context that lacks a graphical display.\n\n\n\n\nAfter saving the configuration, quit and restart opencode. Test the setup by asking:\nTake a screenshot of https://www.library.ucsb.edu"
+  },
+  {
+    "objectID": "topics/browser-mcp.html#installing-headless-chrome",
+    "href": "topics/browser-mcp.html#installing-headless-chrome",
+    "title": "Browser MCP Integration with Chrome DevTools",
+    "section": "",
+    "text": "Chrome DevTools MCP requires a running Chrome or Chromium instance. In non-graphical environments (like Coder Workspaces), Chrome must run in headless mode.\nInstall the official Google Chrome package:\nsudo apt-get update\nsudo apt-get install -y wget curl gnupg\n\n# Download and install Google Chrome Stable\nwget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb\nsudo apt-get install -y ./google-chrome-stable_current_amd64.deb"
+  },
+  {
+    "objectID": "topics/browser-mcp.html#installing-node.js-npm",
+    "href": "topics/browser-mcp.html#installing-node.js-npm",
+    "title": "Browser MCP Integration with Chrome DevTools",
+    "section": "",
+    "text": "The Chrome DevTools MCP server runs on Node.js and is executed via npx (which comes bundled with npm).\nInstall them directly from the standard Ubuntu repositories:\nsudo apt-get update\nsudo apt-get install -y nodejs npm"
+  },
+  {
+    "objectID": "topics/browser-mcp.html#configuring-opencode",
+    "href": "topics/browser-mcp.html#configuring-opencode",
+    "title": "Browser MCP Integration with Chrome DevTools",
+    "section": "",
+    "text": "Once Chrome and npm are installed, register the chrome-devtools server in your opencode configuration file.\n\n\nYou can add this to your: - Global Config: ~/.config/opencode/opencode.json - Project Config: opencode.json (in your workspace root)\n\n\n\nAdd the following configuration block under the \"mcp\" key:\n{\n  \"$schema\": \"https://opencode.ai/config.json\",\n  \"mcp\": {\n    \"chrome-devtools\": {\n      \"type\": \"local\",\n      \"command\": [\"npx\", \"-y\", \"chrome-devtools-mcp@latest\", \"--headless\"],\n      \"enabled\": true\n    }\n  }\n}\nThe --headless flag is crucial when running opencode in a virtualized or containerized terminal context that lacks a graphical display."
+  },
+  {
+    "objectID": "topics/browser-mcp.html#verification",
+    "href": "topics/browser-mcp.html#verification",
+    "title": "Browser MCP Integration with Chrome DevTools",
+    "section": "",
+    "text": "After saving the configuration, quit and restart opencode. Test the setup by asking:\nTake a screenshot of https://www.library.ucsb.edu"
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Setup Instructions",
+    "section": "",
+    "text": "Please complete the following before you arrive on the first day of the workshop."
+  },
+  {
+    "objectID": "setup.html#create-your-workspace",
+    "href": "setup.html#create-your-workspace",
+    "title": "Setup Instructions",
+    "section": "Create Your Workspace",
+    "text": "Create Your Workspace\nFor the workshop, we will use a coding agent installed in a virtual machine that you access remotely (a Coder Workspace). It can take a few minutes to create your workspace so we recommend doing it before the workshop.\nFollow these steps to create your workspace:\n\nLog in to our Coder Workspace Environment using your UCSB NetID.\nClick the New Workspace button and then Coder Workspace (Summer 2026).\nOn the New Workspace form:\n\nEnter a name for your workspace (or use the suggested name)\nReview the usage policies and click “I understand the usage policies”.\nClick Yes for “Include Visual Studio Code (Web)”\n(Optional, see below) Click Yes for “Include Visual Studio Code (Desktop)”\nClick the Create Workspace button\nIt will take a few minutes for the workspace to be created."
+  },
+  {
+    "objectID": "setup.html#optional-setup-for-vs-code-desktop",
+    "href": "setup.html#optional-setup-for-vs-code-desktop",
+    "title": "Setup Instructions",
+    "section": "Optional Setup for VS Code Desktop",
+    "text": "Optional Setup for VS Code Desktop\nIf you prefer to use the VS Code desktop app, rather than the browser-based version, use these instructions to set things up.\n\nInstall VS Code\nWe will use Visual Studio Code (VS Code) as our primary development environment. Download and install VS Code using these instructions.\n\n\nInstall Coder Remote Extension for VS Code\nWe will use the Coder Remote extension for VS Code to connect to our Coder Workspace from inside VS Code.\nTo install, click the green “Install” button on that page. (You should already have VS Code installed). Alternatively, you can install it through the “Extensions” panel within VS Code: search for “Coder Remote” and click “install”.\n\n\nCheck That Everything Works\nCheck that you can connect to your Coder Workspace from VS Code.\n\nOpen VS Code and click the Coder extension icon from the vertical bar on the left side of the menu. You should see a button to “Login”\nClick the login button and enter https://coder.dreamlab.ucsb.edu in the text input box. Then press Enter.\nYour web browser should open to a page with a button to “copy session token.” Click the “copy session token” button and close the browser window/tab.\nBack in VS Code, paste the session token in the “Coder API Key” text input and press Enter.\nYou should see the workspace you created listed in the “My Workspaces” panel of the Coder Remote extension."
+  },
+  {
+    "objectID": "lessons/01_intro.html",
+    "href": "lessons/01_intro.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Our overarching goal in this workshop is to learn how to use AI coding tools to make your research code more rigorous.\nThis is a fast-moving topic. We don’t claim to know everything. Some learners may have more experience with AI-assisted coding than some instructors. We have attempted to organize settled best practices in this area to the extent that they exist, as we understand them."
+  },
+  {
+    "objectID": "lessons/01_intro.html#what-is-a-coding-agent",
+    "href": "lessons/01_intro.html#what-is-a-coding-agent",
+    "title": "Introduction",
+    "section": "What is a coding agent?",
+    "text": "What is a coding agent?\nLLM-based web applications like ChatGPT are useful for answering questions, but they are inherently limited. If you want an AI tool that does something (not just says something), then you need an agent. What separates chat-based applications from agents is the ability to use tools to interact with their environment. An agent is a program that makes requests to an LLM model provider, just like typing messages into a “chat” interface, except it acts on the response by invoking the tools the agent has access to. Coding agents include tools for doing things like reading and writing files, running bash commands, and searching the file system.\nWhat is a tool? You can think of a tool as some functionality that the agent can perform, like “write to file”. The agent includes a list of tool descriptions in its requests to the LLM; in turn, the LLM may respond by invoking a tool, supplying the inputs the tool needs to run. The agent is responsible for actually running the tool with the input from the LLM, and returning any output back to the LLM.\nWhat is an LLM model provider? You don’t need to run LLMs on your own machine to use them. Instead, you access them over the internet through web-based APIs (like OpenAI’s chat completions). A model provider is a web service that lets you make requests to one or more LLMs using one of these protocols."
   },
   {
     "objectID": "lessons/02_agent.html",
@@ -35,38 +98,10 @@
     "text": "Our First Prompt\nTo demonstrate the capabilities of a coding agent, let’s ask OpenCode to inspect that machine we’re using.\nTell me about the machine you're running on: OS, resources, etc.\nOpenCode will probably ask you for permission to run a bash command to inspect the machine. It’s safe to say yes because this isn’t your real machine!\nThe response should look something like this.\nI will run a few non-modifying commands to retrieve information \nabout the operating system, CPU, memory, and disk resources.\n\nbash tool: \"uname -a && cat /etc/os-release && free -h && nproc && df -h /\"\n\nThis machine is running:\n- **OS**: Ubuntu 26.04 LTS (Kernel 7.0.0, x86_64)\n- **CPU**: 4 Cores\n- **RAM**: 15 GiB (12 GiB available)\n- **Disk**: 14 GiB total, 8.1 GiB free (41% used)\n\nAgent Permissions\nMost coding agents, including OpenCode, have a permission system used to control what actions the agent is allowed to perform in its environment. In the example above, OpenCode paused and asked before running a bash command. Even though our agent is isolated in a throwaway virtual machine, it’s worth understanding how it decides when to ask for your approval.\nThe actions the agent can perform (e.g., reading files, editing them, running shell commands, fetching URLs) are determined by permission levels:\n\nallow — the action runs automatically, no questions asked.\nask — the agent pauses and waits for your approval.\ndeny — the action is blocked entirely.\n\nBy default OpenCode allows most actions, but you can change this through OpenCode’s configuration file.\nA few defaults worth knowing:\n\nReading files outside the working directory defaults to ask.\n.env files are denied by default, so secrets aren’t read accidentally."
   },
   {
-    "objectID": "lessons/01_intro.html",
-    "href": "lessons/01_intro.html",
-    "title": "Introduction",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "AI-Assisted coding for research",
     "section": "",
-    "text": "Our overarching goal in this workshop is to learn how to use AI coding tools to make your research code more rigorous.\nThis is a fast-moving topic. We don’t claim to know everything. Some learners may have more experience with AI-assisted coding than some instructors. We have attempted to organize settled best practices in this area to the extent that they exist, as we understand them."
-  },
-  {
-    "objectID": "lessons/01_intro.html#what-is-a-coding-agent",
-    "href": "lessons/01_intro.html#what-is-a-coding-agent",
-    "title": "Introduction",
-    "section": "What is a coding agent?",
-    "text": "What is a coding agent?\nLLM-based web applications like ChatGPT are useful for answering questions, but they are inherently limited. If you want an AI tool that does something (not just says something), then you need an agent. What separates chat-based applications from agents is the ability to use tools to interact with their environment. An agent is a program that makes requests to an LLM model provider, just like typing messages into a “chat” interface, except it acts on the response by invoking the tools the agent has access to. Coding agents include tools for doing things like reading and writing files, running bash commands, and searching the file system.\nWhat is a tool? You can think of a tool as some functionality that the agent can perform, like “write to file”. The agent includes a list of tool descriptions in its requests to the LLM; in turn, the LLM may respond by invoking a tool, supplying the inputs the tool needs to run. The agent is responsible for actually running the tool with the input from the LLM, and returning any output back to the LLM.\nWhat is an LLM model provider? You don’t need to run LLMs on your own machine to use them. Instead, you access them over the internet through web-based APIs (like OpenAI’s chat completions). A model provider is a web service that lets you make requests to one or more LLMs using one of these protocols."
-  },
-  {
-    "objectID": "setup.html",
-    "href": "setup.html",
-    "title": "Setup Instructions",
-    "section": "",
-    "text": "Please complete the following before you arrive on the first day of the workshop."
-  },
-  {
-    "objectID": "setup.html#create-your-workspace",
-    "href": "setup.html#create-your-workspace",
-    "title": "Setup Instructions",
-    "section": "Create Your Workspace",
-    "text": "Create Your Workspace\nFor the workshop, we will use a coding agent installed in a virtual machine that you access remotely (a Coder Workspace). It can take a few minutes to create your workspace so we recommend doing it before the workshop.\nFollow these steps to create your workspace:\n\nLog in to our Coder Workspace Environment using your UCSB NetID.\nClick the New Workspace button and then Coder Workspace (Summer 2026).\nOn the New Workspace form:\n\nEnter a name for your workspace (or use the suggested name)\nReview the usage policies and click “I understand the usage policies”.\nClick Yes for “Include Visual Studio Code (Web)”\n(Optional, see below) Click Yes for “Include Visual Studio Code (Desktop)”\nClick the Create Workspace button\nIt will take a few minutes for the workspace to be created."
-  },
-  {
-    "objectID": "setup.html#optional-setup-for-vs-code-desktop",
-    "href": "setup.html#optional-setup-for-vs-code-desktop",
-    "title": "Setup Instructions",
-    "section": "Optional Setup for VS Code Desktop",
-    "text": "Optional Setup for VS Code Desktop\nIf you prefer to use the VS Code desktop app, rather than the browser-based version, use these instructions to set things up.\n\nInstall VS Code\nWe will use Visual Studio Code (VS Code) as our primary development environment. Download and install VS Code using these instructions.\n\n\nInstall Coder Remote Extension for VS Code\nWe will use the Coder Remote extension for VS Code to connect to our Coder Workspace from inside VS Code.\nTo install, click the green “Install” button on that page. (You should already have VS Code installed). Alternatively, you can install it through the “Extensions” panel within VS Code: search for “Coder Remote” and click “install”.\n\n\nCheck That Everything Works\nCheck that you can connect to your Coder Workspace from VS Code.\n\nOpen VS Code and click the Coder extension icon from the vertical bar on the left side of the menu. You should see a button to “Login”\nClick the login button and enter https://coder.dreamlab.ucsb.edu in the text input box. Then press Enter.\nYour web browser should open to a page with a button to “copy session token.” Click the “copy session token” button and close the browser window/tab.\nBack in VS Code, paste the session token in the “Coder API Key” text input and press Enter.\nYou should see the workspace you created listed in the “My Workspaces” panel of the Coder Remote extension."
+    "text": "This hands-on three half-day workshop covers AI-assisted coding techniques with an emphasis on research data analysis, reproducibility, and best practices of Open Science. Learners will use real-world scenarios to explore concepts and capabilities of coding agents and other LLM-based techniques. Workshop activities touch on many aspects of the research lifecycle: from data discovery and access, to visualization and publication.\nThis is an experimental workshop covering a very new and rapidly evolving landscape. Coding agent sandboxes and LLM API access will be provided to participants. As a prerequisite, learners should have familiarity with a programming language."
   }
 ]
