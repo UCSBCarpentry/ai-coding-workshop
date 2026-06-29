@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Setup instructions – AI-Assisted Coding for Research</title>
+<title>Setup Instructions – AI-Assisted Coding for Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -130,10 +130,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#create-your-workspace" id="toc-create-your-workspace" class="nav-link active" data-scroll-target="#create-your-workspace">Create your Workspace</a></li>
-  <li><a href="#install-vs-code" id="toc-install-vs-code" class="nav-link" data-scroll-target="#install-vs-code">Install VS Code (?)</a></li>
-  <li><a href="#install-coder-remote-extension-for-vs-code" id="toc-install-coder-remote-extension-for-vs-code" class="nav-link" data-scroll-target="#install-coder-remote-extension-for-vs-code">Install Coder Remote extension for VS Code (?)</a></li>
-  <li><a href="#check-that-everything-works" id="toc-check-that-everything-works" class="nav-link" data-scroll-target="#check-that-everything-works">Check that everything works (?)</a></li>
+  <li><a href="#create-your-workspace" id="toc-create-your-workspace" class="nav-link active" data-scroll-target="#create-your-workspace">Create Your Workspace</a></li>
+  <li><a href="#optional-setup-for-vs-code-desktop" id="toc-optional-setup-for-vs-code-desktop" class="nav-link" data-scroll-target="#optional-setup-for-vs-code-desktop">Optional Setup for VS Code Desktop</a>
+  <ul class="collapse">
+  <li><a href="#install-vs-code" id="toc-install-vs-code" class="nav-link" data-scroll-target="#install-vs-code">Install VS Code</a></li>
+  <li><a href="#install-coder-remote-extension-for-vs-code" id="toc-install-coder-remote-extension-for-vs-code" class="nav-link" data-scroll-target="#install-coder-remote-extension-for-vs-code">Install Coder Remote Extension for VS Code</a></li>
+  <li><a href="#check-that-everything-works" id="toc-check-that-everything-works" class="nav-link" data-scroll-target="#check-that-everything-works">Check That Everything Works</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -142,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Setup instructions</h1>
+<h1 class="title">Setup Instructions</h1>
 </div>
 
 
@@ -161,8 +164,8 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Please complete the following before you arrive on the first day of the workshop.</p>
 <section id="create-your-workspace" class="level2">
-<h2 class="anchored" data-anchor-id="create-your-workspace">Create your Workspace</h2>
-<p>For the workshop, we will use a coding agent installed in a virtual machine that you access remotely (a <a href="https://coder.dreamlab.ucsb.edu">Coder Workspace</a>). It can take a few minute to create your workspace so we recommend doing it before the workshop.</p>
+<h2 class="anchored" data-anchor-id="create-your-workspace">Create Your Workspace</h2>
+<p>For the workshop, we will use a coding agent installed in a virtual machine that you access remotely (a <a href="https://coder.dreamlab.ucsb.edu">Coder Workspace</a>). It can take a few minutes to create your workspace so we recommend doing it before the workshop.</p>
 <p>Follow these steps to create your workspace:</p>
 <ol type="1">
 <li>Log in to our <a href="https://coder.dreamlab.ucsb.edu">Coder Workspace Environment</a> using your UCSB NetID.</li>
@@ -171,34 +174,38 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Enter a <strong>name</strong> for your workspace (or use the suggested name)</li>
 <li>Review the usage policies and click “<strong>I understand the usage policies</strong>”.</li>
-<li>Click <strong>Yes</strong> for “Include Visual Studio Code (Web)“</li>
-<li>(Optional) Click <strong>Yes</strong> for “Include Visual Studio Code (Desktop)“</li>
+<li>Click <strong>Yes</strong> for “Include Visual Studio Code (Web)”</li>
+<li>(<strong>Optional, see below</strong>) Click <strong>Yes</strong> for “Include Visual Studio Code (Desktop)”</li>
 <li>Click the <strong>Create Workspace</strong> button</li>
 <li>It will take a few minutes for the workspace to be created.</li>
 </ul></li>
 </ol>
 </section>
-<section id="install-vs-code" class="level2">
-<h2 class="anchored" data-anchor-id="install-vs-code">Install VS Code (?)</h2>
+<section id="optional-setup-for-vs-code-desktop" class="level2">
+<h2 class="anchored" data-anchor-id="optional-setup-for-vs-code-desktop">Optional Setup for VS Code Desktop</h2>
+<p>If you prefer to use the VS Code desktop app, rather than the browser-based version, use these instructions to set things up.</p>
+<section id="install-vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="install-vs-code">Install VS Code</h3>
 <p>We will use Visual Studio Code (<a href="https://code.visualstudio.com/">VS Code</a>) as our primary development environment. Download and install VS Code using <a href="https://code.visualstudio.com/docs/getstarted/overview#_install-vs-code">these instructions</a>.</p>
 </section>
-<section id="install-coder-remote-extension-for-vs-code" class="level2">
-<h2 class="anchored" data-anchor-id="install-coder-remote-extension-for-vs-code">Install Coder Remote extension for VS Code (?)</h2>
+<section id="install-coder-remote-extension-for-vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="install-coder-remote-extension-for-vs-code">Install Coder Remote Extension for VS Code</h3>
 <p>We will use the <a href="https://marketplace.visualstudio.com/items?itemName=coder.coder-remote">Coder Remote</a> extension for VS Code to connect to our Coder Workspace from inside VS Code.</p>
 <p>To install, click the green “Install” button on that page. (You should already have VS Code installed). Alternatively, you can install it through the “Extensions” panel within VS Code: search for “Coder Remote” and click “install”.</p>
 </section>
-<section id="check-that-everything-works" class="level2">
-<h2 class="anchored" data-anchor-id="check-that-everything-works">Check that everything works (?)</h2>
+<section id="check-that-everything-works" class="level3">
+<h3 class="anchored" data-anchor-id="check-that-everything-works">Check That Everything Works</h3>
 <p>Check that you can connect to your Coder Workspace from VS Code.</p>
 <ul>
-<li>Open VS Code and click the Coder extension icon from the vertical bar on the left side of the menu. (It looks like “C⏹”). You should see a button to “Login”</li>
+<li>Open VS Code and click the Coder extension icon from the vertical bar on the left side of the menu. You should see a button to “Login”</li>
 <li>Click the login button and enter <code>https://coder.dreamlab.ucsb.edu</code> in the text input box. Then press Enter.</li>
 <li>Your web browser should open to a page with a button to “copy session token.” Click the “copy session token” button and close the browser window/tab.</li>
 <li>Back in VS Code, paste the session token in the “Coder API Key” text input and press Enter.</li>
-<li>You should the workspace you created listed in the “My Workspaces” panel of the Coder Remote extension.</li>
+<li>You should see the workspace you created listed in the “My Workspaces” panel of the Coder Remote extension.</li>
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
