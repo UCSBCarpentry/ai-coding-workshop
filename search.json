@@ -53,6 +53,34 @@
     "href": "setup.html",
     "title": "Setup instructions",
     "section": "",
-    "text": "Please complete the following before you arrive on the first day of the workshop.\nFor the workshop, we will use a coding agent (OpenCode) installed on a virtual workspace (Coder Workspaces). It can take a few minute to create each workspace so we recommend doing it before the workshop. Follow these steps to create your workspace:\n\nLog in to DREAM Lab’s Coder Workspace Environment using your UCSB NetID.\nClick the New Workspace button and then Coder Workspace (Summer 2026).\nOn the New Workspace form:\n\nEnter a name for your workspace (or use the suggested name)\nReview the usage policies and click “I understand the usage policies”.\nClick Yes for “Include Visual Studio Code (Web)“\n(Optional) Click Yes for “Include Visual Studio Code (Desktop)“\nClick the Create Workspace button\nIt will take a few minutes for the workspace to be created."
+    "text": "Please complete the following before you arrive on the first day of the workshop."
+  },
+  {
+    "objectID": "setup.html#create-your-workspace",
+    "href": "setup.html#create-your-workspace",
+    "title": "Setup instructions",
+    "section": "Create your Workspace",
+    "text": "Create your Workspace\nFor the workshop, we will use a coding agent installed in a virtual machine that you access remotely (a Coder Workspace). It can take a few minute to create your workspace so we recommend doing it before the workshop.\nFollow these steps to create your workspace:\n\nLog in to our Coder Workspace Environment using your UCSB NetID.\nClick the New Workspace button and then Coder Workspace (Summer 2026).\nOn the New Workspace form:\n\nEnter a name for your workspace (or use the suggested name)\nReview the usage policies and click “I understand the usage policies”.\nClick Yes for “Include Visual Studio Code (Web)“\n(Optional) Click Yes for “Include Visual Studio Code (Desktop)“\nClick the Create Workspace button\nIt will take a few minutes for the workspace to be created."
+  },
+  {
+    "objectID": "setup.html#install-vs-code",
+    "href": "setup.html#install-vs-code",
+    "title": "Setup instructions",
+    "section": "Install VS Code (?)",
+    "text": "Install VS Code (?)\nWe will use Visual Studio Code (VS Code) as our primary development environment. Download and install VS Code using these instructions."
+  },
+  {
+    "objectID": "setup.html#install-coder-remote-extension-for-vs-code",
+    "href": "setup.html#install-coder-remote-extension-for-vs-code",
+    "title": "Setup instructions",
+    "section": "Install Coder Remote extension for VS Code (?)",
+    "text": "Install Coder Remote extension for VS Code (?)\nWe will use the Coder Remote extension for VS Code to connect to our Coder Workspace from inside VS Code.\nTo install, click the green “Install” button on that page. (You should already have VS Code installed). Alternatively, you can install it through the “Extensions” panel within VS Code: search for “Coder Remote” and click “install”."
+  },
+  {
+    "objectID": "setup.html#check-that-everything-works",
+    "href": "setup.html#check-that-everything-works",
+    "title": "Setup instructions",
+    "section": "Check that everything works (?)",
+    "text": "Check that everything works (?)\nCheck that you can connect to your Coder Workspace from VS Code. - Open VS Code and click the Coder extension icon from the vertical bar on the left side of the menu. (It looks like “C⏹”). You should see a button to “Login” - Click the login button and enter https://coder.dreamlab.ucsb.edu in the text input box. Then press Enter. - Your web browser should open to a page with a button to “copy session token.” Click the “copy session token” button and close the browser window/tab. - Back in VS Code, paste the session token in the “Coder API Key” text input and press Enter. - You should the workspace you created listed in the “My Workspaces” panel of the Coder Remote extension."
   }
 ]

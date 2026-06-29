@@ -125,8 +125,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#create-your-workspace" id="toc-create-your-workspace" class="nav-link active" data-scroll-target="#create-your-workspace">Create your Workspace</a></li>
+  <li><a href="#install-vs-code" id="toc-install-vs-code" class="nav-link" data-scroll-target="#install-vs-code">Install VS Code (?)</a></li>
+  <li><a href="#install-coder-remote-extension-for-vs-code" id="toc-install-coder-remote-extension-for-vs-code" class="nav-link" data-scroll-target="#install-coder-remote-extension-for-vs-code">Install Coder Remote extension for VS Code (?)</a></li>
+  <li><a href="#check-that-everything-works" id="toc-check-that-everything-works" class="nav-link" data-scroll-target="#check-that-everything-works">Check that everything works (?)</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -151,9 +160,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Please complete the following before you arrive on the first day of the workshop.</p>
-<p>For the workshop, we will use a coding agent (OpenCode) installed on a virtual workspace (<a href="https://coder.dreamlab.ucsb.edu">Coder Workspaces</a>). It can take a few minute to create each workspace so we recommend doing it before the workshop. Follow these steps to create your workspace:</p>
+<section id="create-your-workspace" class="level2">
+<h2 class="anchored" data-anchor-id="create-your-workspace">Create your Workspace</h2>
+<p>For the workshop, we will use a coding agent installed in a virtual machine that you access remotely (a <a href="https://coder.dreamlab.ucsb.edu">Coder Workspace</a>). It can take a few minute to create your workspace so we recommend doing it before the workshop.</p>
+<p>Follow these steps to create your workspace:</p>
 <ol type="1">
-<li>Log in to <a href="https://coder.dreamlab.ucsb.edu">DREAM Lab’s Coder Workspace Environment</a> using your UCSB NetID.</li>
+<li>Log in to our <a href="https://coder.dreamlab.ucsb.edu">Coder Workspace Environment</a> using your UCSB NetID.</li>
 <li>Click the <strong>New Workspace</strong> button and then <strong>Coder Workspace (Summer 2026)</strong>.</li>
 <li>On the New Workspace form:
 <ul>
@@ -165,8 +177,22 @@ ul.task-list li input[type="checkbox"] {
 <li>It will take a few minutes for the workspace to be created.</li>
 </ul></li>
 </ol>
+</section>
+<section id="install-vs-code" class="level2">
+<h2 class="anchored" data-anchor-id="install-vs-code">Install VS Code (?)</h2>
+<p>We will use Visual Studio Code (<a href="https://code.visualstudio.com/">VS Code</a>) as our primary development environment. Download and install VS Code using <a href="https://code.visualstudio.com/docs/getstarted/overview#_install-vs-code">these instructions</a>.</p>
+</section>
+<section id="install-coder-remote-extension-for-vs-code" class="level2">
+<h2 class="anchored" data-anchor-id="install-coder-remote-extension-for-vs-code">Install Coder Remote extension for VS Code (?)</h2>
+<p>We will use the <a href="https://marketplace.visualstudio.com/items?itemName=coder.coder-remote">Coder Remote</a> extension for VS Code to connect to our Coder Workspace from inside VS Code.</p>
+<p>To install, click the green “Install” button on that page. (You should already have VS Code installed). Alternatively, you can install it through the “Extensions” panel within VS Code: search for “Coder Remote” and click “install”.</p>
+</section>
+<section id="check-that-everything-works" class="level2">
+<h2 class="anchored" data-anchor-id="check-that-everything-works">Check that everything works (?)</h2>
+<p>Check that you can connect to your Coder Workspace from VS Code. - Open VS Code and click the Coder extension icon from the vertical bar on the left side of the menu. (It looks like “C⏹”). You should see a button to “Login” - Click the login button and enter <code>https://coder.dreamlab.ucsb.edu</code> in the text input box. Then press Enter. - Your web browser should open to a page with a button to “copy session token.” Click the “copy session token” button and close the browser window/tab. - Back in VS Code, paste the session token in the “Coder API Key” text input and press Enter. - You should the workspace you created listed in the “My Workspaces” panel of the Coder Remote extension.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
