@@ -3,3 +3,5 @@
 _site
 *.log
 .vscode
+node_modules/
+a11y-report/

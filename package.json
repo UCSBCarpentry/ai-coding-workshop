@@ -1,0 +1,14 @@
+{
+  "name": "ai-coding-workshop-a11y",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Accessibility (axe-core) checks for the Quarto site.",
+  "scripts": {
+    "a11y": "node scripts/a11y.mjs"
+  },
+  "devDependencies": {
+    "axe-core": "^4.10.2",
+    "puppeteer-core": "^24.0.0"
+  }
+}
