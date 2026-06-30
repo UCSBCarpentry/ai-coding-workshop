@@ -12,10 +12,7 @@ website:
       - text: Lessons
         menu:
           - href: lessons/01_intro.qmd
-            text: "1. Introduction"
           - href: lessons/02_agent.qmd
-            text: "2. Setting up the agent"
-
 format:
   html:
     theme: [cosmo, custom.scss]

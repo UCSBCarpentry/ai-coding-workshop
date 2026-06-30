@@ -1,13 +1,14 @@
 ---
-title: "Setting up the Agent"
+title: "Getting Started with an Agent"
 ---
 
-AI-assisted coding agents are powerful tools, but there are very real risks
-associated with using them. To mitigate these risks, it's important to isolate
-coding agents and limit the potential damage they could cause in the worst-case
-scenario. For this workshop, we will use dedicated virtual machines (Coder
-Workspace) to run our agents. This means the coding agent will only have access
-to the files that we upload to the virtual machine.
+Coding agents are powerful tools, but they come with significant risks.  To use
+agents safely, it’s important to run them in an environment where the potential
+harms are mitigated. Coder Workspaces are very helpful for this purpose because
+they are disposable virtual machines. Any agent running in a workspace can only
+interact with the files you upload to the VM. This provides more safety than
+running the agent on your personal computer, for example. 
+
 
 ## The Coder Workspace Environment
 
@@ -125,3 +126,14 @@ A few defaults worth knowing:
 - Reading files outside the working directory defaults to `ask`.
 - `.env` files are denied by default, so secrets aren't read accidentally.
 
+## OpenCode Commands
+
+You can type "`/`" followed by a command name to configure OpenCode or perform various actions. You can find a complete list of commands in the [OpenCode documentation](https://opencode.ai/docs/tui/#commands). 
+
+The commands we will use in the workshop are listed here:
+
+- `/connect` - Add a model provider. Allows you to select from available providers and add their API keys.
+- `/exit` - Exit OpenCode. (You can also use `/q`)
+- `/help` - Display help information 
+- `/models` - List and switch between models
+- `/new` - Start a new session (fresh context)
