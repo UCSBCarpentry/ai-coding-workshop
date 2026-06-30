@@ -1,0 +1,17 @@
+/*-- scss:rules --*/
+// Darken muted text to meet WCAG 2.1 AA contrast.
+// cosmo default #6d7a86 on white = 4.39:1 (needs >= 4.5:1).
+.figure-caption,
+figcaption,
+blockquote > p {
+  color: #5d6975; // ~5:1 on white; still muted, with margin above the threshold
+}
+
+// Wrap long lines in code blocks instead of scrolling horizontally. This keeps
+// code blocks keyboard-accessible (no focusable scroll region needed) and covers
+// plain ``` ``` blocks, which `code-overflow: wrap` does not reach.
+pre,
+pre code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}

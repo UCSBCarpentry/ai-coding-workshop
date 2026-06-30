@@ -66,6 +66,6 @@ containerized terminal context that lacks a graphical display.
 
 After saving the configuration, **quit and restart opencode**. Test the setup by asking:
 
-```none
+```md
 Take a screenshot of https://www.library.ucsb.edu
 ```

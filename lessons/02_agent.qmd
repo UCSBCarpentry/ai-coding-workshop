@@ -11,8 +11,10 @@ to the files that we upload to the virtual machine.
 
 ## The Coder Workspace Environment
 
-> Coder workspaces are a UCSB-specific resource, however you could substitute
-> any cloud-based service for running virtual machines.
+::: {.callout-note}
+Coder workspaces are a UCSB-specific resource, however you could substitute
+any cloud-based service for running virtual machines.
+:::
 
 Follow the [setup instructions](../setup.qmd) if necessary, to create a Coder Workspace. 
 
@@ -25,8 +27,8 @@ We will:
 
 ## Our Coding Agent: OpenCode
 
-> There are many coding agents out there. We like opencode because it was one of
-> the few widely used coding agents that is model agnostic. 
+There are many coding agents out there. We like opencode because it was one of
+the few widely used coding agents that is model agnostic. 
 
 OpenCode needs to know which AI model to talk to. We'll point it at the **DREAM
 Lab AI Gateway**, which gives us access to a range of models through a single API
@@ -36,19 +38,19 @@ key.
 press <kbd>Enter</kbd>. Start typing `dream` to filter the list, then select
 **DREAM Lab AI Gateway** under *Providers*.
 
-![Selecting the DREAM Lab AI Gateway provider](../images/opencode_connect_provider.png)
+![Selecting the DREAM Lab AI Gateway provider](../images/opencode_connect_provider.png){fig-alt="OpenCode model selection dropdown with DREAM Lab AI Gateway highlighted"}
 
 **2. Enter your API key.** Paste the API key you were given for the workshop and
 press <kbd>Enter</kbd> to submit.
 
-![Entering your API key](../images/opencode_connect_apikey.png)
+![Entering your API key](../images/opencode_connect_apikey.png){fig-alt="OpenCode prompt entering an API key"}
 
 **3. Select a model.** Choose **Gemini 3.5 Flash** from the list of available
 models. You can use (Ctrl+F) to "favorite" a model. We will use both Gemini 3.5
 Flash and Gemini 3.1 Pro Preview (Custom Tools) -- you might want to favorite
 both of these to make switching models a little easier.
 
-![Selecting the Gemini 3.5 Flash model](../images/opencode_connect_model.png)
+![Selecting the Gemini 3.5 Flash model](../images/opencode_connect_model.png){fig-alt="OpenCode model selection dropdown with Gemini 3.5 Flash highlighted"}
 
 OpenCode is now configured and ready to use the DREAM Lab AI Gateway.
 
@@ -57,7 +59,7 @@ OpenCode is now configured and ready to use the DREAM Lab AI Gateway.
 To demonstrate the capabilities of a coding agent, let's ask OpenCode to inspect
 that machine we're using.
 
-```
+```md
 Tell me about the machine you're running on: OS, resources, etc.
 ```
 
@@ -66,7 +68,7 @@ inspect the machine. It's safe to say yes because this isn't your real machine!
 
 The response should look something like this.
 
-```
+```md
 I will run a few non-modifying commands to retrieve information 
 about the operating system, CPU, memory, and disk resources.
 
