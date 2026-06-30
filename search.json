@@ -72,37 +72,44 @@
   {
     "objectID": "lessons/02_agent.html",
     "href": "lessons/02_agent.html",
-    "title": "Setting up the Agent",
+    "title": "Getting Started with an Agent",
     "section": "",
-    "text": "AI-assisted coding agents are powerful tools, but there are very real risks associated with using them. To mitigate these risks, it’s important to isolate coding agents and limit the potential damage they could cause in the worst-case scenario. For this workshop, we will use dedicated virtual machines (Coder Workspace) to run our agents. This means the coding agent will only have access to the files that we upload to the virtual machine."
+    "text": "Coding agents are powerful tools, but they come with significant risks. To use agents safely, it’s important to run them in an environment where the potential harms are mitigated. Coder Workspaces are very helpful for this purpose because they are disposable virtual machines. Any agent running in a workspace can only interact with the files you upload to the VM. This provides more safety than running the agent on your personal computer, for example."
   },
   {
     "objectID": "lessons/02_agent.html#the-coder-workspace-environment",
     "href": "lessons/02_agent.html#the-coder-workspace-environment",
-    "title": "Setting up the Agent",
+    "title": "Getting Started with an Agent",
     "section": "The Coder Workspace Environment",
     "text": "The Coder Workspace Environment\n\n\n\n\n\n\nNote\n\n\n\nCoder workspaces are a UCSB-specific resource, however you could substitute any cloud-based service for running virtual machines.\n\n\nFollow the setup instructions if necessary, to create a Coder Workspace. You should have a workspace with a dashboard like the image below.\n\n\n\nCoder Workspace Dashboard\n\n\nStart VS Code from the workspace dashboard. The web-based editor starts in an empty directory (~/workspace).\nExplore the VS Code interface:\n\nCreate a new file, called README.md\nOpen a terminal window\n\n\n\n\nVS Code Web, with Terminal window for running bash commands\n\n\n\nGit Setup\nWe will need to configure git in order to create commits later on.\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"you@ucsb.edu\""
   },
   {
     "objectID": "lessons/02_agent.html#our-coding-agent-opencode",
     "href": "lessons/02_agent.html#our-coding-agent-opencode",
-    "title": "Setting up the Agent",
+    "title": "Getting Started with an Agent",
     "section": "Our Coding Agent: OpenCode",
     "text": "Our Coding Agent: OpenCode\nThere are many coding agents out there. We like opencode because it was one of the few widely used coding agents that is model agnostic.\nTo start OpenCode, run opencode in the VS Code terminal.\n\n\n\nVS Code window with OpenCode running in a terminal\n\n\nBy default, OpenCode on Coder Workspaces is configured to use open weights models through the College IT Gateway.\nOpenCode needs to know which AI model to talk to. We’ll point it at the DREAM Lab AI Gateway, which gives us access to a range of models through a single API key.\n1. Connect to a model provider. In the OpenCode prompt, type /connect and press Enter. Start typing dream to filter the list, then select DREAM Lab AI Gateway under Providers.\n\n\n\nSelecting the DREAM Lab AI Gateway provider\n\n\n2. Enter your API key. Paste the API key you were given for the workshop and press Enter to submit.\n\n\n\nEntering your API key\n\n\n3. Select a model. Choose Gemini 3.5 Flash from the list of available models. You can use (Ctrl+F) to “favorite” a model. We will use both Gemini 3.5 Flash and Gemini 3.1 Pro Preview (Custom Tools) – you might want to favorite both of these to make switching models a little easier.\n\n\n\nSelecting the Gemini 3.5 Flash model\n\n\nOpenCode is now configured and ready to use the DREAM Lab AI Gateway."
   },
   {
     "objectID": "lessons/02_agent.html#our-first-prompt",
     "href": "lessons/02_agent.html#our-first-prompt",
-    "title": "Setting up the Agent",
+    "title": "Getting Started with an Agent",
     "section": "Our First Prompt",
     "text": "Our First Prompt\nTo demonstrate the capabilities of a coding agent, let’s ask OpenCode to inspect that machine we’re using.\nTell me about the machine you're running on: OS, resources, etc.\nOpenCode will probably ask you for permission to run a bash command to inspect the machine. It’s safe to say yes because this isn’t your real machine!\nThe response should look something like this.\nI will run a few non-modifying commands to retrieve information \nabout the operating system, CPU, memory, and disk resources.\n\nbash tool: \"uname -a && cat /etc/os-release && free -h && nproc && df -h /\"\n\nThis machine is running:\n- **OS**: Ubuntu 26.04 LTS (Kernel 7.0.0, x86_64)\n- **CPU**: 4 Cores\n- **RAM**: 15 GiB (12 GiB available)\n- **Disk**: 14 GiB total, 8.1 GiB free (41% used)"
   },
   {
     "objectID": "lessons/02_agent.html#agent-permissions",
     "href": "lessons/02_agent.html#agent-permissions",
-    "title": "Setting up the Agent",
+    "title": "Getting Started with an Agent",
     "section": "Agent Permissions",
     "text": "Agent Permissions\nMost coding agents, including OpenCode, have a permission system used to control what actions the agent is allowed to perform in its environment. In the example above, OpenCode paused and asked before running a bash command. Even though our agent is isolated in a throwaway virtual machine, it’s worth understanding how it decides when to ask for your approval.\nThe actions the agent can perform (e.g., reading files, editing them, running shell commands, fetching URLs) are determined by permission levels:\n\nallow — the action runs automatically, no questions asked.\nask — the agent pauses and waits for your approval.\ndeny — the action is blocked entirely.\n\nBy default OpenCode allows most actions, but you can change this through OpenCode’s configuration file.\nA few defaults worth knowing:\n\nReading files outside the working directory defaults to ask.\n.env files are denied by default, so secrets aren’t read accidentally."
+  },
+  {
+    "objectID": "lessons/02_agent.html#opencode-commands",
+    "href": "lessons/02_agent.html#opencode-commands",
+    "title": "Getting Started with an Agent",
+    "section": "OpenCode Commands",
+    "text": "OpenCode Commands\nYou can type “/” followed by a command name to configure OpenCode or perform various actions. You can find a complete list of commands in the OpenCode documentation.\nThe commands we will use in the workshop are listed here:\n\n/connect - Add a model provider. Allows you to select from available providers and add their API keys.\n/exit - Exit OpenCode. (You can also use /q)\n/help - Display help information\n/models - List and switch between models\n/new - Start a new session (fresh context)"
   },
   {
     "objectID": "index.html",

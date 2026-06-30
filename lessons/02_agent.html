@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Setting up the Agent – AI-Assisted Coding for Research</title>
+<title>Getting Started with an Agent – AI-Assisted Coding for Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -141,11 +141,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
         <li>
     <a class="dropdown-item" href="../lessons/01_intro.html">
- <span class="dropdown-text">1. Introduction</span></a>
+ <span class="dropdown-text">Introduction</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../lessons/02_agent.html">
- <span class="dropdown-text">2. Setting up the agent</span></a>
+ <span class="dropdown-text">Getting Started with an Agent</span></a>
   </li>  
     </ul>
   </li>
@@ -172,6 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#our-coding-agent-opencode" id="toc-our-coding-agent-opencode" class="nav-link" data-scroll-target="#our-coding-agent-opencode">Our Coding Agent: OpenCode</a></li>
   <li><a href="#our-first-prompt" id="toc-our-first-prompt" class="nav-link" data-scroll-target="#our-first-prompt">Our First Prompt</a></li>
   <li><a href="#agent-permissions" id="toc-agent-permissions" class="nav-link" data-scroll-target="#agent-permissions">Agent Permissions</a></li>
+  <li><a href="#opencode-commands" id="toc-opencode-commands" class="nav-link" data-scroll-target="#opencode-commands">OpenCode Commands</a></li>
   </ul>
 </nav>
     </div>
@@ -180,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Setting up the Agent</h1>
+<h1 class="title">Getting Started with an Agent</h1>
 </div>
 
 
@@ -197,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>AI-assisted coding agents are powerful tools, but there are very real risks associated with using them. To mitigate these risks, it’s important to isolate coding agents and limit the potential damage they could cause in the worst-case scenario. For this workshop, we will use dedicated virtual machines (Coder Workspace) to run our agents. This means the coding agent will only have access to the files that we upload to the virtual machine.</p>
+<p>Coding agents are powerful tools, but they come with significant risks. To use agents safely, it’s important to run them in an environment where the potential harms are mitigated. Coder Workspaces are very helpful for this purpose because they are disposable virtual machines. Any agent running in a workspace can only interact with the files you upload to the VM. This provides more safety than running the agent on your personal computer, for example.</p>
 <section id="the-coder-workspace-environment" class="level2">
 <h2 class="anchored" data-anchor-id="the-coder-workspace-environment">The Coder Workspace Environment</h2>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -305,6 +306,18 @@ Note
 <ul>
 <li>Reading files outside the working directory defaults to <code>ask</code>.</li>
 <li><code>.env</code> files are denied by default, so secrets aren’t read accidentally.</li>
+</ul>
+</section>
+<section id="opencode-commands" class="level2">
+<h2 class="anchored" data-anchor-id="opencode-commands">OpenCode Commands</h2>
+<p>You can type “<code>/</code>” followed by a command name to configure OpenCode or perform various actions. You can find a complete list of commands in the <a href="https://opencode.ai/docs/tui/#commands">OpenCode documentation</a>.</p>
+<p>The commands we will use in the workshop are listed here:</p>
+<ul>
+<li><code>/connect</code> - Add a model provider. Allows you to select from available providers and add their API keys.</li>
+<li><code>/exit</code> - Exit OpenCode. (You can also use <code>/q</code>)</li>
+<li><code>/help</code> - Display help information</li>
+<li><code>/models</code> - List and switch between models</li>
+<li><code>/new</code> - Start a new session (fresh context)</li>
 </ul>
 
 
