@@ -165,12 +165,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-coder-workspace-environment" id="toc-the-coder-workspace-environment" class="nav-link active" data-scroll-target="#the-coder-workspace-environment">The Coder Workspace Environment</a></li>
-  <li><a href="#our-coding-agent-opencode" id="toc-our-coding-agent-opencode" class="nav-link" data-scroll-target="#our-coding-agent-opencode">Our Coding Agent: OpenCode</a></li>
-  <li><a href="#our-first-prompt" id="toc-our-first-prompt" class="nav-link" data-scroll-target="#our-first-prompt">Our First Prompt</a>
+  <li><a href="#the-coder-workspace-environment" id="toc-the-coder-workspace-environment" class="nav-link active" data-scroll-target="#the-coder-workspace-environment">The Coder Workspace Environment</a>
   <ul class="collapse">
-  <li><a href="#agent-permissions" id="toc-agent-permissions" class="nav-link" data-scroll-target="#agent-permissions">Agent Permissions</a></li>
+  <li><a href="#git-setup" id="toc-git-setup" class="nav-link" data-scroll-target="#git-setup">Git Setup</a></li>
   </ul></li>
+  <li><a href="#our-coding-agent-opencode" id="toc-our-coding-agent-opencode" class="nav-link" data-scroll-target="#our-coding-agent-opencode">Our Coding Agent: OpenCode</a></li>
+  <li><a href="#our-first-prompt" id="toc-our-first-prompt" class="nav-link" data-scroll-target="#our-first-prompt">Our First Prompt</a></li>
+  <li><a href="#agent-permissions" id="toc-agent-permissions" class="nav-link" data-scroll-target="#agent-permissions">Agent Permissions</a></li>
   </ul>
 </nav>
     </div>
@@ -212,18 +213,43 @@ Note
 <p>Coder workspaces are a UCSB-specific resource, however you could substitute any cloud-based service for running virtual machines.</p>
 </div>
 </div>
-<p>Follow the <a href="../setup.html">setup instructions</a> if necessary, to create a Coder Workspace.</p>
-<p>We will:</p>
+<p>Follow the <a href="../setup.html">setup instructions</a> if necessary, to create a <a href="https://coder.dreamlab.ucsb.edu">Coder Workspace</a>. You should have a workspace with a dashboard like the image below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/coder_dashboard.png" class="img-fluid figure-img" alt="Example Coder Workspace dashboard with buttons to stop and restart the workspace, and open VS Code"></p>
+<figcaption>Coder Workspace Dashboard</figcaption>
+</figure>
+</div>
+<p>Start VS Code from the workspace dashboard. The web-based editor starts in an empty directory (<code>~/workspace</code>).</p>
+<p>Explore the VS Code interface:</p>
 <ul>
-<li>Connect to the workspace using VS Code Web</li>
-<li>The editor starts in an empty directory (<code>~/workspace</code>)</li>
-<li>We can upload and download files through VS Code or through the file browser.</li>
-<li>Create a terminal window in VS code and start opencode</li>
+<li>Create a new file, called <code>README.md</code></li>
+<li>Open a terminal window</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/vscode_terminal.png" class="img-fluid figure-img" alt="VS Code Web interface with terminal window show output from `ls` command."></p>
+<figcaption>VS Code Web, with Terminal window for running bash commands</figcaption>
+</figure>
+</div>
+<section id="git-setup" class="level3">
+<h3 class="anchored" data-anchor-id="git-setup">Git Setup</h3>
+<p>We will need to configure git in order to create commits later on.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"you@ucsb.edu"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 </section>
 <section id="our-coding-agent-opencode" class="level2">
 <h2 class="anchored" data-anchor-id="our-coding-agent-opencode">Our Coding Agent: OpenCode</h2>
 <p>There are many coding agents out there. We like opencode because it was one of the few widely used coding agents that is model agnostic.</p>
+<p>To start OpenCode, run <code>opencode</code> in the VS Code terminal.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/vscode_opencode.png" class="img-fluid figure-img" alt="VS Code Web with OpenCode running."></p>
+<figcaption>VS Code window with OpenCode running in a terminal</figcaption>
+</figure>
+</div>
+<p>By default, OpenCode on Coder Workspaces is configured to use open weights models through the College IT Gateway.</p>
 <p>OpenCode needs to know which AI model to talk to. We’ll point it at the <strong>DREAM Lab AI Gateway</strong>, which gives us access to a range of models through a single API key.</p>
 <p><strong>1. Connect to a model provider.</strong> In the OpenCode prompt, type <code>/connect</code> and press <kbd>Enter</kbd>. Start typing <code>dream</code> to filter the list, then select <strong>DREAM Lab AI Gateway</strong> under <em>Providers</em>.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -251,21 +277,22 @@ Note
 <section id="our-first-prompt" class="level2">
 <h2 class="anchored" data-anchor-id="our-first-prompt">Our First Prompt</h2>
 <p>To demonstrate the capabilities of a coding agent, let’s ask OpenCode to inspect that machine we’re using.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Tell me about the machine you're running on: OS, resources, etc.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Tell me about the machine you're running on: OS, resources, etc.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>OpenCode will probably ask you for permission to run a bash command to inspect the machine. It’s safe to say yes because this isn’t your real machine!</p>
 <p>The response should look something like this.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>I will run a few non-modifying commands to retrieve information </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>about the operating system, CPU, memory, and disk resources.</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>bash tool: "uname -a &amp;&amp; cat /etc/os-release &amp;&amp; free -h &amp;&amp; nproc &amp;&amp; df -h /"</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>This machine is running:</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**OS**: Ubuntu 26.04 LTS (Kernel 7.0.0, x86_64)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**CPU**: 4 Cores</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**RAM**: 15 GiB (12 GiB available)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Disk**: 14 GiB total, 8.1 GiB free (41% used)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="agent-permissions" class="level3">
-<h3 class="anchored" data-anchor-id="agent-permissions">Agent Permissions</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>I will run a few non-modifying commands to retrieve information </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>about the operating system, CPU, memory, and disk resources.</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>bash tool: "uname -a &amp;&amp; cat /etc/os-release &amp;&amp; free -h &amp;&amp; nproc &amp;&amp; df -h /"</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>This machine is running:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**OS**: Ubuntu 26.04 LTS (Kernel 7.0.0, x86_64)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**CPU**: 4 Cores</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**RAM**: 15 GiB (12 GiB available)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Disk**: 14 GiB total, 8.1 GiB free (41% used)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="agent-permissions" class="level2">
+<h2 class="anchored" data-anchor-id="agent-permissions">Agent Permissions</h2>
 <p>Most coding agents, including OpenCode, have a <strong>permission system</strong> used to control what actions the agent is allowed to perform in its environment. In the example above, OpenCode paused and asked before running a bash command. Even though our agent is isolated in a throwaway virtual machine, it’s worth understanding how it decides when to ask for your approval.</p>
 <p>The actions the agent can perform (e.g., reading files, editing them, running shell commands, fetching URLs) are determined by permission levels:</p>
 <ul>
@@ -281,7 +308,6 @@ Note
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
