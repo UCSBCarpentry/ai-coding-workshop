@@ -24,6 +24,12 @@ Follow these steps to create your workspace:
    - Click the **Create Workspace** button
    - It will take a few minutes for the workspace to be created.
 
+It may take a few minutes for the workspace to start up. Once it does, you
+should see a workspace dashboard. Your dashboard controls may be slightly
+different, depending on the options you enabled.
+
+![Coder Workspace Dashboard](images/coder_dashboard.png){fig-alt="Example Coder Workspace dashboard with buttons to stop and restart the workspace, and open VS Code"}
+
 ## Optional Setup for VS Code Desktop
 
 If you prefer to use the VS Code desktop app, rather than the browser-based
