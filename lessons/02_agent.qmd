@@ -137,3 +137,137 @@ The commands we will use in the workshop are listed here:
 - `/help` - Display help information 
 - `/models` - List and switch between models
 - `/new` - Start a new session (fresh context)
+
+
+## Exercise: Download and Plot NOAA Tide Data
+
+:::{.callout-note}
+Complete the exercise individually but discuss results in small groups (2-5 people).
+:::
+
+Use `/new` to start a new session (if necessary) and `/model` to select the
+`Gemini 3.1 Pro (Custom Tools)` model. Then cut and paste the following prompt
+into OpenCode:
+
+> Create a new folder `noaa-tides` and use it as the working directory; then
+> download monthly mean high water for all NOAA stations in California over the
+> last ten years. Download as CSV and save in `noaa-tides/data`.
+
+Wait for the agent to complete the task (it may take a few minutes), then answer
+the following questions:
+
+- What files were downloaded to `noaa-tides/data`? How many and what format? If
+  they are CSVs (as expected), what columns do they include?
+- Does everyone in the group have the same set of files? What's the same, and
+  what's different?
+- Look at the Agent's session transcript: how did the agent complete the task?
+  (If it used a language or technique you're not familiar with, **ask it to
+  explain the steps it took*)
+- In your group, discuss the different approaches the agent took.
+
+As a group, discuss results from the following prompts:
+
+> "what is the name of the station with the highest average mean high water
+> value over the last decade?"
+
+> "plot the mean high water value for all stations using a different color for
+> each station. Include labels on x/y axes and a legend with the station name"
+
+::: {.callout-tip collapse="true"}
+### Discussion Notes
+
+These notes summarize one representative run (Gemini 3.1 Pro, Custom Tools).
+Your own session will differ in the details — that variability is part of the
+point.
+
+**What files were downloaded?**
+
+18 CSV files, one per California tide station, saved to `noaa-tides/data` and
+named by station ID (e.g. `9410170_monthly_mean.csv`). Each file is the NOAA
+`monthly_mean` product, so even though we only asked for mean high water, every
+CSV contains *all* the monthly datum columns:
+
+```
+Year, Month, Highest, MHHW, MHW, MSL, MTL, MLW, MLLW, DTL, GT, MN, DHQ, DLQ, HWI, LWI, Lowest, Inferred
+```
+Each file holds ~120 monthly rows (June 2016 – May 2026), and some cells (e.g.
+`HWI`/`LWI`) are blank where NOAA had no value.
+
+**How did the agent complete the task? (transcript walkthrough)**
+
+1. Probed the NOAA metadata API
+   (`mdapi/.../stations.json?state=CA`) and the data API
+   (`datagetter?...product=monthly_mean`) with small one-off commands to learn
+   the response shape *before* writing any real code.
+2. Wrote a `download.py` that looped over stations, requested CSV, and slept
+   between calls.
+3. Hit two snags and debugged them live:
+   - The `?state=CA` filter on the stations endpoint was **silently ignored** —
+     the first run started downloading *every* US station (Hawaii, the East
+     Coast, the Gulf) instead of just California. The agent caught this, then
+     fetched the full station list and filtered **client-side** on
+     `state == 'CA'`, which correctly yielded 18 stations.
+   - The API began returning `403 Forbidden` after rapid-fire requests (rate
+     limiting). The agent diagnosed it with `curl -i`, then added a browser-like
+     `User-Agent` header and increased the delay to 1 second per request.
+4. Re-ran cleanly, then read one CSV back to confirm the format before
+   reporting done.
+
+The agent didn't get it right on the first try. When it encountered errors, it
+diagnosed and worked around them.
+
+One choice the agent made *silently*: it requested the data with `datum=MHW`,
+so every `MHW` value is measured relative to each station's own MHW datum rather
+than an absolute reference. The task never specified a datum, the agent never
+mentioned picking one, and — as the follow-up question below shows — that
+unstated choice changes the answer. 
+
+**Follow-up prompt: highest average MHW station**
+
+The agent reported **North Spit** as station with the highest average MHW. 
+
+![Plot from NOAA Tides exercise](../images/exercise-noaa-tides.png){fig-alt="Plot of downloaded station MHW values"}
+
+The agent averaged the `MHW` column across each file and reported **North Spit**
+(≈0.154 m). That arithmetic is correct *for the data it downloaded* — but it's
+probably not the best answer to the question.
+
+The download requested `datum=MHW`, so every `MHW` value in the CSVs is measured
+*relative to each station's own long-term MHW datum*. That makes the numbers
+tiny (≈0.05–0.15 m) because they aren't tide heights at all — they're
+**anomalies**, i.e. how far each month sat above that station's historical
+baseline. So "North Spit is highest" really means *its* high water has risen the
+most relative to *its own* reference (a local sea-level/subsidence signal), not
+that it has the highest tides.
+
+Ask for the same thing against a fixed physical datum (`datum=MLLW`, the actual
+height of mean high water above the chart datum) and the answer changes:
+**Redwood City** is highest at ≈2.36 m, with North Spit second (≈2.03 m).
+Redwood City sits deep in San Francisco Bay, where the tidal range is amplified,
+so that result makes physical sense.
+
+**Fixing the prompt**
+
+The root problem is that the original prompt left the datum unspecified, so the
+agent picked one for us. We can remove that ambiguity by naming the datum (and
+the units) directly. A better version of the download prompt:
+
+> Create a new folder `noaa-tides` and use it as the working directory. Download
+> the NOAA monthly mean high water (MHW) for every tide station in California
+> over the last ten years, as CSV, into `noaa-tides/data`. Report the heights
+> **relative to the MLLW datum, in meters**, so values are comparable across
+> stations. Before downloading everything, show me the URL and the columns for
+> one station and confirm the datum with me.
+
+The improvements:
+
+- **Names the datum and units** (`MLLW`, meters) so "highest MHW" means actual
+  tide height, not an anomaly — and is comparable between stations.
+- **Asks the agent to confirm before bulk-downloading**, surfacing hidden
+  choices (like the datum) *before* they silently shape the result.
+
+This is the general lesson: when a result depends on an assumption, push that
+assumption into the prompt rather than letting the agent fill it in.
+
+:::
+
