@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -42,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bba5ebae505b5c03f3f0d8040a416a6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a3fdc2df2c01662e6f3a042b88ed1c09.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -164,9 +199,19 @@ ul.task-list li input[type="checkbox"] {
 <p>AI-assisted coding agents are powerful tools, but there are very real risks associated with using them. To mitigate these risks, it’s important to isolate coding agents and limit the potential damage they could cause in the worst-case scenario. For this workshop, we will use dedicated virtual machines (Coder Workspace) to run our agents. This means the coding agent will only have access to the files that we upload to the virtual machine.</p>
 <section id="the-coder-workspace-environment" class="level2">
 <h2 class="anchored" data-anchor-id="the-coder-workspace-environment">The Coder Workspace Environment</h2>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Coder workspaces are a UCSB-specific resource, however you could substitute any cloud-based service for running virtual machines.</p>
-</blockquote>
+</div>
+</div>
 <p>Follow the <a href="../setup.html">setup instructions</a> if necessary, to create a Coder Workspace.</p>
 <p>We will:</p>
 <ul>
@@ -178,28 +223,26 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="our-coding-agent-opencode" class="level2">
 <h2 class="anchored" data-anchor-id="our-coding-agent-opencode">Our Coding Agent: OpenCode</h2>
-<blockquote class="blockquote">
 <p>There are many coding agents out there. We like opencode because it was one of the few widely used coding agents that is model agnostic.</p>
-</blockquote>
 <p>OpenCode needs to know which AI model to talk to. We’ll point it at the <strong>DREAM Lab AI Gateway</strong>, which gives us access to a range of models through a single API key.</p>
 <p><strong>1. Connect to a model provider.</strong> In the OpenCode prompt, type <code>/connect</code> and press <kbd>Enter</kbd>. Start typing <code>dream</code> to filter the list, then select <strong>DREAM Lab AI Gateway</strong> under <em>Providers</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/opencode_connect_provider.png" class="img-fluid figure-img"></p>
+<p><img src="../images/opencode_connect_provider.png" class="img-fluid figure-img" alt="OpenCode model selection dropdown with DREAM Lab AI Gateway highlighted"></p>
 <figcaption>Selecting the DREAM Lab AI Gateway provider</figcaption>
 </figure>
 </div>
 <p><strong>2. Enter your API key.</strong> Paste the API key you were given for the workshop and press <kbd>Enter</kbd> to submit.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/opencode_connect_apikey.png" class="img-fluid figure-img"></p>
+<p><img src="../images/opencode_connect_apikey.png" class="img-fluid figure-img" alt="OpenCode prompt entering an API key"></p>
 <figcaption>Entering your API key</figcaption>
 </figure>
 </div>
 <p><strong>3. Select a model.</strong> Choose <strong>Gemini 3.5 Flash</strong> from the list of available models. You can use (Ctrl+F) to “favorite” a model. We will use both Gemini 3.5 Flash and Gemini 3.1 Pro Preview (Custom Tools) – you might want to favorite both of these to make switching models a little easier.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/opencode_connect_model.png" class="img-fluid figure-img"></p>
+<p><img src="../images/opencode_connect_model.png" class="img-fluid figure-img" alt="OpenCode model selection dropdown with Gemini 3.5 Flash highlighted"></p>
 <figcaption>Selecting the Gemini 3.5 Flash model</figcaption>
 </figure>
 </div>
@@ -208,19 +251,19 @@ ul.task-list li input[type="checkbox"] {
 <section id="our-first-prompt" class="level2">
 <h2 class="anchored" data-anchor-id="our-first-prompt">Our First Prompt</h2>
 <p>To demonstrate the capabilities of a coding agent, let’s ask OpenCode to inspect that machine we’re using.</p>
-<pre><code>Tell me about the machine you're running on: OS, resources, etc.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Tell me about the machine you're running on: OS, resources, etc.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>OpenCode will probably ask you for permission to run a bash command to inspect the machine. It’s safe to say yes because this isn’t your real machine!</p>
 <p>The response should look something like this.</p>
-<pre><code>I will run a few non-modifying commands to retrieve information 
-about the operating system, CPU, memory, and disk resources.
-
-bash tool: "uname -a &amp;&amp; cat /etc/os-release &amp;&amp; free -h &amp;&amp; nproc &amp;&amp; df -h /"
-
-This machine is running:
-- **OS**: Ubuntu 26.04 LTS (Kernel 7.0.0, x86_64)
-- **CPU**: 4 Cores
-- **RAM**: 15 GiB (12 GiB available)
-- **Disk**: 14 GiB total, 8.1 GiB free (41% used)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>I will run a few non-modifying commands to retrieve information </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>about the operating system, CPU, memory, and disk resources.</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>bash tool: "uname -a &amp;&amp; cat /etc/os-release &amp;&amp; free -h &amp;&amp; nproc &amp;&amp; df -h /"</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>This machine is running:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**OS**: Ubuntu 26.04 LTS (Kernel 7.0.0, x86_64)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**CPU**: 4 Cores</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**RAM**: 15 GiB (12 GiB available)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Disk**: 14 GiB total, 8.1 GiB free (41% used)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="agent-permissions" class="level3">
 <h3 class="anchored" data-anchor-id="agent-permissions">Agent Permissions</h3>
 <p>Most coding agents, including OpenCode, have a <strong>permission system</strong> used to control what actions the agent is allowed to perform in its environment. In the example above, OpenCode paused and asked before running a bash command. Even though our agent is isolated in a throwaway virtual machine, it’s worth understanding how it decides when to ask for your approval.</p>
