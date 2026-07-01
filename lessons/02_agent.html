@@ -340,7 +340,7 @@ Note
 </div>
 <p>Use <code>/new</code> to start a new session (if necessary) and <code>/models</code> to select the <code>Gemini 3.1 Pro (Custom Tools)</code> model. Then cut and paste the following prompt into OpenCode:</p>
 <blockquote class="blockquote">
-<p>Create a new folder <code>noaa-tides</code> and use it as the working directory; then download monthly mean high water for all NOAA stations in California over the last ten years. Download as CSV and save in <code>noaa-tides/data</code>.</p>
+<p>Create a new folder <code>noaa-tides</code> and use it as the working directory, then download monthly mean high water for all NOAA stations in California over the last ten years. Download as CSV and save in <code>noaa-tides/data</code>.</p>
 </blockquote>
 <p>Wait for the agent to complete the task (it may take a few minutes), then answer the following questions:</p>
 <ul>
@@ -351,7 +351,7 @@ Note
 </ul>
 <p>Try an additional prompt and discuss the results:</p>
 <blockquote class="blockquote">
-<p>“plot the mean high water value for all stations using a different color for each station. Include labels on x/y axes and a legend with the station name. What is the name of the station with the highest average mean high water value over the last decade?”</p>
+<p>Plot the mean high water value for all stations using a different color for each station. Include labels on x/y axes and a legend with the station name. What is the name of the station with the highest average mean high water value over the last decade?</p>
 </blockquote>
 <ul>
 <li>Download the plot image using the File Browser tool from your workspace dashboard.</li>
@@ -359,7 +359,7 @@ Note
 <li>In light of your discussion, how would you improve these prompts?</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout" role="button">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -370,7 +370,7 @@ Note
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>These are note from a previous run of the exercise prompts..</p>
+<p>These are notes from a previous run of the exercise prompts.</p>
 <p><strong>What files were downloaded?</strong></p>
 <p>The agent downloaded 18 CSV files, one per California tide station, saved to <code>noaa-tides/data</code> and named by station ID (e.g.&nbsp;<code>9410170_monthly_mean.csv</code>). Each file is the NOAA <code>monthly_mean</code> product, so even though we only asked for mean high water, every CSV contains <em>all</em> the monthly datum columns (<code>Year, Month, Highest, MHHW, MHW, MSL, MTL, MLW, MLLW, DTL, GT, MN, DHQ, DLQ, HWI, LWI, Lowest, Inferred</code>). Each file holds ~120 monthly rows (June 2016 – May 2026), and some cells are blank where NOAA had no value.</p>
 <p><strong>How did the agent complete the task?</strong></p>
@@ -407,7 +407,17 @@ Note
 </div>
 <p>The agent averaged the <code>MHW</code> column across each file and reported <strong>North Spit</strong> (≈0.154 m). That arithmetic is correct <em>for the data it downloaded</em> — but it’s probably not the best answer to the question.</p>
 <p><strong>Caveats</strong></p>
-<p>The generated script downloads data using <code>datum=MHW</code>, so every <code>MHW</code> value is measured relative to each station’s own MHW datum rather than an absolute reference (see the <a href="https://api.tidesandcurrents.noaa.gov/api/prod/#datum">NOAA API documentation</a>). That makes the numbers tiny (≈0.05–0.15 m) because they aren’t tide heights at all — they’re <strong>anomalies</strong>, i.e.&nbsp;how far each month sat above that station’s historical baseline. So “North Spit is highest” really means <em>its</em> high water has risen the most relative to <em>its own</em> reference. Ask for the same thing against a fixed physical datum (<code>datum=MLLW</code>, the actual height of mean high water above the chart datum) and the answer changes.</p>
+<p>The generated script downloads data using <code>datum=MHW</code>, so every <code>MHW</code> value is measured relative to each station’s own MHW datum rather than an absolute reference (see the <a href="https://api.tidesandcurrents.noaa.gov/api/prod/#datum">NOAA API documentation</a>). That makes the numbers tiny because they aren’t tide heights at all. They’re <strong>anomalies</strong>, i.e.&nbsp;how far each month sat above that station’s historical baseline. So “North Spit is highest” really means <em>its</em> high water has risen the most relative to <em>its own</em> reference. Ask for the same thing against a fixed physical datum (<code>datum=MLLW</code>, the actual height of mean high water above the chart datum) and the answer changes.</p>
+<p>Here is an improved prompt:</p>
+<blockquote class="blockquote">
+<p>create a new folder, noaa-tides-2, and use it as the working directory; then download monthly mean tidy data for all NOAA stations in California over the last ten years using the MLLW (mean lower low water) datum. data should be in csv format. save to <code>noaa-tides-2/data</code>. Then plot the mean high water value for all stations using different colors for each station. Include labels on x/y axes and a legend with station names.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/exercise-noaa-tides-2.png" class="img-fluid figure-img" alt="Plot of downloaded station mean high water values using MLLW datum"></p>
+<figcaption>Revised Plot from NOAA Tides exercise</figcaption>
+</figure>
+</div>
 </div>
 </div>
 </div>
