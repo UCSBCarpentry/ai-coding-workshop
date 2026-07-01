@@ -7,7 +7,7 @@ Please complete the following before you arrive on the first day of the workshop
 ## Create Your Workspace
 
 For the workshop, we will use a coding agent installed in a virtual machine that
-you access remotely (a [Coder Workspace](https://coder.dreamlab.ucsb.edu)). It
+you access remotely (a [Coder Workspace](https://coder.dreamlab.ucsb.edu)). You will be using VSCode in a browser window. It
 can take a few minutes to create your workspace so we recommend doing it before
 the workshop. 
 
