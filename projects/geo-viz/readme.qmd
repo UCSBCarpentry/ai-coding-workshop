@@ -3,13 +3,9 @@ title: "Geospatial Data Vibe Visualizing"
 date: "2026-07-01"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ## Use case: Exploring Geodata
 
-A common GIS task is to download some data and output maps to make sure the data is relevant to a task at hand. Using Rstudio or Positron, this could take many lines of code as preliminary individual visualizations are made, ranges of datavalues explored, metadata examined. 
+A common GIS task is to download some data and output maps to make sure the data is relevant to a task at hand. Using RStudio or Positron, this could take many lines of code as preliminary individual visualizations are made, ranges of data values explored, metadata examined. 
 
 Using a coding agent, especially one tuned to a `geoAgents.md` file, can make this a 10-minute exercise.
 
