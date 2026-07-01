@@ -2,7 +2,7 @@
 title: "Getting Started with an Agent"
 ---
 
-Coding agents are powerful tools, but they come with significant risks.  To use
+Coding agents are powerful tools, but they come with significant risks. To use
 agents safely, it’s important to run them in an environment where the potential
 harms are mitigated. Coder Workspaces are very helpful for this purpose because
 they are disposable virtual machines. Any agent running in a workspace can only
@@ -17,18 +17,25 @@ Coder workspaces are a UCSB-specific resource, however you could substitute
 any cloud-based service for running virtual machines.
 :::
 
-Follow the [setup instructions](../setup.qmd) if necessary, to create a [Coder Workspace](https://coder.dreamlab.ucsb.edu). You should have a workspace with a dashboard like the image below.
+Follow the [setup instructions](../setup.qmd) if necessary, to create a [Coder
+Workspace](https://coder.dreamlab.ucsb.edu). You should have a workspace with a
+dashboard like the image below.
 
-![Coder Workspace Dashboard](../images/coder_dashboard.png){fig-alt="Example Coder Workspace dashboard with buttons to stop and restart the workspace, and open VS Code"}
+![Coder Workspace Dashboard](../images/coder_dashboard.png){fig-alt="Example
+Coder Workspace dashboard with buttons to stop and restart the workspace, and
+open VS Code"}
 
-Start VS Code from the workspace dashboard. The web-based editor starts in an empty directory (`~/workspace`). 
+Start VS Code from the workspace dashboard. The web-based editor starts in an
+empty directory (`~/workspace`). 
 
 Explore the VS Code interface:
 
 - Create a new file, called `README.md` 
 - Open a terminal window
 
-![VS Code Web, with Terminal window for running bash commands](../images/vscode_terminal.png){fig-alt="VS Code Web interface with terminal window show output from `ls` command."}
+![VS Code Web, with Terminal window for running bash
+commands](../images/vscode_terminal.png){fig-alt="VS Code Web interface with
+terminal window show output from `ls` command."}
 
 ### Git Setup
 
@@ -37,17 +44,18 @@ We will need to configure git in order to create commits later on.
 ```bash
 git config --global user.name "Your Name"
 git config --global user.email "you@ucsb.edu"
-
 ```
 
 ## Our Coding Agent: OpenCode
 
-There are many coding agents out there. We like opencode because it was one of
-the few widely used coding agents that is model agnostic. 
+There are many coding agents out there. We like OpenCode because it is one of
+the few widely used coding agents that is model agnostic.
 
 To start OpenCode, run `opencode` in the VS Code terminal.
 
-![VS Code window with OpenCode running in a terminal](../images/vscode_opencode.png){fig-alt="VS Code Web with OpenCode running."}
+![VS Code window with OpenCode running in a
+terminal](../images/vscode_opencode.png){fig-alt="VS Code Web with OpenCode
+running."}
 
 By default, OpenCode on Coder Workspaces is configured to use open weights
 models through the College IT Gateway.
@@ -60,19 +68,25 @@ key.
 press <kbd>Enter</kbd>. Start typing `dream` to filter the list, then select
 **DREAM Lab AI Gateway** under *Providers*.
 
-![Selecting the DREAM Lab AI Gateway provider](../images/opencode_connect_provider.png){fig-alt="OpenCode model selection dropdown with DREAM Lab AI Gateway highlighted"}
+![Selecting the DREAM Lab AI Gateway
+provider](../images/opencode_connect_provider.png){fig-alt="OpenCode model
+selection dropdown with DREAM Lab AI Gateway highlighted"}
 
 **2. Enter your API key.** Paste the API key you were given for the workshop and
 press <kbd>Enter</kbd> to submit.
 
-![Entering your API key](../images/opencode_connect_apikey.png){fig-alt="OpenCode prompt entering an API key"}
+![Entering your API
+key](../images/opencode_connect_apikey.png){fig-alt="OpenCode prompt entering an
+API key"}
 
 **3. Select a model.** Choose **Gemini 3.5 Flash** from the list of available
 models. You can use (Ctrl+F) to "favorite" a model. We will use both Gemini 3.5
 Flash and Gemini 3.1 Pro Preview (Custom Tools) -- you might want to favorite
 both of these to make switching models a little easier.
 
-![Selecting the Gemini 3.5 Flash model](../images/opencode_connect_model.png){fig-alt="OpenCode model selection dropdown with Gemini 3.5 Flash highlighted"}
+![Selecting the Gemini 3.5 Flash
+model](../images/opencode_connect_model.png){fig-alt="OpenCode model selection
+dropdown with Gemini 3.5 Flash highlighted"}
 
 OpenCode is now configured and ready to use the DREAM Lab AI Gateway.
 
@@ -128,11 +142,14 @@ A few defaults worth knowing:
 
 ## OpenCode Commands
 
-You can type "`/`" followed by a command name to configure OpenCode or perform various actions. You can find a complete list of commands in the [OpenCode documentation](https://opencode.ai/docs/tui/#commands). 
+You can type "`/`" followed by a command name to configure OpenCode or perform
+various actions. You can find a complete list of commands in the [OpenCode
+documentation](https://opencode.ai/docs/tui/#commands). 
 
 The commands we will use in the workshop are listed here:
 
-- `/connect` - Add a model provider. Allows you to select from available providers and add their API keys.
+- `/connect` - Add a model provider. Allows you to select from available
+  providers and add their API keys.
 - `/exit` - Exit OpenCode. (You can also use `/q`)
 - `/help` - Display help information 
 - `/models` - List and switch between models
@@ -145,7 +162,7 @@ The commands we will use in the workshop are listed here:
 Complete the exercise individually but discuss results in small groups (2-5 people).
 :::
 
-Use `/new` to start a new session (if necessary) and `/model` to select the
+Use `/new` to start a new session (if necessary) and `/models` to select the
 `Gemini 3.1 Pro (Custom Tools)` model. Then cut and paste the following prompt
 into OpenCode:
 
@@ -161,47 +178,47 @@ the following questions:
 - Does everyone in the group have the same set of files? What's the same, and
   what's different?
 - Look at the Agent's session transcript: how did the agent complete the task?
-  (If it used a language or technique you're not familiar with, **ask it to
-  explain the steps it took*)
+  For example: did it generate scripts to download the data and, if so, what
+  language did it use? (You can always **ask the agent to explain the steps it
+  took**). 
 - In your group, discuss the different approaches the agent took.
 
 As a group, discuss results from the following prompts:
 
-> "what is the name of the station with the highest average mean high water
-> value over the last decade?"
-
 > "plot the mean high water value for all stations using a different color for
-> each station. Include labels on x/y axes and a legend with the station name"
+> each station. Include labels on x/y axes and a legend with the station name.
+> What is the name of the station with the highest average mean high water value
+> over the last decade?"
+
+- Download the plot image using the File Browser tool from your workspace
+  dashboard.
+- As a group compare the generated plots. Did everyone in the group get the same
+answer for the station with the highest mean high water value?
+- In light of your discussion, how would you improve the these prompts?
 
 ::: {.callout-tip collapse="true"}
 ### Discussion Notes
 
-These notes summarize one representative run (Gemini 3.1 Pro, Custom Tools).
-Your own session will differ in the details — that variability is part of the
-point.
+This is discussion is based on a previous run-through using these prompts. 
 
 **What files were downloaded?**
 
-18 CSV files, one per California tide station, saved to `noaa-tides/data` and
-named by station ID (e.g. `9410170_monthly_mean.csv`). Each file is the NOAA
-`monthly_mean` product, so even though we only asked for mean high water, every
-CSV contains *all* the monthly datum columns:
+The agent downloaded 18 CSV files, one per California tide station, saved to
+`noaa-tides/data` and named by station ID (e.g. `9410170_monthly_mean.csv`).
+Each file is the NOAA `monthly_mean` product, so even though we only asked for
+mean high water, every CSV contains *all* the monthly datum columns (`Year,
+Month, Highest, MHHW, MHW, MSL, MTL, MLW, MLLW, DTL, GT, MN, DHQ, DLQ, HWI, LWI,
+Lowest, Inferred`). Each file holds ~120 monthly rows (June 2016 – May 2026),
+and some cells are blank where NOAA had no value.
 
-```
-Year, Month, Highest, MHHW, MHW, MSL, MTL, MLW, MLLW, DTL, GT, MN, DHQ, DLQ, HWI, LWI, Lowest, Inferred
-```
-Each file holds ~120 monthly rows (June 2016 – May 2026), and some cells (e.g.
-`HWI`/`LWI`) are blank where NOAA had no value.
+**How did the agent complete the task?**
 
-**How did the agent complete the task? (transcript walkthrough)**
-
-1. Probed the NOAA metadata API
-   (`mdapi/.../stations.json?state=CA`) and the data API
-   (`datagetter?...product=monthly_mean`) with small one-off commands to learn
-   the response shape *before* writing any real code.
-2. Wrote a `download.py` that looped over stations, requested CSV, and slept
-   between calls.
-3. Hit two snags and debugged them live:
+1. The agent probed the NOAA metadata API (`mdapi/.../stations.json?state=CA`)
+   and the data API (`datagetter?...product=monthly_mean`) with small one-off
+   commands to learn how the API behaves.
+2. It generated a python script, `download.py`, that looped over stations,
+   requested CSV, and slept between calls.
+3. It encountered some errors and worked around them:
    - The `?state=CA` filter on the stations endpoint was **silently ignored** —
      the first run started downloading *every* US station (Hawaii, the East
      Coast, the Gulf) instead of just California. The agent caught this, then
@@ -213,61 +230,46 @@ Each file holds ~120 monthly rows (June 2016 – May 2026), and some cells (e.g.
 4. Re-ran cleanly, then read one CSV back to confirm the format before
    reporting done.
 
-The agent didn't get it right on the first try. When it encountered errors, it
-diagnosed and worked around them.
+Here is how the download request is created:
 
-One choice the agent made *silently*: it requested the data with `datum=MHW`,
-so every `MHW` value is measured relative to each station's own MHW datum rather
-than an absolute reference. The task never specified a datum, the agent never
-mentioned picking one, and — as the follow-up question below shows — that
-unstated choice changes the answer. 
+```py
+url = (
+  f"https://api.tidesandcurrents.noaa.gov/api/prod/datagetter"
+  f"?begin_date={begin_date}"
+  f"&end_date={end_date}"
+  f"&station={station_id}"
+  f"&product=monthly_mean"
+  f"&datum=MHW"
+  f"&time_zone=lst"
+  f"&units=metric"
+  f"&application=DataAPI_Sample"
+  f"&format=csv"
+)
+```
 
-**Follow-up prompt: highest average MHW station**
+**Highest average MHW station**
 
 The agent reported **North Spit** as station with the highest average MHW. 
 
-![Plot from NOAA Tides exercise](../images/exercise-noaa-tides.png){fig-alt="Plot of downloaded station MHW values"}
+![Plot from NOAA Tides
+exercise](../images/exercise-noaa-tides.png){fig-alt="Plot of downloaded station
+MHW values"}
 
 The agent averaged the `MHW` column across each file and reported **North Spit**
 (≈0.154 m). That arithmetic is correct *for the data it downloaded* — but it's
 probably not the best answer to the question.
 
-The download requested `datum=MHW`, so every `MHW` value in the CSVs is measured
-*relative to each station's own long-term MHW datum*. That makes the numbers
-tiny (≈0.05–0.15 m) because they aren't tide heights at all — they're
-**anomalies**, i.e. how far each month sat above that station's historical
-baseline. So "North Spit is highest" really means *its* high water has risen the
-most relative to *its own* reference (a local sea-level/subsidence signal), not
-that it has the highest tides.
+**Caveats**
 
-Ask for the same thing against a fixed physical datum (`datum=MLLW`, the actual
-height of mean high water above the chart datum) and the answer changes:
-**Redwood City** is highest at ≈2.36 m, with North Spit second (≈2.03 m).
-Redwood City sits deep in San Francisco Bay, where the tidal range is amplified,
-so that result makes physical sense.
-
-**Fixing the prompt**
-
-The root problem is that the original prompt left the datum unspecified, so the
-agent picked one for us. We can remove that ambiguity by naming the datum (and
-the units) directly. A better version of the download prompt:
-
-> Create a new folder `noaa-tides` and use it as the working directory. Download
-> the NOAA monthly mean high water (MHW) for every tide station in California
-> over the last ten years, as CSV, into `noaa-tides/data`. Report the heights
-> **relative to the MLLW datum, in meters**, so values are comparable across
-> stations. Before downloading everything, show me the URL and the columns for
-> one station and confirm the datum with me.
-
-The improvements:
-
-- **Names the datum and units** (`MLLW`, meters) so "highest MHW" means actual
-  tide height, not an anomaly — and is comparable between stations.
-- **Asks the agent to confirm before bulk-downloading**, surfacing hidden
-  choices (like the datum) *before* they silently shape the result.
-
-This is the general lesson: when a result depends on an assumption, push that
-assumption into the prompt rather than letting the agent fill it in.
-
+The generated script downloads data using `datum=MHW`, so every `MHW` value is
+measured relative to each station's own MHW datum rather than an absolute
+reference (see the [NOAA API
+documentation](https://api.tidesandcurrents.noaa.gov/api/prod/#datum)). That
+makes the numbers tiny (≈0.05–0.15 m) because they aren't tide heights at all —
+they're **anomalies**, i.e. how far each month sat above that station's
+historical baseline. So "North Spit is highest" really means *its* high water
+has risen the most relative to *its own* reference. Ask for the same thing
+against a fixed physical datum (`datum=MLLW`, the actual height of mean high
+water above the chart datum) and the answer changes.
 :::
 
