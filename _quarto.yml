@@ -1,5 +1,7 @@
 project:
   type: website
+  post-render:
+    - scripts/fix-callout-a11y.mjs
 
 website:
   title: "AI-Assisted Coding for Research"

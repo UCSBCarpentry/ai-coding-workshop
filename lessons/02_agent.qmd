@@ -164,7 +164,7 @@ Use `/new` to start a new session (if necessary) and `/models` to select the
 `Gemini 3.1 Pro (Custom Tools)` model. Then cut and paste the following prompt
 into OpenCode:
 
-> Create a new folder `noaa-tides` and use it as the working directory; then
+> Create a new folder `noaa-tides` and use it as the working directory, then
 > download monthly mean high water for all NOAA stations in California over the
 > last ten years. Download as CSV and save in `noaa-tides/data`.
 
@@ -183,10 +183,10 @@ the following questions:
 
 Try an additional prompt and discuss the results:
 
-> "plot the mean high water value for all stations using a different color for
+> Plot the mean high water value for all stations using a different color for
 > each station. Include labels on x/y axes and a legend with the station name.
 > What is the name of the station with the highest average mean high water value
-> over the last decade?"
+> over the last decade?
 
 - Download the plot image using the File Browser tool from your workspace
   dashboard.
@@ -197,7 +197,7 @@ Try an additional prompt and discuss the results:
 ::: {.callout-tip collapse="true"}
 ### Discussion Notes
 
-These are note from a previous run of the exercise prompts.. 
+These are notes from a previous run of the exercise prompts.
 
 **What files were downloaded?**
 
@@ -263,12 +263,25 @@ The generated script downloads data using `datum=MHW`, so every `MHW` value is
 measured relative to each station's own MHW datum rather than an absolute
 reference (see the [NOAA API
 documentation](https://api.tidesandcurrents.noaa.gov/api/prod/#datum)). That
-makes the numbers tiny (≈0.05–0.15 m) because they aren't tide heights at all —
-they're **anomalies**, i.e. how far each month sat above that station's
-historical baseline. So "North Spit is highest" really means *its* high water
-has risen the most relative to *its own* reference. Ask for the same thing
-against a fixed physical datum (`datum=MLLW`, the actual height of mean high
-water above the chart datum) and the answer changes.
+makes the numbers tiny because they aren't tide heights at all. They're
+**anomalies**, i.e. how far each month sat above that station's historical
+baseline. So "North Spit is highest" really means *its* high water has risen the
+most relative to *its own* reference. Ask for the same thing against a fixed
+physical datum (`datum=MLLW`, the actual height of mean high water above the
+chart datum) and the answer changes.
+
+Here is an improved prompt:
+
+> create a new folder, noaa-tides-2, and use it as the working directory; then
+> download monthly mean tidy data for all NOAA stations in California over the
+> last ten years using the MLLW (mean lower low water) datum. data should be in
+> csv format. save to `noaa-tides-2/data`. Then plot the mean high water value
+> for all stations using different colors for each station. Include labels on
+> x/y axes and a legend with station names.
+
+![Revised Plot from NOAA Tides
+exercise](../images/exercise-noaa-tides-2.png){fig-alt="Plot of downloaded
+station mean high water values using MLLW datum"}
 
 :::
 
