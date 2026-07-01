@@ -95,9 +95,7 @@ OpenCode is now configured and ready to use the DREAM Lab AI Gateway.
 To demonstrate the capabilities of a coding agent, let's ask OpenCode to inspect
 that machine we're using.
 
-```md
-Tell me about the machine you're running on: OS, resources, etc.
-```
+> Tell me about the machine you're running on: OS, resources, etc.
 
 OpenCode will probably ask you for permission to run a bash command to
 inspect the machine. It's safe to say yes because this isn't your real machine!
@@ -175,15 +173,15 @@ the following questions:
 
 - What files were downloaded to `noaa-tides/data`? How many and what format? If
   they are CSVs (as expected), what columns do they include?
-- Does everyone in the group have the same set of files? What's the same, and
-  what's different?
-- Look at the Agent's session transcript: how did the agent complete the task?
+- Does everyone in the group have the same set of files? What similarities and
+  differences can you find?
+- Look at the agent's session transcript: how did the agent complete the task?
   For example: did it generate scripts to download the data and, if so, what
-  language did it use? (You can always **ask the agent to explain the steps it
-  took**). 
+  language did it use? How did it construct the URL for the download request.
+  (You can always **ask the agent to explain the steps it took**). 
 - In your group, discuss the different approaches the agent took.
 
-As a group, discuss results from the following prompts:
+Try an additional prompt and discuss the results:
 
 > "plot the mean high water value for all stations using a different color for
 > each station. Include labels on x/y axes and a legend with the station name.
@@ -192,14 +190,14 @@ As a group, discuss results from the following prompts:
 
 - Download the plot image using the File Browser tool from your workspace
   dashboard.
-- As a group compare the generated plots. Did everyone in the group get the same
-answer for the station with the highest mean high water value?
-- In light of your discussion, how would you improve the these prompts?
+- As a group, compare the generated plots. Did everyone in the group get the same
+  answer for the station with the highest mean high water value?
+- In light of your discussion, how would you improve these prompts?
 
 ::: {.callout-tip collapse="true"}
 ### Discussion Notes
 
-This is discussion is based on a previous run-through using these prompts. 
+These are note from a previous run of the exercise prompts.. 
 
 **What files were downloaded?**
 
@@ -271,5 +269,6 @@ historical baseline. So "North Spit is highest" really means *its* high water
 has risen the most relative to *its own* reference. Ask for the same thing
 against a fixed physical datum (`datum=MLLW`, the actual height of mean high
 water above the chart datum) and the answer changes.
+
 :::
 
