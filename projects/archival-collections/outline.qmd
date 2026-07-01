@@ -29,10 +29,11 @@ title: "Multimodal Met Museum"
      - Create a similarity matrix or a list of similar objects for each object in the collection.
 
 - Extract visual features from the images using computer vision techniques to identify similar features based on visual content and metadata context.
-    - Use the AI agent to generate a script that extracts visual deterministic features (e.g., color histograms, edge detection, texture analysis) and computes similarity scores between images.
-    - Write a prompt that instructs the model visual capabilities to extract specific visual features hard to extract by traditional computer vision methods, such as:
-       - Identifying specific artistic styles or techniques used in the artwork.
-       - Recognize the primary subject matter or themes depicted in the artwork.
+    - Use the AI agent to generate a script that returns a JSON object containing:
+        - A semantic summary of the textual metadata for each object.
+        - Dominant visual features extracted from the images (e.g., color histograms, color contrast, dominant palete).
+        - Identify the primary artistic movement based on the visual features and metadata context.
+        - List of categories associated with a particular research interest (e.g., representation of women, social justice, or environmental themes) based on the visual features and metadata context.
 
 ### Step 3: Data Analysis and Visualization
 
