@@ -173,6 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#our-first-prompt" id="toc-our-first-prompt" class="nav-link" data-scroll-target="#our-first-prompt">Our First Prompt</a></li>
   <li><a href="#agent-permissions" id="toc-agent-permissions" class="nav-link" data-scroll-target="#agent-permissions">Agent Permissions</a></li>
   <li><a href="#opencode-commands" id="toc-opencode-commands" class="nav-link" data-scroll-target="#opencode-commands">OpenCode Commands</a></li>
+  <li><a href="#exercise-download-and-plot-noaa-tide-data" id="toc-exercise-download-and-plot-noaa-tide-data" class="nav-link" data-scroll-target="#exercise-download-and-plot-noaa-tide-data">Exercise: Download and Plot NOAA Tide Data</a></li>
   </ul>
 </nav>
     </div>
@@ -242,7 +243,7 @@ Note
 </section>
 <section id="our-coding-agent-opencode" class="level2">
 <h2 class="anchored" data-anchor-id="our-coding-agent-opencode">Our Coding Agent: OpenCode</h2>
-<p>There are many coding agents out there. We like opencode because it was one of the few widely used coding agents that is model agnostic.</p>
+<p>There are many coding agents out there. We like OpenCode because it is one of the few widely used coding agents that is model agnostic.</p>
 <p>To start OpenCode, run <code>opencode</code> in the VS Code terminal.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -319,6 +320,95 @@ Note
 <li><code>/models</code> - List and switch between models</li>
 <li><code>/new</code> - Start a new session (fresh context)</li>
 </ul>
+</section>
+<section id="exercise-download-and-plot-noaa-tide-data" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-download-and-plot-noaa-tide-data">Exercise: Download and Plot NOAA Tide Data</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Complete the exercise individually but discuss results in small groups (2-5 people).</p>
+</div>
+</div>
+<p>Use <code>/new</code> to start a new session (if necessary) and <code>/models</code> to select the <code>Gemini 3.1 Pro (Custom Tools)</code> model. Then cut and paste the following prompt into OpenCode:</p>
+<blockquote class="blockquote">
+<p>Create a new folder <code>noaa-tides</code> and use it as the working directory; then download monthly mean high water for all NOAA stations in California over the last ten years. Download as CSV and save in <code>noaa-tides/data</code>.</p>
+</blockquote>
+<p>Wait for the agent to complete the task (it may take a few minutes), then answer the following questions:</p>
+<ul>
+<li>What files were downloaded to <code>noaa-tides/data</code>? How many and what format? If they are CSVs (as expected), what columns do they include?</li>
+<li>Does everyone in the group have the same set of files? What’s the same, and what’s different?</li>
+<li>Look at the Agent’s session transcript: how did the agent complete the task? For example: did it generate scripts to download the data and, if so, what language did it use? (You can always <strong>ask the agent to explain the steps it took</strong>).</li>
+<li>In your group, discuss the different approaches the agent took.</li>
+</ul>
+<p>As a group, discuss results from the following prompts:</p>
+<blockquote class="blockquote">
+<p>“plot the mean high water value for all stations using a different color for each station. Include labels on x/y axes and a legend with the station name. What is the name of the station with the highest average mean high water value over the last decade?”</p>
+</blockquote>
+<ul>
+<li>Download the plot image using the File Browser tool from your workspace dashboard.</li>
+<li>As a group compare the generated plots. Did everyone in the group get the same answer for the station with the highest mean high water value?</li>
+<li>In light of your discussion, how would you improve the these prompts?</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Discussion Notes
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is discussion is based on a previous run-through using these prompts.</p>
+<p><strong>What files were downloaded?</strong></p>
+<p>The agent downloaded 18 CSV files, one per California tide station, saved to <code>noaa-tides/data</code> and named by station ID (e.g.&nbsp;<code>9410170_monthly_mean.csv</code>). Each file is the NOAA <code>monthly_mean</code> product, so even though we only asked for mean high water, every CSV contains <em>all</em> the monthly datum columns (<code>Year, Month, Highest, MHHW, MHW, MSL, MTL, MLW, MLLW, DTL, GT, MN, DHQ, DLQ, HWI, LWI, Lowest, Inferred</code>). Each file holds ~120 monthly rows (June 2016 – May 2026), and some cells are blank where NOAA had no value.</p>
+<p><strong>How did the agent complete the task?</strong></p>
+<ol type="1">
+<li>The agent probed the NOAA metadata API (<code>mdapi/.../stations.json?state=CA</code>) and the data API (<code>datagetter?...product=monthly_mean</code>) with small one-off commands to learn how the API behaves.</li>
+<li>It generated a python script, <code>download.py</code>, that looped over stations, requested CSV, and slept between calls.</li>
+<li>It encountered some errors and worked around them:
+<ul>
+<li>The <code>?state=CA</code> filter on the stations endpoint was <strong>silently ignored</strong> — the first run started downloading <em>every</em> US station (Hawaii, the East Coast, the Gulf) instead of just California. The agent caught this, then fetched the full station list and filtered <strong>client-side</strong> on <code>state == 'CA'</code>, which correctly yielded 18 stations.</li>
+<li>The API began returning <code>403 Forbidden</code> after rapid-fire requests (rate limiting). The agent diagnosed it with <code>curl -i</code>, then added a browser-like <code>User-Agent</code> header and increased the delay to 1 second per request.</li>
+</ul></li>
+<li>Re-ran cleanly, then read one CSV back to confirm the format before reporting done.</li>
+</ol>
+<p>Here is how the download request is created:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"https://api.tidesandcurrents.noaa.gov/api/prod/datagetter"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"?begin_date=</span><span class="sc">{</span>begin_date<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"&amp;end_date=</span><span class="sc">{</span>end_date<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"&amp;station=</span><span class="sc">{</span>station_id<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"&amp;product=monthly_mean"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"&amp;datum=MHW"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"&amp;time_zone=lst"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"&amp;units=metric"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"&amp;application=DataAPI_Sample"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"&amp;format=csv"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Highest average MHW station</strong></p>
+<p>The agent reported <strong>North Spit</strong> as station with the highest average MHW.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/exercise-noaa-tides.png" class="img-fluid figure-img" alt="Plot of downloaded station MHW values"></p>
+<figcaption>Plot from NOAA Tides exercise</figcaption>
+</figure>
+</div>
+<p>The agent averaged the <code>MHW</code> column across each file and reported <strong>North Spit</strong> (≈0.154 m). That arithmetic is correct <em>for the data it downloaded</em> — but it’s probably not the best answer to the question.</p>
+<p><strong>Caveats</strong></p>
+<p>The generated script downloads data using <code>datum=MHW</code>, so every <code>MHW</code> value is measured relative to each station’s own MHW datum rather than an absolute reference (see the <a href="https://api.tidesandcurrents.noaa.gov/api/prod/#datum">NOAA API documentation</a>). That makes the numbers tiny (≈0.05–0.15 m) because they aren’t tide heights at all — they’re <strong>anomalies</strong>, i.e.&nbsp;how far each month sat above that station’s historical baseline. So “North Spit is highest” really means <em>its</em> high water has risen the most relative to <em>its own</em> reference. Ask for the same thing against a fixed physical datum (<code>datum=MLLW</code>, the actual height of mean high water above the chart datum) and the answer changes.</p>
+</div>
+</div>
+</div>
 
 
 </section>
