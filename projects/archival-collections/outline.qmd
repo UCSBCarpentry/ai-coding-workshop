@@ -1,0 +1,50 @@
+---
+title: "Multimodal Met Museum"
+---
+
+## Use case: Extract features from museum collection objects and data
+
+
+### Step 1: Project Setup and Data Access
+
+- Brainstorm their approach with the AI in `plan` mode:
+  - Identify a collection that offers a rich set of images and metadata.
+  - Explore the API documentation for the museum's collection to understand how to access the data programmatically.
+  - Determine the extent of data to retrieve (e.g., title, description, artist, date, medium, dimensions, and image URLs).
+  - Determine if the collection has any restrictions on data usage or API rate limits.
+  - Identify the right of use for the images and metadata, ensuring compliance with copyright and licensing requirements.
+
+- Write a prompt that instructs the AI agent to write a reproducible script that fetches basic metadata and downloads images for a specified number of objects from the museum's collection. The prompt should include:
+  - The API endpoint to access the collection data.
+  - The specific fields to retrieve (e.g., title, description, artist, date, medium, dimensions, image URLs).
+  - Instructions to save the metadata in a structured format (e.g., CSV or JSON) and download images to a designated folder.
+
+
+### Step 2: AI Data Processing and Wrangling
+
+- Calculate textual proximity between objects using natural language processing techniques (e.g., TF-IDF, word embeddings) to identify similar objects based on their descriptions and metadata.
+   - Use the AI agent to generate a script that performs the following:
+     - Preprocess the text data (e.g., tokenization, stopword removal, stemming/lemmatization).
+     - Compute similarity scores between objects based on their textual descriptions and metadata.
+     - Create a similarity matrix or a list of similar objects for each object in the collection.
+
+- Extract visual features from the images using computer vision techniques to identify similar features based on visual content and metadata context.
+    - Use the AI agent to generate a script that extracts visual deterministic features (e.g., color histograms, edge detection, texture analysis) and computes similarity scores between images.
+    - Write a prompt that instructs the model visual capabilities to extract specific visual features hard to extract by traditional computer vision methods, such as:
+       - Identifying specific artistic styles or techniques used in the artwork.
+       - Recognize the primary subject matter or themes depicted in the artwork.
+
+### Step 3: Data Analysis and Visualization
+
+- Use the AI agent to generate a script to analyze the dataset and identify connections between objects based on textual and visual similarities. The script should:
+  - Combine the similarity scores from textual and visual analyses to create a comprehensive similarity measure.
+  - Identify clusters of similar objects using clustering algorithms (e.g., K-means, hierarchical clustering).
+  - Visualize the relationships between objects using network graphs or dimensionality reduction techniques (e.g., t-SNE, PCA).
+
+- With the help of the AI agent, design a Quarto document that presents the findings, including:
+  - A summary of the dataset and the methods used for analysis.
+  - Visualizations of the clusters and relationships between objects.
+  - Insights into the connections between objects based on textual and visual similarities.
+
+- Connect with GitHub to publish the Quarto document as a static website.
+
