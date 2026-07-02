@@ -1,3 +1,7 @@
+---
+title: "Use case: Computing the bikability of the Santa Barbara County"
+---
+
 ## Use case: Computing the bikability of the Santa Barbara County
 
 Our goal is to develop a bikability index to estimate how bike-friendly a specific area is. Here, we will focus on computing one component of this index by estimating the steepness of a specific area.
@@ -18,8 +22,12 @@ Our goal is to develop a bikability index to estimate how bike-friendly a specif
 ### Ask
 
 - Work with your coding agent to refine the various steps you will need to complete your task
+- Set up your project file structure organizing data (raw and processed), code, and visual outputs
 - Remember that geospatial datasets can come in different projections
-- Use Python or R to implement this workflow. When using R, favor recent geospatial packages such as `sf` and `terra` and the tidyverse style guide
+- Use Python or R to implement this workflow. 
+  - When using Python, favor geopandas 
+  - When using R, favor recent geospatial packages such as `sf` and `terra` and the tidyverse style guide
+- MAke sure to document your work well
 
 ### References
 
