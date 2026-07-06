@@ -2,3 +2,18 @@
 title: "Planning"
 ---
 
+What we just did in the previous section, letting the agent have full control of a multi-step process, is not the best way to fully leverage Agentic coding capabilities. Instead, it is recommended to break down your workflow into smaller, distinct increments that are easier to verify and iterate on.
+
+This is precisely where "Plan" mode becomes invaluable. To effectively integrate Agentic AI into your work, consider following this structured approach:
+
+- Begin in Plan mode (read-only analysis)
+- Review the proposed analysis 
+- Supply additional context and refine the plan
+- Iterate through this cycle as many times as needed
+- Ask for separate scripts for the primary components of your workflow
+- Once satisfied, switch to Build mode for actual implementation.
+- Utilize `/undo` and `/redo` commands to fine-tune the implementation details.
+
+
+
+
