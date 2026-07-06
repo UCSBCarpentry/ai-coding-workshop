@@ -15,6 +15,7 @@ website:
         menu:
           - href: lessons/01_intro.qmd
           - href: lessons/02_agent.qmd
+          - href: lessons/03_planning.qmd
 format:
   html:
     theme: [cosmo, custom.scss]
