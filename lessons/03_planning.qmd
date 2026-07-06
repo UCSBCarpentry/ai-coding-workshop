@@ -26,11 +26,11 @@ Before you jumped into opencode, you want to take the time to setup your project
 1. Initialize git to track changes
 1. Write a concise README.md with information about the project
 
-Note that all the information you are adding in this project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you know at this point of your project.
+All the information you are adding in this project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you know at this point of your project.
 
 
 ::: {.callout-note}
-You can ask opencode to help you with these various steps, although for management and security reason, starting opencode from a project specific folder is recommended because it will have by default to ask for permissions to access files outside this directory.
+Opencode can assist you with these various steps. However, for management and security reasons, it is recommended to launch opencode from a project-specific folder, as it requires explicit permission by default to access any files outside of that directory.
 :::
 
 
