@@ -4,6 +4,9 @@ title: "Planning"
 
 What we just did in the previous section, letting the agent have full control of a multi-step process, is not the best way to fully leverage Agentic coding capabilities. Instead, it is recommended to break down your workflow into smaller, distinct increments that are easier to verify and iterate on.
 
+
+## Plan mode
+
 This is precisely where "Plan" mode becomes invaluable. To effectively integrate Agentic AI into your work, consider following this structured approach:
 
 - Begin in Plan mode (read-only analysis)
@@ -11,9 +14,23 @@ This is precisely where "Plan" mode becomes invaluable. To effectively integrate
 - Supply additional context and refine the plan
 - Iterate through this cycle as many times as needed
 - Ask for separate scripts for the primary components of your workflow
-- Once satisfied, switch to Build mode for actual implementation.
-- Utilize `/undo` and `/redo` commands to fine-tune the implementation details.
+- Once satisfied, switch to Build mode for actual implementation
+- Utilize `/undo` and `/redo` commands to fine-tune the implementation details
 
 
+## Project setup
+
+Before you jumped into opencode, you want to take the time to setup your project
+
+1. Create a project specific directory and make sure to start opencode from it
+1. Initialize git to track changes
+1. Write a concise README.md with information about the project
+
+Note that all the information you are adding in this project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you know at this point of your project.
+
+
+::: {.callout-note}
+You can ask opencode to help you with these various steps, although for management and security reason, starting opencode from a project specific folder is recommended because it will have by default to ask for permissions to access files outside this directory.
+:::
 
 
