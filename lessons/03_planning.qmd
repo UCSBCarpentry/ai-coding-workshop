@@ -25,6 +25,7 @@ Before you jumped into opencode, you want to take the time to setup your project
 1. Create a project specific directory and make sure to start opencode from it
 1. Initialize `git` to track changes
 1. Write a concise `README.md` with information about the project
+1. Create sub-directories for data, code, documents and other outputs
 
 All the information you are adding in this project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you know at this point of your project.
 
