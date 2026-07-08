@@ -149,7 +149,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-a-coding-agent" id="toc-what-is-a-coding-agent" class="nav-link active" data-scroll-target="#what-is-a-coding-agent">What is a coding agent?</a></li>
+  <li><a href="#ai-tools-for-research" id="toc-ai-tools-for-research" class="nav-link active" data-scroll-target="#ai-tools-for-research">AI Tools for Research</a></li>
+  <li><a href="#what-is-a-coding-agent" id="toc-what-is-a-coding-agent" class="nav-link" data-scroll-target="#what-is-a-coding-agent">What is a coding agent?</a></li>
   </ul>
 </nav>
     </div>
@@ -177,9 +178,47 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Our overarching goal in this workshop is to learn how to use AI coding tools to make your <strong>research code more rigorous</strong>.</p>
 <p>This is a fast-moving topic. We don’t claim to know everything. Some learners may have more experience with AI-assisted coding than some instructors. We have attempted to organize settled best practices in this area to the extent that they exist, as we understand them.</p>
+<section id="ai-tools-for-research" class="level2">
+<h2 class="anchored" data-anchor-id="ai-tools-for-research">AI Tools for Research</h2>
+<p>There are many ways you might use generative AI tools (i.e., LLMs) in research. Probably the simplest and most common approach is to use an AI “chat” interface to answer basic questions. For more complex scenarios like data analysis, you might be tempted to upload your research data to an AI chat system and start asking questions about it – to prompt your way through your analysis. This is a bad idea for several reasons. First, the results would be unreliable, they might include “hallucinations”, and you might be unintentionally sharing sensitive data with third parties (model providers may be use your data to train future models). <strong>Your analysis also would not be reproducible</strong>, a cornerstone of modern, computational open science. The approach we will emphasize in this workshop is to use AI tools to generate code rather than the analysis itself. This approach takes advantage of AI’s strengths without (necessarily) sacrificing in terms of scientific rigor.</p>
+<div id="fig-flowcharts" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flowcharts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../diagrams/question_answer.svg" class="img-fluid figure-img"></p>
+<figcaption>Using LLMs to answer questions directly</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../diagrams/question_code_answer.svg" class="img-fluid figure-img"></p>
+<figcaption>Using LLMs to generate code to answer questions</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flowcharts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Instead of using LLMs to answer questions directly, use them to generate the code needed to answer the question.
+</figcaption>
+</figure>
+</div>
+<p>AI chat interfaces are sufficient for small, one-off code generation tasks. However, for complex work involving multiple rounds of iteration, it can be tiresome to repeatedly move back and forth, pasting code snippets into your editor and error messages into the chat window. For cases, like these it’s better to use a coding agent, which manages the interaction between your code and the LLM.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../diagrams/agent.svg" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Coding agents mediate interaction between the user, the LLM, and coding tools</figcaption>
+</figure>
+</div>
+</section>
 <section id="what-is-a-coding-agent" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-a-coding-agent">What is a coding agent?</h2>
-<p>LLM-based web applications like ChatGPT are useful for answering questions, but they are inherently limited. If you want an AI tool that <em>does</em> something (not just says something), then you need an <strong>agent</strong>. What separates chat-based applications from agents is the ability to use <strong>tools</strong> to interact with their environment. An agent is a program that makes requests to an LLM model provider, just like typing messages into a “chat” interface, except it <em>acts</em> on the response by invoking the tools the agent has access to. Coding agents include tools for doing things like reading and writing files, running bash commands, and searching the file system.</p>
+<p>If you want an AI tool that <em>does</em> something (not just says something), then you need an <strong>agent</strong>. What separates chat-based applications from agents is the ability to use <strong>tools</strong> to interact with their environment. An agent is a program that makes requests to an LLM model provider, just like typing messages into a “chat” interface, except it <em>acts</em> on the response by invoking the tools the agent has access to. Coding agents include tools for doing things like: reading and writing files, running bash commands, and searching the file system.</p>
 <p><strong>What is a tool?</strong> You can think of a tool as some functionality that the agent can perform, like “write to file”. The agent includes a list of tool descriptions in its requests to the LLM; in turn, the LLM may respond by <em>invoking</em> a tool, supplying the inputs the tool needs to run. The agent is responsible for actually running the tool with the input from the LLM, and returning any output back to the LLM.</p>
 <p><strong>What is an LLM model provider?</strong> You don’t need to run LLMs on your own machine to use them. Instead, you access them over the internet through web-based APIs (like OpenAI’s chat completions). A model provider is a web service that lets you make requests to one or more LLMs using one of these protocols.</p>
 
