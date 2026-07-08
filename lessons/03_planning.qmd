@@ -7,15 +7,16 @@ What we just did in the previous section, letting the agent have full control of
 
 ## Plan mode overview
 
-This is precisely where "Plan" mode becomes invaluable. To effectively integrate Agentic AI into your work, consider following this structured approach:
+This is precisely where "Plan mode" becomes invaluable. To effectively integrate Agentic AI into your work, consider following this structured approach:
 
-- Begin in Plan mode (read-only analysis)
-- Review the proposed analysis 
+- Begin in Plan mode (read-only)
+- Review the proposed steps for your analysis 
 - Supply additional context and refine the plan
 - Iterate through this cycle as many times as needed
 - Ask for separate scripts for the primary components of your workflow
 - Once satisfied, switch to Build mode for actual implementation
 - Utilize `/undo` and `/redo` commands to fine-tune the implementation details
+- leverage version control to create snapshots of your work before and after major changes
 
 
 ## Project setup
@@ -27,11 +28,11 @@ Before you jumped into opencode, you want to take the time to setup your project
 1. Write a concise `README.md` with information about the project
 1. Create sub-directories for data, code, documents and other outputs
 
-All the information you are adding in this project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you know at this point of your project.
+All the information you are adding in this project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you have at this point of your project.
 
 
 ::: {.callout-note}
-Opencode can assist you with these various steps. However, for management and security reasons, it is recommended to launch opencode from a project-specific folder, as it requires explicit permission by default to access any files outside of that directory.
+Opencode can assist you with these various steps. However, for management and security reasons, it is recommended to launch opencode from a project-specific directory, as it requires by default explicit permission to access any files outside of that directory.
 :::
 
 ## Switching to plan mode
