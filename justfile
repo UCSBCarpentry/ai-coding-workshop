@@ -14,3 +14,11 @@ a11y *pages: render
 # Run accessibility checks against the existing _site/ without re-rendering.
 a11y-only *pages:
     npm run a11y -- {{pages}}
+
+# Generate PNG and SVG images from Mermaid (.mmd) files in the diagrams directory
+diagrams:
+	@for file in diagrams/*.mmd; do \
+		echo "Generating $file -> ${file%.mmd}.png & ${file%.mmd}.svg..."; \
+		npx -y @mermaid-js/mermaid-cli -p diagrams/puppeteer-config.json -i "$file" -o "${file%.mmd}.png"; \
+		npx -y @mermaid-js/mermaid-cli -p diagrams/puppeteer-config.json -i "$file" -o "${file%.mmd}.svg"; \
+	done

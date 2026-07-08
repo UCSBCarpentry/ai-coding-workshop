@@ -1,0 +1,9 @@
+%%{init: {"themeVariables": {"edgeLabelBackground": "#ffffff"}}}%%
+flowchart LR
+    User --> Agent
+    Agent --> User
+    Agent --> Tool[Coding Tools]
+    Tool --> Agent
+    Agent --> LLM
+    LLM --> Agent
+    style Agent fill:#f4f4f4,stroke:#666,stroke-width:1px;
