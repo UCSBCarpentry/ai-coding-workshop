@@ -81,6 +81,7 @@ As before complete the exercise individually but discuss results in small groups
 1. Provide the requested information
 1. Iterate until you are satisfied
 
+**Once you are satisfy, switch to build and implement the plan**
 :::
 
 
