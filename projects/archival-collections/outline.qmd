@@ -1,51 +1,50 @@
 ---
-title: "Multimodal Met Museum"
+title: "Multimodal Met Museum Semantic Networks"
 ---
 
-## Use case: Extract features from museum collection objects and data
+## Use case: Extracting semantic concepts from museum objects and visualizing connections
 
+Historically, analyzing visual patterns or latent themes across large-scale physical collections was a manual, slow task reserved for specialists. Traditional computer vision (like computing color histograms or edge detection) and natural language processing (like TF-IDF or keyword matching) often miss the "vibe" or deeper contextual and symbolic connections of art. 
 
-### Step 1: Project Setup and Data Access
+Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform "semantic feature extraction" (essentially a reverse CLIP approach) to describe and tag visual elements into structured natural language concepts, and map these interconnections into an interactive network.
 
-- Brainstorm their approach with the AI in `plan` mode:
-  - Identify a collection that offers a rich set of images and metadata.
-  - Explore the API documentation for the museum's collection to understand how to access the data programmatically.
-  - Determine the extent of data to retrieve (e.g., title, description, artist, date, medium, dimensions, and image URLs).
-  - Determine if the collection has any restrictions on data usage or API rate limits.
-  - Identify the right of use for the images and metadata, ensuring compliance with copyright and licensing requirements.
+### Workflow overview
 
-- Write a prompt that instructs the AI agent to write a reproducible script that fetches basic metadata and downloads images for a specified number of objects from the museum's collection. The prompt should include:
-  - The API endpoint to access the collection data.
-  - The specific fields to retrieve (e.g., title, description, artist, date, medium, dimensions, image URLs).
-  - Instructions to save the metadata in a structured format (e.g., CSV or JSON) and download images to a designated folder.
+1.  Query the Metropolitan Museum of Art Open Access API to fetch public domain paintings.
+2.  Download the images and store metadata locally.
+3.  Use the Gemini API with a `.env` file to programmatically analyze each artwork, returning structured JSON tags (dominant colors, visual subjects, emotional mood, latent research themes).
+4.  Build an interactive HTML network graph connecting artworks to their shared semantic concepts.
+5.  Document your work in a Quarto document and share your project on GitHub.
 
+### Data and Setup
 
-### Step 2: AI Data Processing and Wrangling
+-   **API:** We will use the [The Metropolitan Museum of Art Open Access API](https://metmuseum.github.io/), which requires no API keys and allows searching and retrieving public-domain collections.
+-   **Gemini API Key:** You must use a `.env` file to securely load your `GEMINI_API_KEY`.
+-   **Libraries:**
+    -   If using Python: favor `requests`, `python-dotenv`, `google-genai` (or `google-generativeai`), and `pyvis` for interactive network visualization.
+    -   If using R: favor `httr2`, `dotenv`, `gemini.R` (or similar package), and `visNetwork` or `networkD3` for the interactive network.
 
-- Calculate textual proximity between objects using natural language processing techniques (e.g., TF-IDF, word embeddings) to identify similar objects based on their descriptions and metadata.
-   - Use the AI agent to generate a script that performs the following:
-     - Preprocess the text data (e.g., tokenization, stopword removal, stemming/lemmatization).
-     - Compute similarity scores between objects based on their textual descriptions and metadata.
-     - Create a similarity matrix or a list of similar objects for each object in the collection.
+### Ask
 
-- Extract visual features from the images using computer vision techniques to identify similar features based on visual content and metadata context.
-    - Use the AI agent to generate a script that returns a JSON object containing:
-        - A semantic summary of the textual metadata for each object.
-        - Dominant visual features extracted from the images (e.g., color histograms, color contrast, dominant palete).
-        - Identify the primary artistic movement based on the visual features and metadata context.
-        - List of categories associated with a particular research interest (e.g., representation of women, social justice, or environmental themes) based on the visual features and metadata context.
+-   **Session 1: API Fetching & Gemini Feature Extraction**
+    -   Brainstorm with your agent in `plan` mode to handle the Met API query. Fetch details for 15-20 public-domain paintings from a specific department (e.g., "European Paintings" or "Asian Art").
+    -   Ensure your agent writes clean, reproducible code to download images to a local folder (e.g., `images/`) and save basic metadata (title, artist, year, medium) in a CSV file.
+    -   Instruct your agent to write a script that securely loads the Gemini API key from `.env`.
+    -   Iterate over the images, sending both the image file and its metadata to Gemini. Instruct the model to return a structured JSON response extracting:
+        -   **Dominant palette:** 3 distinct visual colors (e.g., "warm gold", "deep indigo").
+        -   **Visual concepts:** Primary subjects/objects visible in the work.
+        -   **Mood/Vibe:** The overall emotional tone (e.g., "melancholic", "serene", "triumphant").
+        -   **Research themes:** Latent themes (e.g., "social status", "nature", "domesticity").
+    -   Combine Gemini's output with the original metadata into an enriched dataset (e.g., `enriched_collection.csv`).
 
-### Step 3: Data Analysis and Visualization
-
-- Use the AI agent to generate a script to analyze the dataset and identify connections between objects based on textual and visual similarities. The script should:
-  - Combine the similarity scores from textual and visual analyses to create a comprehensive similarity measure.
-  - Identify clusters of similar objects using clustering algorithms (e.g., K-means, hierarchical clustering).
-  - Visualize the relationships between objects using network graphs or dimensionality reduction techniques (e.g., t-SNE, PCA).
-
-- With the help of the AI agent, design a Quarto document that presents the findings, including:
-  - A summary of the dataset and the methods used for analysis.
-  - Visualizations of the clusters and relationships between objects.
-  - Insights into the connections between objects based on textual and visual similarities.
-
-- Connect with GitHub to publish the Quarto document as a static website.
-
+-   **Session 2: Mapping the Semantic Web**
+    -   Work with your agent to write a visualization script using the enriched dataset.
+    -   **Define your network logic & edge weights:** There are two great ways to model this network:
+        -   **Option A: Bipartite Graph (Artworks connected to Tags):** Nodes are *both* Artworks and Semantic Tags (colors, vibes, themes). Edges are unweighted, representing a binary match (e.g. Artwork $A$ has tag "melancholic").
+        -   **Option B: Projected Graph (Artworks connected to Artworks):** Nodes are *only* Artworks. An edge is drawn directly between Artwork $A$ and Artwork $B$. The **edge weight** is the number of shared semantic tags between them (e.g., if both share "warm gold", "nature", and "serene", the weight is 3). Thicker lines represent stronger visual or thematic links!
+    -   Build an interactive HTML network graph where:
+        -   **Nodes** represent either the artworks or the extracted concepts depending on your chosen network logic above.
+        -   **Edges (lines)** represent connections, optionally adjusting the line thickness (weight) based on the number of shared attributes if using Option B.
+        -   **Styling:** Color-code artwork nodes by historical century or artistic movement, and attribute nodes by category.
+    -   Open the generated HTML and explore the interactive graph. Look for unexpected connections—such as a 17th-century oil painting and a 20th-century piece clustering together based on shared mood or latent research themes.
+    -   Include this interactive visualization in your Quarto document, add your findings and analysis, and publish the final site to GitHub Pages.
