@@ -1,4 +1,4 @@
-# Install JS dependencies for the accessibility checks (first-time setup).
+# Install JS dependencies, for a11y testing and mermaid diagrams
 install:
     npm install
 
@@ -19,6 +19,6 @@ a11y-only *pages:
 diagrams:
 	@for file in diagrams/*.mmd; do \
 		echo "Generating $file -> ${file%.mmd}.png & ${file%.mmd}.svg..."; \
-		npx -y @mermaid-js/mermaid-cli -p diagrams/puppeteer-config.json -i "$file" -o "${file%.mmd}.png"; \
-		npx -y @mermaid-js/mermaid-cli -p diagrams/puppeteer-config.json -i "$file" -o "${file%.mmd}.svg"; \
+		./node_modules/.bin/mmdc -p diagrams/puppeteer-config.json -i "$file" -o "${file%.mmd}.png"; \
+		./node_modules/.bin/mmdc -p diagrams/puppeteer-config.json -i "$file" -o "${file%.mmd}.svg"; \
 	done

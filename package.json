@@ -8,6 +8,7 @@
     "a11y": "node scripts/a11y.mjs"
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.16.0",
     "axe-core": "^4.10.2",
     "puppeteer-core": "^24.0.0"
   }
