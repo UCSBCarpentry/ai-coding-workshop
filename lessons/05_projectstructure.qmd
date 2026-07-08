@@ -74,7 +74,27 @@ Being specific on the tools you use helps guide the AI, without having you repea
 
 ### Customizing our AGENTS.md file
 
+Ask the AI to start a git project. Then start modifying the AGENTS.md file
 
+- Write a file structure
+    - data: raw, interim, processed
+    - notebooks
+    - scripts
+    - docs
+    - results: figures, tables 
+- Write this project should be an R project following tidyverse tools and conventions
+- Write git branching and commit message conventions
+
+After all of this, ask the AI to create the file structure specified and start the git project.
+
+
+## Creating a subagent
+
+Create a subagent that is called whenever there is a coding task, and this agent uses QWEN3.
+
+As an exercise, ask the AI to change all the code from python to R.
+
+This is a good way to segue to talk a little bit about context window, as subagents have a fresh window.
 
 ## Context window
 
