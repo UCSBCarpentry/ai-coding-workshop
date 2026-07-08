@@ -15,6 +15,14 @@ website:
         menu:
           - href: lessons/01_intro.qmd
           - href: lessons/02_agent.qmd
+          - href: lessons/03_planning.qmd
+    tools:
+      - icon: github
+        menu:
+          - text: Website Code
+            url:  https://github.com/UCSBCarpentry/ai-coding-workshop
+          - text: Report an issue
+            url:  https://github.com/UCSBCarpentry/ai-coding-workshop/issues
 format:
   html:
     theme: [cosmo, custom.scss]
