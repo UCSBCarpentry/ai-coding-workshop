@@ -17,9 +17,7 @@ To effectively integrate Agentic AI into your work, consider following this stru
 - Iterate through this cycle as many times as needed
 - Ask for separate scripts for the primary components of your workflow
 - Once satisfied, switch to Build mode for actual implementation
-- Utilize `/undo` and `/redo` commands to fine-tune the implementation details
 - leverage version control to create snapshots of your work before and after major changes
-
 
 
 ## Initial project setup
@@ -39,7 +37,7 @@ Opencode can assist you with these various steps. However, for project managemen
 
 ## Switching to plan mode
 
-In opencode, to switch from the "build" mode (default when you start opencode) to the "plan" mode you can use the <kbd>tab</kbd> key (`/plan` is also an option).
+In opencode, to switch from the "build" mode (default when you start opencode) to the "plan" mode you can use the <kbd>tab</kbd> key.
 
 ::: {.callout-note}
 ## Model Choice
