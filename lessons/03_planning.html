@@ -152,10 +152,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#plan-mode-overview" id="toc-plan-mode-overview" class="nav-link active" data-scroll-target="#plan-mode-overview">Plan mode overview</a></li>
   <li><a href="#initial-project-setup" id="toc-initial-project-setup" class="nav-link" data-scroll-target="#initial-project-setup">Initial project setup</a></li>
   <li><a href="#switching-to-plan-mode" id="toc-switching-to-plan-mode" class="nav-link" data-scroll-target="#switching-to-plan-mode">Switching to plan mode</a></li>
-  <li><a href="#planning-our-noaa-tides-example" id="toc-planning-our-noaa-tides-example" class="nav-link" data-scroll-target="#planning-our-noaa-tides-example">Planning our NOAA tides example</a>
-  <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  </ul></li>
+  <li><a href="#planning-our-noaa-tides-example" id="toc-planning-our-noaa-tides-example" class="nav-link" data-scroll-target="#planning-our-noaa-tides-example">Planning our NOAA tides example</a></li>
   </ul>
 </nav>
     </div>
@@ -240,9 +237,12 @@ Note
 <section id="planning-our-noaa-tides-example" class="level2">
 <h2 class="anchored" data-anchor-id="planning-our-noaa-tides-example">Planning our NOAA tides example</h2>
 <p>Let’s restart our NOAA tides example, this time leveraging Plan mode.</p>
-<section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example</h3>
-<p>Here is a prompt example:</p>
+<ol type="1">
+<li>Start a new session <code>/new</code></li>
+<li>Switch to Plan mode <kbd>tab</kbd></li>
+<li>Select your model <code>/models</code> and choose the <code>Gemini 3.1 Pro</code> model</li>
+<li>Enter the following prompt:</li>
+</ol>
 <blockquote class="blockquote">
 <p>I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.</p>
 </blockquote>
@@ -291,7 +291,6 @@ Note
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
