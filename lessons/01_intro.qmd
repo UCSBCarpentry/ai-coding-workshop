@@ -20,7 +20,7 @@ might be tempted to upload your research data to an AI chat system and start
 asking questions about it -- to prompt your way through your analysis. This is a
 bad idea for several reasons.  First, the results would be unreliable, they
 might include "hallucinations", and you might be unintentionally sharing
-sensitive data with third parties (model providers may be use your data to train
+sensitive data with third parties (model providers may use your data to train
 future models). **Your analysis also would not be reproducible**, a cornerstone
 of modern, computational open science. The approach we will emphasize in this
 workshop is to use AI tools to generate code rather than the analysis
@@ -41,7 +41,7 @@ code needed to answer the question.
 AI chat interfaces are sufficient for small, one-off code generation tasks.
 However, for complex work involving multiple rounds of iteration, it can be
 tiresome to repeatedly move back and forth, pasting code snippets into your
-editor and error messages into the chat window. For cases, like these it's
+editor and error messages into the chat window. For cases like these, it's
 better to use a coding agent, which manages the interaction between your code
 and the LLM.
 
