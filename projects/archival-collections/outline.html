@@ -71,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -226,10 +255,15 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Session 2: Mapping the Semantic Web</strong>
 <ul>
 <li>Work with your agent to write a visualization script using the enriched dataset.</li>
+<li><strong>Define your network logic &amp; edge weights:</strong> There are two great ways to model this network:
+<ul>
+<li><strong>Option A: Bipartite Graph (Artworks connected to Tags):</strong> Nodes are <em>both</em> Artworks and Semantic Tags (colors, vibes, themes). Edges are unweighted, representing a binary match (e.g.&nbsp;Artwork <span class="math inline">\(A\)</span> has tag “melancholic”).</li>
+<li><strong>Option B: Projected Graph (Artworks connected to Artworks):</strong> Nodes are <em>only</em> Artworks. An edge is drawn directly between Artwork <span class="math inline">\(A\)</span> and Artwork <span class="math inline">\(B\)</span>. The <strong>edge weight</strong> is the number of shared semantic tags between them (e.g., if both share “warm gold”, “nature”, and “serene”, the weight is 3). Thicker lines represent stronger visual or thematic links!</li>
+</ul></li>
 <li>Build an interactive HTML network graph where:
 <ul>
-<li><strong>Nodes</strong> represent either the artworks or the extracted concepts (vibe, dominant colors, themes).</li>
-<li><strong>Edges (lines)</strong> connect artworks to their shared attributes.</li>
+<li><strong>Nodes</strong> represent either the artworks or the extracted concepts depending on your chosen network logic above.</li>
+<li><strong>Edges (lines)</strong> represent connections, optionally adjusting the line thickness (weight) based on the number of shared attributes if using Option B.</li>
 <li><strong>Styling:</strong> Color-code artwork nodes by historical century or artistic movement, and attribute nodes by category.</li>
 </ul></li>
 <li>Open the generated HTML and explore the interactive graph. Look for unexpected connections—such as a 17th-century oil painting and a 20th-century piece clustering together based on shared mood or latent research themes.</li>
