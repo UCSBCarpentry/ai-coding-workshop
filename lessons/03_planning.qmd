@@ -58,7 +58,7 @@ Here is a prompt example:
 
 ![Plan mode example - prompt answer](../images/03-plan_mode-prompt1.png){fig-alt="Plan mode prompt answer showing the various proposed steps and supplemtal infomration requests"}
 
-> Download data for the last decade, use the MLLW datum as reference, use the metric system for units, create a data folder with a subfolder data-raw in it and save the downloaded data in this subfolder. Write a Python script to downlaod the data and save it in a code folder at the top of our project folder
+> Download data for the last decade, use the MLLW datum as reference, use the metric system for units, create a data folder with a subfolder data-raw in it and save the downloaded data in this subfolder. Write a Python script to download the data and save it in a code folder at the top of our project folder
 
 ![Plan mode example - updated answer](../images/03-plan_mode-prompt2.png){fig-alt="Plan mode prompt answer update to incorporate the new information"}
 
