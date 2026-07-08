@@ -18,6 +18,8 @@ website:
           - href: lessons/03_planning.qmd
     tools:
       - icon: github
+        text: GitHub
+        aria-label: GitHub
         menu:
           - text: Website Code
             url:  https://github.com/UCSBCarpentry/ai-coding-workshop
