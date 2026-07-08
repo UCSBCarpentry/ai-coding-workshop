@@ -7,7 +7,9 @@ What we just did in the previous section, letting the agent have full control of
 
 ## Plan mode overview
 
-This is precisely where "Plan mode" becomes invaluable. To effectively integrate Agentic AI into your work, consider following this structured approach:
+This is precisely where "Plan mode" becomes invaluable. Plan mode allows you to refine your instructions for your agent, resolve potential ambiguities, and quickly redirect overeager agents. This gives you better control over the different components of your analytical workflow before any code or files are modified in your project. 
+
+To effectively integrate Agentic AI into your work, consider following this structured approach:
 
 - Begin in Plan mode (read-only)
 - Review the proposed steps for your analysis 
@@ -19,7 +21,8 @@ This is precisely where "Plan mode" becomes invaluable. To effectively integrate
 - leverage version control to create snapshots of your work before and after major changes
 
 
-## Project setup
+
+## Initial project setup
 
 Before you jumped into opencode, you want to take the time to setup your project
 
@@ -28,8 +31,7 @@ Before you jumped into opencode, you want to take the time to setup your project
 1. Write a concise `README.md` with information about the project
 1. Create sub-directories for data, code, documents and other outputs
 
-All the information you are adding in this project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you have at this point of your project.
-
+**All the information you are adding in this project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you have at this point of your project.**
 
 
 ::: {.callout-note}
@@ -38,7 +40,7 @@ Opencode can assist you with these various steps. However, for project managemen
 
 ## Switching to plan mode
 
-In opencode, to switch from the "build" mode (default when you start opencode) to the "plan" mode you can use the <kbd>tab</kbd> key.
+In opencode, to switch from the "build" mode (default when you start opencode) to the "plan" mode you can use the <kbd>tab</kbd> key (`/plan` is also an option).
 
 ::: {.callout-note}
 ## Model Choice
