@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Multimodal Met Museum – AI-Assisted Coding for Research</title>
+<title>Multimodal Met Museum Semantic Networks – AI-Assisted Coding for Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -149,11 +149,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#use-case-extract-features-from-museum-collection-objects-and-data" id="toc-use-case-extract-features-from-museum-collection-objects-and-data" class="nav-link active" data-scroll-target="#use-case-extract-features-from-museum-collection-objects-and-data">Use case: Extract features from museum collection objects and data</a>
+  <li><a href="#use-case-extracting-semantic-concepts-from-museum-objects-and-visualizing-connections" id="toc-use-case-extracting-semantic-concepts-from-museum-objects-and-visualizing-connections" class="nav-link active" data-scroll-target="#use-case-extracting-semantic-concepts-from-museum-objects-and-visualizing-connections">Use case: Extracting semantic concepts from museum objects and visualizing connections</a>
   <ul class="collapse">
-  <li><a href="#step-1-project-setup-and-data-access" id="toc-step-1-project-setup-and-data-access" class="nav-link" data-scroll-target="#step-1-project-setup-and-data-access">Step 1: Project Setup and Data Access</a></li>
-  <li><a href="#step-2-ai-data-processing-and-wrangling" id="toc-step-2-ai-data-processing-and-wrangling" class="nav-link" data-scroll-target="#step-2-ai-data-processing-and-wrangling">Step 2: AI Data Processing and Wrangling</a></li>
-  <li><a href="#step-3-data-analysis-and-visualization" id="toc-step-3-data-analysis-and-visualization" class="nav-link" data-scroll-target="#step-3-data-analysis-and-visualization">Step 3: Data Analysis and Visualization</a></li>
+  <li><a href="#workflow-overview" id="toc-workflow-overview" class="nav-link" data-scroll-target="#workflow-overview">Workflow overview</a></li>
+  <li><a href="#data-and-setup" id="toc-data-and-setup" class="nav-link" data-scroll-target="#data-and-setup">Data and Setup</a></li>
+  <li><a href="#ask" id="toc-ask" class="nav-link" data-scroll-target="#ask">Ask</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -163,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Multimodal Met Museum</h1>
+<h1 class="title">Multimodal Met Museum Semantic Networks</h1>
 </div>
 
 
@@ -180,67 +180,61 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="use-case-extract-features-from-museum-collection-objects-and-data" class="level2">
-<h2 class="anchored" data-anchor-id="use-case-extract-features-from-museum-collection-objects-and-data">Use case: Extract features from museum collection objects and data</h2>
-<section id="step-1-project-setup-and-data-access" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-project-setup-and-data-access">Step 1: Project Setup and Data Access</h3>
+<section id="use-case-extracting-semantic-concepts-from-museum-objects-and-visualizing-connections" class="level2">
+<h2 class="anchored" data-anchor-id="use-case-extracting-semantic-concepts-from-museum-objects-and-visualizing-connections">Use case: Extracting semantic concepts from museum objects and visualizing connections</h2>
+<p>Historically, analyzing visual patterns or latent themes across large-scale physical collections was a manual, slow task reserved for specialists. Traditional computer vision (like computing color histograms or edge detection) and natural language processing (like TF-IDF or keyword matching) often miss the “vibe” or deeper contextual and symbolic connections of art.</p>
+<p>Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform “semantic feature extraction” (essentially a reverse CLIP approach) to describe and tag visual elements into structured natural language concepts, and map these interconnections into an interactive network.</p>
+<section id="workflow-overview" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-overview">Workflow overview</h3>
+<ol type="1">
+<li>Query the Metropolitan Museum of Art Open Access API to fetch public domain paintings.</li>
+<li>Download the images and store metadata locally.</li>
+<li>Use the Gemini API with a <code>.env</code> file to programmatically analyze each artwork, returning structured JSON tags (dominant colors, visual subjects, emotional mood, latent research themes).</li>
+<li>Build an interactive HTML network graph connecting artworks to their shared semantic concepts.</li>
+<li>Document your work in a Quarto document and share your project on GitHub.</li>
+</ol>
+</section>
+<section id="data-and-setup" class="level3">
+<h3 class="anchored" data-anchor-id="data-and-setup">Data and Setup</h3>
 <ul>
-<li>Brainstorm their approach with the AI in <code>plan</code> mode:
+<li><strong>API:</strong> We will use the <a href="https://metmuseum.github.io/">The Metropolitan Museum of Art Open Access API</a>, which requires no API keys and allows searching and retrieving public-domain collections.</li>
+<li><strong>Gemini API Key:</strong> You must use a <code>.env</code> file to securely load your <code>GEMINI_API_KEY</code>.</li>
+<li><strong>Libraries:</strong>
 <ul>
-<li>Identify a collection that offers a rich set of images and metadata.</li>
-<li>Explore the API documentation for the museum’s collection to understand how to access the data programmatically.</li>
-<li>Determine the extent of data to retrieve (e.g., title, description, artist, date, medium, dimensions, and image URLs).</li>
-<li>Determine if the collection has any restrictions on data usage or API rate limits.</li>
-<li>Identify the right of use for the images and metadata, ensuring compliance with copyright and licensing requirements.</li>
-</ul></li>
-<li>Write a prompt that instructs the AI agent to write a reproducible script that fetches basic metadata and downloads images for a specified number of objects from the museum’s collection. The prompt should include:
-<ul>
-<li>The API endpoint to access the collection data.</li>
-<li>The specific fields to retrieve (e.g., title, description, artist, date, medium, dimensions, image URLs).</li>
-<li>Instructions to save the metadata in a structured format (e.g., CSV or JSON) and download images to a designated folder.</li>
+<li>If using Python: favor <code>requests</code>, <code>python-dotenv</code>, <code>google-genai</code> (or <code>google-generativeai</code>), and <code>pyvis</code> for interactive network visualization.</li>
+<li>If using R: favor <code>httr2</code>, <code>dotenv</code>, <code>gemini.R</code> (or similar package), and <code>visNetwork</code> or <code>networkD3</code> for the interactive network.</li>
 </ul></li>
 </ul>
 </section>
-<section id="step-2-ai-data-processing-and-wrangling" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-ai-data-processing-and-wrangling">Step 2: AI Data Processing and Wrangling</h3>
+<section id="ask" class="level3">
+<h3 class="anchored" data-anchor-id="ask">Ask</h3>
 <ul>
-<li>Calculate textual proximity between objects using natural language processing techniques (e.g., TF-IDF, word embeddings) to identify similar objects based on their descriptions and metadata.
+<li><strong>Session 1: API Fetching &amp; Gemini Feature Extraction</strong>
 <ul>
-<li>Use the AI agent to generate a script that performs the following:
+<li>Brainstorm with your agent in <code>plan</code> mode to handle the Met API query. Fetch details for 15-20 public-domain paintings from a specific department (e.g., “European Paintings” or “Asian Art”).</li>
+<li>Ensure your agent writes clean, reproducible code to download images to a local folder (e.g., <code>images/</code>) and save basic metadata (title, artist, year, medium) in a CSV file.</li>
+<li>Instruct your agent to write a script that securely loads the Gemini API key from <code>.env</code>.</li>
+<li>Iterate over the images, sending both the image file and its metadata to Gemini. Instruct the model to return a structured JSON response extracting:
 <ul>
-<li>Preprocess the text data (e.g., tokenization, stopword removal, stemming/lemmatization).</li>
-<li>Compute similarity scores between objects based on their textual descriptions and metadata.</li>
-<li>Create a similarity matrix or a list of similar objects for each object in the collection.</li>
+<li><strong>Dominant palette:</strong> 3 distinct visual colors (e.g., “warm gold”, “deep indigo”).</li>
+<li><strong>Visual concepts:</strong> Primary subjects/objects visible in the work.</li>
+<li><strong>Mood/Vibe:</strong> The overall emotional tone (e.g., “melancholic”, “serene”, “triumphant”).</li>
+<li><strong>Research themes:</strong> Latent themes (e.g., “social status”, “nature”, “domesticity”).</li>
 </ul></li>
+<li>Combine Gemini’s output with the original metadata into an enriched dataset (e.g., <code>enriched_collection.csv</code>).</li>
 </ul></li>
-<li>Extract visual features from the images using computer vision techniques to identify similar features based on visual content and metadata context.
+<li><strong>Session 2: Mapping the Semantic Web</strong>
 <ul>
-<li>Use the AI agent to generate a script that returns a JSON object containing:
+<li>Work with your agent to write a visualization script using the enriched dataset.</li>
+<li>Build an interactive HTML network graph where:
 <ul>
-<li>A semantic summary of the textual metadata for each object.</li>
-<li>Dominant visual features extracted from the images (e.g., color histograms, color contrast, dominant palete).</li>
-<li>Identify the primary artistic movement based on the visual features and metadata context.</li>
-<li>List of categories associated with a particular research interest (e.g., representation of women, social justice, or environmental themes) based on the visual features and metadata context.</li>
+<li><strong>Nodes</strong> represent either the artworks or the extracted concepts (vibe, dominant colors, themes).</li>
+<li><strong>Edges (lines)</strong> connect artworks to their shared attributes.</li>
+<li><strong>Styling:</strong> Color-code artwork nodes by historical century or artistic movement, and attribute nodes by category.</li>
 </ul></li>
+<li>Open the generated HTML and explore the interactive graph. Look for unexpected connections—such as a 17th-century oil painting and a 20th-century piece clustering together based on shared mood or latent research themes.</li>
+<li>Include this interactive visualization in your Quarto document, add your findings and analysis, and publish the final site to GitHub Pages.</li>
 </ul></li>
-</ul>
-</section>
-<section id="step-3-data-analysis-and-visualization" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-data-analysis-and-visualization">Step 3: Data Analysis and Visualization</h3>
-<ul>
-<li>Use the AI agent to generate a script to analyze the dataset and identify connections between objects based on textual and visual similarities. The script should:
-<ul>
-<li>Combine the similarity scores from textual and visual analyses to create a comprehensive similarity measure.</li>
-<li>Identify clusters of similar objects using clustering algorithms (e.g., K-means, hierarchical clustering).</li>
-<li>Visualize the relationships between objects using network graphs or dimensionality reduction techniques (e.g., t-SNE, PCA).</li>
-</ul></li>
-<li>With the help of the AI agent, design a Quarto document that presents the findings, including:
-<ul>
-<li>A summary of the dataset and the methods used for analysis.</li>
-<li>Visualizations of the clusters and relationships between objects.</li>
-<li>Insights into the connections between objects based on textual and visual similarities.</li>
-</ul></li>
-<li>Connect with GitHub to publish the Quarto document as a static website.</li>
 </ul>
 
 
