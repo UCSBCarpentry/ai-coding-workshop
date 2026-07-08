@@ -21,8 +21,8 @@ Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform "sema
 -   **API:** We will use the [The Metropolitan Museum of Art Open Access API](https://metmuseum.github.io/), which requires no API keys and allows searching and retrieving public-domain collections.
 -   **Gemini API Key:** You must use a `.env` file to securely load your `GEMINI_API_KEY`.
 -   **Libraries:**
-    -   If using Python: favor `requests`, `python-dotenv`, `google-genai` (or `google-generativeai`), and `pyvis` for interactive network visualization.
-    -   If using R: favor `httr2`, `dotenv`, `gemini.R` (or similar package), and `visNetwork` or `networkD3` for the interactive network.
+    -   If using Python: favor `requests`, `python-dotenv`, `openai`, and `pyvis` for interactive network visualization.
+    -   If using R: favor `httr2`, `dotenv`, `openai`, and `visNetwork` or `networkD3` for the interactive network.
 
 ### Ask
 
