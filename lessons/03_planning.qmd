@@ -50,9 +50,10 @@ For complex, multi-step problem planning, it is advisable to leverage the most a
 
 Let's restart our NOAA tides example, this time leveraging Plan mode.
 
-### Example
-
-Here is a prompt example: 
+1. Start a new session `/new`
+1. Switch to Plan mode <kbd>tab</kbd>
+1. Select your model `/models` and choose the `Gemini 3.1 Pro` model
+1. Enter the following prompt:
 
 > I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.
 
