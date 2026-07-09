@@ -28,6 +28,8 @@ Often a geospatial project starts off with a vague curiosity spotted on a map.
 
 In in its annual report from 1901, the US Forest Service, as it did at the time of heavy timber extraction, published a series of maps showing marketable timber in the 4 areas of the Pacific Northwest. Two of the symbols used on the map show "Recently burned, restocking" and "Recenly burned, not restocking." The burn areas mapped are larger than most contemporary catastrophic wildfires, which sparked curiosity. Were there really such large 19th century wildfires? Were these evidence of slash-and-burn settler practices? Earlier Native cultural landscape management burns? 
 
+![The intruging symbols used on the report map](forest_legend.jpg)
+
 R scripts and varioud outputs created using OpenCode are in this repository: [r-geo-viz](https://github.com/UCSBCarpentry/r-geo-viz)
 
 To answer this question, one would traditionally follow these steps:
