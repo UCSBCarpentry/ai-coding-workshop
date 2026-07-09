@@ -1,3 +1,0 @@
-# Research Scenario: Analyzing Public Comments from regulations.gov
-
-...
