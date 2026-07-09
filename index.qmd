@@ -2,6 +2,13 @@
 title: "AI-Assisted coding for research"
 ---
 
+:::{.callout-warning} 
+
+This is a new and **very experimental** workshop. Lesson materials are being
+actively developed and may change!
+
+:::
+
 This hands-on three half-day workshop covers AI-assisted coding techniques with
 an emphasis on research data analysis, reproducibility, and best practices of
 Open Science. Learners will use real-world scenarios to explore concepts and
