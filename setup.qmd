@@ -2,27 +2,25 @@
 title: "Setup Instructions"
 ---
 
-Please complete the following before you arrive on the first day of the workshop.
+Please complete the setup instructions **before** the first day of the workshop.
 
 ## Create Your Workspace
 
-For the workshop, we will use a coding agent installed in a virtual machine that
-you access remotely (a [Coder Workspace](https://coder.dreamlab.ucsb.edu)). You will be using VSCode in a browser window. It
-can take a few minutes to create your workspace so we recommend doing it before
-the workshop. 
+During the workshop, you will use a coding agent running on a virtual machine,
+called a [Coder Workspace](https://coder.dreamlab.ucsb.edu). It can take a few
+minutes to create your workspace so we recommend doing it before the workshop.
+To create your workspace:
 
-Follow these steps to create your workspace:
-
-1. Log in to our [Coder Workspace Environment](https://coder.dreamlab.ucsb.edu) using your UCSB NetID.
+1. Log in to the [Coder Workspaces](https://coder.dreamlab.ucsb.edu) environment using your UCSB NetID.
 2. Click the **New Workspace** button and then **Coder Workspace (Summer
    2026)**.
 3. On the New Workspace form:
-   - Enter a **name** for your workspace (or use the suggested name)
+   - Enter a **name** for your workspace (or use the suggested name).
    - Review the usage policies and click "**I understand the usage policies**".
-   - Click **Yes** for "Include Visual Studio Code (Web)"
-   - (**Optional, see below**) Click **Yes** for "Include Visual Studio Code (Desktop)"
+   - Click **Yes** for "**Include Visual Studio Code (Web)**"
+   - (**Optional**) Click **Yes** for "Include Visual Studio Code (Desktop)"
    - Click the **Create Workspace** button
-   - It will take a few minutes for the workspace to be created.
+   - Wait for the workspace to be created.
 
 It may take a few minutes for the workspace to start up. Once it does, you
 should see a workspace dashboard. Your dashboard controls may be slightly
@@ -32,8 +30,8 @@ different, depending on the options you enabled.
 
 ## Optional Setup for VS Code Desktop
 
-If you prefer to use the VS Code desktop app, rather than the browser-based
-version, use these instructions to set things up.
+**This is optional**. If you prefer to use the VS Code desktop app, rather than
+the browser-based version, use these instructions to set things up.
 
 ### Install VS Code
 
