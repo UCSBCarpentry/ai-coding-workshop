@@ -285,10 +285,3 @@ station mean high water values using MLLW datum"}
 
 :::
 
-::: {.callout-challenge collapse="true"}
-### Example projects
-
-We have prepared several scenarios that you can attempt to code for yourself 
-throughout the workshop. See the [Projects Index](../projects/index.qmd) for more information.
-
-:::
