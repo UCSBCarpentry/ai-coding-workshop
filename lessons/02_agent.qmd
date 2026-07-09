@@ -289,19 +289,6 @@ station mean high water values using MLLW datum"}
 ### Example projects
 
 We have prepared several scenarios that you can attempt to code for yourself 
-themselves throughout the workshop. They include:
-
-- **Multimodal Met Museum Semantic Networks (`projects/archival-collections`):** Connects artworks 
-  from the Metropolitan Museum of Art Open Access API to their shared semantic concepts 
-  (extracted using Gemini) into an interactive network visualization.
-- **Geospatial Data Agentic Visualizing (`projects/geo-viz`):** An exploratory analysis 
-  using geospatial data in R to visualize and overlay 19th-century wildfires against other relevant records.
-- **Computing the bikability of the Santa Barbara County (`projects/bikability`):** Computes the steepness 
-  of Santa Barbara County using a Digital Elevation Model (DEM) and US Census Group Blocks to 
-  create a map showing the median slope of each area.
-- **Analyzing Public Comments from regulations.gov (`projects/regulations-comments`):** Analyzes 
-  public comments downloaded from regulations.gov to extract research findings and insights.
-- **COVID-19 fatality rates (`projects/covid-fatality-rates`):** Analyzes US County-level 
-  COVID-19 cases data to provide general description and key statistics of Covid-19 fatality rates.
+throughout the workshop. See the [Projects Index](../projects/index.qmd) for more information.
 
 :::
