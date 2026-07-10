@@ -43,6 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-a3fdc2df2c01662e6f3a042b88ed1c09.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -196,7 +199,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../diagrams/question_answer.svg" class="img-fluid figure-img" alt="Flowchart showing using LLMs to answer questions directly"></p>
+<p><a href="../diagrams/question_answer.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Using LLMs to answer questions directly"><img src="../diagrams/question_answer.svg" class="img-fluid figure-img" alt="Flowchart showing using LLMs to answer questions directly"></a></p>
 <figcaption>Using LLMs to answer questions directly</figcaption>
 </figure>
 </div>
@@ -204,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../diagrams/question_code_answer.svg" class="img-fluid figure-img" alt="Flowchart showing using LLMs to generate code to answer questions"></p>
+<p><a href="../diagrams/question_code_answer.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Using LLMs to generate code to answer questions"><img src="../diagrams/question_code_answer.svg" class="img-fluid figure-img" alt="Flowchart showing using LLMs to generate code to answer questions"></a></p>
 <figcaption>Using LLMs to generate code to answer questions</figcaption>
 </figure>
 </div>
@@ -219,7 +222,7 @@ Figure&nbsp;1: Instead of using LLMs to answer questions directly, use them to g
 <p>AI chat interfaces are sufficient for small, one-off code generation tasks. However, for complex work involving multiple rounds of iteration, it can be tiresome to repeatedly move back and forth, pasting code snippets into your editor and error messages into the chat window. For cases like these, it’s better to use a coding agent, which manages the interaction between your code and the LLM.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../diagrams/agent.svg" class="img-fluid figure-img" style="width:50.0%" alt="Diagram of coding agent mediating interaction"></p>
+<p><a href="../diagrams/agent.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Coding agents mediate interaction between the user, the LLM, and coding tools"><img src="../diagrams/agent.svg" class="img-fluid figure-img" style="width:50.0%" alt="Diagram of coding agent mediating interaction"></a></p>
 <figcaption>Coding agents mediate interaction between the user, the LLM, and coding tools</figcaption>
 </figure>
 </div>
@@ -635,6 +638,38 @@ Figure&nbsp;1: Instead of using LLMs to answer questions directly, use them to g
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

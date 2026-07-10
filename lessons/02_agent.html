@@ -78,6 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-a3fdc2df2c01662e6f3a042b88ed1c09.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -194,13 +197,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#the-coder-workspace-environment" id="toc-the-coder-workspace-environment" class="nav-link active" data-scroll-target="#the-coder-workspace-environment">The Coder Workspace Environment</a>
   <ul class="collapse">
-  <li><a href="#git-setup" id="toc-git-setup" class="nav-link" data-scroll-target="#git-setup">Git Setup</a></li>
+  <li><a href="#the-visual-studio-code-interface" id="toc-the-visual-studio-code-interface" class="nav-link" data-scroll-target="#the-visual-studio-code-interface">The Visual Studio Code Interface</a></li>
   </ul></li>
-  <li><a href="#our-coding-agent-opencode" id="toc-our-coding-agent-opencode" class="nav-link" data-scroll-target="#our-coding-agent-opencode">Our Coding Agent: OpenCode</a></li>
+  <li><a href="#starting-with-opencode" id="toc-starting-with-opencode" class="nav-link" data-scroll-target="#starting-with-opencode">Starting with OpenCode</a>
+  <ul class="collapse">
   <li><a href="#our-first-prompt" id="toc-our-first-prompt" class="nav-link" data-scroll-target="#our-first-prompt">Our First Prompt</a></li>
   <li><a href="#agent-permissions" id="toc-agent-permissions" class="nav-link" data-scroll-target="#agent-permissions">Agent Permissions</a></li>
   <li><a href="#opencode-commands" id="toc-opencode-commands" class="nav-link" data-scroll-target="#opencode-commands">OpenCode Commands</a></li>
+  <li><a href="#switching-models" id="toc-switching-models" class="nav-link" data-scroll-target="#switching-models">Switching models</a></li>
+  </ul></li>
+  <li><a href="#starting-a-project" id="toc-starting-a-project" class="nav-link" data-scroll-target="#starting-a-project">Starting A Project</a>
+  <ul class="collapse">
   <li><a href="#exercise-download-and-plot-noaa-tide-data" id="toc-exercise-download-and-plot-noaa-tide-data" class="nav-link" data-scroll-target="#exercise-download-and-plot-noaa-tide-data">Exercise: Download and Plot NOAA Tide Data</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -245,85 +254,110 @@ Note
 <p>Follow the <a href="../setup.html">setup instructions</a> if necessary, to create a <a href="https://coder.dreamlab.ucsb.edu">Coder Workspace</a>. You should have a workspace with a dashboard like the image below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/coder_dashboard.png" class="img-fluid figure-img" alt="Example Coder Workspace dashboard with buttons to stop and restart the workspace, and open VS Code"></p>
+<p><a href="../images/coder_dashboard.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Coder Workspace Dashboard"><img src="../images/coder_dashboard.png" class="img-fluid figure-img" style="width:80.0%" alt="Example Coder Workspace dashboard with buttons to stop and restart the workspace, and open VS Code"></a></p>
 <figcaption>Coder Workspace Dashboard</figcaption>
 </figure>
 </div>
-<p>Start VS Code from the workspace dashboard. The web-based editor starts in an empty directory (<code>~/workspace</code>).</p>
-<p>Explore the VS Code interface:</p>
+<p>The Workspace dashboard has several features:</p>
 <ul>
-<li>Create a new file, called <code>README.md</code></li>
-<li>Open a terminal window</li>
+<li>On the top row, there are buttons to “Stop” and “Restart” the workspace. Your workspace is a virtual machine: stopping the workspace is like turning off the computer; restarting it is like rebooting your computer.</li>
+<li>There are also buttons to open various applications: VS Code (more below), File Browser (to upload and download files to the workspace), and Terminal (a command line interface). Clicking these will open new browser windows.</li>
 </ul>
+<section id="the-visual-studio-code-interface" class="level3">
+<h3 class="anchored" data-anchor-id="the-visual-studio-code-interface">The Visual Studio Code Interface</h3>
+<p>We will mainly use the <strong>VS Code Web</strong> interface, both to run our coding agent and to review files. VS Code Web is a browser-based variant of the VS Code editor.</p>
+<p>The VS Code Interface includes a file <strong>Explorer</strong> on the left side. When it starts, the Explorer shows the contents of an empty default directory (<code>~/workspace</code>). There is also an Editor Area, that shows a tab with a welcome message at startup. You can close the startup message tab.</p>
+<p>VS Code also includes AI-assisted coding features (Copilot), but we aren’t going to use them in this workshop. You can close the Copilot panel on the right side. Instead, we will run a coding agent, OpenCode, in a <strong>terminal window</strong> in the Editor Area.</p>
+<div id="fig-vscode-terminal" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vscode-terminal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/vscode_terminal.png" class="img-fluid figure-img" alt="VS Code Web interface with terminal window show output from `ls` command."></p>
-<figcaption>VS Code Web, with Terminal window for running bash commands</figcaption>
+<p><a href="../images/vscode_startup.png" class="lightbox" data-gallery="terminal" title="Create terminal window in VS Code"><img src="../images/vscode_startup.png" class="img-fluid figure-img" style="width:80.0%" alt="VS Code interface with menu to create New Terminal"></a></p>
+<figcaption>Create terminal window in VS Code</figcaption>
 </figure>
 </div>
-<section id="git-setup" class="level3">
-<h3 class="anchored" data-anchor-id="git-setup">Git Setup</h3>
-<p>We will need to configure git in order to create commits later on.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"you@ucsb.edu"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/vscode_terminal.png" class="lightbox" data-gallery="terminal" title="Terminal Window in VS Code"><img src="../images/vscode_terminal.png" class="img-fluid figure-img" style="width:80.0%" alt="Terminal window with bash shell in VS Code"></a></p>
+<figcaption>Terminal Window in VS Code</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vscode-terminal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Creating a new terminal in VS Code (click to expand screenshots)
+</figcaption>
+</figure>
+</div>
+<p>To create a terminal window in the Editor Area:</p>
+<ul>
+<li>Right click on any open space in the Editor Area.</li>
+<li>Click “New Terminal”</li>
+</ul>
+<p>You can also use VS Code’s <strong>Command Palette</strong> (⇧⌘P) and run <strong>Terminal: Create New Terminal in Editor Area</strong>. Next we’ll start OpenCode.</p>
 </section>
 </section>
-<section id="our-coding-agent-opencode" class="level2">
-<h2 class="anchored" data-anchor-id="our-coding-agent-opencode">Our Coding Agent: OpenCode</h2>
+<section id="starting-with-opencode" class="level2">
+<h2 class="anchored" data-anchor-id="starting-with-opencode">Starting with OpenCode</h2>
 <p>There are many coding agents out there. We like OpenCode because it is one of the few widely used coding agents that is model agnostic.</p>
 <p>To start OpenCode, run <code>opencode</code> in the VS Code terminal.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/vscode_opencode.png" class="img-fluid figure-img" alt="VS Code Web with OpenCode running."></p>
+<p><a href="../images/vscode_opencode.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="VS Code window with OpenCode running in a terminal"><img src="../images/vscode_opencode.png" class="img-fluid figure-img" style="width:80.0%" alt="VS Code Web with OpenCode running."></a></p>
 <figcaption>VS Code window with OpenCode running in a terminal</figcaption>
 </figure>
 </div>
 <p>By default, OpenCode on Coder Workspaces is configured to use open weights models through the College IT Gateway.</p>
-<p>OpenCode needs to know which AI model to talk to. We’ll point it at the <strong>DREAM Lab AI Gateway</strong>, which gives us access to a range of models through a single API key.</p>
+<p>OpenCode needs to know which AI model to talk to. We’ll point it at the <strong>DREAM Lab AI Gateway</strong>, which gives us access to a range of models through a single API key. We only need to do this configuration once.</p>
 <p><strong>1. Connect to a model provider.</strong> In the OpenCode prompt, type <code>/connect</code> and press <kbd>Enter</kbd>. Start typing <code>dream</code> to filter the list, then select <strong>DREAM Lab AI Gateway</strong> under <em>Providers</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/opencode_connect_provider.png" class="img-fluid figure-img" alt="OpenCode model selection dropdown with DREAM Lab AI Gateway highlighted"></p>
+<p><a href="../images/opencode_connect_provider.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Selecting the DREAM Lab AI Gateway provider"><img src="../images/opencode_connect_provider.png" class="img-fluid figure-img" style="width:80.0%" alt="OpenCode model selection dropdown with DREAM Lab AI Gateway highlighted"></a></p>
 <figcaption>Selecting the DREAM Lab AI Gateway provider</figcaption>
 </figure>
 </div>
-<p><strong>2. Enter your API key.</strong> Paste the API key you were given for the workshop and press <kbd>Enter</kbd> to submit.</p>
+<p><strong>2. Enter your API key.</strong> In the workshop, you will receive instruction for accessing your API key. Once you have it, paste the key into OpenCode and press <kbd>Enter</kbd> to submit.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/opencode_connect_apikey.png" class="img-fluid figure-img" alt="OpenCode prompt entering an API key"></p>
+<p><a href="../images/opencode_connect_apikey.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Entering your API key"><img src="../images/opencode_connect_apikey.png" class="img-fluid figure-img" style="width:80.0%" alt="OpenCode prompt entering an API key"></a></p>
 <figcaption>Entering your API key</figcaption>
 </figure>
 </div>
-<p><strong>3. Select a model.</strong> Choose <strong>Gemini 3.5 Flash</strong> from the list of available models. You can use (Ctrl+F) to “favorite” a model. We will use both Gemini 3.5 Flash and Gemini 3.1 Pro Preview (Custom Tools) – you might want to favorite both of these to make switching models a little easier.</p>
+<p><strong>3. Select a model.</strong> Choose <strong>Gemini 3.5 Flash</strong> from the list of available models. You can use (Ctrl+F) to “favorite” a model. We will use both Gemini 3.5 Flash and Gemini 3.1 Pro (Custom Tools) – you might want to favorite both of these to make switching models a little easier.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/opencode_connect_model.png" class="img-fluid figure-img" alt="OpenCode model selection dropdown with Gemini 3.5 Flash highlighted"></p>
+<p><a href="../images/opencode_connect_model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Selecting the Gemini 3.5 Flash model"><img src="../images/opencode_connect_model.png" class="img-fluid figure-img" style="width:80.0%" alt="OpenCode model selection dropdown with Gemini 3.5 Flash highlighted"></a></p>
 <figcaption>Selecting the Gemini 3.5 Flash model</figcaption>
 </figure>
 </div>
 <p>OpenCode is now configured and ready to use the DREAM Lab AI Gateway.</p>
-</section>
-<section id="our-first-prompt" class="level2">
-<h2 class="anchored" data-anchor-id="our-first-prompt">Our First Prompt</h2>
+<section id="our-first-prompt" class="level3">
+<h3 class="anchored" data-anchor-id="our-first-prompt">Our First Prompt</h3>
 <p>To demonstrate the capabilities of a coding agent, let’s ask OpenCode to inspect that machine we’re using.</p>
 <blockquote class="blockquote">
 <p>Tell me about the machine you’re running on: OS, resources, etc.</p>
 </blockquote>
-<p>OpenCode will probably ask you for permission to run a bash command to inspect the machine. It’s safe to say yes because this isn’t your real machine!</p>
+<p>OpenCode will probably ask you for permission to access files outside of the working directory. It’s safe to say yes because this isn’t your real machine! You can choose “<strong>Allow always</strong>” and then “<strong>Confirm</strong>”.</p>
 <p>The response should look something like this.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>I will run a few non-modifying commands to retrieve information </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>about the operating system, CPU, memory, and disk resources.</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>bash tool: "uname -a &amp;&amp; cat /etc/os-release &amp;&amp; free -h &amp;&amp; nproc &amp;&amp; df -h /"</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>This machine is running:</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**OS**: Ubuntu 26.04 LTS (Kernel 7.0.0, x86_64)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**CPU**: 4 Cores</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**RAM**: 15 GiB (12 GiB available)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Disk**: 14 GiB total, 8.1 GiB free (41% used)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>I will run a few non-modifying commands to retrieve information </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>about the operating system, CPU, memory, and disk resources.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>bash tool: "uname -a &amp;&amp; cat /etc/os-release &amp;&amp; free -h &amp;&amp; nproc &amp;&amp; df -h /"</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>This machine is running:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**OS**: Ubuntu 26.04 LTS (Kernel 7.0.0, x86_64)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**CPU**: 4 Cores</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**RAM**: 15 GiB (12 GiB available)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Disk**: 14 GiB total, 8.1 GiB free (41% used)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="agent-permissions" class="level2">
-<h2 class="anchored" data-anchor-id="agent-permissions">Agent Permissions</h2>
+<section id="agent-permissions" class="level3">
+<h3 class="anchored" data-anchor-id="agent-permissions">Agent Permissions</h3>
 <p>Most coding agents, including OpenCode, have a <strong>permission system</strong> used to control what actions the agent is allowed to perform in its environment. In the example above, OpenCode paused and asked before running a bash command. Even though our agent is isolated in a throwaway virtual machine, it’s worth understanding how it decides when to ask for your approval.</p>
 <p>The actions the agent can perform (e.g., reading files, editing them, running shell commands, fetching URLs) are determined by permission levels:</p>
 <ul>
@@ -338,8 +372,8 @@ Note
 <li><code>.env</code> files are denied by default, so secrets aren’t read accidentally.</li>
 </ul>
 </section>
-<section id="opencode-commands" class="level2">
-<h2 class="anchored" data-anchor-id="opencode-commands">OpenCode Commands</h2>
+<section id="opencode-commands" class="level3">
+<h3 class="anchored" data-anchor-id="opencode-commands">OpenCode Commands</h3>
 <p>You can type “<code>/</code>” followed by a command name to configure OpenCode or perform various actions. You can find a complete list of commands in the <a href="https://opencode.ai/docs/tui/#commands">OpenCode documentation</a>.</p>
 <p>The commands we will use in the workshop are listed here:</p>
 <ul>
@@ -350,8 +384,76 @@ Note
 <li><code>/new</code> - Start a new session (fresh context)</li>
 </ul>
 </section>
-<section id="exercise-download-and-plot-noaa-tide-data" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-download-and-plot-noaa-tide-data">Exercise: Download and Plot NOAA Tide Data</h2>
+<section id="switching-models" class="level3">
+<h3 class="anchored" data-anchor-id="switching-models">Switching models</h3>
+<p>Your Coder Workspace includes configurations for several models, not just those provided through the DREAM Lab. These are grouped by provider:</p>
+<p><strong>DREAM Lab</strong> AI Gateway provides Google models:</p>
+<ul>
+<li>Gemini 3.5 Flash</li>
+<li>Gemini 3 Flash</li>
+<li>Gemini 3.1 Pro</li>
+<li>Gemini 3.1 Pro (Custom Tools)</li>
+</ul>
+<p><strong>UCSB College IT</strong> (CIT) AI Gateway provides several <strong>open weights</strong> models:</p>
+<ul>
+<li>Gemma 4</li>
+<li>Qwen3-Coder-Next</li>
+<li>GPT-OSS-120b</li>
+</ul>
+<p>To switch models, type <code>/models</code> and press Enter. Type the name of the model you want to filter the list, and use the arrow keys to move through the list (models are grouped by provider). Press Enter to select the model. OpenCode will use the selected model for the rest of the session. The active model appears at the bottom of the OpenCode interface.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Challenge: Configure Git
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Soon, we are going to start using git to track changes in our generated code. Before using git, there are a few things to configure. Typically, we would do these directly with <code>git config --global</code>, but let’s just use OpenCode!</p>
+<ul>
+<li>Switch to an open-weights model from CIT: <strong>Qwen3-Coder-Next</strong> (because this is not a difficult task and the models are running on campus).</li>
+<li>Use OpenCode to set git’s <strong>global name and email configurations</strong>. Try to come up with the prompt yourself!</li>
+<li>It might not work on the first try. (Did the model even ask for your name and email?)</li>
+<li>Ask OpenCode to confirm that the configurations are correct.</li>
+<li>Quit OpenCode: you should be back on the terminal command line.</li>
+</ul>
+<p>Discussion: <strong>Who/what did you just share your name and email with</strong>?</p>
+</div>
+</div>
+</section>
+</section>
+<section id="starting-a-project" class="level2">
+<h2 class="anchored" data-anchor-id="starting-a-project">Starting A Project</h2>
+<p>Let’s explore OpenCode’s capability with an example project: <strong>analyzing ocean tide data</strong> from the National Oceanic and Atmospheric Administration (NOAA).</p>
+<p><strong>The recommended way to run OpenCode is from your project directory</strong>. We will create a project folder called <code>noaa-tides</code>, set it as the working directory, and then start OpenCode. If you didn’t quit OpenCode at the end of the previous exercise, do so now. From the terminal window run the commands:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make our project directory</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> noaa-tides</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set noaa-tides as the working directory.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> noaa-tides</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># print working directory: should be "/home/coder/workspace/noaa-tides"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span> </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># start opencode</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">opencode</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Instead of using <code>mkdir</code>, you can also create the <code>noaa-tides</code> folder through file Explorer (on the left side of VS Code), but you will still need to <code>cd</code> into the folder before running opencode.</p>
+</div>
+</div>
+<section id="exercise-download-and-plot-noaa-tide-data" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-download-and-plot-noaa-tide-data">Exercise: Download and Plot NOAA Tide Data</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -367,13 +469,13 @@ Note
 </div>
 <p>Use <code>/new</code> to start a new session (if necessary) and <code>/models</code> to select the <code>Gemini 3.1 Pro (Custom Tools)</code> model. Then cut and paste the following prompt into OpenCode:</p>
 <blockquote class="blockquote">
-<p>Create a new folder <code>noaa-tides</code> and use it as the working directory, then download monthly mean high water for all NOAA stations in California over the last ten years. Download as CSV and save in <code>noaa-tides/data</code>.</p>
+<p>download monthly mean high water for all NOAA stations in California over the last ten years. Download as CSV and save in <code>data</code>. Track code with git, but not the data.</p>
 </blockquote>
 <p>Wait for the agent to complete the task (it may take a few minutes), then answer the following questions:</p>
 <ul>
-<li>What files were downloaded to <code>noaa-tides/data</code>? How many and what format? If they are CSVs (as expected), what columns do they include?</li>
+<li>What files were downloaded to the <code>data</code> folder? How many and what format? If they are CSVs (as expected), what columns do they include?</li>
 <li>Does everyone in the group have the same set of files? What similarities and differences can you find?</li>
-<li>Look at the agent’s session transcript: how did the agent complete the task? For example: did it generate scripts to download the data and, if so, what language did it use? How did it construct the URL for the download request. (You can always <strong>ask the agent to explain the steps it took</strong>).</li>
+<li>Look at the agent’s session transcript: how did the agent complete the task? For example: did it generate scripts to download the data and, if so, what language did it use? How did it construct the URL for the download request? (You can always <strong>ask the agent to explain the steps it took</strong>).</li>
 <li>In your group, discuss the different approaches the agent took.</li>
 </ul>
 <p>Try an additional prompt and discuss the results:</p>
@@ -386,7 +488,7 @@ Note
 <li>In light of your discussion, how would you improve these prompts?</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout" role="button">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout" role="button">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -395,7 +497,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>These are notes from a previous run of the exercise prompts.</p>
 <p><strong>What files were downloaded?</strong></p>
@@ -425,10 +527,10 @@ Note
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"&amp;format=csv"</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Highest average MHW station</strong></p>
-<p>The agent reported <strong>North Spit</strong> as station with the highest average MHW.</p>
+<p>The agent reported <strong>North Spit</strong> as the station with the highest average MHW.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/exercise-noaa-tides.png" class="img-fluid figure-img" alt="Plot of downloaded station MHW values"></p>
+<p><a href="../images/exercise-noaa-tides.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Plot from NOAA Tides exercise"><img src="../images/exercise-noaa-tides.png" class="img-fluid figure-img" alt="Plot of downloaded station MHW values"></a></p>
 <figcaption>Plot from NOAA Tides exercise</figcaption>
 </figure>
 </div>
@@ -437,11 +539,11 @@ Note
 <p>The generated script downloads data using <code>datum=MHW</code>, so every <code>MHW</code> value is measured relative to each station’s own MHW datum rather than an absolute reference (see the <a href="https://api.tidesandcurrents.noaa.gov/api/prod/#datum">NOAA API documentation</a>). That makes the numbers tiny because they aren’t tide heights at all. They’re <strong>anomalies</strong>, i.e.&nbsp;how far each month sat above that station’s historical baseline. So “North Spit is highest” really means <em>its</em> high water has risen the most relative to <em>its own</em> reference. Ask for the same thing against a fixed physical datum (<code>datum=MLLW</code>, the actual height of mean high water above the chart datum) and the answer changes.</p>
 <p>Here is an improved prompt:</p>
 <blockquote class="blockquote">
-<p>create a new folder, noaa-tides-2, and use it as the working directory; then download monthly mean tidy data for all NOAA stations in California over the last ten years using the MLLW (mean lower low water) datum. data should be in csv format. save to <code>noaa-tides-2/data</code>. Then plot the mean high water value for all stations using different colors for each station. Include labels on x/y axes and a legend with station names.</p>
+<p>download monthly mean tide data for all NOAA stations in California over the last ten years using the MLLW (mean lower low water) datum. data should be in csv format. save to <code>data</code>. Then plot the mean high water value for all stations using different colors for each station. Include labels on x/y axes and a legend with station names. Track scripts with git, but not the data.</p>
 </blockquote>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/exercise-noaa-tides-2.png" class="img-fluid figure-img" alt="Plot of downloaded station mean high water values using MLLW datum"></p>
+<p><a href="../images/exercise-noaa-tides-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Revised Plot from NOAA Tides exercise"><img src="../images/exercise-noaa-tides-2.png" class="img-fluid figure-img" alt="Plot of downloaded station mean high water values using MLLW datum"></a></p>
 <figcaption>Revised Plot from NOAA Tides exercise</figcaption>
 </figure>
 </div>
@@ -450,6 +552,7 @@ Note
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -854,6 +957,38 @@ Note
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
