@@ -188,6 +188,14 @@ provided through the DREAM Lab. These are grouped by provider:
 - Qwen3-Coder-Next
 - GPT-OSS-120b
 
+Ordering these models by their coding capability (roughly):
+
+- Gemini 3.1 Pro [(Custom Tools)]
+- Gemini 3.5 Flash
+- Gemini 3 Flash / Qwen3-Coder-Next
+- Gemma 4 / GPT-OSS-120b
+
+
 To switch models, type `/models` and press Enter. Type the name of the model you
 want to filter the list, and use the arrow keys to move through the list (models
 are grouped by provider). Press Enter to select the model. OpenCode will use the
@@ -197,15 +205,15 @@ bottom of the OpenCode interface.
 ::: {.callout-tip}
 ### Challenge: Configure Git
 
-Soon, we are going to start using git to track changes in our generated code.
-Before using git, there are a few things to configure. Typically, we would do
-these directly with `git config --global`, but let's just use OpenCode!
+We will soon start using git to track changes in our generated code. First,
+there are a few things to configure. Typically, we would do these directly with
+`git config --global`, but let's just use OpenCode!
 
-- Switch to an open-weights model from CIT: **Qwen3-Coder-Next** (because this
+- Switch to an open weights model from CIT: **Qwen3-Coder-Next** (because this
   is not a difficult task and the models are running on campus).
-- Use OpenCode to set git's **global name and email configurations**. Try to come up
-  with the prompt yourself!
-- It might not work on the first try. (Did the model even ask for your name and email?)
+- Use OpenCode to set git's **default branch** to main and the **name and
+  email** configurations to your name and email. Try to come up with the prompt yourself!
+- It might not work on the first try. Hint: Did the model even ask for your name and email?
 - Ask OpenCode to confirm that the configurations are correct. 
 - Quit OpenCode: you should be back on the terminal command line.
 
@@ -213,7 +221,7 @@ Discussion: **Who/what did you just share your name and email with**?
 
 :::
 
-## Starting A Project
+## Starting a Project
 
 Let's explore OpenCode's capability with an example project: **analyzing ocean
 tide data** from the National Oceanic and Atmospheric Administration (NOAA).
@@ -252,16 +260,31 @@ folder before running opencode.
 Complete the exercise individually but discuss results in small groups (2-5 people).
 :::
 
-Use `/new` to start a new session (if necessary) and `/models` to select the
-`Gemini 3.1 Pro (Custom Tools)` model. Then cut and paste the following prompt
-into OpenCode:
+Use `/models` to select one of the models:
+
+- Gemini 3.1 Pro (Custom Tools)
+- Gemini 3.5 Flash
+- Gemini 3 Flash
+- Qwen3-Coder-Next
+
+Try to use a different model from other members of your group. Paste the
+following prompt into OpenCode:
 
 > download monthly mean high water for all NOAA stations in California over the
 > last ten years. Download as CSV and save in `data`. Track code with git, but
 > not the data.
 
-Wait for the agent to complete the task (it may take a few minutes), then answer
-the following questions:
+Wait for the agent to complete the task (it may take a few minutes). 
+
+:::{.callout-warning}
+
+Weaker models (Qwen3-Coder-Next, Gemini 3 Flash), may get stuck or take too
+long. In that case, you can press `Escape` to interrupt the work, switch to a
+higher model, and ask OpenCode to continue.
+
+:::
+
+In your group, discuss the following questions:
 
 - What files were downloaded to the `data` folder? How many and what format? If
   they are CSVs (as expected), what columns do they include?
@@ -278,13 +301,14 @@ Try an additional prompt and discuss the results:
 > Plot the mean high water value for all stations using a different color for
 > each station. Include labels on x/y axes and a legend with the station name.
 > What is the name of the station with the highest average mean high water value
-> over the last decade?
+> over the last decade? Save the code with a git commit, but ignore the image.
 
-- Download the plot image using the File Browser tool from your workspace
-  dashboard.
-- As a group, compare the generated plots. Did everyone in the group get the same
+- You can view the generated plot image by clicking the file in the file
+  Explorer.
+- Compare the generated plots in your group. Did everyone get the same
   answer for the station with the highest mean high water value?
-- In light of your discussion, how would you improve these prompts?
+- In light of your discussion, how would you move forward to improve the
+  analysis? Try an additional prompt to steer the agent toward better results.
 
 ::: {.callout-tip collapse="true"}
 #### Discussion Notes
@@ -362,17 +386,17 @@ most relative to *its own* reference. Ask for the same thing against a fixed
 physical datum (`datum=MLLW`, the actual height of mean high water above the
 chart datum) and the answer changes.
 
-Here is an improved prompt:
+Here's how I steered the agent:
 
-> download monthly mean tide data for all NOAA stations in California over the
-> last ten years using the MLLW (mean lower low water) datum. data should be in
-> csv format. save to `data`. Then plot the mean high water value for all
-> stations using different colors for each station. Include labels on x/y axes
-> and a legend with station names. Track scripts with git, but not the data.
+> This plot doesn't look right. The values seem too small. I think I need to use
+> MLLW as the datum. Fix the code and regenerate the plot, then commit those
+> changes. What is the correct station?
 
 ![Revised Plot from NOAA Tides
 exercise](../images/exercise-noaa-tides-2.png){fig-alt="Plot of downloaded
 station mean high water values using MLLW datum"}
+
+The new station identified by the agent is **Redwood City**.
 
 :::
 
