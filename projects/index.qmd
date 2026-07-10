@@ -11,14 +11,14 @@ Connects artworks from the Metropolitan Museum of Art Open Access API to their
 shared semantic concepts (extracted using Gemini) into an interactive network
 visualization.
 
-[Read more](archival-collections/)
+[Project plan](archival-collections/)
 
 ## Geospatial Data Vibe Visualizing
 
 An exploratory analysis using geospatial data in R to visualize and overlay
 19th-century wildfires against other relevant records.
 
-[Read more](geo-viz/)
+[Project plan](geo-viz/)
 
 ## The bikability of the Santa Barbara County
 
@@ -26,5 +26,5 @@ Computes the steepness of Santa Barbara County using a Digital Elevation Model
 (DEM) and US Census Group Blocks to create a map showing the median slope of
 each area.
 
-[Read more](bikability/)
+[Project plan](bikability/)
 
