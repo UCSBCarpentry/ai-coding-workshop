@@ -206,7 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#opencode-commands" id="toc-opencode-commands" class="nav-link" data-scroll-target="#opencode-commands">OpenCode Commands</a></li>
   <li><a href="#switching-models" id="toc-switching-models" class="nav-link" data-scroll-target="#switching-models">Switching models</a></li>
   </ul></li>
-  <li><a href="#starting-a-project" id="toc-starting-a-project" class="nav-link" data-scroll-target="#starting-a-project">Starting A Project</a>
+  <li><a href="#starting-a-project" id="toc-starting-a-project" class="nav-link" data-scroll-target="#starting-a-project">Starting a Project</a>
   <ul class="collapse">
   <li><a href="#exercise-download-and-plot-noaa-tide-data" id="toc-exercise-download-and-plot-noaa-tide-data" class="nav-link" data-scroll-target="#exercise-download-and-plot-noaa-tide-data">Exercise: Download and Plot NOAA Tide Data</a></li>
   </ul></li>
@@ -400,6 +400,13 @@ Figure&nbsp;1: Creating a new terminal in VS Code (click to expand screenshots)
 <li>Qwen3-Coder-Next</li>
 <li>GPT-OSS-120b</li>
 </ul>
+<p>Ordering these models by their coding capability (roughly):</p>
+<ul>
+<li>Gemini 3.1 Pro [(Custom Tools)]</li>
+<li>Gemini 3.5 Flash</li>
+<li>Gemini 3 Flash / Qwen3-Coder-Next</li>
+<li>Gemma 4 / GPT-OSS-120b</li>
+</ul>
 <p>To switch models, type <code>/models</code> and press Enter. Type the name of the model you want to filter the list, and use the arrow keys to move through the list (models are grouped by provider). Press Enter to select the model. OpenCode will use the selected model for the rest of the session. The active model appears at the bottom of the OpenCode interface.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -411,11 +418,11 @@ Figure&nbsp;1: Creating a new terminal in VS Code (click to expand screenshots)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Soon, we are going to start using git to track changes in our generated code. Before using git, there are a few things to configure. Typically, we would do these directly with <code>git config --global</code>, but let’s just use OpenCode!</p>
+<p>We will soon start using git to track changes in our generated code. First, there are a few things to configure. Typically, we would do these directly with <code>git config --global</code>, but let’s just use OpenCode!</p>
 <ul>
-<li>Switch to an open-weights model from CIT: <strong>Qwen3-Coder-Next</strong> (because this is not a difficult task and the models are running on campus).</li>
-<li>Use OpenCode to set git’s <strong>global name and email configurations</strong>. Try to come up with the prompt yourself!</li>
-<li>It might not work on the first try. (Did the model even ask for your name and email?)</li>
+<li>Switch to an open weights model from CIT: <strong>Qwen3-Coder-Next</strong> (because this is not a difficult task and the models are running on campus).</li>
+<li>Use OpenCode to set git’s <strong>default branch</strong> to main and the <strong>name and email</strong> configurations to your name and email. Try to come up with the prompt yourself!</li>
+<li>It might not work on the first try. Hint: Did the model even ask for your name and email?</li>
 <li>Ask OpenCode to confirm that the configurations are correct.</li>
 <li>Quit OpenCode: you should be back on the terminal command line.</li>
 </ul>
@@ -425,7 +432,7 @@ Figure&nbsp;1: Creating a new terminal in VS Code (click to expand screenshots)
 </section>
 </section>
 <section id="starting-a-project" class="level2">
-<h2 class="anchored" data-anchor-id="starting-a-project">Starting A Project</h2>
+<h2 class="anchored" data-anchor-id="starting-a-project">Starting a Project</h2>
 <p>Let’s explore OpenCode’s capability with an example project: <strong>analyzing ocean tide data</strong> from the National Oceanic and Atmospheric Administration (NOAA).</p>
 <p><strong>The recommended way to run OpenCode is from your project directory</strong>. We will create a project folder called <code>noaa-tides</code>, set it as the working directory, and then start OpenCode. If you didn’t quit OpenCode at the end of the previous exercise, do so now. From the terminal window run the commands:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make our project directory</span></span>
@@ -467,11 +474,32 @@ Note
 <p>Complete the exercise individually but discuss results in small groups (2-5 people).</p>
 </div>
 </div>
-<p>Use <code>/new</code> to start a new session (if necessary) and <code>/models</code> to select the <code>Gemini 3.1 Pro (Custom Tools)</code> model. Then cut and paste the following prompt into OpenCode:</p>
+<p>Use <code>/models</code> to select one of the models:</p>
+<ul>
+<li>Gemini 3.1 Pro (Custom Tools)</li>
+<li>Gemini 3.5 Flash</li>
+<li>Gemini 3 Flash</li>
+<li>Qwen3-Coder-Next</li>
+</ul>
+<p>Try to use a different model from other members of your group. Paste the following prompt into OpenCode:</p>
 <blockquote class="blockquote">
 <p>download monthly mean high water for all NOAA stations in California over the last ten years. Download as CSV and save in <code>data</code>. Track code with git, but not the data.</p>
 </blockquote>
-<p>Wait for the agent to complete the task (it may take a few minutes), then answer the following questions:</p>
+<p>Wait for the agent to complete the task (it may take a few minutes).</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Weaker models (Qwen3-Coder-Next, Gemini 3 Flash), may get stuck or take too long. In that case, you can press <code>Escape</code> to interrupt the work, switch to a higher model, and ask OpenCode to continue.</p>
+</div>
+</div>
+<p>In your group, discuss the following questions:</p>
 <ul>
 <li>What files were downloaded to the <code>data</code> folder? How many and what format? If they are CSVs (as expected), what columns do they include?</li>
 <li>Does everyone in the group have the same set of files? What similarities and differences can you find?</li>
@@ -480,15 +508,15 @@ Note
 </ul>
 <p>Try an additional prompt and discuss the results:</p>
 <blockquote class="blockquote">
-<p>Plot the mean high water value for all stations using a different color for each station. Include labels on x/y axes and a legend with the station name. What is the name of the station with the highest average mean high water value over the last decade?</p>
+<p>Plot the mean high water value for all stations using a different color for each station. Include labels on x/y axes and a legend with the station name. What is the name of the station with the highest average mean high water value over the last decade? Save the code with a git commit, but ignore the image.</p>
 </blockquote>
 <ul>
-<li>Download the plot image using the File Browser tool from your workspace dashboard.</li>
-<li>As a group, compare the generated plots. Did everyone in the group get the same answer for the station with the highest mean high water value?</li>
-<li>In light of your discussion, how would you improve these prompts?</li>
+<li>You can view the generated plot image by clicking the file in the file Explorer.</li>
+<li>Compare the generated plots in your group. Did everyone get the same answer for the station with the highest mean high water value?</li>
+<li>In light of your discussion, how would you move forward to improve the analysis? Try an additional prompt to steer the agent toward better results.</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout" role="button">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout" role="button">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -497,7 +525,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>These are notes from a previous run of the exercise prompts.</p>
 <p><strong>What files were downloaded?</strong></p>
@@ -537,9 +565,9 @@ Note
 <p>The agent averaged the <code>MHW</code> column across each file and reported <strong>North Spit</strong> (≈0.154 m). That arithmetic is correct <em>for the data it downloaded</em> — but it’s probably not the best answer to the question.</p>
 <p><strong>Caveats</strong></p>
 <p>The generated script downloads data using <code>datum=MHW</code>, so every <code>MHW</code> value is measured relative to each station’s own MHW datum rather than an absolute reference (see the <a href="https://api.tidesandcurrents.noaa.gov/api/prod/#datum">NOAA API documentation</a>). That makes the numbers tiny because they aren’t tide heights at all. They’re <strong>anomalies</strong>, i.e.&nbsp;how far each month sat above that station’s historical baseline. So “North Spit is highest” really means <em>its</em> high water has risen the most relative to <em>its own</em> reference. Ask for the same thing against a fixed physical datum (<code>datum=MLLW</code>, the actual height of mean high water above the chart datum) and the answer changes.</p>
-<p>Here is an improved prompt:</p>
+<p>Here’s how I steered the agent:</p>
 <blockquote class="blockquote">
-<p>download monthly mean tide data for all NOAA stations in California over the last ten years using the MLLW (mean lower low water) datum. data should be in csv format. save to <code>data</code>. Then plot the mean high water value for all stations using different colors for each station. Include labels on x/y axes and a legend with station names. Track scripts with git, but not the data.</p>
+<p>This plot doesn’t look right. The values seem too small. I think I need to use MLLW as the datum. Fix the code and regenerate the plot, then commit those changes. What is the correct station?</p>
 </blockquote>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -547,6 +575,7 @@ Note
 <figcaption>Revised Plot from NOAA Tides exercise</figcaption>
 </figure>
 </div>
+<p>The new station identified by the agent is <strong>Redwood City</strong>.</p>
 </div>
 </div>
 </div>
