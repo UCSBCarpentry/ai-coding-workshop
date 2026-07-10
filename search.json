@@ -46,21 +46,21 @@
     "href": "projects/index.html#multimodal-met-museum-semantic-networks",
     "title": "Coding Projects",
     "section": "Multimodal Met Museum Semantic Networks",
-    "text": "Multimodal Met Museum Semantic Networks\nConnects artworks from the Metropolitan Museum of Art Open Access API to their shared semantic concepts (extracted using Gemini) into an interactive network visualization.\nRead more"
+    "text": "Multimodal Met Museum Semantic Networks\nConnects artworks from the Metropolitan Museum of Art Open Access API to their shared semantic concepts (extracted using Gemini) into an interactive network visualization.\nProject plan"
   },
   {
     "objectID": "projects/index.html#geospatial-data-vibe-visualizing",
     "href": "projects/index.html#geospatial-data-vibe-visualizing",
     "title": "Coding Projects",
     "section": "Geospatial Data Vibe Visualizing",
-    "text": "Geospatial Data Vibe Visualizing\nAn exploratory analysis using geospatial data in R to visualize and overlay 19th-century wildfires against other relevant records.\nRead more"
+    "text": "Geospatial Data Vibe Visualizing\nAn exploratory analysis using geospatial data in R to visualize and overlay 19th-century wildfires against other relevant records.\nProject plan"
   },
   {
     "objectID": "projects/index.html#the-bikability-of-the-santa-barbara-county",
     "href": "projects/index.html#the-bikability-of-the-santa-barbara-county",
     "title": "Coding Projects",
     "section": "The bikability of the Santa Barbara County",
-    "text": "The bikability of the Santa Barbara County\nComputes the steepness of Santa Barbara County using a Digital Elevation Model (DEM) and US Census Group Blocks to create a map showing the median slope of each area.\nRead more"
+    "text": "The bikability of the Santa Barbara County\nComputes the steepness of Santa Barbara County using a Digital Elevation Model (DEM) and US Census Group Blocks to create a map showing the median slope of each area.\nProject plan"
   },
   {
     "objectID": "projects/archival-collections/index.html",
