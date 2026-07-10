@@ -20,3 +20,11 @@ This is an experimental workshop covering a very new and rapidly evolving
 landscape. **Coding agent sandboxes and LLM API access will be provided to
 participants.** As a prerequisite, learners should have familiarity with a
 programming language.
+
+## Schedule
+
+| Day | Topics |
+|:---|:---| 
+| **Day 1** | [Introduction](lessons/01_intro.qmd) <br /> [Getting Started with an Agent](lessons/02_agent.qmd) <br /> [Planning Mode](lessons/03_planning.qmd) |
+| **Day 2** | Review <br /> Project structure & `AGENTS.md` <br /> Workflows <br /> Project work and report out |
+| **Day 3** | Review <br /> Sharing / publishing <br /> Agents Skills <br /> Project work and report out |
