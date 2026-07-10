@@ -256,6 +256,13 @@
     "href": "index.html",
     "title": "AI-Assisted coding for research",
     "section": "",
-    "text": "Warning\n\n\n\nThis is a new and very experimental workshop. Lesson materials are being actively developed and may change!\n\n\nThis hands-on three half-day workshop covers AI-assisted coding techniques with an emphasis on research data analysis, reproducibility, and best practices of Open Science. Learners will use real-world scenarios to explore concepts and capabilities of coding agents and other LLM-based techniques. Workshop activities touch on many aspects of the research lifecycle: from data discovery and access, to visualization and publication.\nThis is an experimental workshop covering a very new and rapidly evolving landscape. Coding agent sandboxes and LLM API access will be provided to participants. As a prerequisite, learners should have familiarity with a programming language."
+    "text": "Warning\n\n\n\nThis is a new and very experimental workshop. Lesson materials are being actively developed and may change!\nThis hands-on three half-day workshop covers AI-assisted coding techniques with an emphasis on research data analysis, reproducibility, and best practices of Open Science. Learners will use real-world scenarios to explore concepts and capabilities of coding agents and other LLM-based techniques. Workshop activities touch on many aspects of the research lifecycle: from data discovery and access, to visualization and publication.\nThis is an experimental workshop covering a very new and rapidly evolving landscape. Coding agent sandboxes and LLM API access will be provided to participants. As a prerequisite, learners should have familiarity with a programming language."
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "AI-Assisted coding for research",
+    "section": "Schedule",
+    "text": "Schedule\n\n\n\nDay\nTopics\n\n\n\n\nDay 1\nIntroduction  Getting Started with an Agent  Planning Mode\n\n\nDay 2\nReview  Project structure & AGENTS.md  Workflows  Project work and report out\n\n\nDay 3\nReview  Sharing / publishing  Agents Skills  Project work and report out"
   }
 ]
