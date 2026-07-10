@@ -33,3 +33,4 @@ format:
     theme: [cosmo, custom.scss]
     toc: true
     code-overflow: wrap
+    lightbox: true

@@ -21,84 +21,101 @@ Follow the [setup instructions](../setup.qmd) if necessary, to create a [Coder
 Workspace](https://coder.dreamlab.ucsb.edu). You should have a workspace with a
 dashboard like the image below.
 
-![Coder Workspace Dashboard](../images/coder_dashboard.png){fig-alt="Example
-Coder Workspace dashboard with buttons to stop and restart the workspace, and
-open VS Code"}
+![Coder Workspace Dashboard](../images/coder_dashboard.png){.lightbox
+width="80%" fig-alt="Example Coder Workspace dashboard with buttons to stop and
+restart the workspace, and open VS Code"}
 
-Start VS Code from the workspace dashboard. The web-based editor starts in an
-empty directory (`~/workspace`). 
+The Workspace dashboard has several features:
 
-Explore the VS Code interface:
+- On the top row, there are buttons to "Stop" and "Restart" the workspace. Your
+  workspace is a virtual machine: stopping the workspace is like turning off the
+  computer; restarting it is like rebooting your computer.
+- There are also buttons to open various applications: VS Code (more below),
+  File Browser (to upload and download files to the workspace), and Terminal (a
+  command line interface). Clicking these will open new browser windows.
 
-- Create a new file, called `README.md` 
-- Open a terminal window
+### The Visual Studio Code Interface
 
-![VS Code Web, with Terminal window for running bash
-commands](../images/vscode_terminal.png){fig-alt="VS Code Web interface with
-terminal window show output from `ls` command."}
+We will mainly use the **VS Code Web** interface, both to run our coding agent
+and to review files. VS Code Web is a browser-based variant of the VS Code
+editor.
 
-### Git Setup
+The VS Code Interface includes a file **Explorer** on the left side. When it
+starts, the Explorer shows the contents of an empty default directory (`~/workspace`).
+There is also an Editor Area, that shows a tab with a welcome message at
+startup. You can close the startup message tab.
 
-We will need to configure git in order to create commits later on.
+VS Code also includes AI-assisted coding features (Copilot), but we aren't going
+to use them in this workshop. You can close the Copilot panel on the right side.
+Instead, we will run a coding agent, OpenCode, in a **terminal window** in the
+Editor Area.
 
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "you@ucsb.edu"
-```
+::: {#fig-vscode-terminal layout-ncol="2"}
 
-## Our Coding Agent: OpenCode
+![Create terminal window in VS Code](../images/vscode_startup.png){width="80%" fig-alt="VS Code interface with menu to create New Terminal" group="terminal"}
+
+![Terminal Window in VS Code](../images/vscode_terminal.png){width="80%" fig-alt="Terminal window with bash shell in VS Code" group="terminal"}
+
+Creating a new terminal in VS Code (click to expand screenshots)
+
+:::
+
+To create a terminal window in the Editor Area: 
+
+- Right click on any open space in the Editor Area.
+- Click "New Terminal"
+
+You can also use VS Code's **Command Palette** (⇧⌘P) and run **Terminal: Create
+New Terminal in Editor Area**. Next we'll start OpenCode.
+
+## Starting with OpenCode
 
 There are many coding agents out there. We like OpenCode because it is one of
 the few widely used coding agents that is model agnostic.
 
 To start OpenCode, run `opencode` in the VS Code terminal.
 
-![VS Code window with OpenCode running in a
-terminal](../images/vscode_opencode.png){fig-alt="VS Code Web with OpenCode
-running."}
+![VS Code window with OpenCode running in a terminal](../images/vscode_opencode.png){.lightbox width="80%" fig-alt="VS Code Web with OpenCode running."}
 
 By default, OpenCode on Coder Workspaces is configured to use open weights
 models through the College IT Gateway.
 
 OpenCode needs to know which AI model to talk to. We'll point it at the **DREAM
 Lab AI Gateway**, which gives us access to a range of models through a single API
-key.
+key. We only need to do this configuration once.
 
 **1. Connect to a model provider.** In the OpenCode prompt, type `/connect` and
 press <kbd>Enter</kbd>. Start typing `dream` to filter the list, then select
 **DREAM Lab AI Gateway** under *Providers*.
 
-![Selecting the DREAM Lab AI Gateway
-provider](../images/opencode_connect_provider.png){fig-alt="OpenCode model
-selection dropdown with DREAM Lab AI Gateway highlighted"}
+![Selecting the DREAM Lab AI Gateway provider](../images/opencode_connect_provider.png){.lightbox width="80%" fig-alt="OpenCode model selection dropdown with DREAM Lab AI Gateway highlighted"}
 
-**2. Enter your API key.** Paste the API key you were given for the workshop and
-press <kbd>Enter</kbd> to submit.
+**2. Enter your API key.** In the workshop, you will receive instruction for
+accessing your API key. Once you have it, paste the key into OpenCode and press
+<kbd>Enter</kbd> to submit.
 
-![Entering your API
-key](../images/opencode_connect_apikey.png){fig-alt="OpenCode prompt entering an
-API key"}
+![Entering your API key](../images/opencode_connect_apikey.png){.lightbox width="80%" fig-alt="OpenCode prompt entering an API key"}
 
 **3. Select a model.** Choose **Gemini 3.5 Flash** from the list of available
 models. You can use (Ctrl+F) to "favorite" a model. We will use both Gemini 3.5
-Flash and Gemini 3.1 Pro Preview (Custom Tools) -- you might want to favorite
+Flash and Gemini 3.1 Pro (Custom Tools) -- you might want to favorite
 both of these to make switching models a little easier.
 
 ![Selecting the Gemini 3.5 Flash
-model](../images/opencode_connect_model.png){fig-alt="OpenCode model selection
-dropdown with Gemini 3.5 Flash highlighted"}
+model](../images/opencode_connect_model.png){.lightbox width="80%" fig-alt="OpenCode model selection dropdown with Gemini 3.5 Flash highlighted"}
 
 OpenCode is now configured and ready to use the DREAM Lab AI Gateway.
 
-## Our First Prompt
+### Our First Prompt
 
 To demonstrate the capabilities of a coding agent, let's ask OpenCode to inspect
 that machine we're using.
 
 > Tell me about the machine you're running on: OS, resources, etc.
 
-OpenCode will probably ask you for permission to run a bash command to
-inspect the machine. It's safe to say yes because this isn't your real machine!
+OpenCode will probably ask you for permission to access files outside of the
+working directory. It's safe to say yes because this isn't your real machine!
+You can choose "**Allow always**" and then "**Confirm**".
 
 The response should look something like this.
 
@@ -115,7 +132,7 @@ This machine is running:
 - **Disk**: 14 GiB total, 8.1 GiB free (41% used)
 ```
 
-## Agent Permissions
+### Agent Permissions
 
 Most coding agents, including OpenCode, have a **permission system** used to
 control what actions the agent is allowed to perform in its environment. In the
@@ -138,7 +155,7 @@ A few defaults worth knowing:
 - Reading files outside the working directory defaults to `ask`.
 - `.env` files are denied by default, so secrets aren't read accidentally.
 
-## OpenCode Commands
+### OpenCode Commands
 
 You can type "`/`" followed by a command name to configure OpenCode or perform
 various actions. You can find a complete list of commands in the [OpenCode
@@ -153,8 +170,83 @@ The commands we will use in the workshop are listed here:
 - `/models` - List and switch between models
 - `/new` - Start a new session (fresh context)
 
+### Switching models
 
-## Exercise: Download and Plot NOAA Tide Data
+Your Coder Workspace includes configurations for several models, not just those
+provided through the DREAM Lab. These are grouped by provider:
+
+**DREAM Lab** AI Gateway provides Google models:
+
+- Gemini 3.5 Flash
+- Gemini 3 Flash
+- Gemini 3.1 Pro
+- Gemini 3.1 Pro (Custom Tools)
+
+**UCSB College IT** (CIT) AI Gateway provides several **open weights** models:
+
+- Gemma 4
+- Qwen3-Coder-Next
+- GPT-OSS-120b
+
+To switch models, type `/models` and press Enter. Type the name of the model you
+want to filter the list, and use the arrow keys to move through the list (models
+are grouped by provider). Press Enter to select the model. OpenCode will use the
+selected model for the rest of the session. The active model appears at the
+bottom of the OpenCode interface.
+
+::: {.callout-tip}
+### Challenge: Configure Git
+
+Soon, we are going to start using git to track changes in our generated code.
+Before using git, there are a few things to configure. Typically, we would do
+these directly with `git config --global`, but let's just use OpenCode!
+
+- Switch to an open-weights model from CIT: **Qwen3-Coder-Next** (because this
+  is not a difficult task and the models are running on campus).
+- Use OpenCode to set git's **global name and email configurations**. Try to come up
+  with the prompt yourself!
+- It might not work on the first try. (Did the model even ask for your name and email?)
+- Ask OpenCode to confirm that the configurations are correct. 
+- Quit OpenCode: you should be back on the terminal command line.
+
+Discussion: **Who/what did you just share your name and email with**? 
+
+:::
+
+## Starting A Project
+
+Let's explore OpenCode's capability with an example project: **analyzing ocean
+tide data** from the National Oceanic and Atmospheric Administration (NOAA).
+
+**The recommended way to run OpenCode is from your project directory**. We will
+create a project folder called `noaa-tides`, set it as the working directory,
+and then start OpenCode. If you didn't quit OpenCode at the end of the previous
+exercise, do so now. From the terminal window run the commands:
+
+```sh
+# make our project directory
+mkdir noaa-tides
+
+# set noaa-tides as the working directory.
+cd noaa-tides
+
+# print working directory: should be "/home/coder/workspace/noaa-tides"
+pwd 
+
+# start opencode
+opencode
+```
+
+:::{.callout-tip}
+
+Instead of using `mkdir`, you can also create the `noaa-tides` folder through
+file Explorer (on the left side of VS Code), but you will still need to `cd` into the
+folder before running opencode.
+
+:::
+
+
+### Exercise: Download and Plot NOAA Tide Data
 
 :::{.callout-note}
 Complete the exercise individually but discuss results in small groups (2-5 people).
@@ -164,20 +256,20 @@ Use `/new` to start a new session (if necessary) and `/models` to select the
 `Gemini 3.1 Pro (Custom Tools)` model. Then cut and paste the following prompt
 into OpenCode:
 
-> Create a new folder `noaa-tides` and use it as the working directory, then
 > download monthly mean high water for all NOAA stations in California over the
-> last ten years. Download as CSV and save in `noaa-tides/data`.
+> last ten years. Download as CSV and save in `data`. Track code with git, but
+> not the data.
 
 Wait for the agent to complete the task (it may take a few minutes), then answer
 the following questions:
 
-- What files were downloaded to `noaa-tides/data`? How many and what format? If
+- What files were downloaded to the `data` folder? How many and what format? If
   they are CSVs (as expected), what columns do they include?
 - Does everyone in the group have the same set of files? What similarities and
   differences can you find?
 - Look at the agent's session transcript: how did the agent complete the task?
   For example: did it generate scripts to download the data and, if so, what
-  language did it use? How did it construct the URL for the download request.
+  language did it use? How did it construct the URL for the download request?
   (You can always **ask the agent to explain the steps it took**). 
 - In your group, discuss the different approaches the agent took.
 
@@ -195,7 +287,7 @@ Try an additional prompt and discuss the results:
 - In light of your discussion, how would you improve these prompts?
 
 ::: {.callout-tip collapse="true"}
-### Discussion Notes
+#### Discussion Notes
 
 These are notes from a previous run of the exercise prompts.
 
@@ -247,7 +339,7 @@ url = (
 
 **Highest average MHW station**
 
-The agent reported **North Spit** as station with the highest average MHW. 
+The agent reported **North Spit** as the station with the highest average MHW.
 
 ![Plot from NOAA Tides
 exercise](../images/exercise-noaa-tides.png){fig-alt="Plot of downloaded station
@@ -272,12 +364,11 @@ chart datum) and the answer changes.
 
 Here is an improved prompt:
 
-> create a new folder, noaa-tides-2, and use it as the working directory; then
-> download monthly mean tidy data for all NOAA stations in California over the
+> download monthly mean tide data for all NOAA stations in California over the
 > last ten years using the MLLW (mean lower low water) datum. data should be in
-> csv format. save to `noaa-tides-2/data`. Then plot the mean high water value
-> for all stations using different colors for each station. Include labels on
-> x/y axes and a legend with station names.
+> csv format. save to `data`. Then plot the mean high water value for all
+> stations using different colors for each station. Include labels on x/y axes
+> and a legend with station names. Track scripts with git, but not the data.
 
 ![Revised Plot from NOAA Tides
 exercise](../images/exercise-noaa-tides-2.png){fig-alt="Plot of downloaded
