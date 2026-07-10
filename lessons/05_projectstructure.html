@@ -193,10 +193,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#as-a-review" id="toc-as-a-review" class="nav-link active" data-scroll-target="#as-a-review">As a review</a></li>
-  <li><a href="#the-agents.md-file" id="toc-the-agents.md-file" class="nav-link" data-scroll-target="#the-agents.md-file">The AGENTS.md file</a>
-  <ul class="collapse">
-  <li><a href="#customizing-our-agents.md-file" id="toc-customizing-our-agents.md-file" class="nav-link" data-scroll-target="#customizing-our-agents.md-file">Customizing our AGENTS.md file</a></li>
-  </ul></li>
+  <li><a href="#the-agents.md-file" id="toc-the-agents.md-file" class="nav-link" data-scroll-target="#the-agents.md-file">The AGENTS.md file</a></li>
+  <li><a href="#exercise-discuss-real-agents.md-examples" id="toc-exercise-discuss-real-agents.md-examples" class="nav-link" data-scroll-target="#exercise-discuss-real-agents.md-examples">Exercise: Discuss real AGENTS.md examples</a></li>
+  <li><a href="#customize-the-agents.md-file" id="toc-customize-the-agents.md-file" class="nav-link" data-scroll-target="#customize-the-agents.md-file">Customize the AGENTS.md file</a></li>
   <li><a href="#creating-a-subagent" id="toc-creating-a-subagent" class="nav-link" data-scroll-target="#creating-a-subagent">Creating a subagent</a></li>
   <li><a href="#context-window" id="toc-context-window" class="nav-link" data-scroll-target="#context-window">Context window</a></li>
   </ul>
@@ -266,24 +265,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Just like a README file describes the project and its structure to a human reader to facilitate its understanding, the AGENTS.md is meant for the AI to have a <strong>high level description of the project</strong> without having to read a bunch of files with every new conversation, and also to give the AI clear and important <strong>guidelines on conventions, coding styles, or workflows</strong> the user wants it to follow.</p>
 <p>We can ask our AI Agent to get us started with an AGENTS.md, using the <code>/init</code> command. In OpenCode we can even review the prompt used for creating the file.</p>
 <p>As you can see, it is a human-readable, plain markdown file. It can have any sections you feel are relevant to your project, but aim to keep it concise and focused on guiding the AI through specificities of your project.</p>
-<p>Some common sections you’ll find in AGENTS.md files: - Project overview: A short and high-level description. - Tools / Tech stack: AI tools can be very opinionated on what programming languages and tools it uses. Being specific on the tools you use helps guide the AI, without having you repeat it in every prompt. - Project structure / architecture: Having the directory structure of your project helps the AI to know where to save and find files. - Code style guidelines: Any particular preferences you and your team may be following on your coding project. - Workflows: For example, the Git and GitHub workflow you want to follow, conventions to name new branches or commit messages.</p>
-<section id="customizing-our-agents.md-file" class="level3">
-<h3 class="anchored" data-anchor-id="customizing-our-agents.md-file">Customizing our AGENTS.md file</h3>
-<p>Ask the AI to start a git project. Then start modifying the AGENTS.md file</p>
+<p>Some common sections you’ll find in AGENTS.md files:</p>
 <ul>
-<li>Write a file structure
-<ul>
-<li>data: raw, interim, processed</li>
-<li>notebooks</li>
-<li>scripts</li>
-<li>docs</li>
-<li>results: figures, tables</li>
-</ul></li>
-<li>Write this project should be an R project following tidyverse tools and conventions</li>
-<li>Write git branching and commit message conventions</li>
+<li>Project overview: A short and high-level description.</li>
+<li>Tools / Tech stack: AI tools can be very opinionated on what programming languages and tools it uses. Being specific on the tools you use helps guide the AI, without having you repeat it in every prompt.</li>
+<li>Project structure / architecture: Having the directory structure of your project helps the AI to know where to save and find files.</li>
+<li>Code style guidelines: Any particular preferences you and your team may be following on your coding project.</li>
+<li>Workflows: For example, the Git and GitHub workflow you want to follow, conventions to name new branches or commit messages.</li>
 </ul>
-<p>After all of this, ask the AI to create the file structure specified and start the git project.</p>
 </section>
+<section id="exercise-discuss-real-agents.md-examples" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-discuss-real-agents.md-examples">Exercise: Discuss real AGENTS.md examples</h2>
+</section>
+<section id="customize-the-agents.md-file" class="level2">
+<h2 class="anchored" data-anchor-id="customize-the-agents.md-file">Customize the AGENTS.md file</h2>
+<p>The <code>/init</code> command was a great start, but you should personalize it and add important considerations for your project. Let’s add the following to the AGENTS.md file we have until now.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Environment &amp; Tooling</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Language: Python (&gt;=3.11 recommended)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Package manager: **uv** — do not use pip, conda, or poetry directly.</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Install dependencies: <span class="in">`uv add &lt;package&gt;`</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Sync environment from lockfile: <span class="in">`uv sync`</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Always keep <span class="in">`pyproject.toml`</span> and <span class="in">`uv.lock`</span> in sync; commit <span class="in">`uv.lock`</span>.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Do not manually edit <span class="in">`uv.lock`</span> — regenerate it via <span class="in">`uv lock`</span> or <span class="in">`uv sync`</span>.</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Directory structure</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>Always consider this directory structure to find and create files in this project:</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>data</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>raw</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>processed</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>code</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>docs</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>results</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>figures</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>tables</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Workflows</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Before committing any changes</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>Always run the following checks before creating a commit. Do not commit if any step fails — fix the issues first (or ask the user if a fix isn't obvious).</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Format code:</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>   <span class="in">`uv run ruff format .`</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Lint and auto-fix what's safe to fix:</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>   <span class="in">`uv run ruff check --fix .`</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Re-run lint to confirm no remaining errors:</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>   <span class="in">`uv run ruff check .`</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Stage only the relevant files (avoid <span class="in">`git add .`</span> unless you're sure everything staged is intended):</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>   <span class="in">`git add &lt;files&gt;`</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Write a clear, conventional commit message (see below) and commit:</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>   <span class="in">`git commit -m "&lt;type&gt;: &lt;short summary&gt;"`</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### Commit message conventions</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>Keep it short and descriptive, e.g. <span class="in">`add sliding window aggregation for signal preprocessing`</span>. No strict format required — just make it clear what changed and why, so it's easy to trace back for reproducibility.</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fu">### General rules</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never commit directly to <span class="in">`main`</span>. Create a branch (<span class="in">`git switch -c &lt;branch-name&gt;`</span>) if one doesn't already exist for the current task.</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never force-push (<span class="in">`git push --force`</span>) without explicit user confirmation.</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If <span class="in">`ruff`</span> reports errors that can't be auto-fixed, stop and explain the issue rather than silently ignoring or suppressing it.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After this adjustments, make sure the project is actually following these conventions and test how it it works. Let’s use this prompt:</p>
+<blockquote class="blockquote">
+<p>Make sure my project follows the guidelines stated in the <span class="citation" data-cites="AGENTS.md">@AGENTS.md</span> file.</p>
+</blockquote>
 </section>
 <section id="creating-a-subagent" class="level2">
 <h2 class="anchored" data-anchor-id="creating-a-subagent">Creating a subagent</h2>
