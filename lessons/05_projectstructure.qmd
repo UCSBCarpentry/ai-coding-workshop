@@ -65,6 +65,7 @@ It can have any sections you feel are relevant to your project,
 but aim to keep it concise and focused on guiding the AI through specificities of your project.
 
 Some common sections you'll find in AGENTS.md files:
+
 - Project overview: A short and high-level description.
 - Tools / Tech stack: AI tools can be very opinionated on what programming languages and tools it uses.
 Being specific on the tools you use helps guide the AI, without having you repeat it in every prompt.
@@ -72,20 +73,68 @@ Being specific on the tools you use helps guide the AI, without having you repea
 - Code style guidelines: Any particular preferences you and your team may be following on your coding project. 
 - Workflows: For example, the Git and GitHub workflow you want to follow, conventions to name new branches or commit messages. 
 
-### Customizing our AGENTS.md file
+## Exercise: Discuss real AGENTS.md examples
 
-Ask the AI to start a git project. Then start modifying the AGENTS.md file
 
-- Write a file structure
-    - data: raw, interim, processed
-    - notebooks
-    - scripts
-    - docs
-    - results: figures, tables 
-- Write this project should be an R project following tidyverse tools and conventions
-- Write git branching and commit message conventions
 
-After all of this, ask the AI to create the file structure specified and start the git project.
+## Customize the AGENTS.md file
+
+The `/init` command was a great start, but you should personalize it and add important considerations for your project.
+Let's add the following to the AGENTS.md file we have until now.
+
+```md
+## Environment & Tooling
+
+- Language: Python (>=3.11 recommended)
+- Package manager: **uv** — do not use pip, conda, or poetry directly.
+  - Install dependencies: `uv add <package>`
+  - Sync environment from lockfile: `uv sync`
+- Always keep `pyproject.toml` and `uv.lock` in sync; commit `uv.lock`.
+- Do not manually edit `uv.lock` — regenerate it via `uv lock` or `uv sync`.
+
+## Directory structure
+
+Always consider this directory structure to find and create files in this project:
+- data
+  - raw
+  - processed
+- code
+- docs
+- results
+  - figures
+  - tables
+
+## Workflows
+
+### Before committing any changes
+
+Always run the following checks before creating a commit. Do not commit if any step fails — fix the issues first (or ask the user if a fix isn't obvious).
+
+1. Format code:
+   `uv run ruff format .`
+2. Lint and auto-fix what's safe to fix:
+   `uv run ruff check --fix .`
+3. Re-run lint to confirm no remaining errors:
+   `uv run ruff check .`
+4. Stage only the relevant files (avoid `git add .` unless you're sure everything staged is intended):
+   `git add <files>`
+5. Write a clear, conventional commit message (see below) and commit:
+   `git commit -m "<type>: <short summary>"`
+
+### Commit message conventions
+
+Keep it short and descriptive, e.g. `add sliding window aggregation for signal preprocessing`. No strict format required — just make it clear what changed and why, so it's easy to trace back for reproducibility.
+
+### General rules
+
+- Never commit directly to `main`. Create a branch (`git switch -c <branch-name>`) if one doesn't already exist for the current task.
+- Never force-push (`git push --force`) without explicit user confirmation.
+- If `ruff` reports errors that can't be auto-fixed, stop and explain the issue rather than silently ignoring or suppressing it.
+```
+
+After this adjustments, make sure the project is actually following these conventions and test how it it works. Let's use this prompt:
+
+> Make sure my project follows the guidelines stated in the @AGENTS.md file.
 
 
 ## Creating a subagent
