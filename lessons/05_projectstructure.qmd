@@ -1,0 +1,102 @@
+---
+title: "Project structure"
+---
+
+## As a review
+
+- Move both `noaa-tides` and `noaa-tides-2` to a new folder,
+called `tides-project`
+- Start OpenCode in this new folder, make sure you select `Gemini 3.5 Flash` as your model
+- Imagine for a moment you are new to this project,
+and you want to know what it is about. Therefore, you ask OpenCode:
+
+> What is this project about? What were the latest changes made?
+
+A response might look like:
+
+```md
+✱Glob "*" (41 matches)
+→Read noaa-tides/download_data.py [limit=100]
+→Read noaa-tides/plot_tides.py [limit=100]
+
+$ git status && git log -n 5 --oneline
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+
+Project Overview
+This project is designed to download, analyze, and visualize NOAA tide and water level data, specifically focusing on the Monthly Mean High Water (MHW) levels for California tide stations over a 10-year period (2016–2026).
+
+[...]
+
+Latest Changes Made
+Since this project is not initialized as a Git repository, we can infer the latest updates from the differences in structure and the file contents: [...]
+```
+
+There is a lot to unpack here:
+
+- LLMs are very good at summarizing a big amount of information quickly.
+In a few seconds it read the files in our project and gave us an overview to get started.
+- It shows how the AI Agent called tools like `Glob` and `Read`, and it tried to run a `git` Shell command.
+Contrary to a chat-based AI tool, the AI Agent was able to access the files in our project and call tools to gather additional information.
+- In this particular response, the agent somewhat complains that the project is not a Git repository.
+If it was, the AI Agent would be able to gather even more information about recent developments in the project.
+
+    AI coding agents makes it easier to use version control and, at the same time, more necessary, in order to access that valuable information about the history of a project.
+    Makes even more sense to use it in case the AI messes up our entire project!
+
+If we open a new chat session with the `/new` command, the AI Agent would have to read again files just to have a brief overview of the project, wasting precious time and tokens.
+
+What if there was a file the AI always has access to with the most relevant information of our project?
+
+## The AGENTS.md file
+
+AGENTS.md is a special file that is always included at the start of the conversation with the coding agent, 
+without the user having to mention it.
+
+Just like a README file describes the project and its structure to a human reader to facilitate its understanding,
+the AGENTS.md is meant for the AI to have a **high level description of the project** without having to read a bunch of files with every new conversation,
+and also to give the AI clear and important **guidelines on conventions, coding styles, or workflows** the user wants it to follow.
+
+We can ask our AI Agent to get us started with an AGENTS.md, 
+using the `/init` command. In OpenCode we can even review the prompt used for creating the file.
+
+As you can see, it is a human-readable, plain markdown file.
+It can have any sections you feel are relevant to your project,
+but aim to keep it concise and focused on guiding the AI through specificities of your project.
+
+Some common sections you'll find in AGENTS.md files:
+- Project overview: A short and high-level description.
+- Tools / Tech stack: AI tools can be very opinionated on what programming languages and tools it uses.
+Being specific on the tools you use helps guide the AI, without having you repeat it in every prompt.
+- Project structure / architecture: Having the directory structure of your project helps the AI to know where to save and find files.
+- Code style guidelines: Any particular preferences you and your team may be following on your coding project. 
+- Workflows: For example, the Git and GitHub workflow you want to follow, conventions to name new branches or commit messages. 
+
+### Customizing our AGENTS.md file
+
+Ask the AI to start a git project. Then start modifying the AGENTS.md file
+
+- Write a file structure
+    - data: raw, interim, processed
+    - notebooks
+    - scripts
+    - docs
+    - results: figures, tables 
+- Write this project should be an R project following tidyverse tools and conventions
+- Write git branching and commit message conventions
+
+After all of this, ask the AI to create the file structure specified and start the git project.
+
+
+## Creating a subagent
+
+Create a subagent that is called whenever there is a coding task, and this agent uses QWEN3.
+
+As an exercise, ask the AI to change all the code from python to R.
+
+This is a good way to segue to talk a little bit about context window, as subagents have a fresh window.
+
+## Context window
+
+
+
