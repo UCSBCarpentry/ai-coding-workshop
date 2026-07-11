@@ -134,18 +134,45 @@ Keep it short and descriptive, e.g. `add sliding window aggregation for signal p
 
 After this adjustments, make sure the project is actually following these conventions and test how it it works. Let's use this prompt:
 
-> Make sure my project follows the guidelines stated in the @AGENTS.md file.
+> Make sure my project follows the guidelines stated on the @AGENTS.md file.
 
 
 ## Creating a subagent
 
-Create a subagent that is called whenever there is a coding task, and this agent uses QWEN3.
+An additional instruction we can add in our AGENTS.md is to call a different agent (a subagent) to complete a given task.
+This can be greatly useful for multiple purposes:
 
-As an exercise, ask the AI to change all the code from python to R.
+- when we want different AI LLM models to complete different tasks, depending on the cost and capability of the model.
+    
+    For example: using a multimodal AI model to handle images or audio,
+    delegating all coding tasks to a specific model,
+    or summarizing content with a cheap small model.
+- to parallelize tasks that can be completed independently.
+- to have specialized roles or personas completing different tasks, or checking the work of other agents.
 
-This is a good way to segue to talk a little bit about context window, as subagents have a fresh window.
+The subagent will start in a new session with its own context window, receive instructions from the agent,
+complete the task, and return a summary to the main session that spawned the subagent.
+This is another advantage of the subagent:
+it won't overload your current chat session with all the analysis and process,
+it will only return a summary when the task is completed.
 
-## Context window
+For our current project, let's create a subagent that handles all coding tasks using the following prompt:
 
+> Following the documentation on "https://opencode.ai/docs/agents/" create a subagent in this project that is spawned every time there is a coding task. Call it `programmer` and make it use the QWEN3 model available in this opencode session.
+
+Make sure it did a correct job:
+1) created a the file `.opencode/agents/programmer.md`
+2) for model it has specified `cit-litellm/Qwen3-Coder-Next`.
+
+With this completed, let's edit our AGENT.md file and add the following instruction at the top of the file after the project overview.
+
+```md
+## Agent Instructions & Routing
+- Always spawn the `@programmer` subagent in opencode when a coding, scripting, or codebase modification task arises.
+```
+
+Finally, give the AI Agent a new coding task to test if it is calling our newly created subagent.
+
+> Make a plot of the tides in the last 12 months for the closest station to Santa Barbara, CA, and highlight the three months with the lowest tides.
 
 
