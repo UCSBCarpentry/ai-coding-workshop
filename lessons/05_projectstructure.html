@@ -197,7 +197,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#exercise-discuss-real-agents.md-examples" id="toc-exercise-discuss-real-agents.md-examples" class="nav-link" data-scroll-target="#exercise-discuss-real-agents.md-examples">Exercise: Discuss real AGENTS.md examples</a></li>
   <li><a href="#customize-the-agents.md-file" id="toc-customize-the-agents.md-file" class="nav-link" data-scroll-target="#customize-the-agents.md-file">Customize the AGENTS.md file</a></li>
   <li><a href="#creating-a-subagent" id="toc-creating-a-subagent" class="nav-link" data-scroll-target="#creating-a-subagent">Creating a subagent</a></li>
-  <li><a href="#context-window" id="toc-context-window" class="nav-link" data-scroll-target="#context-window">Context window</a></li>
   </ul>
 </nav>
     </div>
@@ -329,17 +328,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If <span class="in">`ruff`</span> reports errors that can't be auto-fixed, stop and explain the issue rather than silently ignoring or suppressing it.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After this adjustments, make sure the project is actually following these conventions and test how it it works. Let’s use this prompt:</p>
 <blockquote class="blockquote">
-<p>Make sure my project follows the guidelines stated in the <span class="citation" data-cites="AGENTS.md">@AGENTS.md</span> file.</p>
+<p>Make sure my project follows the guidelines stated on the <span class="citation" data-cites="AGENTS.md">@AGENTS.md</span> file.</p>
 </blockquote>
 </section>
 <section id="creating-a-subagent" class="level2">
 <h2 class="anchored" data-anchor-id="creating-a-subagent">Creating a subagent</h2>
-<p>Create a subagent that is called whenever there is a coding task, and this agent uses QWEN3.</p>
-<p>As an exercise, ask the AI to change all the code from python to R.</p>
-<p>This is a good way to segue to talk a little bit about context window, as subagents have a fresh window.</p>
-</section>
-<section id="context-window" class="level2">
-<h2 class="anchored" data-anchor-id="context-window">Context window</h2>
+<p>An additional instruction we can add in our AGENTS.md is to call a different agent (a subagent) to complete a given task. This can be greatly useful for multiple purposes:</p>
+<ul>
+<li><p>when we want different AI LLM models to complete different tasks, depending on the cost and capability of the model.</p>
+<p>For example: using a multimodal AI model to handle images or audio, delegating all coding tasks to a specific model, or summarizing content with a cheap small model.</p></li>
+<li><p>to parallelize tasks that can be completed independently.</p></li>
+<li><p>to have specialized roles or personas completing different tasks, or checking the work of other agents.</p></li>
+</ul>
+<p>The subagent will start in a new session with its own context window, receive instructions from the agent, complete the task, and return a summary to the main session that spawned the subagent. This is another advantage of the subagent: it won’t overload your current chat session with all the analysis and process, it will only return a summary when the task is completed.</p>
+<p>For our current project, let’s create a subagent that handles all coding tasks using the following prompt:</p>
+<blockquote class="blockquote">
+<p>Following the documentation on “https://opencode.ai/docs/agents/” create a subagent in this project that is spawned every time there is a coding task. Call it <code>programmer</code> and make it use the QWEN3 model available in this opencode session.</p>
+</blockquote>
+<p>Make sure it did a correct job: 1) created a the file <code>.opencode/agents/programmer.md</code> 2) for model it has specified <code>cit-litellm/Qwen3-Coder-Next</code>.</p>
+<p>With this completed, let’s edit our AGENT.md file and add the following instruction at the top of the file after the project overview.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Agent Instructions &amp; Routing</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Always spawn the <span class="in">`@programmer`</span> subagent in opencode when a coding, scripting, or codebase modification task arises.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Finally, give the AI Agent a new coding task to test if it is calling our newly created subagent.</p>
+<blockquote class="blockquote">
+<p>Make a plot of the tides in the last 12 months for the closest station to Santa Barbara, CA, and highlight the three months with the lowest tides.</p>
+</blockquote>
 
 
 </section>
