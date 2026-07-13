@@ -161,9 +161,13 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#plan-mode-overview" id="toc-plan-mode-overview" class="nav-link active" data-scroll-target="#plan-mode-overview">Plan mode overview</a></li>
-  <li><a href="#initial-project-setup" id="toc-initial-project-setup" class="nav-link" data-scroll-target="#initial-project-setup">Initial project setup</a></li>
   <li><a href="#switching-to-plan-mode" id="toc-switching-to-plan-mode" class="nav-link" data-scroll-target="#switching-to-plan-mode">Switching to plan mode</a></li>
-  <li><a href="#planning-our-noaa-tides-example" id="toc-planning-our-noaa-tides-example" class="nav-link" data-scroll-target="#planning-our-noaa-tides-example">Planning our NOAA tides example</a></li>
+  <li><a href="#planning-our-noaa-tides-example" id="toc-planning-our-noaa-tides-example" class="nav-link" data-scroll-target="#planning-our-noaa-tides-example">Planning our NOAA tides example</a>
+  <ul class="collapse">
+  <li><a href="#demo" id="toc-demo" class="nav-link" data-scroll-target="#demo">Demo</a></li>
+  </ul></li>
+  <li><a href="#project-documentation" id="toc-project-documentation" class="nav-link" data-scroll-target="#project-documentation">Project documentation</a></li>
+  <li><a href="#sessions-management" id="toc-sessions-management" class="nav-link" data-scroll-target="#sessions-management">Sessions management</a></li>
   </ul>
 </nav>
     </div>
@@ -204,30 +208,6 @@ ul.task-list li input[type="checkbox"] {
 <li>leverage version control to create snapshots of your work before and after major changes</li>
 </ul>
 </section>
-<section id="initial-project-setup" class="level2">
-<h2 class="anchored" data-anchor-id="initial-project-setup">Initial project setup</h2>
-<p>Before you jumped into opencode, you want to take the time to setup your project</p>
-<ol type="1">
-<li>Create a project specific directory and make sure to start opencode from it</li>
-<li>Initialize <code>git</code> to track changes</li>
-<li>Write a concise <code>README.md</code> with information about the project</li>
-<li>Create sub-directories for data, code, documents and other outputs</li>
-</ol>
-<p><strong>All the information you are adding in this project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you have at this point of your project.</strong></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Opencode can assist you with these various steps. However, for project management and security reasons, it is recommended to launch opencode from a project-specific directory, as it requires by default explicit permission to access any files outside of that directory.</p>
-</div>
-</div>
-</section>
 <section id="switching-to-plan-mode" class="level2">
 <h2 class="anchored" data-anchor-id="switching-to-plan-mode">Switching to plan mode</h2>
 <p>In opencode, to switch from the “build” mode (default when you start opencode) to the “plan” mode you can use the <kbd>tab</kbd> key.</p>
@@ -252,27 +232,48 @@ Note
 <li>Start a new session <code>/new</code></li>
 <li>Switch to Plan mode <kbd>tab</kbd></li>
 <li>Select your model <code>/models</code> and choose the <code>Gemini 3.1 Pro</code> model</li>
-<li>Enter the following prompt:</li>
 </ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>After toggling between modes, always check which model your are using as Plan and Build modes can use different model.</p>
+</div>
+</div>
+<section id="demo" class="level3">
+<h3 class="anchored" data-anchor-id="demo">Demo</h3>
+<section id="here-is-a-prompt-example" class="level4">
+<h4 class="anchored" data-anchor-id="here-is-a-prompt-example">Here is a prompt example:</h4>
 <blockquote class="blockquote">
 <p>I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.</p>
 </blockquote>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../images/03-plan_mode-prompt1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Plan mode example - prompt answer"><img src="../images/03-plan_mode-prompt1.png" class="img-fluid figure-img" alt="Plan mode prompt answer showing the various proposed steps and supplemtal infomration requests"></a></p>
-<figcaption>Plan mode example - prompt answer</figcaption>
+<p><a href="../images/03-plan_mode-prompt1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Plan mode example - Frist prompt answer"><img src="../images/03-plan_mode-prompt1.png" class="img-fluid figure-img" style="width:110.0%" alt="Plan mode prompt answer showing the various proposed steps and supplemtal infomration requests"></a></p>
+<figcaption>Plan mode example - Frist prompt answer</figcaption>
 </figure>
 </div>
+</section>
+<section id="iterate-by-providing-more-information" class="level4">
+<h4 class="anchored" data-anchor-id="iterate-by-providing-more-information">Iterate by providing more information:</h4>
 <blockquote class="blockquote">
 <p>Download data for the last decade, use the MLLW datum as reference, use the metric system for units, create a data folder with a subfolder data-raw in it and save the downloaded data in this subfolder. Write a Python script to download the data and save it in a code folder at the top of our project folder</p>
 </blockquote>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../images/03-plan_mode-prompt2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Plan mode example - updated answer"><img src="../images/03-plan_mode-prompt2.png" class="img-fluid figure-img" alt="Plan mode prompt answer update to incorporate the new information"></a></p>
-<figcaption>Plan mode example - updated answer</figcaption>
+<p><a href="../images/03-plan_mode-prompt2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Plan mode example - Updated plan"><img src="../images/03-plan_mode-prompt2.png" class="img-fluid figure-img" style="width:85.0%" alt="Plan mode prompt answer update to incorporate the new information"></a></p>
+<figcaption>Plan mode example - Updated plan</figcaption>
 </figure>
 </div>
-<p><em>and repeat until you are satisfy!</em></p>
+</section>
+<section id="and-repeat-until-you-are-satisfy" class="level4">
+<h4 class="anchored" data-anchor-id="and-repeat-until-you-are-satisfy">…and repeat until you are satisfy!</h4>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -284,22 +285,52 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>Your turn!</p>
-<p>As before complete the exercise individually but discuss results in small groups (2-5 people).</p>
+<p><em>As before, please complete this exercise individually but discuss results in small groups (2-5 people).</em></p>
 <section id="our-ask" class="level4">
 <h4 class="anchored" data-anchor-id="our-ask">Our ask</h4>
+<p>Making sure in you are in Plan mode:</p>
 <ol type="1">
-<li>Before you start prompting, think about the various steps you need</li>
-<li>Refine the best your can the latest prompt you used previously</li>
-<li>make sure you selected the <code>Gemini 3.1 Pro</code> model</li>
-<li>Switch to Plan mode</li>
-<li>Enter your prompts</li>
-<li>Provide the requested information</li>
+<li>Think about the various steps your workflow needs to accomplish our task</li>
+<li>Refine the latest prompt you used previously (or start a new one)</li>
+<li>Enter your prompt</li>
+<li>Provide supplemental information</li>
 <li>Iterate until you are satisfied</li>
+<li>Switch to Build mode and implement the plan</li>
+<li>Inspect the results (code, data, outputs) and iterate/adjust as needed</li>
+<li>Don’t forget to commit relevant files to your git history before rerunning your workflow</li>
 </ol>
-<p><strong>Once you are satisfy, switch to build and implement the plan</strong></p>
+<p><strong>As you are iterating after implementation, it is recommended to switch back to plan mode to iterate on the plan first, then go back to Build mode. It helps to have the plan kept up-to-date</strong></p>
 </section>
 </div>
 </div>
+</section>
+</section>
+</section>
+<section id="project-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="project-documentation">Project documentation</h2>
+<p>Before we end our work on this project for the day, we want to make sure to document what we have done so far.</p>
+<ol type="1">
+<li>Check that the current folder and files structure of your project matches what you had in mind</li>
+<li>Make sure that all the scripts that have been created have been committed to your git history</li>
+<li>Write a concise <code>README.md</code> with information about the project: goals, file structure, and how to run the code are good elements to include. Add and commit this file to your git history.</li>
+</ol>
+<p><strong>All the information you are adding in your project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you have while working on your project.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Opencode can assist you with all these various steps!</p>
+</div>
+</div>
+</section>
+<section id="sessions-management" class="level2">
+<h2 class="anchored" data-anchor-id="sessions-management">Sessions management</h2>
 
 
 </section>
