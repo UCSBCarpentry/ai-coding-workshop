@@ -49,13 +49,6 @@
     "text": "Multimodal Met Museum Semantic Networks\nConnects artworks from the Metropolitan Museum of Art Open Access API to their shared semantic concepts (extracted using Gemini) into an interactive network visualization.\nProject plan"
   },
   {
-    "objectID": "projects/index.html#geospatial-data-vibe-visualizing",
-    "href": "projects/index.html#geospatial-data-vibe-visualizing",
-    "title": "Coding Projects",
-    "section": "Geospatial Data Vibe Visualizing",
-    "text": "Geospatial Data Vibe Visualizing\nAn exploratory analysis using geospatial data in R to visualize and overlay 19th-century wildfires against other relevant records.\nProject plan"
-  },
-  {
     "objectID": "projects/index.html#the-bikeability-of-the-santa-barbara-county",
     "href": "projects/index.html#the-bikeability-of-the-santa-barbara-county",
     "title": "Coding Projects",
