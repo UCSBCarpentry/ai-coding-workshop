@@ -13,12 +13,14 @@ visualization.
 
 [Project plan](archival-collections/)
 
+<!-- 
 ## Geospatial Data Vibe Visualizing
 
 An exploratory analysis using geospatial data in R to visualize and overlay
 19th-century wildfires against other relevant records.
 
-[Project plan](geo-viz/)
+[Project plan](geo-viz/) 
+-->
 
 ## The bikeability of the Santa Barbara County
 
