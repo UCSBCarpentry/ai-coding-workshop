@@ -23,6 +23,8 @@ Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform "sema
 -   **Libraries:**
     -   If using Python: favor `requests`, `python-dotenv`, `openai`, and `pyvis` for interactive network visualization.
     -   If using R: favor `httr2`, `dotenv`, `openai`, and `visNetwork` or `networkD3` for the interactive network.
+- **Data Storage:** Store images in a local folder (e.g., `images/`) and metadata in CSV files (e.g., `collection_metadata.csv` and `enriched_collection.csv`).
+- **AGENTS.md:** You can create an `AGENTS.md` file to guide your agent's behavior. You can use the [`_AGENTS.md`](_AGENTS.md) as a starting point. Rename the file to `AGENTS.md` and add your own instructions for your agent.
 
 ### Ask
 
