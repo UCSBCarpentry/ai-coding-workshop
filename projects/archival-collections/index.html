@@ -196,7 +196,7 @@ window.Quarto = {
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -217,10 +217,14 @@ window.Quarto = {
 </header>
 
 
-<section id="use-case-extracting-semantic-concepts-from-museum-objects-and-visualizing-connections" class="level2">
+<section id="use-case-extracting-semantic-concepts-from-museum-objects-and-visualizing-connections" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="use-case-extracting-semantic-concepts-from-museum-objects-and-visualizing-connections">Use case: Extracting semantic concepts from museum objects and visualizing connections</h2>
 <p>Historically, analyzing visual patterns or latent themes across large-scale physical collections was a manual, slow task reserved for specialists. Traditional computer vision (like computing color histograms or edge detection) and natural language processing (like TF-IDF or keyword matching) often miss the “vibe” or deeper contextual and symbolic connections of art.</p>
-<p>Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform “semantic feature extraction” (essentially a reverse CLIP approach) to describe and tag visual elements into structured natural language concepts, and map these interconnections into an interactive network.</p>
+<p>Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform “semantic feature extraction” (essentially a reverse CLIP approach) to describe and tag visual elements into structured natural language concepts, and map these interconnections into an interactive network similar to this <a href="https://jairomelo.com/met-drawings-network/art_semantic_network.html">example</a>.</p>
+<div class="column-page">
+<iframe src="https://jairomelo.com/met-drawings-network/art_semantic_network.html" width="100%" height="800px" style="border: 1px solid #D1D1D6; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); background-color:#1C1C1E; margin-bottom: 25px;">
+</iframe>
+</div>
 <section id="workflow-overview" class="level3">
 <h3 class="anchored" data-anchor-id="workflow-overview">Workflow overview</h3>
 <ol type="1">
@@ -241,6 +245,8 @@ window.Quarto = {
 <li>If using Python: favor <code>requests</code>, <code>python-dotenv</code>, <code>openai</code>, and <code>pyvis</code> for interactive network visualization.</li>
 <li>If using R: favor <code>httr2</code>, <code>dotenv</code>, <code>openai</code>, and <code>visNetwork</code> or <code>networkD3</code> for the interactive network.</li>
 </ul></li>
+<li><strong>Data Storage:</strong> Store images in a local folder (e.g., <code>images/</code>) and metadata in CSV files (e.g., <code>collection_metadata.csv</code> and <code>enriched_collection.csv</code>).</li>
+<li><strong>AGENTS.md:</strong> You can create an <code>AGENTS.md</code> file to guide your agent’s behavior. You can use the <a href="_AGENTS.md"><code>_AGENTS.md</code></a> as a starting point. Rename the file to <code>AGENTS.md</code> and add your own instructions for your agent.</li>
 </ul>
 </section>
 <section id="ask" class="level3">
@@ -249,20 +255,28 @@ window.Quarto = {
 <li><strong>Session 1: API Fetching &amp; Gemini Feature Extraction</strong>
 <ul>
 <li>Brainstorm with your agent in <code>plan</code> mode to handle the Met API query. Fetch details for 15-20 public-domain paintings from a specific department (e.g., “European Paintings” or “Asian Art”).</li>
+<li>Some brainstorming prompts for your agent:
+<ul>
+<li>What are the collections with the most public-domain paintings?</li>
+<li>Our goal is to extract semantic concepts from the paintings. What are some ways we can do this?</li>
+<li>We want to retrieve the following metadata for each image: title, artist, year, description. What other metadata might be useful for our analysis?</li>
+<li>What criteria should we use to select the image sample?</li>
+</ul></li>
 <li>Ensure your agent writes clean, reproducible code to download images to a local folder (e.g., <code>images/</code>) and save basic metadata (title, artist, year, medium) in a CSV file.</li>
-<li>Instruct your agent to write a script that securely loads the Gemini API key from <code>.env</code>.</li>
-<li>Iterate over the images, sending both the image file and its metadata to Gemini. Instruct the model to return a structured JSON response extracting:
+<li>Switch your agent to <code>build</code> and instruct it to write a script that securely loads the Gemini API key from <code>.env</code>.</li>
+<li>Instruct your agent to generate an script that iterate over the images, sending both the image file and its metadata to Gemini. Instruct the model to return a structured JSON response extracting:
 <ul>
 <li><strong>Dominant palette:</strong> 3 distinct visual colors (e.g., “warm gold”, “deep indigo”).</li>
 <li><strong>Visual concepts:</strong> Primary subjects/objects visible in the work.</li>
 <li><strong>Mood/Vibe:</strong> The overall emotional tone (e.g., “melancholic”, “serene”, “triumphant”).</li>
 <li><strong>Research themes:</strong> Latent themes (e.g., “social status”, “nature”, “domesticity”).</li>
 </ul></li>
+<li>Provide the agent with the service url: <code>https://litellm.dreamlab.ucsb.edu/</code> and intruct it to use the <code>openai</code> library to send requests.</li>
 <li>Combine Gemini’s output with the original metadata into an enriched dataset (e.g., <code>enriched_collection.csv</code>).</li>
 </ul></li>
 <li><strong>Session 2: Mapping the Semantic Web</strong>
 <ul>
-<li>Work with your agent to write a visualization script using the enriched dataset.</li>
+<li>Work with your agent <code>plan</code> to write a visualization script using the enriched dataset.</li>
 <li><strong>Define your network logic &amp; edge weights:</strong> There are two great ways to model this network:
 <ul>
 <li><strong>Option A: Bipartite Graph (Artworks connected to Tags):</strong> Nodes are <em>both</em> Artworks and Semantic Tags (colors, vibes, themes). Edges are unweighted, representing a binary match (e.g.&nbsp;Artwork <span class="math inline">\(A\)</span> has tag “melancholic”).</li>
@@ -274,6 +288,7 @@ window.Quarto = {
 <li><strong>Edges (lines)</strong> represent connections, optionally adjusting the line thickness (weight) based on the number of shared attributes if using Option B.</li>
 <li><strong>Styling:</strong> Color-code artwork nodes by historical century or artistic movement, and attribute nodes by category.</li>
 </ul></li>
+<li>Before executing the plan, request you agent for some calculations, for instance, the pairwise connections between artworks based on shared tags, or even if the resulting network is too dense and needs filtering (e.g., only show edges with weight &gt; 1).</li>
 <li>Open the generated HTML and explore the interactive graph. Look for unexpected connections—such as a 17th-century oil painting and a 20th-century piece clustering together based on shared mood or latent research themes.</li>
 <li>Include this interactive visualization in your Quarto document, add your findings and analysis, and publish the final site to GitHub Pages.</li>
 </ul></li>
