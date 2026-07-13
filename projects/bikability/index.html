@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Use case: Computing the bikability of the Santa Barbara County – AI-Assisted Coding for Research</title>
+<title>The bikeability of the Santa Barbara County – AI-Assisted Coding for Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -157,11 +157,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#use-case-computing-the-bikability-of-the-santa-barbara-county" id="toc-use-case-computing-the-bikability-of-the-santa-barbara-county" class="nav-link active" data-scroll-target="#use-case-computing-the-bikability-of-the-santa-barbara-county">Use case: Computing the bikability of the Santa Barbara County</a>
+  <li><a href="#use-case-computing-the-bikeability-of-the-santa-barbara-county-using-terrain" id="toc-use-case-computing-the-bikeability-of-the-santa-barbara-county-using-terrain" class="nav-link active" data-scroll-target="#use-case-computing-the-bikeability-of-the-santa-barbara-county-using-terrain">Use case: Computing the bikeability of the Santa Barbara County using terrain</a>
   <ul class="collapse">
   <li><a href="#workflow-overview" id="toc-workflow-overview" class="nav-link" data-scroll-target="#workflow-overview">Workflow overview</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#ask" id="toc-ask" class="nav-link" data-scroll-target="#ask">Ask</a></li>
+  <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going further</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -172,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Use case: Computing the bikability of the Santa Barbara County</h1>
+<h1 class="title">The bikeability of the Santa Barbara County</h1>
 </div>
 
 
@@ -189,14 +190,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="use-case-computing-the-bikability-of-the-santa-barbara-county" class="level2">
-<h2 class="anchored" data-anchor-id="use-case-computing-the-bikability-of-the-santa-barbara-county">Use case: Computing the bikability of the Santa Barbara County</h2>
-<p>Our goal is to develop a bikability index to estimate how bike-friendly a specific area is. Here, we will focus on computing one component of this index by estimating the steepness of a specific area.</p>
+<section id="use-case-computing-the-bikeability-of-the-santa-barbara-county-using-terrain" class="level2">
+<h2 class="anchored" data-anchor-id="use-case-computing-the-bikeability-of-the-santa-barbara-county-using-terrain">Use case: Computing the bikeability of the Santa Barbara County using terrain</h2>
+<p>Our goal is to develop a bikeability index to estimate how bike-friendly a specific area is. Here, we will focus on computing one component of this index by estimating the steepness of a specific area.</p>
 <section id="workflow-overview" class="level3">
 <h3 class="anchored" data-anchor-id="workflow-overview">Workflow overview</h3>
 <ol type="1">
 <li>Download a Digital Elevation Model (DEM) Covering Santa Barbara County</li>
-<li>Compute the slope deom this DEM</li>
+<li>Compute the slope from this DEM</li>
 <li>Calculate zonal statistics on the slope using the US Census Group Blocks for the area</li>
 <li>Create a Map showing the median slope for each area</li>
 <li>Share our project on GitHub</li>
@@ -205,8 +206,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="data" class="level3">
 <h3 class="anchored" data-anchor-id="data">Data</h3>
 <ul>
-<li>DEM: we will get this dataset using the <a href="https://stacspec.org/en/">STAC API</a> from data catalog of the Microsoft Planetary Computer <a href="https://planetarycomputer.microsoft.com/catalog#DEMs" class="uri">https://planetarycomputer.microsoft.com/catalog#DEMs</a></li>
-<li>US Census group block: the dataset is provided as zipped shapefile</li>
+<li>DEM: we will get this dataset using the <a href="https://stacspec.org/en/">STAC API</a> from data catalog of the Microsoft Planetary Computer <a href="https://planetarycomputer.microsoft.com/catalog#DEMs" class="uri">https://planetarycomputer.microsoft.com/catalog#DEMs</a>; we will use the <code>ALOS World 3D-30m</code> product, see <a href="https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-dem" class="uri">https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-dem</a></li>
+<li>US Census group block: the dataset is available on the US Census Bureau server: <a href="https://www2.census.gov/geo/tiger/TIGER2020/BG/" class="uri">https://www2.census.gov/geo/tiger/TIGER2020/BG/</a></li>
 </ul>
 </section>
 <section id="ask" class="level3">
@@ -220,7 +221,37 @@ ul.task-list li input[type="checkbox"] {
 <li>When using Python, favor geopandas and pangeo libraries (https://pangeo.io/#ecosystem)</li>
 <li>When using R, favor recent geospatial packages such as <code>sf</code> and <code>terra</code> and the tidyverse style guide</li>
 </ul></li>
-<li>Make sure to document your work well</li>
+<li>Make sure to document your work well (code, data, outputs, …)</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Things to think about
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Start in Plan Mode to develop your workflow</li>
+<li>Request separate scripts for each major step of your workflow</li>
+<li>Think about how you would like to organize your data (raw, derived, …)</li>
+<li>Think about managing your computing environment and to specify which libraries you would like to use</li>
+<li>Version control your work</li>
+<li>Initialize <code>AGENTS.md</code> and keep it up-to-date</li>
+<li>Did we mention to document your work?!</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="going-further" class="level3">
+<h3 class="anchored" data-anchor-id="going-further">Going further</h3>
+<ul>
+<li>Could you make your map interactive?</li>
+<li>Is the Census Group Block the best spatial unit?</li>
+<li>Any other zonal statistics that could be computed (e.g.&nbsp;maximum slope)?</li>
+<li>What other information could you add to our bikeability index? See references for ideas… or brainstorm with your agent!</li>
 </ul>
 </section>
 <section id="references" class="level3">
