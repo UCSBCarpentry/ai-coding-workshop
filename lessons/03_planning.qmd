@@ -19,6 +19,17 @@ To effectively integrate Agentic AI into your work, consider following this stru
 - Once satisfied, switch to Build mode for actual implementation
 - Leverage version control to create snapshots of your work before and after major changes
 
+When reviewing the plan, you might consider questions such as:
+
+- Does the plan **reveal gaps in your understanding** that need to be resolved
+  before moving ahead? If you read the plan and think to yourself, "Wow this is
+  more complicated than I imagined!", then this might be the case. You might
+  want to cancel the plan or rethink your approach.
+- Does the plan **resolve ambiguities** in the initial prompt in ways that align
+  with your expectations? If not, update the plan with additional specificity.
+- Does the plan make **appropriate implementation choices** (programming
+  language, dependencies, data sources, etc.)? You may need to *steer* the coding
+  agent toward tools and approaches you prefer.
 
 ## Switching to plan mode
 
