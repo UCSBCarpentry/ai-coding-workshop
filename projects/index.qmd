@@ -20,7 +20,7 @@ An exploratory analysis using geospatial data in R to visualize and overlay
 
 [Project plan](geo-viz/)
 
-## The bikability of the Santa Barbara County
+## The bikeability of the Santa Barbara County
 
 Computes the steepness of Santa Barbara County using a Digital Elevation Model
 (DEM) and US Census Group Blocks to create a map showing the median slope of
