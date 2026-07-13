@@ -17,7 +17,7 @@ To effectively integrate Agentic AI into your work, consider following this stru
 - Iterate through this cycle as many times as needed
 - Ask for separate scripts for the primary components of your workflow
 - Once satisfied, switch to Build mode for actual implementation
-- leverage version control to create snapshots of your work before and after major changes
+- Leverage version control to create snapshots of your work before and after major changes
 
 
 ## Switching to plan mode
@@ -40,7 +40,7 @@ Let's restart our NOAA tides example, this time leveraging Plan mode.
 1. Select your model `/models` and choose the `Gemini 3.1 Pro` model
 
 :::{.callout-warning}
-After toggling between modes, always check which model your are using as Plan and Build modes can use different model.
+After toggling between modes, always check which model you are using, as Plan and Build modes can use different models.
 :::
 
 ### Demo
@@ -49,7 +49,7 @@ After toggling between modes, always check which model your are using as Plan an
 
 > I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.
 
-![Plan mode example - Frist prompt answer](../images/03-plan_mode-prompt1.png){fig-alt="Plan mode prompt answer showing the various proposed steps and supplemtal infomration requests" width=110%}
+![Plan mode example - First prompt answer](../images/03-plan_mode-prompt1.png){fig-alt="Plan mode prompt answer showing the various proposed steps and supplemental information requests" width=110%}
 
 #### Iterate by providing more information:
 
@@ -57,7 +57,7 @@ After toggling between modes, always check which model your are using as Plan an
 
 ![Plan mode example - Updated plan](../images/03-plan_mode-prompt2.png){fig-alt="Plan mode prompt answer update to incorporate the new information" width=85%}
 
-#### ...and repeat until you are satisfy!
+#### ...and repeat until you are satisfied!
 
 :::{.callout-tip}
 ## Challenge
@@ -68,7 +68,7 @@ _As before, please complete this exercise individually but discuss results in sm
 
 #### Our ask
 
-Making sure in you are in Plan mode:
+Making sure you are in Plan mode:
 
 1. Think about the various steps your workflow needs to accomplish our task
 1. Refine the latest prompt you used previously (or start a new one)
@@ -92,7 +92,7 @@ Before we end our work on this project for the day, we want to make sure to docu
 1. Write a concise `README.md` with information about the project: goals, file structure, and how to run the code are good elements to include. Add and commit this file to your git history.
 
 
-**All the information you are adding in your project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you have while working on your project.**
+**All the information you are adding in your project directory will be included in the context that is sent to the model with your prompts, so it is beneficial to add as much information as you have while working on your project.**
 
 ::: {.callout-note}
 Opencode can assist you with all these various steps!
