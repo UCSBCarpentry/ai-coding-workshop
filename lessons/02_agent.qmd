@@ -169,6 +169,7 @@ The commands we will use in the workshop are listed here:
 - `/help` - Display help information 
 - `/models` - List and switch between models
 - `/new` - Start a new session (fresh context)
+- `/sessions` - Switch between OpenCode sessions.
 
 ### Switching models
 

@@ -127,8 +127,43 @@ convert your project to using uv for its dependencies:
 
 :::
 
-## Sessions management
+## Session management
 
+In the exercise above, we started Plan mode from a new **session**, which we
+create with the `/new` command. A session is a single, continuous conversation
+with the coding agent: your prompts, the agent's replies, and every file it read
+or wrote along the way. Everything in the session makes up the agent's *context*
+-- the information it carries with it from one prompt to the next. That's why
+the agent "remembers" the datum and the units you specified ten prompts ago. 
+
+:::{.callout-warning}
+
+Long session gets slower and more expensive: the entire conversation is sent to the model each time you hit Enter.
+
+:::
+
+Sessions are saved to disk, so quitting OpenCode doesn't throw yours away. To
+pick up where you left off:
+
+- Run `opencode --continue` (or `opencode -c`) to reopen the most recent session
+  in the current project folder.
+- Or start OpenCode normally and use the `/sessions` command to list your past
+  sessions and select the one you want.
+
+Resuming is useful when you're returning to a task you left half-finished, like
+a very detailed planning session. Starting fresh with `/new` is usually the
+better choice when you switch to a new task, when the agent seems confused or
+keeps circling back to earlier (now-irrelevant) decisions, or when the session
+has simply grown long. A clean context is cheaper, faster, and easier for the
+model to work with.
+
+This connects directly to Plan mode. Planning is a conversation: you brainstorm,
+ask questions, change your mind, and reject a few approaches before settling on
+one. All of that dead-end discussion stays in the context when you switch to
+Build mode. If your planning session runs long or eats a lot of context, a good
+practice is to **ask the agent to write the plan to a markdown file** (for
+example, `plan.md` or `docs/plan-uv-migration.md`), then start a new session with
+`/new` and prompt the agent to implement the plan from that file. 
 
 ## Project documentation
 
