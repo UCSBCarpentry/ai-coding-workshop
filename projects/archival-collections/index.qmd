@@ -37,11 +37,12 @@ Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform "sema
         -   What criteria should we use to select the image sample?
     -   Ensure your agent writes clean, reproducible code to download images to a local folder (e.g., `images/`) and save basic metadata (title, artist, year, medium) in a CSV file.
     -   Switch your agent to `build` and instruct it to write a script that securely loads the Gemini API key from `.env`.
-    -   Iterate over the images, sending both the image file and its metadata to Gemini. Instruct the model to return a structured JSON response extracting:
+    -   Instruct your agent to generate an script that iterate over the images, sending both the image file and its metadata to Gemini. Instruct the model to return a structured JSON response extracting:
         -   **Dominant palette:** 3 distinct visual colors (e.g., "warm gold", "deep indigo").
         -   **Visual concepts:** Primary subjects/objects visible in the work.
         -   **Mood/Vibe:** The overall emotional tone (e.g., "melancholic", "serene", "triumphant").
         -   **Research themes:** Latent themes (e.g., "social status", "nature", "domesticity").
+    -   Provide the agent with the service url: `https://litellm.dreamlab.ucsb.edu/` and intruct it to use the `openai` library to send requests.
     -   Combine Gemini's output with the original metadata into an enriched dataset (e.g., `enriched_collection.csv`).
 
 -   **Session 2: Mapping the Semantic Web**
