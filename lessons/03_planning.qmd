@@ -38,17 +38,26 @@ Let's restart our NOAA tides example, this time leveraging Plan mode.
 1. Start a new session `/new`
 1. Switch to Plan mode <kbd>tab</kbd>
 1. Select your model `/models` and choose the `Gemini 3.1 Pro` model
-1. Enter the following prompt:
+
+:::{.callout-warning}
+After toggling between modes, always check which model your are using as Plan and Build modes can use different model.
+:::
+
+### Demo
+
+#### Here is a prompt example:
 
 > I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.
 
-![Plan mode example - prompt answer](../images/03-plan_mode-prompt1.png){fig-alt="Plan mode prompt answer showing the various proposed steps and supplemtal infomration requests"}
+![Plan mode example - Frist prompt answer](../images/03-plan_mode-prompt1.png){fig-alt="Plan mode prompt answer showing the various proposed steps and supplemtal infomration requests" width=110%}
+
+#### Iterate by providing more information:
 
 > Download data for the last decade, use the MLLW datum as reference, use the metric system for units, create a data folder with a subfolder data-raw in it and save the downloaded data in this subfolder. Write a Python script to download the data and save it in a code folder at the top of our project folder
 
-![Plan mode example - updated answer](../images/03-plan_mode-prompt2.png){fig-alt="Plan mode prompt answer update to incorporate the new information"}
+![Plan mode example - Updated plan](../images/03-plan_mode-prompt2.png){fig-alt="Plan mode prompt answer update to incorporate the new information" width=85%}
 
-_and repeat until you are satisfy!_
+#### ...and repeat until you are satisfy!
 
 :::{.callout-tip}
 ## Challenge
@@ -59,31 +68,28 @@ _As before, please complete this exercise individually but discuss results in sm
 
 #### Our ask
 
-1. Before you start prompting, think about the various steps you need
-1. Refine the best your can the latest prompt you used previously
-1. make sure you selected the `Gemini 3.1 Pro` model
-1. Switch to Plan mode
-1. Enter your prompts
-1. Provide the requested information
+Making sure in you are in Plan mode:
+
+1. Think about the various steps your workflow needs to accomplish our task
+1. Refine the latest prompt you used previously (or start a new one)
+1. Enter your prompt
+1. Provide supplemental information
 1. Iterate until you are satisfied
-1. Switch to Build mode and run you workflow!
-1. Look at the results (code, data, outputs) and iterate/adjust as needed
+1. Switch to Build mode and implement the plan
+1. Inspect the results (code, data, outputs) and iterate/adjust as needed
 1. Don't forget to commit relevant files to your git history before rerunning your workflow
 
-**Once you are satisfy, switch to build and implement the plan**
+**As you are iterating after implementation, it is recommended to switch back to plan mode to iterate on the plan first, then go back to Build mode. It helps to have the plan kept up-to-date**
 :::
-
-
-
 
 
 ## Project documentation
 
 Before we end our work on this project for the day, we want to make sure to document what we have done so far.
 
-1. Check that the current folder and files structure of your project mataches what you had in mind
+1. Check that the current folder and files structure of your project matches what you had in mind
 1. Make sure that all the scripts that have been created have been committed to your git history
-1. Write a concise `README.md` with information about the project: goals, file structure, and how to run the code are good elements to include. Add and commmit this file to your git history.
+1. Write a concise `README.md` with information about the project: goals, file structure, and how to run the code are good elements to include. Add and commit this file to your git history.
 
 
 **All the information you are adding in your project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you have while working on your project.**
