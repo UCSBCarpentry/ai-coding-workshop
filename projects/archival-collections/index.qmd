@@ -30,8 +30,13 @@ Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform "sema
 
 -   **Session 1: API Fetching & Gemini Feature Extraction**
     -   Brainstorm with your agent in `plan` mode to handle the Met API query. Fetch details for 15-20 public-domain paintings from a specific department (e.g., "European Paintings" or "Asian Art").
+    -   Some brainstorming prompts for your agent:
+        -   What are the collections with the most public-domain paintings?
+        -   Our goal is to extract semantic concepts from the paintings. What are some ways we can do this?
+        -   We want to retrieve the following metadata for each image: title, artist, year, description. What other metadata might be useful for our analysis?
+        -   What criteria should we use to select the image sample?
     -   Ensure your agent writes clean, reproducible code to download images to a local folder (e.g., `images/`) and save basic metadata (title, artist, year, medium) in a CSV file.
-    -   Instruct your agent to write a script that securely loads the Gemini API key from `.env`.
+    -   Switch your agent to `build` and instruct it to write a script that securely loads the Gemini API key from `.env`.
     -   Iterate over the images, sending both the image file and its metadata to Gemini. Instruct the model to return a structured JSON response extracting:
         -   **Dominant palette:** 3 distinct visual colors (e.g., "warm gold", "deep indigo").
         -   **Visual concepts:** Primary subjects/objects visible in the work.
