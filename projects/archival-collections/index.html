@@ -43,6 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-a3fdc2df2c01662e6f3a042b88ed1c09.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -196,7 +199,7 @@ window.Quarto = {
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -217,13 +220,15 @@ window.Quarto = {
 </header>
 
 
-<section id="use-case-extracting-semantic-concepts-from-museum-objects-and-visualizing-connections" class="level2 page-columns page-full">
+<section id="use-case-extracting-semantic-concepts-from-museum-objects-and-visualizing-connections" class="level2">
 <h2 class="anchored" data-anchor-id="use-case-extracting-semantic-concepts-from-museum-objects-and-visualizing-connections">Use case: Extracting semantic concepts from museum objects and visualizing connections</h2>
 <p>Historically, analyzing visual patterns or latent themes across large-scale physical collections was a manual, slow task reserved for specialists. Traditional computer vision (like computing color histograms or edge detection) and natural language processing (like TF-IDF or keyword matching) often miss the “vibe” or deeper contextual and symbolic connections of art.</p>
 <p>Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform “semantic feature extraction” (essentially a reverse CLIP approach) to describe and tag visual elements into structured natural language concepts, and map these interconnections into an interactive network similar to this <a href="https://jairomelo.com/met-drawings-network/art_semantic_network.html">example</a>.</p>
-<div class="column-page">
-<iframe src="https://jairomelo.com/met-drawings-network/art_semantic_network.html" width="100%" height="800px" style="border: 1px solid #D1D1D6; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); background-color:#1C1C1E; margin-bottom: 25px;">
-</iframe>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../images/project_archival-network.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Example of a semantic network of artworks"><img src="../../images/project_archival-network.gif" class="img-fluid figure-img" alt="Example of a semantic network of artworks"></a></p>
+<figcaption>Example of a semantic network of artworks</figcaption>
+</figure>
 </div>
 <section id="workflow-overview" class="level3">
 <h3 class="anchored" data-anchor-id="workflow-overview">Workflow overview</h3>
@@ -700,6 +705,38 @@ window.Quarto = {
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
