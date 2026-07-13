@@ -2,14 +2,22 @@
 title: "Planning"
 ---
 
-What we just did in the previous section, letting the agent have full control of a multi-step process, is not the best way to fully leverage agentic coding capabilities. Instead, it is recommended to break down your workflow into smaller, distinct increments that are easier to verify and iterate on.
+What we just did in the previous section, letting the agent have full control of
+a multi-step process, is not the best way to fully leverage agentic coding
+capabilities. Instead, it is recommended to break down your workflow into
+smaller, distinct increments that are easier to verify and iterate on.
 
 
 ## Plan mode overview
 
-This is precisely where "Plan mode" becomes invaluable. Plan mode allows you to refine your instructions for your agent, resolve potential ambiguities, and quickly redirect overeager agents. This gives you better control over the different components of your analytical workflow before any code or files are modified in your project.
+This is precisely where "Plan mode" becomes invaluable. Plan mode allows you to
+refine your instructions for your agent, resolve potential ambiguities, and
+quickly redirect overeager agents. This gives you better control over the
+different components of your analytical workflow before any code or files are
+modified in your project.
 
-To effectively integrate agentic AI into your work, consider following this structured approach:
+To effectively integrate agentic AI into your work, consider following this
+structured approach:
 
 - Begin in Plan mode (read-only)
 - Review the proposed steps for your analysis
@@ -79,13 +87,18 @@ In this case, OpenCode responded with a set of clarifying questions. We can
 address these questions individually or revise our initial prompt to include the
 missing details:
 
-> Download data for the **last decade**, use the **MLLW datum** as reference, use the **metric system** for units, create a data folder with a subfolder data-raw in it and save the downloaded data in this subfolder. Write a Python script to download the data and save it in a code folder at the top of our project folder
+> Download data for the **last decade**, use the **MLLW datum** as reference,
+> use the **metric system** for units, create a data folder with a subfolder
+> data-raw in it and save the downloaded data in this subfolder. Write a Python
+> script to download the data and save it in a code folder at the top of our
+> project folder
 
 And here is the updated plan:
 
 ![Plan mode example - Updated plan](../images/03-plan_mode-prompt2.png){fig-alt="Plan mode prompt answer update to incorporate the new information" width=85%}
 
-The plan looks fine -- isn't it useful to see what the agent would do before it does it? We're ready to build:
+The plan looks fine -- isn't it useful to see what the agent would do before it
+does it? We're ready to build:
 
 1. Switch to **Build mode** by pressing the <kbd>tab</kbd> key
 2. Enter a prompt to kick off the build process: "The plan looks good. Go ahead!"
@@ -95,11 +108,16 @@ That's it. Now it's your turn to try Plan mode.
 :::{.callout-tip}
 ### Challenge: Enhancing your Code
 
-_As before, please complete this exercise individually but discuss issues and results in small groups (2-5 people)._
+_As before, please complete this exercise individually but discuss issues and
+results in small groups (2-5 people)._
 
-Perhaps you've heard about a cool new package manager for Python called [uv](https://docs.astral.sh/uv/), and you'd like to use it to manage dependencies for your NOAA tides project. For this exercise, use Plan mode to convert your project to using uv for its dependencies:
+Perhaps you've heard about a cool new package manager for Python called
+[uv](https://docs.astral.sh/uv/), and you'd like to use it to manage
+dependencies for your NOAA tides project. For this exercise, use Plan mode to
+convert your project to using uv for its dependencies:
 
-1. Make sure you are running OpenCode in the `noaa-tides` folder. If you have an existing OpenCode session, start a new OpenCode session with `/new`.
+1. Make sure you are running OpenCode in the `noaa-tides` folder. If you have an
+   existing OpenCode session, start a new OpenCode session with `/new`.
 2. Enter Plan mode and switch to the **Gemini 3.1 Pro (Custom Tools)** model if
    necessary.
 3. Make a plan to "migrate this project to uv, for dependency management".
@@ -114,14 +132,21 @@ Perhaps you've heard about a cool new package manager for Python called [uv](htt
 
 ## Project documentation
 
-Before we end our work on this project for the day, we want to make sure to document what we have done so far.
+Before we end our work on this project for the day, we want to make sure to
+document what we have done so far.
 
-1. Check that the current folder and file structure of your project matches what you had in mind
-1. Make sure that all the scripts that have been created have been committed to your git history
-1. Write a concise `README.md` with information about the project: goals, file structure, and how to run the code are good elements to include. Add and commit this file to your git history.
+1. Check that the current folder and file structure of your project matches what
+   you had in mind
+1. Make sure that all the scripts that have been created have been committed to
+   your git history
+1. Write a concise `README.md` with information about the project: goals, file
+   structure, and how to run the code are good elements to include. Add and
+   commit this file to your git history.
 
 
-**All the information you are adding in your project directory will be included in the context that is sent to the model with your prompts, so it is beneficial to add as much information as you have while working on your project.**
+**All the information you are adding in your project directory will be included
+in the context that is sent to the model with your prompts, so it is beneficial
+to add as much information as you have while working on your project.**
 
 ::: {.callout-note}
 OpenCode can assist you with all these various steps!
