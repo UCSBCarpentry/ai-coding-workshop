@@ -8,9 +8,7 @@ Historically, analyzing visual patterns or latent themes across large-scale phys
 
 Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform "semantic feature extraction" (essentially a reverse CLIP approach) to describe and tag visual elements into structured natural language concepts, and map these interconnections into an interactive network similar to this [example](https://jairomelo.com/met-drawings-network/art_semantic_network.html).
 
-::: {.column-page}
-<iframe src="https://jairomelo.com/met-drawings-network/art_semantic_network.html" width="100%" height="800px" style="border: 1px solid #D1D1D6; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); background-color:#1C1C1E; margin-bottom: 25px;"></iframe>
-:::
+![Example of a semantic network of artworks](../../images/project_archival-network.gif)
 
 ### Workflow overview
 
