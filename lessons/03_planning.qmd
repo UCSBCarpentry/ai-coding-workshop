@@ -2,17 +2,17 @@
 title: "Planning"
 ---
 
-What we just did in the previous section, letting the agent have full control of a multi-step process, is not the best way to fully leverage Agentic coding capabilities. Instead, it is recommended to break down your workflow into smaller, distinct increments that are easier to verify and iterate on.
+What we just did in the previous section, letting the agent have full control of a multi-step process, is not the best way to fully leverage agentic coding capabilities. Instead, it is recommended to break down your workflow into smaller, distinct increments that are easier to verify and iterate on.
 
 
 ## Plan mode overview
 
-This is precisely where "Plan mode" becomes invaluable. Plan mode allows you to refine your instructions for your agent, resolve potential ambiguities, and quickly redirect overeager agents. This gives you better control over the different components of your analytical workflow before any code or files are modified in your project. 
+This is precisely where "Plan mode" becomes invaluable. Plan mode allows you to refine your instructions for your agent, resolve potential ambiguities, and quickly redirect overeager agents. This gives you better control over the different components of your analytical workflow before any code or files are modified in your project.
 
-To effectively integrate Agentic AI into your work, consider following this structured approach:
+To effectively integrate agentic AI into your work, consider following this structured approach:
 
 - Begin in Plan mode (read-only)
-- Review the proposed steps for your analysis 
+- Review the proposed steps for your analysis
 - Supply additional context and refine the plan
 - Iterate through this cycle as many times as needed
 - Ask for separate scripts for the primary components of your workflow
@@ -22,7 +22,7 @@ To effectively integrate Agentic AI into your work, consider following this stru
 When reviewing the plan, you might consider questions such as:
 
 - Does the plan **reveal gaps in your understanding** that need to be resolved
-  before moving ahead? If you read the plan and think to yourself, "Wow this is
+  before moving ahead? If you read the plan and think to yourself, "Wow, this is
   more complicated than I imagined!", then this might be the case. You might
   want to cancel the plan or rethink your approach.
 - Does the plan **resolve ambiguities** in the initial prompt in ways that align
@@ -33,72 +33,90 @@ When reviewing the plan, you might consider questions such as:
 
 ## Switching to plan mode
 
-In opencode, to switch from the "build" mode (default when you start opencode) to the "plan" mode you can use the <kbd>tab</kbd> key.
+In OpenCode, you can use the <kbd>tab</kbd> key to switch between Plan and Build
+modes. Build mode is the default when you start OpenCode. The active mode
+appears right below the cursor in the prompt input area.
 
-::: {.callout-note}
-## Model Choice
+For complex, multi-step problem planning, it is advisable to leverage the most
+advanced model available, keeping token costs in mind. After the initial steps
+are laid out, transitioning to a less advanced model to execute those predefined
+tasks can lead to a more efficient use of your resources.
 
-For complex, multi-step problem planning, it is advisable to leverage the most advanced model available, keeping token costs in mind. After the initial steps are laid out, transitioning to a less advanced model to execute those predefined tasks can lead to a more efficient use of your resources.
+:::{.callout-tip}
+
+### Models for Planning
+
+After toggling between modes, **always check which model you are using**, as
+Plan and Build modes can use different models. For the purposes of this
+workshop, we generally recommend planning with **Gemini 3.1 Pro (Custom Tools)**
+and building with **Gemini 3.5 Flash**. But you can always explore other
+combinations!
+
 :::
-
 
 ## Planning our NOAA tides example
 
-Let's restart our NOAA tides example, this time leveraging Plan mode.
+Let's revisit the California tides analysis from the previous lesson and see
+what it would be like to generate this code using planning mode. (Since you
+already generated this code, **you don't need to follow the steps** here. This
+is just a demonstration of Plan mode).
 
-1. Start a new session `/new`
-1. Switch to Plan mode <kbd>tab</kbd>
-1. Select your model `/models` and choose the `Gemini 3.1 Pro` model
+To use Plan mode:
 
-:::{.callout-warning}
-After toggling between modes, always check which model you are using, as Plan and Build modes can use different models.
-:::
+1. Start OpenCode in the `noaa-tides` project folder.
+2. Switch to Plan mode by pressing the <kbd>tab</kbd> key until you see "Plan"
+   below the text input cursor.
+3. Select your planning model with the `/models` command and choose the **Gemini
+   3.1 Pro (Custom Tools)** model.
 
-### Demo
-
-#### Here is a prompt example:
+To kick off the planning process, enter your initial prompt:
 
 > I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.
 
 ![Plan mode example - First prompt answer](../images/03-plan_mode-prompt1.png){fig-alt="Plan mode prompt answer showing the various proposed steps and supplemental information requests" width=110%}
 
-#### Iterate by providing more information:
+In this case, OpenCode responded with a set of clarifying questions. We can
+address these questions individually or revise our initial prompt to include the
+missing details:
 
-> Download data for the last decade, use the MLLW datum as reference, use the metric system for units, create a data folder with a subfolder data-raw in it and save the downloaded data in this subfolder. Write a Python script to download the data and save it in a code folder at the top of our project folder
+> Download data for the **last decade**, use the **MLLW datum** as reference, use the **metric system** for units, create a data folder with a subfolder data-raw in it and save the downloaded data in this subfolder. Write a Python script to download the data and save it in a code folder at the top of our project folder
+
+And here is the updated plan:
 
 ![Plan mode example - Updated plan](../images/03-plan_mode-prompt2.png){fig-alt="Plan mode prompt answer update to incorporate the new information" width=85%}
 
-#### ...and repeat until you are satisfied!
+The plan looks fine -- isn't it useful to see what the agent would do before it does it? We're ready to build:
+
+1. Switch to **Build mode** by pressing the <kbd>tab</kbd> key
+2. Enter a prompt to kick off the build process: "The plan looks good. Go ahead!"
+
+That's it. Now it's your turn to try Plan mode.
 
 :::{.callout-tip}
-## Challenge
+### Challenge: Enhancing your Code
 
-Your turn!
+_As before, please complete this exercise individually but discuss issues and results in small groups (2-5 people)._
 
-_As before, please complete this exercise individually but discuss results in small groups (2-5 people)._
+Perhaps you've heard about a cool new package manager for Python called [uv](https://docs.astral.sh/uv/), and you'd like to use it to manage dependencies for your NOAA tides project. For this exercise, use Plan mode to convert your project to using uv for its dependencies:
 
-#### Our ask
+1. Make sure you are running OpenCode in the `noaa-tides` folder. If you have an existing OpenCode session, start a new OpenCode session with `/new`.
+2. Enter Plan mode and switch to the **Gemini 3.1 Pro (Custom Tools)** model if
+   necessary.
+3. Make a plan to "migrate this project to uv, for dependency management".
+4. Switch to build mode and switch to the **Gemini 3.5 Flash** model.
+5. Execute the plan
+6. Make sure you commit your work. (You can also add that to the plan!)
 
-Making sure you are in Plan mode:
-
-1. Think about the various steps your workflow needs to accomplish our task
-1. Refine the latest prompt you used previously (or start a new one)
-1. Enter your prompt
-1. Provide supplemental information
-1. Iterate until you are satisfied
-1. Switch to Build mode and implement the plan
-1. Inspect the results (code, data, outputs) and iterate/adjust as needed
-1. Don't forget to commit relevant files to your git history before rerunning your workflow
-
-**As you are iterating after implementation, it is recommended to switch back to plan mode to iterate on the plan first, then go back to Build mode. It helps to have the plan kept up-to-date**
 :::
+
+## Sessions management
 
 
 ## Project documentation
 
 Before we end our work on this project for the day, we want to make sure to document what we have done so far.
 
-1. Check that the current folder and files structure of your project matches what you had in mind
+1. Check that the current folder and file structure of your project matches what you had in mind
 1. Make sure that all the scripts that have been created have been committed to your git history
 1. Write a concise `README.md` with information about the project: goals, file structure, and how to run the code are good elements to include. Add and commit this file to your git history.
 
@@ -106,11 +124,10 @@ Before we end our work on this project for the day, we want to make sure to docu
 **All the information you are adding in your project directory will be included in the context that is sent to the model with your prompts, so it is beneficial to add as much information as you have while working on your project.**
 
 ::: {.callout-note}
-Opencode can assist you with all these various steps!
+OpenCode can assist you with all these various steps!
 :::
 
 
-## Sessions management
 
 
 
