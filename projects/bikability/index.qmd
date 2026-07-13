@@ -1,15 +1,15 @@
 ---
-title: "The bikability of the Santa Barbara County"
+title: "The bikeability of the Santa Barbara County"
 ---
 
-## Use case: Computing the bikability of the Santa Barbara County using terrain
+## Use case: Computing the bikeability of the Santa Barbara County using terrain
 
-Our goal is to develop a bikability index to estimate how bike-friendly a specific area is. Here, we will focus on computing one component of this index by estimating the steepness of a specific area.
+Our goal is to develop a bikeability index to estimate how bike-friendly a specific area is. Here, we will focus on computing one component of this index by estimating the steepness of a specific area.
 
 ### Workflow overview
 
 1.  Download a Digital Elevation Model (DEM) Covering Santa Barbara County
-2.  Compute the slope deom this DEM
+2.  Compute the slope from this DEM
 3.  Calculate zonal statistics on the slope using the US Census Group Blocks for the area
 4.  Create a Map showing the median slope for each area
 5.  Share our project on GitHub
@@ -34,7 +34,7 @@ Our goal is to develop a bikability index to estimate how bike-friendly a specif
 
 - Start in Plan Mode to develop your workflow
 - Request separate scripts for each major step of your workflow
-- Think about how you would like to organize your data (raw, dervived, ...)
+- Think about how you would like to organize your data (raw, derived, ...)
 - Think about managing your computing environment and to specify which libraries you would like to use
 - Version control your work
 - Initialize `AGENTS.md`  and keep it up-to-date
@@ -45,7 +45,8 @@ Our goal is to develop a bikability index to estimate how bike-friendly a specif
 
 - Could you make your map interactive?
 - Is the Census Group Block the best spatial unit?
-- What other information could you add to our bikability index? See references for ideas... or brainstorm with your agent!
+- Any other zonal statistics that could be computed (e.g. maximum slope)?
+- What other information could you add to our bikeability index? See references for ideas... or brainstorm with your agent!
 
 
 ### References
