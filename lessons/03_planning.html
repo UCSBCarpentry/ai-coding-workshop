@@ -162,12 +162,9 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#plan-mode-overview" id="toc-plan-mode-overview" class="nav-link active" data-scroll-target="#plan-mode-overview">Plan mode overview</a></li>
   <li><a href="#switching-to-plan-mode" id="toc-switching-to-plan-mode" class="nav-link" data-scroll-target="#switching-to-plan-mode">Switching to plan mode</a></li>
-  <li><a href="#planning-our-noaa-tides-example" id="toc-planning-our-noaa-tides-example" class="nav-link" data-scroll-target="#planning-our-noaa-tides-example">Planning our NOAA tides example</a>
-  <ul class="collapse">
-  <li><a href="#demo" id="toc-demo" class="nav-link" data-scroll-target="#demo">Demo</a></li>
-  </ul></li>
+  <li><a href="#planning-our-noaa-tides-example" id="toc-planning-our-noaa-tides-example" class="nav-link" data-scroll-target="#planning-our-noaa-tides-example">Planning our NOAA tides example</a></li>
+  <li><a href="#session-management" id="toc-session-management" class="nav-link" data-scroll-target="#session-management">Session management</a></li>
   <li><a href="#project-documentation" id="toc-project-documentation" class="nav-link" data-scroll-target="#project-documentation">Project documentation</a></li>
-  <li><a href="#sessions-management" id="toc-sessions-management" class="nav-link" data-scroll-target="#sessions-management">Sessions management</a></li>
   </ul>
 </nav>
     </div>
@@ -193,11 +190,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>What we just did in the previous section, letting the agent have full control of a multi-step process, is not the best way to fully leverage Agentic coding capabilities. Instead, it is recommended to break down your workflow into smaller, distinct increments that are easier to verify and iterate on.</p>
+<p>What we just did in the previous section, letting the agent have full control of a multi-step process, is not the best way to fully leverage agentic coding capabilities. Instead, it is recommended to break down your workflow into smaller, distinct increments that are easier to verify and iterate on.</p>
 <section id="plan-mode-overview" class="level2">
 <h2 class="anchored" data-anchor-id="plan-mode-overview">Plan mode overview</h2>
 <p>This is precisely where “Plan mode” becomes invaluable. Plan mode allows you to refine your instructions for your agent, resolve potential ambiguities, and quickly redirect overeager agents. This gives you better control over the different components of your analytical workflow before any code or files are modified in your project.</p>
-<p>To effectively integrate Agentic AI into your work, consider following this structured approach:</p>
+<p>To effectively integrate agentic AI into your work, consider following this structured approach:</p>
 <ul>
 <li>Begin in Plan mode (read-only)</li>
 <li>Review the proposed steps for your analysis</li>
@@ -205,34 +202,95 @@ ul.task-list li input[type="checkbox"] {
 <li>Iterate through this cycle as many times as needed</li>
 <li>Ask for separate scripts for the primary components of your workflow</li>
 <li>Once satisfied, switch to Build mode for actual implementation</li>
-<li>leverage version control to create snapshots of your work before and after major changes</li>
+<li>Leverage version control to create snapshots of your work before and after major changes</li>
+</ul>
+<p>When reviewing the plan, you might consider questions such as:</p>
+<ul>
+<li>Does the plan <strong>reveal gaps in your understanding</strong> that need to be resolved before moving ahead? If you read the plan and think to yourself, “Wow, this is more complicated than I imagined!”, then this might be the case. You might want to cancel the plan or rethink your approach.</li>
+<li>Does the plan <strong>resolve ambiguities</strong> in the initial prompt in ways that align with your expectations? If not, update the plan with additional specificity.</li>
+<li>Does the plan make <strong>appropriate implementation choices</strong> (programming language, dependencies, data sources, etc.)? You may need to <em>steer</em> the coding agent toward tools and approaches you prefer.</li>
 </ul>
 </section>
 <section id="switching-to-plan-mode" class="level2">
 <h2 class="anchored" data-anchor-id="switching-to-plan-mode">Switching to plan mode</h2>
-<p>In opencode, to switch from the “build” mode (default when you start opencode) to the “plan” mode you can use the <kbd>tab</kbd> key.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<p>In OpenCode, you can use the <kbd>tab</kbd> key to switch between Plan and Build modes. Build mode is the default when you start OpenCode. The active mode appears right below the cursor in the prompt input area.</p>
+<p>For complex, multi-step problem planning, it is advisable to leverage the most advanced model available, keeping token costs in mind. After the initial steps are laid out, transitioning to a less advanced model to execute those predefined tasks can lead to a more efficient use of your resources.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Model Choice
+<span class="screen-reader-only">Tip</span>Models for Planning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For complex, multi-step problem planning, it is advisable to leverage the most advanced model available, keeping token costs in mind. After the initial steps are laid out, transitioning to a less advanced model to execute those predefined tasks can lead to a more efficient use of your resources.</p>
+<p>After toggling between modes, <strong>always check which model you are using</strong>, as Plan and Build modes can use different models. For the purposes of this workshop, we generally recommend planning with <strong>Gemini 3.1 Pro (Custom Tools)</strong> and building with <strong>Gemini 3.5 Flash</strong>. But you can always explore other combinations!</p>
 </div>
 </div>
 </section>
 <section id="planning-our-noaa-tides-example" class="level2">
 <h2 class="anchored" data-anchor-id="planning-our-noaa-tides-example">Planning our NOAA tides example</h2>
-<p>Let’s restart our NOAA tides example, this time leveraging Plan mode.</p>
+<p>Let’s revisit the California tides analysis from the previous lesson and see what it would be like to generate this code using planning mode. (Since you already generated this code, <strong>you don’t need to follow the steps</strong> here. This is just a demonstration of Plan mode).</p>
+<p>To use Plan mode:</p>
 <ol type="1">
-<li>Start a new session <code>/new</code></li>
-<li>Switch to Plan mode <kbd>tab</kbd></li>
-<li>Select your model <code>/models</code> and choose the <code>Gemini 3.1 Pro</code> model</li>
+<li>Start OpenCode in the <code>noaa-tides</code> project folder.</li>
+<li>Switch to Plan mode by pressing the <kbd>tab</kbd> key until you see “Plan” below the text input cursor.</li>
+<li>Select your planning model with the <code>/models</code> command and choose the <strong>Gemini 3.1 Pro (Custom Tools)</strong> model.</li>
 </ol>
+<p>To kick off the planning process, enter your initial prompt:</p>
+<blockquote class="blockquote">
+<p>I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/03-plan_mode-prompt1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Plan mode example - First prompt answer"><img src="../images/03-plan_mode-prompt1.png" class="img-fluid figure-img" style="width:110.0%" alt="Plan mode prompt answer showing the various proposed steps and supplemental information requests"></a></p>
+<figcaption>Plan mode example - First prompt answer</figcaption>
+</figure>
+</div>
+<p>In this case, OpenCode responded with a set of clarifying questions. We can address these questions individually or revise our initial prompt to include the missing details:</p>
+<blockquote class="blockquote">
+<p>Download data for the <strong>last decade</strong>, use the <strong>MLLW datum</strong> as reference, use the <strong>metric system</strong> for units, create a data folder with a subfolder data-raw in it and save the downloaded data in this subfolder. Write a Python script to download the data and save it in a code folder at the top of our project folder</p>
+</blockquote>
+<p>And here is the updated plan:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/03-plan_mode-prompt2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Plan mode example - Updated plan"><img src="../images/03-plan_mode-prompt2.png" class="img-fluid figure-img" style="width:85.0%" alt="Plan mode prompt answer update to incorporate the new information"></a></p>
+<figcaption>Plan mode example - Updated plan</figcaption>
+</figure>
+</div>
+<p>The plan looks fine – isn’t it useful to see what the agent would do before it does it? We’re ready to build:</p>
+<ol type="1">
+<li>Switch to <strong>Build mode</strong> by pressing the <kbd>tab</kbd> key</li>
+<li>Enter a prompt to kick off the build process: “The plan looks good. Go ahead!”</li>
+</ol>
+<p>That’s it. Now it’s your turn to try Plan mode.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Challenge: Enhancing your Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>As before, please complete this exercise individually but discuss issues and results in small groups (2-5 people).</em></p>
+<p>Perhaps you’ve heard about a cool new package manager for Python called <a href="https://docs.astral.sh/uv/">uv</a>, and you’d like to use it to manage dependencies for your NOAA tides project. For this exercise, use Plan mode to convert your project to using uv for its dependencies:</p>
+<ol type="1">
+<li>Make sure you are running OpenCode in the <code>noaa-tides</code> folder. If you have an existing OpenCode session, start a new OpenCode session with <code>/new</code>.</li>
+<li>Enter Plan mode and switch to the <strong>Gemini 3.1 Pro (Custom Tools)</strong> model if necessary.</li>
+<li>Make a plan to “migrate this project to uv, for dependency management”.</li>
+<li>Switch to build mode and switch to the <strong>Gemini 3.5 Flash</strong> model.</li>
+<li>Execute the plan</li>
+<li>Make sure you commit your work. (You can also add that to the plan!)</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="session-management" class="level2">
+<h2 class="anchored" data-anchor-id="session-management">Session management</h2>
+<p>In the exercise above, we started Plan mode from a new <strong>session</strong>, which we create with the <code>/new</code> command. A session is a single, continuous conversation with the coding agent: your prompts, the agent’s replies, and every file it read or wrote along the way. Everything in the session makes up the agent’s <em>context</em> – the information it carries with it from one prompt to the next. That’s why the agent “remembers” the datum and the units you specified ten prompts ago.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -243,78 +301,26 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>After toggling between modes, always check which model your are using as Plan and Build modes can use different model.</p>
+<p>Long session gets slower and more expensive: the entire conversation is sent to the model each time you hit Enter.</p>
 </div>
 </div>
-<section id="demo" class="level3">
-<h3 class="anchored" data-anchor-id="demo">Demo</h3>
-<section id="here-is-a-prompt-example" class="level4">
-<h4 class="anchored" data-anchor-id="here-is-a-prompt-example">Here is a prompt example:</h4>
-<blockquote class="blockquote">
-<p>I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.</p>
-</blockquote>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="../images/03-plan_mode-prompt1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Plan mode example - Frist prompt answer"><img src="../images/03-plan_mode-prompt1.png" class="img-fluid figure-img" style="width:110.0%" alt="Plan mode prompt answer showing the various proposed steps and supplemtal infomration requests"></a></p>
-<figcaption>Plan mode example - Frist prompt answer</figcaption>
-</figure>
-</div>
-</section>
-<section id="iterate-by-providing-more-information" class="level4">
-<h4 class="anchored" data-anchor-id="iterate-by-providing-more-information">Iterate by providing more information:</h4>
-<blockquote class="blockquote">
-<p>Download data for the last decade, use the MLLW datum as reference, use the metric system for units, create a data folder with a subfolder data-raw in it and save the downloaded data in this subfolder. Write a Python script to download the data and save it in a code folder at the top of our project folder</p>
-</blockquote>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="../images/03-plan_mode-prompt2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Plan mode example - Updated plan"><img src="../images/03-plan_mode-prompt2.png" class="img-fluid figure-img" style="width:85.0%" alt="Plan mode prompt answer update to incorporate the new information"></a></p>
-<figcaption>Plan mode example - Updated plan</figcaption>
-</figure>
-</div>
-</section>
-<section id="and-repeat-until-you-are-satisfy" class="level4">
-<h4 class="anchored" data-anchor-id="and-repeat-until-you-are-satisfy">…and repeat until you are satisfy!</h4>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Your turn!</p>
-<p><em>As before, please complete this exercise individually but discuss results in small groups (2-5 people).</em></p>
-<section id="our-ask" class="level4">
-<h4 class="anchored" data-anchor-id="our-ask">Our ask</h4>
-<p>Making sure in you are in Plan mode:</p>
-<ol type="1">
-<li>Think about the various steps your workflow needs to accomplish our task</li>
-<li>Refine the latest prompt you used previously (or start a new one)</li>
-<li>Enter your prompt</li>
-<li>Provide supplemental information</li>
-<li>Iterate until you are satisfied</li>
-<li>Switch to Build mode and implement the plan</li>
-<li>Inspect the results (code, data, outputs) and iterate/adjust as needed</li>
-<li>Don’t forget to commit relevant files to your git history before rerunning your workflow</li>
-</ol>
-<p><strong>As you are iterating after implementation, it is recommended to switch back to plan mode to iterate on the plan first, then go back to Build mode. It helps to have the plan kept up-to-date</strong></p>
-</section>
-</div>
-</div>
-</section>
-</section>
+<p>Sessions are saved to disk, so quitting OpenCode doesn’t throw yours away. To pick up where you left off:</p>
+<ul>
+<li>Run <code>opencode --continue</code> (or <code>opencode -c</code>) to reopen the most recent session in the current project folder.</li>
+<li>Or start OpenCode normally and use the <code>/sessions</code> command to list your past sessions and select the one you want.</li>
+</ul>
+<p>Resuming is useful when you’re returning to a task you left half-finished, like a very detailed planning session. Starting fresh with <code>/new</code> is usually the better choice when you switch to a new task, when the agent seems confused or keeps circling back to earlier (now-irrelevant) decisions, or when the session has simply grown long. A clean context is cheaper, faster, and easier for the model to work with.</p>
+<p>This connects directly to Plan mode. Planning is a conversation: you brainstorm, ask questions, change your mind, and reject a few approaches before settling on one. All of that dead-end discussion stays in the context when you switch to Build mode. If your planning session runs long or eats a lot of context, a good practice is to <strong>ask the agent to write the plan to a markdown file</strong> (for example, <code>plan.md</code> or <code>docs/plan-uv-migration.md</code>), then start a new session with <code>/new</code> and prompt the agent to implement the plan from that file.</p>
 </section>
 <section id="project-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="project-documentation">Project documentation</h2>
 <p>Before we end our work on this project for the day, we want to make sure to document what we have done so far.</p>
 <ol type="1">
-<li>Check that the current folder and files structure of your project matches what you had in mind</li>
+<li>Check that the current folder and file structure of your project matches what you had in mind</li>
 <li>Make sure that all the scripts that have been created have been committed to your git history</li>
 <li>Write a concise <code>README.md</code> with information about the project: goals, file structure, and how to run the code are good elements to include. Add and commit this file to your git history.</li>
 </ol>
-<p><strong>All the information you are adding in your project directory will be included in the context that will be send to the model with your prompts, so it is beneficial to add as much information as you have while working on your project.</strong></p>
+<p><strong>All the information you are adding in your project directory will be included in the context that is sent to the model with your prompts, so it is beneficial to add as much information as you have while working on your project.</strong></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -325,12 +331,9 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Opencode can assist you with all these various steps!</p>
+<p>OpenCode can assist you with all these various steps!</p>
 </div>
 </div>
-</section>
-<section id="sessions-management" class="level2">
-<h2 class="anchored" data-anchor-id="sessions-management">Sessions management</h2>
 
 
 </section>
