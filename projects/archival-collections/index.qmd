@@ -4,7 +4,7 @@ title: "Multimodal Met Museum Semantic Networks"
 
 ## Use case: Extracting semantic concepts from museum objects and visualizing connections
 
-Historically, analyzing visual patterns or latent themes across large-scale physical collections was a manual, slow task reserved for specialists. Traditional computer vision (like computing color histograms or edge detection) and natural language processing (like TF-IDF or keyword matching) often miss the "vibe" or deeper contextual and symbolic connections of art. 
+Historically, analyzing visual patterns or latent themes across large-scale physical collections was a manual, slow task reserved for specialists. Traditional computer vision (such as computing color histograms or edge detection) and natural language processing (such as TF-IDF or keyword matching) often miss the "vibe" or deeper contextual and symbolic connections of art. 
 
 Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform "semantic feature extraction" (essentially a reverse CLIP approach) to describe and tag visual elements into structured natural language concepts, and map these interconnections into an interactive network similar to this [example](https://jairomelo.com/met-drawings-network/art_semantic_network.html).
 
@@ -26,7 +26,7 @@ Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform "sema
     -   If using Python: favor `requests`, `python-dotenv`, `openai`, and `pyvis` for interactive network visualization.
     -   If using R: favor `httr2`, `dotenv`, `openai`, and `visNetwork` or `networkD3` for the interactive network.
 - **Data Storage:** Store images in a local folder (e.g., `images/`) and metadata in CSV files (e.g., `collection_metadata.csv` and `enriched_collection.csv`).
-- **AGENTS.md:** You can create an `AGENTS.md` file to guide your agent's behavior. You can use the [`_AGENTS.md`](_AGENTS.md) as a starting point. Rename the file to `AGENTS.md` and add your own instructions for your agent.
+- **AGENTS.md:** You can create an `AGENTS.md` file to guide your agent's behavior. You can use [`_AGENTS.md`](_AGENTS.md) as a starting point. Rename the file to `AGENTS.md` and add your own instructions for your agent.
 
 ### Ask
 
@@ -37,25 +37,25 @@ Using a multimodal Vision-Language Model (VLM) like Gemini, we can perform "sema
         -   Our goal is to extract semantic concepts from the paintings. What are some ways we can do this?
         -   We want to retrieve the following metadata for each image: title, artist, year, description. What other metadata might be useful for our analysis?
         -   What criteria should we use to select the image sample?
-    -   Ensure your agent writes clean, reproducible code to download images to a local folder (e.g., `images/`) and save basic metadata (title, artist, year, medium) in a CSV file.
-    -   Switch your agent to `build` and instruct it to write a script that securely loads the Gemini API key from `.env`.
-    -   Instruct your agent to generate an script that iterate over the images, sending both the image file and its metadata to Gemini. Instruct the model to return a structured JSON response extracting:
+    -   Ensure your agent writes clean, reproducible code to download images to a local folder (e.g., `images/`) and save basic metadata (title, artist, year, medium) to a CSV file.
+    -   Switch your agent to `build` mode and instruct it to write a script that securely loads the Gemini API key from `.env`.
+    -   Instruct your agent to generate a script that iterates over the images, sending both the image file and its metadata to Gemini. Instruct the model to return a structured JSON response extracting:
         -   **Dominant palette:** 3 distinct visual colors (e.g., "warm gold", "deep indigo").
         -   **Visual concepts:** Primary subjects/objects visible in the work.
         -   **Mood/Vibe:** The overall emotional tone (e.g., "melancholic", "serene", "triumphant").
         -   **Research themes:** Latent themes (e.g., "social status", "nature", "domesticity").
-    -   Provide the agent with the service url: `https://litellm.dreamlab.ucsb.edu/` and intruct it to use the `openai` library to send requests.
+    -   Provide the agent with the service URL `https://litellm.dreamlab.ucsb.edu/` and instruct it to use the `openai` library to send requests.
     -   Combine Gemini's output with the original metadata into an enriched dataset (e.g., `enriched_collection.csv`).
 
 -   **Session 2: Mapping the Semantic Web**
-    -   Work with your agent `plan` to write a visualization script using the enriched dataset.
+    -   Work with your agent in `plan` mode to write a visualization script using the enriched dataset.
     -   **Define your network logic & edge weights:** There are two great ways to model this network:
-        -   **Option A: Bipartite Graph (Artworks connected to Tags):** Nodes are *both* Artworks and Semantic Tags (colors, vibes, themes). Edges are unweighted, representing a binary match (e.g. Artwork $A$ has tag "melancholic").
+        -   **Option A: Bipartite Graph (Artworks connected to Tags):** Nodes are *both* Artworks and Semantic Tags (colors, vibes, themes). Edges are unweighted, representing a binary match (e.g., Artwork $A$ has tag "melancholic").
         -   **Option B: Projected Graph (Artworks connected to Artworks):** Nodes are *only* Artworks. An edge is drawn directly between Artwork $A$ and Artwork $B$. The **edge weight** is the number of shared semantic tags between them (e.g., if both share "warm gold", "nature", and "serene", the weight is 3). Thicker lines represent stronger visual or thematic links!
     -   Build an interactive HTML network graph where:
-        -   **Nodes** represent either the artworks or the extracted concepts depending on your chosen network logic above.
+        -   **Nodes** represent either the artworks or the extracted concepts, depending on your chosen network logic above.
         -   **Edges (lines)** represent connections, optionally adjusting the line thickness (weight) based on the number of shared attributes if using Option B.
         -   **Styling:** Color-code artwork nodes by historical century or artistic movement, and attribute nodes by category.
-    -   Before executing the plan, request you agent for some calculations, for instance, the pairwise connections between artworks based on shared tags, or even if the resulting network is too dense and needs filtering (e.g., only show edges with weight > 1). 
+    -   Before executing the plan, ask your agent for some calculations—for instance, the pairwise connections between artworks based on shared tags, or whether the resulting network is too dense and needs filtering (e.g., only show edges with weight > 1). 
     -   Open the generated HTML and explore the interactive graph. Look for unexpected connections—such as a 17th-century oil painting and a 20th-century piece clustering together based on shared mood or latent research themes.
     -   Include this interactive visualization in your Quarto document, add your findings and analysis, and publish the final site to GitHub Pages.
