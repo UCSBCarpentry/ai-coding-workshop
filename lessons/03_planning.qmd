@@ -81,7 +81,7 @@ To kick off the planning process, enter your initial prompt:
 
 > I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.
 
-![Plan mode example - First prompt answer](../images/03-plan_mode-prompt1.png){fig-alt="Plan mode prompt answer showing the various proposed steps and supplemental information requests" width=110%}
+![Plan mode example - First prompt answer](../images/03-plan_mode-prompt1.png){fig-alt="Plan mode prompt answer showing the various proposed steps and supplemental information requests"}
 
 In this case, OpenCode responded with a set of clarifying questions. We can
 address these questions individually or revise our initial prompt to include the
@@ -95,7 +95,7 @@ missing details:
 
 And here is the updated plan:
 
-![Plan mode example - Updated plan](../images/03-plan_mode-prompt2.png){fig-alt="Plan mode prompt answer update to incorporate the new information" width=85%}
+![Plan mode example - Updated plan](../images/03-plan_mode-prompt2.png){fig-alt="Plan mode prompt answer update to incorporate the new information"}
 
 The plan looks fine -- isn't it useful to see what the agent would do before it
 does it? We're ready to build:
