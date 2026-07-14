@@ -3,29 +3,63 @@ title: "Introduction"
 ---
 
 Our overarching goal in this workshop is to learn how to use AI coding tools to
-make your **research code more rigorous**. 
+make your **research code more rigorous**.
 
-This is a fast-moving topic. We don’t claim to know everything. Some learners
+This is a fast-moving topic. We don't claim to know everything. Some learners
 may have more experience with AI-assisted coding than some instructors. We have
 attempted to organize settled best practices in this area to the extent that
 they exist, as we understand them.
 
+## A Short Overview of LLMs
 
-## AI Tools for Research
+Large Language Models (LLMs) are the foundation of current generative AI
+tools. At a very high level, LLMs are *next word predictors*. They are systems
+that take a sequence of **tokens** as input (typically representing some text),
+and generate the next sequence of tokens that is likely to follow. It turns out
+that by deliberately crafting the input (the **prompt**), LLMs can be used for
+much more than completing sentences: they can also be used to generate responses
+to questions or to write code.
 
-There are many ways you might use generative AI tools (i.e., LLMs) in research.
-Probably the simplest and most common approach is to use an AI "chat" interface
-to answer basic questions. For more complex scenarios like data analysis, you
-might be tempted to upload your research data to an AI chat system and start
-asking questions about it -- to prompt your way through your analysis. This is a
-bad idea for several reasons.  First, the results would be unreliable, they
-might include "hallucinations", and you might be unintentionally sharing
-sensitive data with third parties (model providers may use your data to train
-future models). **Your analysis also would not be reproducible**, a cornerstone
-of modern, computational open science. The approach we will emphasize in this
-workshop is to use AI tools to generate code rather than the analysis
-itself. This approach takes advantage of AI's strengths without (necessarily)
-sacrificing in terms of scientific rigor.
+:::{.callout-note}
+
+### Tokens
+
+LLMs don't work with text directly. Internally, they operate on tokens, which
+are units somewhere between an (alphanumeric) character and a word. A word like
+"strawberry" might be represented by just a few tokens (for example, "str",
+"aw", and "berry"). Because they don't "see" individual characters, LLMs have
+historically done a bad job at simple questions like, "How many 'r's are there
+in the word 'strawberry'?"
+
+:::
+
+LLMs are computationally intensive and usually require specialized hardware to
+run. While you can run smaller LLMs on a personal computer, current
+state-of-the-art models (e.g., Google's Gemini models, OpenAI's Codex,
+Anthropic's Opus) are far too large to run on a single machine. Further, the
+**weights** for these commercial models are not openly shared, so you can't run
+them even if you have the computing capacity. Model providers, like Google,
+OpenAI, and Anthropic, run LLMs in their data centers and provide access to
+(paying!) customers through web-based APIs. The costs for AI services are high
+and will likely rise in the future. Our hope is that smaller, **open weights**
+LLMs will become a realistic option for AI-assisted coding in the next few
+years.
+
+## LLMs as a Data Analysis Tool
+
+There are many ways you might use LLMs in research. Probably the simplest and
+most common approach is to use an AI "chat" interface to answer basic questions.
+For more complex scenarios like data analysis, you might be tempted to upload
+your research data to an AI chat system and start asking questions about it --
+to prompt your way through your analysis. This is a bad idea for several
+reasons. The results would be unreliable, and they might include
+"hallucinations". You might also be unintentionally sharing sensitive data with
+third parties (model providers may use your data to train future models). And
+**your analysis would not be reproducible**, a cornerstone of modern,
+computational open science. The approach we will emphasize in this workshop is
+to use AI tools to generate code rather than the analysis itself. This approach
+takes advantage of AI's strengths without (necessarily) sacrificing scientific
+rigor.
 
 ::: {#fig-flowcharts layout="[2,3]"}
 
@@ -57,13 +91,12 @@ into a "chat" interface, except it *acts* on the response by invoking the tools
 the agent has access to. Coding agents include tools for doing things like:
 reading and writing files, running bash commands, and searching the file system.
 
-
 **What is a tool?** You can think of a tool as some functionality that the agent
 can perform, like "write to file". The agent includes a list of tool
 descriptions in its requests to the LLM; in turn, the LLM may respond by
 *invoking* a tool, supplying the inputs the tool needs to run. The agent is
 responsible for actually running the tool with the input from the LLM, and
-returning any output back to the LLM. 
+returning any output back to the LLM.
 
 **What is an LLM model provider?** You don't need to run LLMs on your own
 machine to use them. Instead, you access them over the internet through
