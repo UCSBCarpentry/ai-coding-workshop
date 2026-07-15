@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a3fdc2df2c01662e6f3a042b88ed1c09.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dd70fe55a593899e760a01723e5db8e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -234,7 +234,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Let’s revisit the California tides analysis from the previous lesson and see what it would be like to generate this code using planning mode. (Since you already generated this code, <strong>you don’t need to follow the steps</strong> here. This is just a demonstration of Plan mode).</p>
 <p>To use Plan mode:</p>
 <ol type="1">
-<li>Start OpenCode in the <code>noaa-tides</code> project folder.</li>
+<li>Start OpenCode in the <code>noaa-tides</code> project folder. If you have an existing OpenCode session, start a new OpenCode session with <code>/new</code>.</li>
 <li>Switch to Plan mode by pressing the <kbd>tab</kbd> key until you see “Plan” below the text input cursor.</li>
 <li>Select your planning model with the <code>/models</code> command and choose the <strong>Gemini 3.1 Pro (Custom Tools)</strong> model.</li>
 </ol>
@@ -276,15 +276,28 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container callout-body">
 <p><em>As before, please complete this exercise individually but discuss issues and results in small groups (2-5 people).</em></p>
-<p>Perhaps you’ve heard about a cool new package manager for Python called <a href="https://docs.astral.sh/uv/">uv</a>, and you’d like to use it to manage dependencies for your NOAA tides project. For this exercise, use Plan mode to convert your project to using uv for its dependencies:</p>
+<p>Perhaps you’ve heard about a cool new package manager for Python called <a href="https://docs.astral.sh/uv/">uv</a>, and you’d like to use it to manage dependencies for your NOAA tides project. You also realized that with the number of files growing in your project folder, you might want to reorganize it. For this exercise, use Plan mode to convert your project to using uv for its dependencies:</p>
 <ol type="1">
 <li>Make sure you are running OpenCode in the <code>noaa-tides</code> folder. If you have an existing OpenCode session, start a new OpenCode session with <code>/new</code>.</li>
 <li>Enter Plan mode and switch to the <strong>Gemini 3.1 Pro (Custom Tools)</strong> model if necessary.</li>
 <li>Make a plan to “migrate this project to uv, for dependency management”.</li>
+<li>Inspect and iterate.</li>
+<li>Add reorganizing our files with all the scripts in a “code” folder and plots in a “output” folder.</li>
+<li>Inspect and iterate.</li>
 <li>Switch to build mode and switch to the <strong>Gemini 3.5 Flash</strong> model.</li>
 <li>Execute the plan</li>
 <li>Make sure you commit your work. (You can also add that to the plan!)</li>
 </ol>
+<section id="explore-further" class="level4">
+<h4 class="anchored" data-anchor-id="explore-further">Explore further</h4>
+<p>A few ideas:</p>
+<ul>
+<li>Refactor your code to generate separate CSV files for each datum.</li>
+<li>Select a single station and analyze changes across different years.</li>
+<li>Create an interactive data visualization using Plotly.</li>
+<li>Explore NOAA metadata to know what type of information is available for stations? For example, could we get latitude/longitude to make a map?</li>
+</ul>
+</section>
 </div>
 </div>
 </section>
@@ -318,7 +331,7 @@ Warning
 <ol type="1">
 <li>Check that the current folder and file structure of your project matches what you had in mind</li>
 <li>Make sure that all the scripts that have been created have been committed to your git history</li>
-<li>Write a concise <code>README.md</code> with information about the project: goals, file structure, and how to run the code are good elements to include. Add and commit this file to your git history.</li>
+<li>Write a concise <code>README.md</code> with information about the project: goals, file structure, and how to run the scripts are good elements to include. Add and commit this file to your git history.</li>
 </ol>
 <p><strong>All the information you are adding in your project directory will be included in the context that is sent to the model with your prompts, so it is beneficial to add as much information as you have while working on your project.</strong></p>
 <div class="callout callout-style-default callout-note callout-titled">
