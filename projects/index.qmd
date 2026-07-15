@@ -2,7 +2,7 @@
 title: "Coding Projects"
 ---
 
-We have prepared several project to work on in groups on the second and third
+We have prepared several projects to work on in groups on the second and third
 day of the workshop.
 
 ## Multimodal Met Museum Semantic Networks
@@ -22,7 +22,7 @@ An exploratory analysis using geospatial data in R to visualize and overlay
 [Project plan](geo-viz/) 
 -->
 
-## The bikeability of the Santa Barbara County
+## The Bikeability of Santa Barbara County
 
 Computes the steepness of Santa Barbara County using a Digital Elevation Model
 (DEM) and US Census Group Blocks to create a map showing the median slope of
@@ -35,3 +35,9 @@ each area.
 This project explores two decades of long-term fish density data in the Santa Barbara Channel kelp forests to uncover species dominance, population trends over time, and the ecological impact of Marine Protected Areas.
 
 [Project plan](fish/)
+
+## Propose your own data exploration project!
+
+Perhaps you already have a project in mind, or you'd prefer a more open-ended
+exploration of a dataset. You'll have an opportunity (**on the second day of the
+workshop**) to "pitch" a group project idea. 
