@@ -30,3 +30,8 @@ each area.
 
 [Project plan](bikability/)
 
+## The Fish Abundance in the Kelp Forests of the Santa Barbara Channel
+
+This project explores two decades of long-term fish density data in the Santa Barbara Channel kelp forests to uncover species dominance, population trends over time, and the ecological impact of Marine Protected Areas.
+
+[Project plan](fish/)
