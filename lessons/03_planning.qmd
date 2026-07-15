@@ -123,12 +123,21 @@ convert your project to using uv for its dependencies:
    necessary.
 1. Make a plan to "migrate this project to uv, for dependency management".
 1. Inspect and iterate.
-1. add reorganizing files for this project with all the scripts in a "code" folder and plots in a "output" folder.
+1. Add reorganizing our files with all the scripts in a "code" folder and plots in a "output" folder.
 1. Inspect and iterate.
 1. Switch to build mode and switch to the **Gemini 3.5 Flash** model.
 1. Execute the plan
 1. Make sure you commit your work. (You can also add that to the plan!)
 
+
+#### Explore further
+
+A few ideas:
+
+- Refactor your code to generate separate CSV files for each datum.
+- Select a single station and analyze changes across different years.
+- Create an interactive data visualization using Plotly.
+- Explore NOAA metadata to know what type of information is available for stations? For example, could we get latitude/longitude to make a map?
 
 :::
 
