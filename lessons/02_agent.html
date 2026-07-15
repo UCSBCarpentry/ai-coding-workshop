@@ -204,6 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#our-first-prompt" id="toc-our-first-prompt" class="nav-link" data-scroll-target="#our-first-prompt">Our First Prompt</a></li>
   <li><a href="#agent-permissions" id="toc-agent-permissions" class="nav-link" data-scroll-target="#agent-permissions">Agent Permissions</a></li>
   <li><a href="#opencode-commands" id="toc-opencode-commands" class="nav-link" data-scroll-target="#opencode-commands">OpenCode Commands</a></li>
+  <li><a href="#resuming-an-opencode-session" id="toc-resuming-an-opencode-session" class="nav-link" data-scroll-target="#resuming-an-opencode-session">Resuming an OpenCode Session</a></li>
   <li><a href="#switching-models" id="toc-switching-models" class="nav-link" data-scroll-target="#switching-models">Switching models</a></li>
   </ul></li>
   <li><a href="#starting-a-project" id="toc-starting-a-project" class="nav-link" data-scroll-target="#starting-a-project">Starting a Project</a>
@@ -266,7 +267,7 @@ Note
 <section id="the-visual-studio-code-interface" class="level3">
 <h3 class="anchored" data-anchor-id="the-visual-studio-code-interface">The Visual Studio Code Interface</h3>
 <p>We will mainly use the <strong>VS Code Web</strong> interface, both to run our coding agent and to review files. VS Code Web is a browser-based variant of the VS Code editor.</p>
-<p>The VS Code Interface includes a file <strong>Explorer</strong> on the left side. When it starts, the Explorer shows the contents of an empty default directory (<code>~/workspace</code>). There is also an Editor Area, that shows a tab with a welcome message at startup. You can close the startup message tab.</p>
+<p>The VS Code Interface includes a file <strong>Explorer</strong> on the left side. When it starts, the Explorer shows the contents of an empty default directory (<code>~/workspace</code>). There is also an Editor Area that shows a tab with a welcome message at startup. You can close the startup message tab.</p>
 <p>VS Code also includes AI-assisted coding features (Copilot), but we aren’t going to use them in this workshop. You can close the Copilot panel on the right side. Instead, we will run a coding agent, OpenCode, in a <strong>terminal window</strong> in the Editor Area.</p>
 <div id="fig-vscode-terminal" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
@@ -329,7 +330,7 @@ Figure&nbsp;1: Creating a new terminal in VS Code (click to expand screenshots)
 <figcaption>Entering your API key</figcaption>
 </figure>
 </div>
-<p><strong>3. Select a model.</strong> Choose <strong>Gemini 3.5 Flash</strong> from the list of available models. You can use (Ctrl+F) to “favorite” a model. We will use both Gemini 3.5 Flash and Gemini 3.1 Pro (Custom Tools) – you might want to favorite both of these to make switching models a little easier.</p>
+<p><strong>3. Select a model.</strong> Choose <strong>Gemini 3.5 Flash</strong> from the list of available models. You can use <kbd>Ctrl+F</kbd> to “favorite” a model. We will use both Gemini 3.5 Flash and Gemini 3.1 Pro (Custom Tools) – you might want to favorite both of these to make switching models a little easier.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="../images/opencode_connect_model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Selecting the Gemini 3.5 Flash model"><img src="../images/opencode_connect_model.png" class="img-fluid figure-img" style="width:80.0%" alt="OpenCode model selection dropdown with Gemini 3.5 Flash highlighted"></a></p>
@@ -376,13 +377,52 @@ Figure&nbsp;1: Creating a new terminal in VS Code (click to expand screenshots)
 <h3 class="anchored" data-anchor-id="opencode-commands">OpenCode Commands</h3>
 <p>You can type “<code>/</code>” followed by a command name to configure OpenCode or perform various actions. You can find a complete list of commands in the <a href="https://opencode.ai/docs/tui/#commands">OpenCode documentation</a>.</p>
 <p>The commands we will use in the workshop are listed here:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/connect</code></td>
+<td>Add a model provider. Allows you to select from available providers and add their API keys.</td>
+</tr>
+<tr class="even">
+<td><code>/exit</code></td>
+<td>Exit OpenCode. (You can also use <code>/q</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>/help</code></td>
+<td>Display help information</td>
+</tr>
+<tr class="even">
+<td><code>/models</code></td>
+<td>List and switch between models</td>
+</tr>
+<tr class="odd">
+<td><code>/new</code></td>
+<td>Start a new session (fresh context)</td>
+</tr>
+<tr class="even">
+<td><code>/sessions</code></td>
+<td>Switch between OpenCode sessions.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resuming-an-opencode-session" class="level3">
+<h3 class="anchored" data-anchor-id="resuming-an-opencode-session">Resuming an OpenCode Session</h3>
+<p>If you accidentally quit OpenCode (for example, by closing the VS Code Web terminal window), you can get back to your previous session:</p>
 <ul>
-<li><code>/connect</code> - Add a model provider. Allows you to select from available providers and add their API keys.</li>
-<li><code>/exit</code> - Exit OpenCode. (You can also use <code>/q</code>)</li>
-<li><code>/help</code> - Display help information</li>
-<li><code>/models</code> - List and switch between models</li>
-<li><code>/new</code> - Start a new session (fresh context)</li>
-<li><code>/sessions</code> - Switch between OpenCode sessions.</li>
+<li>Open a new terminal window, if necessary.</li>
+<li>Use <code>cd</code> to set the working directory for the previous session.</li>
+<li>Start OpenCode with <code>opencode -c</code> (or <code>opencode --continue</code>).</li>
 </ul>
 </section>
 <section id="switching-models" class="level3">
@@ -408,7 +448,7 @@ Figure&nbsp;1: Creating a new terminal in VS Code (click to expand screenshots)
 <li>Gemini 3 Flash / Qwen3-Coder-Next</li>
 <li>Gemma 4 / GPT-OSS-120b</li>
 </ul>
-<p>To switch models, type <code>/models</code> and press Enter. Type the name of the model you want to filter the list, and use the arrow keys to move through the list (models are grouped by provider). Press Enter to select the model. OpenCode will use the selected model for the rest of the session. The active model appears at the bottom of the OpenCode interface.</p>
+<p>To switch models, type <code>/models</code> and press Enter. Type the name of the model to filter the list, and use the arrow keys to move through the list (models are grouped by provider). Press Enter to select the model. OpenCode will use the selected model for the rest of the session. The active model appears at the bottom of the OpenCode interface.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
