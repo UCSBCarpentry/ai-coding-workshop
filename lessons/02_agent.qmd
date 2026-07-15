@@ -42,7 +42,7 @@ editor.
 
 The VS Code Interface includes a file **Explorer** on the left side. When it
 starts, the Explorer shows the contents of an empty default directory (`~/workspace`).
-There is also an Editor Area, that shows a tab with a welcome message at
+There is also an Editor Area that shows a tab with a welcome message at
 startup. You can close the startup message tab.
 
 VS Code also includes AI-assisted coding features (Copilot), but we aren't going
@@ -67,6 +67,7 @@ To create a terminal window in the Editor Area:
 
 You can also use VS Code's **Command Palette** (⇧⌘P) and run **Terminal: Create
 New Terminal in Editor Area**. Next we'll start OpenCode.
+
 
 ## Starting with OpenCode
 
@@ -97,7 +98,7 @@ accessing your API key. Once you have it, paste the key into OpenCode and press
 ![Entering your API key](../images/opencode_connect_apikey.png){.lightbox width="80%" fig-alt="OpenCode prompt entering an API key"}
 
 **3. Select a model.** Choose **Gemini 3.5 Flash** from the list of available
-models. You can use (Ctrl+F) to "favorite" a model. We will use both Gemini 3.5
+models. You can use <kbd>Ctrl+F</kbd> to "favorite" a model. We will use both Gemini 3.5
 Flash and Gemini 3.1 Pro (Custom Tools) -- you might want to favorite
 both of these to make switching models a little easier.
 
@@ -163,13 +164,23 @@ documentation](https://opencode.ai/docs/tui/#commands).
 
 The commands we will use in the workshop are listed here:
 
-- `/connect` - Add a model provider. Allows you to select from available
-  providers and add their API keys.
-- `/exit` - Exit OpenCode. (You can also use `/q`)
-- `/help` - Display help information 
-- `/models` - List and switch between models
-- `/new` - Start a new session (fresh context)
-- `/sessions` - Switch between OpenCode sessions.
+| Command     | Description |
+|-------------|-------------|
+| `/connect`  | Add a model provider. Allows you to select from available providers and add their API keys. |
+| `/exit`     | Exit OpenCode. (You can also use `/q`) |
+| `/help`     | Display help information |
+| `/models`   | List and switch between models |
+| `/new`      | Start a new session (fresh context) |
+| `/sessions` | Switch between OpenCode sessions. |
+
+### Resuming an OpenCode Session
+
+If you accidentally quit OpenCode (for example, by closing the VS Code Web
+terminal window), you can get back to your previous session:
+
+- Open a new terminal window, if necessary.
+- Use `cd` to set the working directory for the previous session.
+- Start OpenCode with `opencode -c` (or `opencode --continue`).
 
 ### Switching models
 
@@ -197,8 +208,8 @@ Ordering these models by their coding capability (roughly):
 - Gemma 4 / GPT-OSS-120b
 
 
-To switch models, type `/models` and press Enter. Type the name of the model you
-want to filter the list, and use the arrow keys to move through the list (models
+To switch models, type `/models` and press Enter. Type the name of the model to
+filter the list, and use the arrow keys to move through the list (models
 are grouped by provider). Press Enter to select the model. OpenCode will use the
 selected model for the rest of the session. The active model appears at the
 bottom of the OpenCode interface.
