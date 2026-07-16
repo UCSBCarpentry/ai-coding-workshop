@@ -91,13 +91,15 @@ press <kbd>Enter</kbd>. Start typing `dream` to filter the list, then select
 
 ![Selecting the DREAM Lab AI Gateway provider](../images/opencode_connect_provider.png){.lightbox width="80%" fig-alt="OpenCode model selection dropdown with DREAM Lab AI Gateway highlighted"}
 
-**2. Enter your API key.** In the workshop, you will receive instruction for
-accessing your API key. Once you have it, paste the key into OpenCode and press
-<kbd>Enter</kbd> to submit.
+**2. Create an API key.** Use the web page (
+[https://litellm.dreamlab.ucsb.edu/dreamlab-keys](https://litellm.dreamlab.ucsb.edu/dreamlab-keys)) to create an API key for DREAM Lab's AI service. You will need to log in with
+your UCSB email account.
+
+**3. Enter the API key**. Copy and paste the API key into OpenCode and press <kbd>Enter</kbd> to submit.
 
 ![Entering your API key](../images/opencode_connect_apikey.png){.lightbox width="80%" fig-alt="OpenCode prompt entering an API key"}
 
-**3. Select a model.** Choose **Gemini 3.5 Flash** from the list of available
+**4. Select a model.** Choose **Gemini 3.5 Flash** from the list of available
 models. You can use <kbd>Ctrl+F</kbd> to "favorite" a model. We will use both Gemini 3.5
 Flash and Gemini 3.1 Pro (Custom Tools) -- you might want to favorite
 both of these to make switching models a little easier.
