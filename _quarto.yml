@@ -17,6 +17,7 @@ website:
           - href: lessons/02_agent.qmd
           - href: lessons/03_planning.qmd
           - href: lessons/05_projectstructure.qmd
+          - href: lessons/06_testing.qmd
       - href: projects/index.qmd
         text: Projects
     tools:

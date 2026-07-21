@@ -25,8 +25,8 @@ programming language.
 
 | Day | Topics |
 |:---|:---| 
-| **Day 1** | [Introduction](lessons/01_intro.qmd) <br /> [Getting Started with an Agent](lessons/02_agent.qmd) <br /> [Planning Mode](lessons/03_planning.qmd) |
-| **Day 2** | Review <br /> Project structure & `AGENTS.md` <br /> Workflows <br /> Project work and report out |
+| **Day 1** | [Introduction](lessons/01_intro.qmd) <br /> [Getting Started with an Agent](lessons/02_agent.qmd) <br /> [Planning Mode](lessons/03_planning.qmd) <br /> Introduce Projects |
+| **Day 2** | Review <br /> Project structure & `AGENTS.md` <br /> [Automated Testing](lessons/06_testing.qmd) <br /> Project work and report out |
 | **Day 3** | Review <br /> Sharing / publishing <br /> Agents Skills <br /> Project work and report out |
 
 ## Contributors
