@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>AI-Assisted coding for research – AI-Assisted Coding for Research</title>
+<title>Automated Testing – AI-Assisted Coding for Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,26 +23,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dd70fe55a593899e760a01723e5db8e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-dd70fe55a593899e760a01723e5db8e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">AI-Assisted Coding for Research</span>
     </a>
   </div>
@@ -92,11 +127,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./setup.html"> 
+    <a class="nav-link" href="../setup.html"> 
 <span class="menu-text">Setup</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -105,29 +140,29 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
         <li>
-    <a class="dropdown-item" href="./lessons/01_intro.html">
+    <a class="dropdown-item" href="../lessons/01_intro.html">
  <span class="dropdown-text">Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lessons/02_agent.html">
+    <a class="dropdown-item" href="../lessons/02_agent.html">
  <span class="dropdown-text">Getting Started with an Agent</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lessons/03_planning.html">
+    <a class="dropdown-item" href="../lessons/03_planning.html">
  <span class="dropdown-text">Planning</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lessons/05_projectstructure.html">
+    <a class="dropdown-item" href="../lessons/05_projectstructure.html">
  <span class="dropdown-text">Project structure</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lessons/06_testing.html">
+    <a class="dropdown-item" href="../lessons/06_testing.html">
  <span class="dropdown-text">Automated Testing</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./projects/index.html"> 
+    <a class="nav-link" href="../projects/index.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
 </ul>
@@ -161,8 +196,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link active" data-scroll-target="#schedule">Schedule</a></li>
-  <li><a href="#contributors" id="toc-contributors" class="nav-link" data-scroll-target="#contributors">Contributors</a></li>
+  <li><a href="#writing-basic-tests" id="toc-writing-basic-tests" class="nav-link active" data-scroll-target="#writing-basic-tests">Writing basic tests</a></li>
+  <li><a href="#exercise-preprocessing-social-media-text" id="toc-exercise-preprocessing-social-media-text" class="nav-link" data-scroll-target="#exercise-preprocessing-social-media-text">Exercise: Preprocessing Social Media Text</a>
+  <ul class="collapse">
+  <li><a href="#setting-up-the-project" id="toc-setting-up-the-project" class="nav-link" data-scroll-target="#setting-up-the-project">Setting up the project</a></li>
+  <li><a href="#improving-the-normalization" id="toc-improving-the-normalization" class="nav-link" data-scroll-target="#improving-the-normalization">Improving the Normalization</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -171,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AI-Assisted coding for research</h1>
+<h1 class="title">Automated Testing</h1>
 </div>
 
 
@@ -188,58 +227,156 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
+<p>An agent, as we learned in the introduction, is a piece of software that runs tools in a loop to complete a task. We’ve already seen agents running in loops in previous episodes. The agent writes a script, runs it, reads the error, edits the script, runs it again, and keeps going until nothing is broken. Agents are great at checking their own work, but without additional help or instruction, they will tend to accept a minimal quality threshold: is the code syntactically correct? Does it run without errors? However, code that runs without errors can still be wrong. The agent has no way to know it made a mistake, because nothing it can check told it so. This lesson is about <strong>giving the agent better ways to check its own work</strong>. One of the best ways is with automated testing.</p>
+<section id="writing-basic-tests" class="level2">
+<h2 class="anchored" data-anchor-id="writing-basic-tests">Writing basic tests</h2>
+<p>Automated testing is a large and complex topic in software engineering – far too big for this workshop. Fortunately, the goal of this workshop is not to teach you software engineering. Instead, our aim is to show how you can get better results from coding agents with simple tests. <em>A little</em> testing is better than <em>no testing</em>, especially when agents are involved.</p>
+<p><strong>What is a test?</strong> At its simplest, a test is a piece of code that runs some other piece of code and checks that it does what you expected. In the exercise below, we’re going to create a function called <code>normalize()</code>, for cleaning text data prior to analysis. To test the code, we’ll create a list of inputs and expected outputs, and a test script that runs <code>normalize()</code> on the complete set. If all the outputs are expected, the test <strong>passes</strong>; if any outputs don’t match the expected value, the test <strong>fails</strong>. Tests are incredibly valuable for agentic coding because they give the agent an additional way to check its own work. As general advice, you are likely to have more success with coding agents if you can structure your projects around <strong>testable</strong> units of code.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+<span class="screen-reader-only">Tip</span>Test-Driven Development
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This is a new and <strong>very experimental</strong> workshop. Lesson materials are being actively developed and may change!</p>
+<p>Test-Driven Development is a software development workflow that splits each unit of coding work – the implementation of some new functionality or feature in the code – into two phases, red and green:</p>
+<ul>
+<li><strong>Red</strong>: write a test for the new functionality and check that it fails.</li>
+<li><strong>Green</strong>: add code for the functionality and iterate until the test passes.</li>
+</ul>
+<p>The idea behind TDD is that the progression from red to green (from tests failing to tests passing) provides stronger assurance that the tests actually exercise the functionality you implemented. TDD takes a lot of discipline if you are the one writing the code. However, for agentic coding <a href="https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/">Simon Willison suggests</a> simply adding one line to your AGENTS.md: <code>Use red/green TDD</code>. That’s it!</p>
 </div>
 </div>
-<p>This hands-on three half-day workshop covers AI-assisted coding techniques with an emphasis on research data analysis, reproducibility, and best practices of Open Science. Learners will use real-world scenarios to explore concepts and capabilities of coding agents and other LLM-based techniques. Workshop activities touch on many aspects of the research lifecycle: from data discovery and access, to visualization and publication.</p>
-<p>This is an experimental workshop covering a very new and rapidly evolving landscape. <strong>Coding agent sandboxes and LLM API access will be provided to participants.</strong> As a prerequisite, learners should have familiarity with a programming language.</p>
-<section id="schedule" class="level2">
-<h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
+</section>
+<section id="exercise-preprocessing-social-media-text" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-preprocessing-social-media-text">Exercise: Preprocessing Social Media Text</h2>
+<p>For this exercise, we’re going to build a workflow to preprocess text data, as described in Renata Curty &amp; Jairo Melo’s workshop, <a href="https://ucsb-library-research-data-services.github.io/text-analysis-series/">Text Analysis with R</a>.</p>
+<blockquote class="blockquote">
+<p>Text preprocessing is the set of steps used to clean, standardize, and structure raw text before it can be meaningfully analyzed. This may include removing punctuation, normalizing letter case, eliminating stop words, breaking text into tokens (words or sentences), and reducing words to their base forms through lemmatization. Preprocessing reduces noise and inconsistencies in the text, making it ready for computational analysis.</p>
+</blockquote>
+<p>Our data consists of roughly 5,800 social media posts about the Apple TV series <em>Severance</em>. Each social media post will be normalized. For example, a message like this:</p>
+<blockquote class="blockquote">
+<p>OMG!! 😱 I can’t believe it… This is CRAZY!!! #unreal 🤯</p>
+</blockquote>
+<p>Should be normalized as</p>
+<blockquote class="blockquote">
+<p>omg [face scream in fear] I can not believe it this is crazy unreal [exploding head]</p>
+</blockquote>
+<p>The following table includes all normalization rules required by the preprocessing pipeline.</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 71%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Day</th>
-<th style="text-align: left;">Topics</th>
+<th><strong>Rule</strong></th>
+<th><strong>What it does</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>Day 1</strong></td>
-<td style="text-align: left;"><a href="./lessons/01_intro.html">Introduction</a> <br> <a href="./lessons/02_agent.html">Getting Started with an Agent</a> <br> <a href="./lessons/03_planning.html">Planning Mode</a> <br> Introduce Projects</td>
+<td>Remove URLs</td>
+<td>Strip web addresses (<code>http://</code>, <code>https://</code>, <code>www.</code>).</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Day 2</strong></td>
-<td style="text-align: left;">Review <br> Project structure &amp; <code>AGENTS.md</code> <br> <a href="./lessons/06_testing.html">Automated Testing</a> <br> Project work and report out</td>
+<td>Remove hidden characters</td>
+<td>Strip invisible Unicode formatting chars and non-breaking spaces.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Day 3</strong></td>
-<td style="text-align: left;">Review <br> Sharing / publishing <br> Agents Skills <br> Project work and report out</td>
+<td>Standardize apostrophes</td>
+<td>Convert Unicode apostrophe variants (e.g.&nbsp;<code>’</code>) to ASCII <code>'</code>.</td>
+</tr>
+<tr class="even">
+<td>Expand contractions</td>
+<td>Rewrite shortened forms to full words (<code>can't</code> → <code>cannot</code>).</td>
+</tr>
+<tr class="odd">
+<td>Remove mentions</td>
+<td>Strip social-media usernames prefixed with <code>@</code>.</td>
+</tr>
+<tr class="even">
+<td>Split hashtags</td>
+<td>Separate camelCase inside hashtags (<code>#TextAnalysis</code> → <code>Text Analysis</code>).</td>
+</tr>
+<tr class="odd">
+<td>Convert to lowercase</td>
+<td>Lowercase all text.</td>
+</tr>
+<tr class="even">
+<td>Remove punctuation &amp; symbols</td>
+<td>Strip punctuation and special characters.</td>
+</tr>
+<tr class="odd">
+<td>Remove numbers</td>
+<td>Strip digit sequences.</td>
+</tr>
+<tr class="even">
+<td>Normalize elongation</td>
+<td>Collapse 3+ repeated chars (<code>loooove</code> → <code>love</code>).</td>
+</tr>
+<tr class="odd">
+<td>Convert emojis to text</td>
+<td>Replace emojis with text descriptions.</td>
+</tr>
+<tr class="even">
+<td>Remove single characters</td>
+<td>Strip isolated letters left after cleanup.</td>
+</tr>
+<tr class="odd">
+<td>Normalize whitespace</td>
+<td>Collapse repeated spaces and trim edges.</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="contributors" class="level2">
-<h2 class="anchored" data-anchor-id="contributors">Contributors</h2>
+<section id="setting-up-the-project" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-the-project">Setting up the project</h3>
+<p>For this exercise, we will make a copy of an existing project in our workspace. You can also browse <a href="https://github.com/UCSBCarpentry/ai-coding-workshop/tree/main/projects/text-cleaning">the project files on GitHub</a>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure we are in ~/workspace</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/workspace</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># download project files to new `text-cleaning` directory</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> https://github.com/UCSBCarpentry/ai-coding-workshop/archive/main.tar.gz <span class="kw">|</span> <span class="fu">tar</span> xz <span class="at">--strip</span><span class="op">=</span>2 ai-coding-workshop-main/projects/text-cleaning</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># moving into project folder and start opencode</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> text-cleaning</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">opencode</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Take a few moments to explore the project: you should probably skim the README.md and AGENTS.md files. You may notice the following</p>
 <ul>
-<li>Julien Brun</li>
-<li>Seth Erickson</li>
-<li>Jon Jablonski</li>
-<li>Li Kui</li>
-<li>Jairo Melo-Flórez</li>
-<li>Jose Nino Muriel</li>
+<li>You will need to decrypt the raw data file. Get the password from the instructor.</li>
+<li>The project already includes tests, and they all pass</li>
+<li>There is a data review application that starts a web server for review the normalized data.</li>
+</ul>
+<p>Use the following prompt to get started:</p>
+<blockquote class="blockquote">
+<p>Help me decrypt the raw data and start the data review application.</p>
+</blockquote>
+<p>To view the web application, go to your Coder workspace dashboard and use the <strong>Open Ports</strong> dropdown (it’s in the top-right corner), and click on port <strong>5001</strong>. If you don’t see the number, you can enter it in the “Connect to port” input field. You should see a page listing social media posts in pairs: the raw message is above and the normalized text is below.</p>
+</section>
+<section id="improving-the-normalization" class="level3">
+<h3 class="anchored" data-anchor-id="improving-the-normalization">Improving the Normalization</h3>
+<p>Spend some time reviewing the data, and notice the following issues:</p>
+<ul class="task-list">
+<li><p><label><input type="checkbox"><strong>Emoji rendering — bracketed vs.&nbsp;bare words.</strong> The current behavior converts emoji <em>early</em> (before punctuation removal), so descriptions become plain lowercase words: <code>🔥</code> → <code>fire</code>. The expected behavior converts emoji <em>last</em> (after punctuation removal), so the <code>[ ]</code> wrapper survives: <code>🔥</code> → <code>[fire]</code>.</label></p></li>
+<li><p><label><input type="checkbox"><strong>Punctuation: fuse vs.&nbsp;split.</strong> The current behavior <em>deletes</em> punctuation, fusing tokens; the expected behavior <em>replaces punctuation with a space</em>, splitting them.</label></p>
+<ul>
+<li><code>Mark's</code> → current <code>marks</code>, expected <code>mark</code> (same as the line-6 <code>severance's</code> → <code>severances</code>)</li>
+<li><code>well-known</code> → current <code>wellknown</code>, expected <code>well known</code></li>
+<li><code>state-of-the-art</code> → current <code>stateoftheart</code>, expected <code>state of the art</code></li>
+</ul></li>
+<li><p><label><input type="checkbox"><strong>Non-ASCII / accented letters: strip vs.&nbsp;keep.</strong> The current punctuation rule is a whitelist (keep <code>a–z</code> + spaces), so accented and non-Latin letters are dropped; the expected behavior blacklists punctuation, so letters survive. <strong>Most consequential for non-English data.</strong></label></p>
+<ul>
+<li><code>café</code> → current <code>caf</code>, expected <code>café</code></li>
+<li><code>naïve résumé</code> → current <code>nave rsum</code></li>
+<li><code>Северанс</code> (Cyrillic) → current `` (empty), expected keeps it</li>
+</ul></li>
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
