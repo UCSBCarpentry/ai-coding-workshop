@@ -4,10 +4,17 @@ title: "Project structure"
 
 ## As a review
 
-- Move both `noaa-tides` and `noaa-tides-2` to a new folder,
-called `tides-project`
-- Start OpenCode in this new folder, make sure you select `Gemini 3.5 Flash` as your model
-- Imagine for a moment you are new to this project,
+Let's refresh some concepts on how to start OpenCode, switch models, and send a prompt to the AI Agent.
+
+1. If you have a `noaa-tides` folder you were working on last week, continue working on that one.
+   
+   1.1. If you don't, clone the repo we have set up for you using `git clone git@github.com:UCSBCarpentry/noaa-tides.git`
+   (Or ask the AI to help)
+
+2. Start OpenCode in the `noaa-tides` folder
+3. Select `Gemini 3.5 Flash` as your model
+
+Now imagine for a moment you are new to this project,
 and you want to know what it is about. Therefore, you ask OpenCode:
 
 > What is this project about? What were the latest changes made?
@@ -15,34 +22,37 @@ and you want to know what it is about. Therefore, you ask OpenCode:
 A response might look like:
 
 ```md
-✱Glob "*" (41 matches)
-→Read noaa-tides/download_data.py [limit=100]
-→Read noaa-tides/plot_tides.py [limit=100]
+✱Glob "*" (100 matches)
 
-$ git status && git log -n 5 --oneline
-fatal: not a git repository (or any parent up to mount point /)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+→Read README.md 
 
-Project Overview
-This project is designed to download, analyze, and visualize NOAA tide and water level data, specifically focusing on the Monthly Mean High Water (MHW) levels for California tide stations over a 10-year period (2016–2026).
+I will run git log to see the history of recent changes in this repository.
 
+# Runs git log to view recent commits.
+$ git log --oneline -10
+93b6f00 Add MHW plotting script and output directory
+f1eacd3 Add uv for dependency management
+bc30d94 Initial commit
+
+→Read code/download_mhw.py 
+→Read code/plot_mhw.py 
+
+What this project is about
+This project is designed to download, compile, and visualize monthly Mean High Water (MHW) data for NOAA tide stations along the California coast over a decade (2014–2024) using the NOAA CO-OPS API.
+Key components:
 [...]
-
-Latest Changes Made
-Since this project is not initialized as a Git repository, we can infer the latest updates from the differences in structure and the file contents: [...]
+Based on the repository's git commit history, the most recent developments are:
+[...]
 ```
 
 There is a lot to unpack here:
 
 - LLMs are very good at summarizing a big amount of information quickly.
 In a few seconds it read the files in our project and gave us an overview to get started.
-- It shows how the AI Agent called tools like `Glob` and `Read`, and it tried to run a `git` Shell command.
+- It shows how the AI Agent called tools like `Glob` and `Read`, and it ran a `git` Shell command.
 Contrary to a chat-based AI tool, the AI Agent was able to access the files in our project and call tools to gather additional information.
-- In this particular response, the agent somewhat complains that the project is not a Git repository.
-If it was, the AI Agent would be able to gather even more information about recent developments in the project.
-
-    AI coding agents makes it easier to use version control and, at the same time, more necessary, in order to access that valuable information about the history of a project.
-    Makes even more sense to use it in case the AI messes up our entire project!
+- To answer our question, the agent used Git to track our project's history.
+AI coding agents make version control both easier and more essential, giving us access to valuable historical context, while serving as a crucial safety net in case the AI messes up the project.
 
 If we open a new chat session with the `/new` command, the AI Agent would have to read again files just to have a brief overview of the project, wasting precious time and tokens.
 
