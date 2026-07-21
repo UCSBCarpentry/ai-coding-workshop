@@ -1,0 +1,160 @@
+---
+title: "Automated Testing"
+---
+
+
+An agent, as we learned in the introduction, is a piece of software that runs
+tools in a loop to complete a task. We've already seen agents running in loops
+in previous episodes. The agent writes a script, runs it, reads the error, edits
+the script, runs it again, and keeps going until nothing is broken. Agents are
+great at checking their own work, but without additional help or instruction,
+they will tend to accept a minimal quality threshold: is the code syntactically
+correct? Does it run without errors? However, code that runs without errors
+can still be wrong. The agent has no way to know it made a mistake, because
+nothing it can check told it so. This lesson is about **giving the agent better
+ways to check its own work**. One of the best ways is with automated testing.
+
+## Writing basic tests
+
+Automated testing is a large and complex topic in software engineering -- far
+too big for this workshop. Fortunately, the goal of this workshop is not to
+teach you software engineering. Instead, our aim is to show how you can get
+better results from coding agents with simple tests. *A little* testing is
+better than *no testing*, especially when agents are involved.
+
+**What is a test?** At its simplest, a test is a piece of code that runs some
+other piece of code and checks that it does what you expected. In the exercise
+below, we're going to create a function called `normalize()`, for cleaning text
+data prior to analysis. To test the code, we'll create a list of inputs and
+expected outputs, and a test script that runs `normalize()` on the complete set.
+If all the outputs are expected, the test **passes**; if any outputs don't match
+the expected value, the test **fails**. Tests are incredibly valuable for
+agentic coding because they give the agent an additional way to check its own
+work. As general advice, you are likely to have more success with coding agents
+if you can structure your projects around **testable** units of code. 
+
+
+:::{.callout-tip}
+
+### Test-Driven Development
+
+Test-Driven Development is a software development workflow that splits each unit
+of coding work -- the implementation of some new functionality or feature in the
+code -- into two phases, red and green:
+
+- **Red**: write a test for the new functionality and check that it fails.
+- **Green**: add code for the functionality and iterate until the test passes.
+
+The idea behind TDD is that the progression from red to green (from tests
+failing to tests passing) provides stronger assurance that the tests actually
+exercise the functionality you implemented. TDD takes a lot of discipline if you
+are the one writing the code. However, for agentic coding [Simon Willison
+suggests](https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/)
+simply adding one line to your AGENTS.md: `Use red/green TDD`. That's it!
+
+:::
+
+## Exercise: Preprocessing Social Media Text
+
+For this exercise, we're going to build a workflow to preprocess text data, as
+described in Renata Curty & Jairo Melo's workshop, [Text Analysis with
+R](https://ucsb-library-research-data-services.github.io/text-analysis-series/).
+
+> Text preprocessing is the set of steps used to clean, standardize, and
+> structure raw text before it can be meaningfully analyzed. This may include
+> removing punctuation, normalizing letter case, eliminating stop words,
+> breaking text into tokens (words or sentences), and reducing words to their
+> base forms through lemmatization. Preprocessing reduces noise and
+> inconsistencies in the text, making it ready for computational analysis.
+
+Our data consists of roughly 5,800 social media posts about the Apple TV series
+*Severance*. Each social media post will be normalized. For example, a message
+like this:
+
+> OMG!! 😱 I can’t believe it… This is CRAZY!!! #unreal 🤯
+
+Should be normalized as
+
+> omg [face scream in fear] I can not believe it this is crazy unreal [exploding head]
+
+The following table includes all normalization rules required by the
+preprocessing pipeline.
+
+| **Rule**                     | **What it does**                                                        |
+| ---------------------------- | ----------------------------------------------------------------------- |
+| Remove URLs                  | Strip web addresses (`http://`, `https://`, `www.`).                    |
+| Remove hidden characters     | Strip invisible Unicode formatting chars and non-breaking spaces.       |
+| Standardize apostrophes      | Convert Unicode apostrophe variants (e.g. `’`) to ASCII `'`.            |
+| Expand contractions          | Rewrite shortened forms to full words (`can't` → `cannot`).             |
+| Remove mentions              | Strip social-media usernames prefixed with `@`.                         |
+| Split hashtags               | Separate camelCase inside hashtags (`#TextAnalysis` → `Text Analysis`). |
+| Convert to lowercase         | Lowercase all text.                                                     |
+| Remove punctuation & symbols | Strip punctuation and special characters.                               |
+| Remove numbers               | Strip digit sequences.                                                  |
+| Normalize elongation         | Collapse 3+ repeated chars (`loooove` → `love`).                        |
+| Convert emojis to text       | Replace emojis with text descriptions.                                  |
+| Remove single characters     | Strip isolated letters left after cleanup.                              |
+| Normalize whitespace         | Collapse repeated spaces and trim edges.                                |
+
+
+### Setting up the project
+
+For this exercise, we will make a copy of an existing project in our workspace.
+You can also browse [the project files on GitHub](https://github.com/UCSBCarpentry/ai-coding-workshop/tree/main/projects/text-cleaning). 
+
+
+```sh
+# make sure we are in ~/workspace
+cd ~/workspace
+
+# download project files to new `text-cleaning` directory
+curl -L https://github.com/UCSBCarpentry/ai-coding-workshop/archive/main.tar.gz | tar xz --strip=2 ai-coding-workshop-main/projects/text-cleaning
+
+# moving into project folder and start opencode
+cd text-cleaning
+opencode
+```
+
+Take a few moments to explore the project: you should probably skim the
+README.md and AGENTS.md files. You may notice the following
+
+- You will need to decrypt the raw data file. Get the password from the
+  instructor.
+- The project already includes tests, and they all pass
+- There is a data review application that starts a web server for review the
+  normalized data.
+
+Use the following prompt to get started: 
+
+> Help me decrypt the raw data and start the data review application.
+
+To view the web application, go to your Coder workspace dashboard and use the
+**Open Ports** dropdown (it's in the top-right corner), and click on port
+**5001**. If you don't see the number, you can enter it in the "Connect to port"
+input field. You should see a page listing social media posts in pairs: the raw
+message is above and the normalized text is below.
+
+### Improving the Normalization
+
+Spend some time reviewing the data, and notice the following issues:
+
+- [ ] **Emoji rendering — bracketed vs. bare words.** The current behavior converts
+  emoji *early* (before punctuation removal), so descriptions become plain
+  lowercase words: `🔥` → `fire`. The expected behavior converts emoji *last*
+  (after punctuation removal), so the `[ ]` wrapper survives: `🔥` → `[fire]`.
+
+- [ ] **Punctuation: fuse vs. split.** The current behavior *deletes* punctuation,
+  fusing tokens; the expected behavior *replaces punctuation with a space*,
+  splitting them.
+  - `Mark's` → current `marks`, expected `mark` (same as the line-6 `severance's` → `severances`)
+  - `well-known` → current `wellknown`, expected `well known`
+  - `state-of-the-art` → current `stateoftheart`, expected `state of the art`
+
+- [ ] **Non-ASCII / accented letters: strip vs. keep.** The current punctuation
+  rule is a whitelist (keep `a–z` + spaces), so accented and non-Latin letters are
+  dropped; the expected behavior blacklists punctuation, so letters survive.
+  **Most consequential for non-English data.**
+  - `café` → current `caf`, expected `café`
+  - `naïve résumé` → current `nave rsum`
+  - `Северанс` (Cyrillic) → current `` (empty), expected keeps it
+

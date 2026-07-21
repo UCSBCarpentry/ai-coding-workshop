@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.vscode/
+
+# Raw data: only the encrypted copy (data/raw/comments.csv.enc) is committed
+data/raw/comments.csv
+# Normalized output is regenerable and holds the same posts as the raw data
+data/normalized/

@@ -1,0 +1,24 @@
+rule,input,expected
+remove_urls,Watch it here https://t.co/abc123 now,watch it here now
+remove_urls,check www.apple.com and http://x.com ok,check and ok
+remove_hidden,apple tv,apple tv
+remove_hidden,sev​erance,severance
+standardize_apostrophes,severance’s,severances
+expand_contractions,they don't get it,they do not get it
+remove_mentions,thanks @JuddApatow for this,thanks for this
+split_hashtags,loved #TextAnalysis today,loved text analysis today
+lowercase,SEVERANCE Is Great,severance is great
+remove_punctuation,"wow, this: show! is great.",wow this show is great
+remove_numbers,season 2 was great,season was great
+normalize_elongation,this is sooooo good,this is so good
+emojis_to_text,great show 🔥,great show fire
+remove_single_chars,it was a great show,it was great show
+normalize_whitespace,great    show   here,great show here
+combo_zwj_decompose,mood 👨🏻‍💻 today,mood man laptop today
+combo_zwj_decompose,watching 😵‍💫 rn,watching face with crossedout eyes dizzy right now
+combo_mention_url_emoji,@JuddApatow's finale was 🔥🔥🔥 https://t.co/xyz,finale was fire fire fire
+combo_hashtag_number,#Season2 premiere,season premiere
+combo_contraction_idrop,I'm obsessed,am obsessed
+combo_elongation_punct,sooo good!!! #Severance,so good severance
+combo_curly_contraction,I can’t even,cannot even
+combo_multi_emoji_skintone,love it ❤️👍,love it red heart thumbs up

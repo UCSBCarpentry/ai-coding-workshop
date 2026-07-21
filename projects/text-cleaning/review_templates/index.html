@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review Server · normalized comments</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --border: #e2e5ea;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --raw: #111827;
+      --norm: #065f46;
+      --ok: #065f46;
+      --err: #991b1b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--raw);
+      background: var(--bg);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    header h1 { font-size: 1rem; margin: 0; font-weight: 650; }
+    header .meta { color: var(--muted); font-size: 0.85rem; }
+    header .spacer { flex: 1; }
+    button.regen {
+      font: inherit;
+      font-weight: 600;
+      color: #fff;
+      background: var(--accent);
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 0.9rem;
+      cursor: pointer;
+    }
+    button.regen:hover { background: #1d4ed8; }
+    button.regen:disabled { opacity: 0.6; cursor: progress; }
+
+    .status {
+      max-width: 900px;
+      margin: 1rem auto -0.25rem;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid;
+      border-radius: 8px;
+    }
+    .status.ok { color: var(--ok); background: #ecfdf5; border-color: #a7f3d0; }
+    .status.err { color: var(--err); background: #fef2f2; border-color: #fecaca; }
+    .status .when { color: var(--muted); font-size: 0.8rem; margin-left: 0.4rem; }
+    .status pre {
+      margin: 0.6rem 0 0;
+      padding: 0.6rem;
+      max-height: 20rem;
+      overflow: auto;
+      background: rgba(0,0,0,0.04);
+      border-radius: 6px;
+      font: 0.75rem/1.45 "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+      color: var(--raw);
+    }
+
+    main { max-width: 900px; margin: 0 auto; padding: 1.25rem; }
+
+    .pager {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      margin: 1rem 0;
+    }
+    .pager a, .pager span {
+      padding: 0.35rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--card);
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    .pager a:hover { border-color: var(--accent); }
+    .pager .disabled { color: var(--muted); opacity: 0.5; pointer-events: none; }
+    .pager .current { color: var(--muted); border: none; background: none; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card .id {
+      font: 0.72rem "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .row { display: flex; gap: 0.75rem; margin-top: 0.35rem; }
+    .label {
+      flex: 0 0 5.5rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      padding-top: 0.1rem;
+    }
+    .text { white-space: pre-wrap; word-break: break-word; }
+    .text.raw { color: var(--raw); }
+    .text.norm {
+      color: var(--norm);
+      font: 0.9rem "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+    }
+    .text.missing { color: var(--muted); font-style: italic; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Review Server</h1>
+    <span class="meta">Page {{ page }} / {{ page_count }} · {{ total }} messages</span>
+    <span class="spacer"></span>
+    <form method="post" action="{{ url_for('regenerate') }}"
+          onsubmit="this.querySelector('button').disabled=true;
+                    this.querySelector('button').textContent='Regenerating…';">
+      <input type="hidden" name="page" value="{{ page }}">
+      <button type="submit" class="regen">Regenerate</button>
+    </form>
+  </header>
+
+  {% if status %}
+  <div class="status {{ 'ok' if status.ok else 'err' }}">
+    <strong>{{ status.message }}</strong>
+    <span class="when">{{ status.when }}</span>
+    {% if status.detail %}<pre>{{ status.detail }}</pre>{% endif %}
+  </div>
+  {% endif %}
+
+  <main>
+    {% macro pager() %}
+    <nav class="pager">
+      <a class="{{ 'disabled' if page <= 1 }}" href="{{ url_for('index', page=1) }}">« First</a>
+      <a class="{{ 'disabled' if page <= 1 }}" href="{{ url_for('index', page=page-1) }}">‹ Prev</a>
+      <span class="current">{{ page }} / {{ page_count }}</span>
+      <a class="{{ 'disabled' if page >= page_count }}" href="{{ url_for('index', page=page+1) }}">Next ›</a>
+      <a class="{{ 'disabled' if page >= page_count }}" href="{{ url_for('index', page=page_count) }}">Last »</a>
+    </nav>
+    {% endmacro %}
+
+    {{ pager() }}
+
+    {% for pair in pairs %}
+    <article class="card">
+      <div class="id">{{ pair.id }}</div>
+      <div class="row">
+        <div class="label">RAW</div>
+        <div class="text raw">{{ pair.raw }}</div>
+      </div>
+      <div class="row">
+        <div class="label">NORMALIZED</div>
+        {% if pair.normalized is not none %}
+        <div class="text norm">{{ pair.normalized }}</div>
+        {% else %}
+        <div class="text norm missing">— not generated yet —</div>
+        {% endif %}
+      </div>
+    </article>
+    {% else %}
+    <p>No messages found in <code>data/raw/comments.csv</code>.</p>
+    {% endfor %}
+
+    {{ pager() }}
+  </main>
+</body>
+</html>
