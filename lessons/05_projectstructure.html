@@ -224,36 +224,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="as-a-review" class="level2">
 <h2 class="anchored" data-anchor-id="as-a-review">As a review</h2>
-<ul>
-<li>Move both <code>noaa-tides</code> and <code>noaa-tides-2</code> to a new folder, called <code>tides-project</code></li>
-<li>Start OpenCode in this new folder, make sure you select <code>Gemini 3.5 Flash</code> as your model</li>
-<li>Imagine for a moment you are new to this project, and you want to know what it is about. Therefore, you ask OpenCode:</li>
-</ul>
+<p>Let’s refresh some concepts on how to start OpenCode, switch models, and send a prompt to the AI Agent.</p>
+<ol type="1">
+<li><p>If you have a <code>noaa-tides</code> folder you were working on last week, continue working on that one.</p>
+<p>1.1. If you don’t, clone the repo we have set up for you using <code>git clone git@github.com:UCSBCarpentry/noaa-tides.git</code> (Or ask the AI to help)</p></li>
+<li><p>Start OpenCode in the <code>noaa-tides</code> folder</p></li>
+<li><p>Select <code>Gemini 3.5 Flash</code> as your model</p></li>
+</ol>
+<p>Now imagine for a moment you are new to this project, and you want to know what it is about. Therefore, you ask OpenCode:</p>
 <blockquote class="blockquote">
 <p>What is this project about? What were the latest changes made?</p>
 </blockquote>
 <p>A response might look like:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>✱Glob "*" (41 matches)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>→Read noaa-tides/download_data.py <span class="co">[</span><span class="ot">limit=100</span><span class="co">]</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>→Read noaa-tides/plot_tides.py <span class="co">[</span><span class="ot">limit=100</span><span class="co">]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>✱Glob "*" (100 matches)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>→Read README.md </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>$ git status &amp;&amp; git log -n 5 --oneline</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>fatal: not a git repository (or any parent up to mount point /)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Project Overview</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>This project is designed to download, analyze, and visualize NOAA tide and water level data, specifically focusing on the Monthly Mean High Water (MHW) levels for California tide stations over a 10-year period (2016–2026).</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">...</span><span class="co">]</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Latest Changes Made</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Since this project is not initialized as a Git repository, we can infer the latest updates from the differences in structure and the file contents: <span class="co">[</span><span class="ot">...</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>I will run git log to see the history of recent changes in this repository.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># Runs git log to view recent commits.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>$ git log --oneline -10</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>93b6f00 Add MHW plotting script and output directory</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>f1eacd3 Add uv for dependency management</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>bc30d94 Initial commit</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>→Read code/download_mhw.py </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>→Read code/plot_mhw.py </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>What this project is about</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>This project is designed to download, compile, and visualize monthly Mean High Water (MHW) data for NOAA tide stations along the California coast over a decade (2014–2024) using the NOAA CO-OPS API.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Key components:</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">...</span><span class="co">]</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Based on the repository's git commit history, the most recent developments are:</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">...</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There is a lot to unpack here:</p>
 <ul>
-<li><p>LLMs are very good at summarizing a big amount of information quickly. In a few seconds it read the files in our project and gave us an overview to get started.</p></li>
-<li><p>It shows how the AI Agent called tools like <code>Glob</code> and <code>Read</code>, and it tried to run a <code>git</code> Shell command. Contrary to a chat-based AI tool, the AI Agent was able to access the files in our project and call tools to gather additional information.</p></li>
-<li><p>In this particular response, the agent somewhat complains that the project is not a Git repository. If it was, the AI Agent would be able to gather even more information about recent developments in the project.</p>
-<p>AI coding agents makes it easier to use version control and, at the same time, more necessary, in order to access that valuable information about the history of a project. Makes even more sense to use it in case the AI messes up our entire project!</p></li>
+<li>LLMs are very good at summarizing a big amount of information quickly. In a few seconds it read the files in our project and gave us an overview to get started.</li>
+<li>It shows how the AI Agent called tools like <code>Glob</code> and <code>Read</code>, and it ran a <code>git</code> Shell command. Contrary to a chat-based AI tool, the AI Agent was able to access the files in our project and call tools to gather additional information.</li>
+<li>To answer our question, the agent used Git to track our project’s history. AI coding agents make version control both easier and more essential, giving us access to valuable historical context, while serving as a crucial safety net in case the AI messes up the project.</li>
 </ul>
 <p>If we open a new chat session with the <code>/new</code> command, the AI Agent would have to read again files just to have a brief overview of the project, wasting precious time and tokens.</p>
 <p>What if there was a file the AI always has access to with the most relevant information of our project?</p>
