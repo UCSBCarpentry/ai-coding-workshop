@@ -31,7 +31,7 @@ If all the outputs are expected, the test **passes**; if any outputs don't match
 the expected value, the test **fails**. Tests are incredibly valuable for
 agentic coding because they give the agent an additional way to check its own
 work. As general advice, you are likely to have more success with coding agents
-if you can structure your projects around **testable** units of code. 
+if you can structure your projects around **testable** units of code.
 
 
 :::{.callout-tip}
@@ -48,7 +48,7 @@ code -- into two phases, red and green:
 The idea behind TDD is that the progression from red to green (from tests
 failing to tests passing) provides stronger assurance that the tests actually
 exercise the functionality you implemented. TDD takes a lot of discipline if you
-are the one writing the code. However, for agentic coding [Simon Willison
+are the one writing the code. However, for agentic coding, [Simon Willison
 suggests](https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/)
 simply adding one line to your AGENTS.md: `Use red/green TDD`. That's it!
 
@@ -75,7 +75,7 @@ like this:
 
 Should be normalized as
 
-> omg [face scream in fear] I can not believe it this is crazy unreal [exploding head]
+> omg [face screaming in fear] cannot believe it this is crazy unreal [exploding head]
 
 The following table includes all normalization rules required by the
 preprocessing pipeline.
@@ -97,10 +97,12 @@ preprocessing pipeline.
 | Normalize whitespace         | Collapse repeated spaces and trim edges.                                |
 
 
+
+
 ### Setting up the project
 
 For this exercise, we will make a copy of an existing project in our workspace.
-You can also browse [the project files on GitHub](https://github.com/UCSBCarpentry/ai-coding-workshop/tree/main/projects/text-cleaning). 
+You can also browse [the project files on GitHub](https://github.com/UCSBCarpentry/ai-coding-workshop/tree/main/projects/text-cleaning).
 
 
 ```sh
@@ -110,51 +112,54 @@ cd ~/workspace
 # download project files to new `text-cleaning` directory
 curl -L https://github.com/UCSBCarpentry/ai-coding-workshop/archive/main.tar.gz | tar xz --strip=2 ai-coding-workshop-main/projects/text-cleaning
 
-# moving into project folder and start opencode
+# move into the project folder and start opencode
 cd text-cleaning
 opencode
 ```
 
 Take a few moments to explore the project: you should probably skim the
-README.md and AGENTS.md files. You may notice the following
+README.md and AGENTS.md files. You may notice the following:
 
 - You will need to decrypt the raw data file. Get the password from the
   instructor.
-- The project already includes tests, and they all pass
-- There is a data review application that starts a web server for review the
+- The project already includes tests, and they all pass.
+- There is a data review application that starts a web server for reviewing the
   normalized data.
 
-Use the following prompt to get started: 
+Use the following prompt to get started:
 
 > Help me decrypt the raw data and start the data review application.
 
 To view the web application, go to your Coder workspace dashboard and use the
 **Open Ports** dropdown (it's in the top-right corner), and click on port
-**5001**. If you don't see the number, you can enter it in the "Connect to port"
+**5001**. If you don't see the port listed, you can enter it in the "Connect to port"
 input field. You should see a page listing social media posts in pairs: the raw
 message is above and the normalized text is below.
 
 ### Improving the Normalization
 
-Spend some time reviewing the data, and notice the following issues:
+Spend some time reviewing the data using the review server. You may notice the
+following issues:
 
-- [ ] **Emoji rendering — bracketed vs. bare words.** The current behavior converts
-  emoji *early* (before punctuation removal), so descriptions become plain
-  lowercase words: `🔥` → `fire`. The expected behavior converts emoji *last*
-  (after punctuation removal), so the `[ ]` wrapper survives: `🔥` → `[fire]`.
+- **Emoji** names should be wrapped in brackets: `🔥` → currently normalizes as
+  `fire`, expected `[fire]`.
 
-- [ ] **Punctuation: fuse vs. split.** The current behavior *deletes* punctuation,
-  fusing tokens; the expected behavior *replaces punctuation with a space*,
-  splitting them.
-  - `Mark's` → current `marks`, expected `mark` (same as the line-6 `severance's` → `severances`)
-  - `well-known` → current `wellknown`, expected `well known`
-  - `state-of-the-art` → current `stateoftheart`, expected `state of the art`
+- **Punctuation** should be replaced by a space, not deleted:
+  `state-of-the-art` → currently normalizes as `stateoftheart`, expected `state of the art`.
 
-- [ ] **Non-ASCII / accented letters: strip vs. keep.** The current punctuation
-  rule is a whitelist (keep `a–z` + spaces), so accented and non-Latin letters are
-  dropped; the expected behavior blacklists punctuation, so letters survive.
-  **Most consequential for non-English data.**
-  - `café` → current `caf`, expected `café`
-  - `naïve résumé` → current `nave rsum`
-  - `Северанс` (Cyrillic) → current `` (empty), expected keeps it
+- **Accented Latin Characters** should be preserved, not removed (see `s1_0304`
+  for an example): `café` → currently normalizes as `caf`, expected `café`.
 
+:::{.callout-tip}
+
+#### Challenge
+
+Use OpenCode to fix each of the above normalization issues:
+
+- Fix each issue in a new session (use `/new`)
+- Use **Plan** mode with **Gemini 3.1 Pro (Custom Tools)** to create a plan.
+- Make sure the plan includes a step to update the tests!
+- Switch to **Build** mode and use **Gemini 3.5 Flash** to execute the plan
+- Use the review server to check the re-normalized data.
+
+:::
