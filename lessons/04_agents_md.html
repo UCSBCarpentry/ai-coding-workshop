@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project structure – AI-Assisted Coding for Research</title>
+<title>The AGENTS.md file – AI-Assisted Coding for Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -152,8 +152,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Planning</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/05_projectstructure.html">
- <span class="dropdown-text">Project structure</span></a>
+    <a class="dropdown-item" href="../lessons/05_projectstructure.qmd">
+ <span class="dropdown-text"></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../lessons/06_testing.html">
@@ -198,9 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#as-a-review" id="toc-as-a-review" class="nav-link active" data-scroll-target="#as-a-review">As a review</a></li>
   <li><a href="#the-agents.md-file" id="toc-the-agents.md-file" class="nav-link" data-scroll-target="#the-agents.md-file">The AGENTS.md file</a></li>
-  <li><a href="#exercise-discuss-real-agents.md-examples" id="toc-exercise-discuss-real-agents.md-examples" class="nav-link" data-scroll-target="#exercise-discuss-real-agents.md-examples">Exercise: Discuss real AGENTS.md examples</a></li>
   <li><a href="#customize-the-agents.md-file" id="toc-customize-the-agents.md-file" class="nav-link" data-scroll-target="#customize-the-agents.md-file">Customize the AGENTS.md file</a></li>
-  <li><a href="#creating-a-subagent" id="toc-creating-a-subagent" class="nav-link" data-scroll-target="#creating-a-subagent">Creating a subagent</a></li>
   </ul>
 </nav>
     </div>
@@ -209,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project structure</h1>
+<h1 class="title">The AGENTS.md file</h1>
 </div>
 
 
@@ -284,16 +282,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Code style guidelines: Any particular preferences you and your team may be following on your coding project.</li>
 <li>Workflows: For example, the Git and GitHub workflow you want to follow, conventions to name new branches or commit messages.</li>
 </ul>
-</section>
-<section id="exercise-discuss-real-agents.md-examples" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-discuss-real-agents.md-examples">Exercise: Discuss real AGENTS.md examples</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Challenge: Discuss real AGENTS.md examples
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Take a look at the following three examples of AGENTS.md files:</p>
+<ul>
+<li><a href="https://github.com/vllm-project/vllm">The vLLM software</a></li>
+<li><a href="https://github.com/dynamical-org/notebooks">Jupyter notebooks examples for dynamical.org</a></li>
+<li><a href="https://github.com/cmu-sei/crucible">The Crucible framework for Cybersecurity education</a></li>
+</ul>
+<p>Discuss with the person next to you:</p>
+<ul>
+<li>Did you find an AGENTS.md file, a CLAUDE.md file, or both?</li>
+<li>What did you see they have in common?</li>
+<li>How many lines does each file has?</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="customize-the-agents.md-file" class="level2">
 <h2 class="anchored" data-anchor-id="customize-the-agents.md-file">Customize the AGENTS.md file</h2>
 <p>The <code>/init</code> command was a great start, but you should personalize it and add important considerations for your project. Let’s add the following to the AGENTS.md file we have until now.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Environment &amp; Tooling</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Language: Python (&gt;=3.11 recommended)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Language: Python (&gt;=3.9 recommended)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Package manager: **uv** — do not use pip, conda, or poetry directly.</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Install dependencies: <span class="in">`uv add &lt;package&gt;`</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Sync environment from lockfile: <span class="in">`uv sync`</span></span>
@@ -304,11 +323,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>Always consider this directory structure to find and create files in this project:</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>data</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>raw</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>processed</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>data-raw</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>data-processed</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>code</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>docs</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>results</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>output</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>figures</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>tables</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
@@ -324,46 +343,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>   <span class="in">`uv run ruff check --fix .`</span></span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Re-run lint to confirm no remaining errors:</span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>   <span class="in">`uv run ruff check .`</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Stage only the relevant files (avoid <span class="in">`git add .`</span> unless you're sure everything staged is intended):</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>   <span class="in">`git add &lt;files&gt;`</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Write a clear, conventional commit message (see below) and commit:</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>   <span class="in">`git commit -m "&lt;type&gt;: &lt;short summary&gt;"`</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="fu">### Commit message conventions</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>Keep it short and descriptive, e.g. <span class="in">`add sliding window aggregation for signal preprocessing`</span>. No strict format required — just make it clear what changed and why, so it's easy to trace back for reproducibility.</span>
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### Commit message conventions</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### General rules</span></span>
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>Keep it short and descriptive, e.g. <span class="in">`add sliding window aggregation for signal preprocessing`</span>. No strict format required — just make it clear what changed and why, so it's easy to trace back for reproducibility.</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fu">### General rules</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never commit directly to <span class="in">`main`</span>. Create a branch (<span class="in">`git switch -c &lt;branch-name&gt;`</span>) if one doesn't already exist for the current task.</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never force-push (<span class="in">`git push --force`</span>) without explicit user confirmation.</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If <span class="in">`ruff`</span> reports errors that can't be auto-fixed, stop and explain the issue rather than silently ignoring or suppressing it.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never commit directly to <span class="in">`main`</span>. Create a branch (<span class="in">`git switch -c &lt;branch-name&gt;`</span>) if one doesn't already exist for the current task.</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never force-push (<span class="in">`git push --force`</span>) without explicit user confirmation.</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If <span class="in">`ruff`</span> reports errors that can't be auto-fixed, stop and explain the issue rather than silently ignoring or suppressing it.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After this adjustments, make sure the project is actually following these conventions and test how it it works. Let’s use this prompt:</p>
 <blockquote class="blockquote">
 <p>Make sure my project follows the guidelines stated on the <span class="citation" data-cites="AGENTS.md">@AGENTS.md</span> file.</p>
-</blockquote>
-</section>
-<section id="creating-a-subagent" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-subagent">Creating a subagent</h2>
-<p>An additional instruction we can add in our AGENTS.md is to call a different agent (a subagent) to complete a given task. This can be greatly useful for multiple purposes:</p>
-<ul>
-<li><p>when we want different AI LLM models to complete different tasks, depending on the cost and capability of the model.</p>
-<p>For example: using a multimodal AI model to handle images or audio, delegating all coding tasks to a specific model, or summarizing content with a cheap small model.</p></li>
-<li><p>to parallelize tasks that can be completed independently.</p></li>
-<li><p>to have specialized roles or personas completing different tasks, or checking the work of other agents.</p></li>
-</ul>
-<p>The subagent will start in a new session with its own context window, receive instructions from the agent, complete the task, and return a summary to the main session that spawned the subagent. This is another advantage of the subagent: it won’t overload your current chat session with all the analysis and process, it will only return a summary when the task is completed.</p>
-<p>For our current project, let’s create a subagent that handles all coding tasks using the following prompt:</p>
-<blockquote class="blockquote">
-<p>Following the documentation on “https://opencode.ai/docs/agents/” create a subagent in this project that is spawned every time there is a coding task. Call it <code>programmer</code> and make it use the QWEN3 model available in this opencode session.</p>
-</blockquote>
-<p>Make sure it did a correct job: 1) created a the file <code>.opencode/agents/programmer.md</code> 2) for model it has specified <code>cit-litellm/Qwen3-Coder-Next</code>.</p>
-<p>With this completed, let’s edit our AGENT.md file and add the following instruction at the top of the file after the project overview.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Agent Instructions &amp; Routing</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Always spawn the <span class="in">`@programmer`</span> subagent in opencode when a coding, scripting, or codebase modification task arises.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Finally, give the AI Agent a new coding task to test if it is calling our newly created subagent.</p>
-<blockquote class="blockquote">
-<p>Make a plot of the tides in the last 12 months for the closest station to Santa Barbara, CA, and highlight the three months with the lowest tides.</p>
 </blockquote>
 
 

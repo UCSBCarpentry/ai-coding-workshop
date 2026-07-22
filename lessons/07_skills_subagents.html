@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Automated Testing – AI-Assisted Coding for Research</title>
+<title>The AGENTS.md file – AI-Assisted Coding for Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -196,12 +196,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#writing-basic-tests" id="toc-writing-basic-tests" class="nav-link active" data-scroll-target="#writing-basic-tests">Writing basic tests</a></li>
-  <li><a href="#exercise-preprocessing-social-media-text" id="toc-exercise-preprocessing-social-media-text" class="nav-link" data-scroll-target="#exercise-preprocessing-social-media-text">Exercise: Preprocessing Social Media Text</a>
-  <ul class="collapse">
-  <li><a href="#setting-up-the-project" id="toc-setting-up-the-project" class="nav-link" data-scroll-target="#setting-up-the-project">Setting up the project</a></li>
-  <li><a href="#improving-the-normalization" id="toc-improving-the-normalization" class="nav-link" data-scroll-target="#improving-the-normalization">Improving the Normalization</a></li>
-  </ul></li>
+  <li><a href="#moving-here-the-content-jose-had-on-subagents" id="toc-moving-here-the-content-jose-had-on-subagents" class="nav-link active" data-scroll-target="#moving-here-the-content-jose-had-on-subagents">Moving here the content Jose had on subagents</a></li>
+  <li><a href="#creating-a-subagent" id="toc-creating-a-subagent" class="nav-link" data-scroll-target="#creating-a-subagent">Creating a subagent</a></li>
   </ul>
 </nav>
     </div>
@@ -210,7 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Automated Testing</h1>
+<h1 class="title">The AGENTS.md file</h1>
 </div>
 
 
@@ -227,166 +223,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>An agent, as we learned in the introduction, is a piece of software that runs tools in a loop to complete a task. We’ve already seen agents running in loops in previous episodes. The agent writes a script, runs it, reads the error, edits the script, runs it again, and keeps going until nothing is broken. Agents are great at checking their own work, but without additional help or instruction, they will tend to accept a minimal quality threshold: is the code syntactically correct? Does it run without errors? However, code that runs without errors can still be wrong. The agent has no way to know it made a mistake, because nothing it can check told it so. This lesson is about <strong>giving the agent better ways to check its own work</strong>. One of the best ways is with automated testing.</p>
-<section id="writing-basic-tests" class="level2">
-<h2 class="anchored" data-anchor-id="writing-basic-tests">Writing basic tests</h2>
-<p>Automated testing is a large and complex topic in software engineering – far too big for this workshop. Fortunately, the goal of this workshop is not to teach you software engineering. Instead, our aim is to show how you can get better results from coding agents with simple tests. <em>A little</em> testing is better than <em>no testing</em>, especially when agents are involved.</p>
-<p><strong>What is a test?</strong> At its simplest, a test is a piece of code that runs some other piece of code and checks that it does what you expected. In the exercise below, we’re going to create a function called <code>normalize()</code>, for cleaning text data prior to analysis. To test the code, we’ll create a list of inputs and expected outputs, and a test script that runs <code>normalize()</code> on the complete set. If all the outputs are expected, the test <strong>passes</strong>; if any outputs don’t match the expected value, the test <strong>fails</strong>. Tests are incredibly valuable for agentic coding because they give the agent an additional way to check its own work. As general advice, you are likely to have more success with coding agents if you can structure your projects around <strong>testable</strong> units of code.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Test-Driven Development
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Test-Driven Development is a software development workflow that splits each unit of coding work – the implementation of some new functionality or feature in the code – into two phases, red and green:</p>
-<ul>
-<li><strong>Red</strong>: write a test for the new functionality and check that it fails.</li>
-<li><strong>Green</strong>: add code for the functionality and iterate until the test passes.</li>
-</ul>
-<p>The idea behind TDD is that the progression from red to green (from tests failing to tests passing) provides stronger assurance that the tests actually exercise the functionality you implemented. TDD takes a lot of discipline if you are the one writing the code. However, for agentic coding, <a href="https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/">Simon Willison suggests</a> simply adding one line to your AGENTS.md: <code>Use red/green TDD</code>. That’s it!</p>
-</div>
-</div>
+<section id="moving-here-the-content-jose-had-on-subagents" class="level2">
+<h2 class="anchored" data-anchor-id="moving-here-the-content-jose-had-on-subagents">Moving here the content Jose had on subagents</h2>
+<p>This can be used in the Skills section for Day 3.</p>
 </section>
-<section id="exercise-preprocessing-social-media-text" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-preprocessing-social-media-text">Exercise: Preprocessing Social Media Text</h2>
-<p>For this exercise, we’re going to build a workflow to preprocess text data, as described in Renata Curty &amp; Jairo Melo’s workshop, <a href="https://ucsb-library-research-data-services.github.io/text-analysis-series/">Text Analysis with R</a>.</p>
-<blockquote class="blockquote">
-<p>Text preprocessing is the set of steps used to clean, standardize, and structure raw text before it can be meaningfully analyzed. This may include removing punctuation, normalizing letter case, eliminating stop words, breaking text into tokens (words or sentences), and reducing words to their base forms through lemmatization. Preprocessing reduces noise and inconsistencies in the text, making it ready for computational analysis.</p>
-</blockquote>
-<p>Our data consists of roughly 5,800 social media posts about the Apple TV series <em>Severance</em>. Each social media post will be normalized. For example, a message like this:</p>
-<blockquote class="blockquote">
-<p>OMG!! 😱 I can’t believe it… This is CRAZY!!! #unreal 🤯</p>
-</blockquote>
-<p>Should be normalized as</p>
-<blockquote class="blockquote">
-<p>omg [face screaming in fear] cannot believe it this is crazy unreal [exploding head]</p>
-</blockquote>
-<p>The following table includes all normalization rules required by the preprocessing pipeline.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 28%">
-<col style="width: 71%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Rule</strong></th>
-<th><strong>What it does</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Remove URLs</td>
-<td>Strip web addresses (<code>http://</code>, <code>https://</code>, <code>www.</code>).</td>
-</tr>
-<tr class="even">
-<td>Remove hidden characters</td>
-<td>Strip invisible Unicode formatting chars and non-breaking spaces.</td>
-</tr>
-<tr class="odd">
-<td>Standardize apostrophes</td>
-<td>Convert Unicode apostrophe variants (e.g.&nbsp;<code>’</code>) to ASCII <code>'</code>.</td>
-</tr>
-<tr class="even">
-<td>Expand contractions</td>
-<td>Rewrite shortened forms to full words (<code>can't</code> → <code>cannot</code>).</td>
-</tr>
-<tr class="odd">
-<td>Remove mentions</td>
-<td>Strip social-media usernames prefixed with <code>@</code>.</td>
-</tr>
-<tr class="even">
-<td>Split hashtags</td>
-<td>Separate camelCase inside hashtags (<code>#TextAnalysis</code> → <code>Text Analysis</code>).</td>
-</tr>
-<tr class="odd">
-<td>Convert to lowercase</td>
-<td>Lowercase all text.</td>
-</tr>
-<tr class="even">
-<td>Remove punctuation &amp; symbols</td>
-<td>Strip punctuation and special characters.</td>
-</tr>
-<tr class="odd">
-<td>Remove numbers</td>
-<td>Strip digit sequences.</td>
-</tr>
-<tr class="even">
-<td>Normalize elongation</td>
-<td>Collapse 3+ repeated chars (<code>loooove</code> → <code>love</code>).</td>
-</tr>
-<tr class="odd">
-<td>Convert emojis to text</td>
-<td>Replace emojis with text descriptions.</td>
-</tr>
-<tr class="even">
-<td>Remove single characters</td>
-<td>Strip isolated letters left after cleanup.</td>
-</tr>
-<tr class="odd">
-<td>Normalize whitespace</td>
-<td>Collapse repeated spaces and trim edges.</td>
-</tr>
-</tbody>
-</table>
-<section id="setting-up-the-project" class="level3">
-<h3 class="anchored" data-anchor-id="setting-up-the-project">Setting up the project</h3>
-<p>For this exercise, we will make a copy of an existing project in our workspace. You can also browse <a href="https://github.com/UCSBCarpentry/ai-coding-workshop/tree/main/projects/text-cleaning">the project files on GitHub</a>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure we are in ~/workspace</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/workspace</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># download project files to new `text-cleaning` directory</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> https://github.com/UCSBCarpentry/ai-coding-workshop/archive/main.tar.gz <span class="kw">|</span> <span class="fu">tar</span> xz <span class="at">--strip</span><span class="op">=</span>2 ai-coding-workshop-main/projects/text-cleaning</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># move into the project folder and start opencode</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> text-cleaning</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">opencode</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Take a few moments to explore the project: you should probably skim the README.md and AGENTS.md files. You may notice the following:</p>
+<section id="creating-a-subagent" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-subagent">Creating a subagent</h2>
+<p>An additional instruction we can add in our AGENTS.md is to call a different agent (a subagent) to complete a given task. This can be greatly useful for multiple purposes:</p>
 <ul>
-<li>You will need to decrypt the raw data file. Get the password from the instructor.</li>
-<li>The project already includes tests, and they all pass.</li>
-<li>There is a data review application that starts a web server for reviewing the normalized data.</li>
+<li><p>when we want different AI LLM models to complete different tasks, depending on the cost and capability of the model.</p>
+<p>For example: using a multimodal AI model to handle images or audio, delegating all coding tasks to a specific model, or summarizing content with a cheap small model.</p></li>
+<li><p>to parallelize tasks that can be completed independently.</p></li>
+<li><p>to have specialized roles or personas completing different tasks, or checking the work of other agents.</p></li>
 </ul>
-<p>Use the following prompt to get started:</p>
+<p>The subagent will start in a new session with its own context window, receive instructions from the agent, complete the task, and return a summary to the main session that spawned the subagent. This is another advantage of the subagent: it won’t overload your current chat session with all the analysis and process, it will only return a summary when the task is completed.</p>
+<p>For our current project, let’s create a subagent that handles all coding tasks using the following prompt:</p>
 <blockquote class="blockquote">
-<p>Help me decrypt the raw data and start the data review application.</p>
+<p>Following the documentation on “https://opencode.ai/docs/agents/” create a subagent in this project that is spawned every time there is a coding task. Call it <code>programmer</code> and make it use the QWEN3 model available in this opencode session.</p>
 </blockquote>
-<p>To view the web application, go to your Coder workspace dashboard and use the <strong>Open Ports</strong> dropdown (it’s in the top-right corner), and click on port <strong>5001</strong>. If you don’t see the port listed, you can enter it in the “Connect to port” input field. You should see a page listing social media posts in pairs: the raw message is above and the normalized text is below.</p>
-</section>
-<section id="improving-the-normalization" class="level3">
-<h3 class="anchored" data-anchor-id="improving-the-normalization">Improving the Normalization</h3>
-<p>Spend some time reviewing the data using the review server. You may notice the following issues:</p>
-<ul>
-<li><p><strong>Emoji</strong> names should be wrapped in brackets: <code>🔥</code> → currently normalizes as <code>fire</code>, expected <code>[fire]</code>.</p></li>
-<li><p><strong>Punctuation</strong> should be replaced by a space, not deleted: <code>state-of-the-art</code> → currently normalizes as <code>stateoftheart</code>, expected <code>state of the art</code>.</p></li>
-<li><p><strong>Accented Latin Characters</strong> should be preserved, not removed (see <code>s1_0304</code> for an example): <code>café</code> → currently normalizes as <code>caf</code>, expected <code>café</code>.</p></li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Use OpenCode to fix each of the above normalization issues:</p>
-<ul>
-<li>Fix each issue in a new session (use <code>/new</code>)</li>
-<li>Use <strong>Plan</strong> mode with <strong>Gemini 3.1 Pro (Custom Tools)</strong> to create a plan.</li>
-<li>Make sure the plan includes a step to update the tests!</li>
-<li>Switch to <strong>Build</strong> mode and use <strong>Gemini 3.5 Flash</strong> to execute the plan</li>
-<li>Use the review server to check the re-normalized data.</li>
-</ul>
-</div>
-</div>
+<p>Make sure it did a correct job: 1) created a the file <code>.opencode/agents/programmer.md</code> 2) for model it has specified <code>cit-litellm/Qwen3-Coder-Next</code>.</p>
+<p>With this completed, let’s edit our AGENT.md file and add the following instruction at the top of the file after the project overview.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Agent Instructions &amp; Routing</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Always spawn the <span class="in">`@programmer`</span> subagent in opencode when a coding, scripting, or codebase modification task arises.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Finally, give the AI Agent a new coding task to test if it is calling our newly created subagent.</p>
+<blockquote class="blockquote">
+<p>Make a plot of the tides in the last 12 months for the closest station to Santa Barbara, CA, and highlight the three months with the lowest tides.</p>
+</blockquote>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
