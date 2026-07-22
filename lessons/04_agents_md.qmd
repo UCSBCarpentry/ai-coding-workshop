@@ -1,5 +1,5 @@
 ---
-title: "Project structure"
+title: "The AGENTS.md file"
 ---
 
 ## As a review
@@ -83,9 +83,22 @@ Being specific on the tools you use helps guide the AI, without having you repea
 - Code style guidelines: Any particular preferences you and your team may be following on your coding project. 
 - Workflows: For example, the Git and GitHub workflow you want to follow, conventions to name new branches or commit messages. 
 
-## Exercise: Discuss real AGENTS.md examples
+:::{.callout-tip}
+## Challenge: Discuss real AGENTS.md examples
 
+Take a look at the following three examples of AGENTS.md files:
 
+- [The vLLM software](https://github.com/vllm-project/vllm)
+- [Jupyter notebooks examples for dynamical.org](https://github.com/dynamical-org/notebooks)
+- [The Crucible framework for Cybersecurity education](https://github.com/cmu-sei/crucible)
+
+Discuss with the person next to you:
+
+- Did you find an AGENTS.md file, a CLAUDE.md file, or both?
+- What did you see they have in common?
+- How many lines does each file has?
+
+:::
 
 ## Customize the AGENTS.md file
 
@@ -95,7 +108,7 @@ Let's add the following to the AGENTS.md file we have until now.
 ```md
 ## Environment & Tooling
 
-- Language: Python (>=3.11 recommended)
+- Language: Python (>=3.9 recommended)
 - Package manager: **uv** — do not use pip, conda, or poetry directly.
   - Install dependencies: `uv add <package>`
   - Sync environment from lockfile: `uv sync`
@@ -106,11 +119,11 @@ Let's add the following to the AGENTS.md file we have until now.
 
 Always consider this directory structure to find and create files in this project:
 - data
-  - raw
-  - processed
+  - data-raw
+  - data-processed
 - code
 - docs
-- results
+- output
   - figures
   - tables
 
@@ -126,10 +139,6 @@ Always run the following checks before creating a commit. Do not commit if any s
    `uv run ruff check --fix .`
 3. Re-run lint to confirm no remaining errors:
    `uv run ruff check .`
-4. Stage only the relevant files (avoid `git add .` unless you're sure everything staged is intended):
-   `git add <files>`
-5. Write a clear, conventional commit message (see below) and commit:
-   `git commit -m "<type>: <short summary>"`
 
 ### Commit message conventions
 
@@ -145,44 +154,3 @@ Keep it short and descriptive, e.g. `add sliding window aggregation for signal p
 After this adjustments, make sure the project is actually following these conventions and test how it it works. Let's use this prompt:
 
 > Make sure my project follows the guidelines stated on the @AGENTS.md file.
-
-
-## Creating a subagent
-
-An additional instruction we can add in our AGENTS.md is to call a different agent (a subagent) to complete a given task.
-This can be greatly useful for multiple purposes:
-
-- when we want different AI LLM models to complete different tasks, depending on the cost and capability of the model.
-    
-    For example: using a multimodal AI model to handle images or audio,
-    delegating all coding tasks to a specific model,
-    or summarizing content with a cheap small model.
-- to parallelize tasks that can be completed independently.
-- to have specialized roles or personas completing different tasks, or checking the work of other agents.
-
-The subagent will start in a new session with its own context window, receive instructions from the agent,
-complete the task, and return a summary to the main session that spawned the subagent.
-This is another advantage of the subagent:
-it won't overload your current chat session with all the analysis and process,
-it will only return a summary when the task is completed.
-
-For our current project, let's create a subagent that handles all coding tasks using the following prompt:
-
-> Following the documentation on "https://opencode.ai/docs/agents/" create a subagent in this project that is spawned every time there is a coding task. Call it `programmer` and make it use the QWEN3 model available in this opencode session.
-
-Make sure it did a correct job:
-1) created a the file `.opencode/agents/programmer.md`
-2) for model it has specified `cit-litellm/Qwen3-Coder-Next`.
-
-With this completed, let's edit our AGENT.md file and add the following instruction at the top of the file after the project overview.
-
-```md
-## Agent Instructions & Routing
-- Always spawn the `@programmer` subagent in opencode when a coding, scripting, or codebase modification task arises.
-```
-
-Finally, give the AI Agent a new coding task to test if it is calling our newly created subagent.
-
-> Make a plot of the tides in the last 12 months for the closest station to Santa Barbara, CA, and highlight the three months with the lowest tides.
-
-
