@@ -152,8 +152,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Planning</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/05_projectstructure.qmd">
- <span class="dropdown-text"></span></a>
+    <a class="dropdown-item" href="../lessons/04_agents_md.html">
+ <span class="dropdown-text">The AGENTS.md file</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../lessons/06_testing.html">
@@ -229,11 +229,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let’s refresh some concepts on how to start OpenCode, switch models, and send a prompt to the AI Agent.</p>
 <ol type="1">
 <li><p>If you have a <code>noaa-tides</code> folder you were working on last week, continue working on that one.</p>
-<p>1.1. If you don’t, clone the repo we have set up for you using <code>git clone git@github.com:UCSBCarpentry/noaa-tides.git</code> (Or ask the AI to help)</p></li>
+<ul>
+<li>If you don’t, clone the repo we have set up for you using <code>git clone git@github.com:UCSBCarpentry/noaa-tides.git</code> (Or ask the AI to help)</li>
+</ul></li>
 <li><p>Start OpenCode in the <code>noaa-tides</code> folder</p></li>
 <li><p>Select <code>Gemini 3.5 Flash</code> as your model</p></li>
 </ol>
-<p>Now imagine for a moment you are new to this project, and you want to know what it is about. Therefore, you ask OpenCode:</p>
+<p>Imagine you are new to this project and want to understand it. You ask OpenCode:</p>
 <blockquote class="blockquote">
 <p>What is this project about? What were the latest changes made?</p>
 </blockquote>
@@ -261,26 +263,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">...</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There is a lot to unpack here:</p>
 <ul>
-<li>LLMs are very good at summarizing a big amount of information quickly. In a few seconds it read the files in our project and gave us an overview to get started.</li>
-<li>It shows how the AI Agent called tools like <code>Glob</code> and <code>Read</code>, and it ran a <code>git</code> Shell command. Contrary to a chat-based AI tool, the AI Agent was able to access the files in our project and call tools to gather additional information.</li>
+<li>LLMs are very good at summarizing a large amount of information quickly. In a few seconds, it read the files in our project and gave us an overview to get started.</li>
+<li>It shows how the AI Agent called tools like <code>Glob</code> and <code>Read</code>, and it ran a <code>git</code> Shell command. Unlike a standard chat-based AI tool, the AI Agent was able to access the files in our project and call tools to gather additional information.</li>
 <li>To answer our question, the agent used Git to track our project’s history. AI coding agents make version control both easier and more essential, giving us access to valuable historical context, while serving as a crucial safety net in case the AI messes up the project.</li>
 </ul>
-<p>If we open a new chat session with the <code>/new</code> command, the AI Agent would have to read again files just to have a brief overview of the project, wasting precious time and tokens.</p>
-<p>What if there was a file the AI always has access to with the most relevant information of our project?</p>
+<p>If we open a new chat session with the <code>/new</code> command, the AI Agent would have to read the files again just to have a brief overview of the project, wasting precious time and tokens.</p>
+<p>What if there was a file the AI always has access to with the most relevant information about our project?</p>
 </section>
 <section id="the-agents.md-file" class="level2">
 <h2 class="anchored" data-anchor-id="the-agents.md-file">The AGENTS.md file</h2>
 <p>AGENTS.md is a special file that is always included at the start of the conversation with the coding agent, without the user having to mention it.</p>
-<p>Just like a README file describes the project and its structure to a human reader to facilitate its understanding, the AGENTS.md is meant for the AI to have a <strong>high level description of the project</strong> without having to read a bunch of files with every new conversation, and also to give the AI clear and important <strong>guidelines on conventions, coding styles, or workflows</strong> the user wants it to follow.</p>
-<p>We can ask our AI Agent to get us started with an AGENTS.md, using the <code>/init</code> command. In OpenCode we can even review the prompt used for creating the file.</p>
-<p>As you can see, it is a human-readable, plain markdown file. It can have any sections you feel are relevant to your project, but aim to keep it concise and focused on guiding the AI through specificities of your project.</p>
+<p>Just like a README file describes a project to a human reader, the AGENTS.md file gives the AI a high-level description of the project so it doesn’t have to read multiple files with every new conversation. It also gives the AI clear guidelines on conventions, coding styles, or workflows you want it to follow.</p>
+<p>Just like a README file describes a project to a human reader, the AGENTS.md file gives the AI a <strong>high level description of the project</strong> so it doesn’t have to read multiple files with every new conversation. It also gives the AI clear <strong>guidelines on conventions, coding styles, or workflows</strong> you want it to follow.</p>
+<p>We can ask our AI Agent to get us started with an AGENTS.md using the <code>/init</code> command.</p>
+<p>As you can see, it is a human-readable, plain markdown file. It can have any sections you feel are relevant to your project, but aim to keep it concise and focused on guiding the AI through specifics of your project.</p>
 <p>Some common sections you’ll find in AGENTS.md files:</p>
 <ul>
 <li>Project overview: A short and high-level description.</li>
-<li>Tools / Tech stack: AI tools can be very opinionated on what programming languages and tools it uses. Being specific on the tools you use helps guide the AI, without having you repeat it in every prompt.</li>
+<li>Tools / Tech stack: AI tools can be very opinionated about what programming languages and tools they use. Being specific about your stack helps guide the AI without having to repeat yourself in every prompt.</li>
 <li>Project structure / architecture: Having the directory structure of your project helps the AI to know where to save and find files.</li>
-<li>Code style guidelines: Any particular preferences you and your team may be following on your coding project.</li>
-<li>Workflows: For example, the Git and GitHub workflow you want to follow, conventions to name new branches or commit messages.</li>
+<li>Code style guidelines: Any particular preferences you and your team follow in your coding project.</li>
+<li>Workflows: For example, the Git and GitHub workflow you want to follow, conventions for naming new branches or commit messages.</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -302,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Did you find an AGENTS.md file, a CLAUDE.md file, or both?</li>
 <li>What did you see they have in common?</li>
-<li>How many lines does each file has?</li>
+<li>How many lines does each file have?</li>
 </ul>
 </div>
 </div>
@@ -353,10 +356,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never commit directly to <span class="in">`main`</span>. Create a branch (<span class="in">`git switch -c &lt;branch-name&gt;`</span>) if one doesn't already exist for the current task.</span>
 <span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never force-push (<span class="in">`git push --force`</span>) without explicit user confirmation.</span>
 <span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If <span class="in">`ruff`</span> reports errors that can't be auto-fixed, stop and explain the issue rather than silently ignoring or suppressing it.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>After this adjustments, make sure the project is actually following these conventions and test how it it works. Let’s use this prompt:</p>
+<p>After adjustmenting it, make sure the project is actually following these conventions and test how it works. Let’s use this prompt:</p>
 <blockquote class="blockquote">
 <p>Make sure my project follows the guidelines stated on the <span class="citation" data-cites="AGENTS.md">@AGENTS.md</span> file.</p>
 </blockquote>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Challenge: Testing our AI Agent
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let’s test if the AI really obeys our new workflow rules.</p>
+<ol type="1">
+<li>Open <code>code/plot_mhw.py</code> or another Python script and in the import section add <code>import random</code>, an unused import in the project.</li>
+<li>Ask the AI Agent: “Please commit my recent changes with a generic message.”</li>
+<li>Watch the agent’s output. Did it run <code>ruff check</code>? Did it refuse to commit until the issue was fixed, or did it auto-fix it for you?</li>
+</ol>
+</div>
+</div>
 
 
 </section>
