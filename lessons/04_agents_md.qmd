@@ -8,14 +8,13 @@ Let's refresh some concepts on how to start OpenCode, switch models, and send a 
 
 1. If you have a `noaa-tides` folder you were working on last week, continue working on that one.
    
-   1.1. If you don't, clone the repo we have set up for you using `git clone git@github.com:UCSBCarpentry/noaa-tides.git`
+   - If you don't, clone the repo we have set up for you using `git clone git@github.com:UCSBCarpentry/noaa-tides.git`
    (Or ask the AI to help)
 
 2. Start OpenCode in the `noaa-tides` folder
 3. Select `Gemini 3.5 Flash` as your model
 
-Now imagine for a moment you are new to this project,
-and you want to know what it is about. Therefore, you ask OpenCode:
+Imagine you are new to this project and want to understand it. You ask OpenCode:
 
 > What is this project about? What were the latest changes made?
 
@@ -47,41 +46,42 @@ Based on the repository's git commit history, the most recent developments are:
 
 There is a lot to unpack here:
 
-- LLMs are very good at summarizing a big amount of information quickly.
-In a few seconds it read the files in our project and gave us an overview to get started.
+- LLMs are very good at summarizing a large amount of information quickly.
+In a few seconds, it read the files in our project and gave us an overview to get started.
 - It shows how the AI Agent called tools like `Glob` and `Read`, and it ran a `git` Shell command.
-Contrary to a chat-based AI tool, the AI Agent was able to access the files in our project and call tools to gather additional information.
+Unlike a standard chat-based AI tool, the AI Agent was able to access the files in our project and call tools to gather additional information.
 - To answer our question, the agent used Git to track our project's history.
 AI coding agents make version control both easier and more essential, giving us access to valuable historical context, while serving as a crucial safety net in case the AI messes up the project.
 
-If we open a new chat session with the `/new` command, the AI Agent would have to read again files just to have a brief overview of the project, wasting precious time and tokens.
+If we open a new chat session with the `/new` command, the AI Agent would have to read the files again just to have a brief overview of the project, wasting precious time and tokens.
 
-What if there was a file the AI always has access to with the most relevant information of our project?
+What if there was a file the AI always has access to with the most relevant information about our project?
 
 ## The AGENTS.md file
 
 AGENTS.md is a special file that is always included at the start of the conversation with the coding agent, 
 without the user having to mention it.
 
-Just like a README file describes the project and its structure to a human reader to facilitate its understanding,
-the AGENTS.md is meant for the AI to have a **high level description of the project** without having to read a bunch of files with every new conversation,
-and also to give the AI clear and important **guidelines on conventions, coding styles, or workflows** the user wants it to follow.
+Just like a README file describes a project to a human reader, the AGENTS.md file gives the AI a high-level description of the project so it doesn't have to read multiple files with every new conversation. It also gives the AI clear guidelines on conventions, coding styles, or workflows you want it to follow.
 
-We can ask our AI Agent to get us started with an AGENTS.md, 
-using the `/init` command. In OpenCode we can even review the prompt used for creating the file.
+Just like a README file describes a project to a human reader,
+the AGENTS.md file gives the AI a **high level description of the project** so it doesn't have to read multiple files with every new conversation.
+It also gives the AI clear **guidelines on conventions, coding styles, or workflows** you want it to follow.
+
+We can ask our AI Agent to get us started with an AGENTS.md using the `/init` command.
 
 As you can see, it is a human-readable, plain markdown file.
 It can have any sections you feel are relevant to your project,
-but aim to keep it concise and focused on guiding the AI through specificities of your project.
+but aim to keep it concise and focused on guiding the AI through specifics of your project.
 
 Some common sections you'll find in AGENTS.md files:
 
 - Project overview: A short and high-level description.
-- Tools / Tech stack: AI tools can be very opinionated on what programming languages and tools it uses.
-Being specific on the tools you use helps guide the AI, without having you repeat it in every prompt.
+- Tools / Tech stack: AI tools can be very opinionated about what programming languages and tools they use.
+Being specific about your stack helps guide the AI without having to repeat yourself in every prompt.
 - Project structure / architecture: Having the directory structure of your project helps the AI to know where to save and find files.
-- Code style guidelines: Any particular preferences you and your team may be following on your coding project. 
-- Workflows: For example, the Git and GitHub workflow you want to follow, conventions to name new branches or commit messages. 
+- Code style guidelines: Any particular preferences you and your team follow in your coding project. 
+- Workflows: For example, the Git and GitHub workflow you want to follow, conventions for naming new branches or commit messages. 
 
 :::{.callout-tip}
 ## Challenge: Discuss real AGENTS.md examples
@@ -96,7 +96,7 @@ Discuss with the person next to you:
 
 - Did you find an AGENTS.md file, a CLAUDE.md file, or both?
 - What did you see they have in common?
-- How many lines does each file has?
+- How many lines does each file have?
 
 :::
 
@@ -151,6 +151,17 @@ Keep it short and descriptive, e.g. `add sliding window aggregation for signal p
 - If `ruff` reports errors that can't be auto-fixed, stop and explain the issue rather than silently ignoring or suppressing it.
 ```
 
-After this adjustments, make sure the project is actually following these conventions and test how it it works. Let's use this prompt:
+After adjustmenting it, make sure the project is actually following these conventions and test how it works. Let's use this prompt:
 
 > Make sure my project follows the guidelines stated on the @AGENTS.md file.
+
+:::{.callout-tip}
+## Challenge: Testing our AI Agent
+
+Let's test if the AI really obeys our new workflow rules.
+
+1. Open `code/plot_mhw.py` or another Python script and in the import section add `import random`, an unused import in the project.
+2. Ask the AI Agent: "Please commit my recent changes with a generic message."
+3. Watch the agent's output. Did it run `ruff check`? Did it refuse to commit until the issue was fixed, or did it auto-fix it for you?
+
+:::
