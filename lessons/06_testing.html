@@ -247,7 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Red</strong>: write a test for the new functionality and check that it fails.</li>
 <li><strong>Green</strong>: add code for the functionality and iterate until the test passes.</li>
 </ul>
-<p>The idea behind TDD is that the progression from red to green (from tests failing to tests passing) provides stronger assurance that the tests actually exercise the functionality you implemented. TDD takes a lot of discipline if you are the one writing the code. However, for agentic coding <a href="https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/">Simon Willison suggests</a> simply adding one line to your AGENTS.md: <code>Use red/green TDD</code>. That’s it!</p>
+<p>The idea behind TDD is that the progression from red to green (from tests failing to tests passing) provides stronger assurance that the tests actually exercise the functionality you implemented. TDD takes a lot of discipline if you are the one writing the code. However, for agentic coding, <a href="https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/">Simon Willison suggests</a> simply adding one line to your AGENTS.md: <code>Use red/green TDD</code>. That’s it!</p>
 </div>
 </div>
 </section>
@@ -263,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>Should be normalized as</p>
 <blockquote class="blockquote">
-<p>omg [face scream in fear] I can not believe it this is crazy unreal [exploding head]</p>
+<p>omg [face screaming in fear] cannot believe it this is crazy unreal [exploding head]</p>
 </blockquote>
 <p>The following table includes all normalization rules required by the preprocessing pipeline.</p>
 <table class="caption-top table">
@@ -341,39 +341,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># download project files to new `text-cleaning` directory</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> https://github.com/UCSBCarpentry/ai-coding-workshop/archive/main.tar.gz <span class="kw">|</span> <span class="fu">tar</span> xz <span class="at">--strip</span><span class="op">=</span>2 ai-coding-workshop-main/projects/text-cleaning</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># moving into project folder and start opencode</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># move into the project folder and start opencode</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> text-cleaning</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">opencode</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Take a few moments to explore the project: you should probably skim the README.md and AGENTS.md files. You may notice the following</p>
+<p>Take a few moments to explore the project: you should probably skim the README.md and AGENTS.md files. You may notice the following:</p>
 <ul>
 <li>You will need to decrypt the raw data file. Get the password from the instructor.</li>
-<li>The project already includes tests, and they all pass</li>
-<li>There is a data review application that starts a web server for review the normalized data.</li>
+<li>The project already includes tests, and they all pass.</li>
+<li>There is a data review application that starts a web server for reviewing the normalized data.</li>
 </ul>
 <p>Use the following prompt to get started:</p>
 <blockquote class="blockquote">
 <p>Help me decrypt the raw data and start the data review application.</p>
 </blockquote>
-<p>To view the web application, go to your Coder workspace dashboard and use the <strong>Open Ports</strong> dropdown (it’s in the top-right corner), and click on port <strong>5001</strong>. If you don’t see the number, you can enter it in the “Connect to port” input field. You should see a page listing social media posts in pairs: the raw message is above and the normalized text is below.</p>
+<p>To view the web application, go to your Coder workspace dashboard and use the <strong>Open Ports</strong> dropdown (it’s in the top-right corner), and click on port <strong>5001</strong>. If you don’t see the port listed, you can enter it in the “Connect to port” input field. You should see a page listing social media posts in pairs: the raw message is above and the normalized text is below.</p>
 </section>
 <section id="improving-the-normalization" class="level3">
 <h3 class="anchored" data-anchor-id="improving-the-normalization">Improving the Normalization</h3>
-<p>Spend some time reviewing the data, and notice the following issues:</p>
-<ul class="task-list">
-<li><p><label><input type="checkbox"><strong>Emoji rendering — bracketed vs.&nbsp;bare words.</strong> The current behavior converts emoji <em>early</em> (before punctuation removal), so descriptions become plain lowercase words: <code>🔥</code> → <code>fire</code>. The expected behavior converts emoji <em>last</em> (after punctuation removal), so the <code>[ ]</code> wrapper survives: <code>🔥</code> → <code>[fire]</code>.</label></p></li>
-<li><p><label><input type="checkbox"><strong>Punctuation: fuse vs.&nbsp;split.</strong> The current behavior <em>deletes</em> punctuation, fusing tokens; the expected behavior <em>replaces punctuation with a space</em>, splitting them.</label></p>
+<p>Spend some time reviewing the data using the review server. You may notice the following issues:</p>
 <ul>
-<li><code>Mark's</code> → current <code>marks</code>, expected <code>mark</code> (same as the line-6 <code>severance's</code> → <code>severances</code>)</li>
-<li><code>well-known</code> → current <code>wellknown</code>, expected <code>well known</code></li>
-<li><code>state-of-the-art</code> → current <code>stateoftheart</code>, expected <code>state of the art</code></li>
-</ul></li>
-<li><p><label><input type="checkbox"><strong>Non-ASCII / accented letters: strip vs.&nbsp;keep.</strong> The current punctuation rule is a whitelist (keep <code>a–z</code> + spaces), so accented and non-Latin letters are dropped; the expected behavior blacklists punctuation, so letters survive. <strong>Most consequential for non-English data.</strong></label></p>
-<ul>
-<li><code>café</code> → current <code>caf</code>, expected <code>café</code></li>
-<li><code>naïve résumé</code> → current <code>nave rsum</code></li>
-<li><code>Северанс</code> (Cyrillic) → current `` (empty), expected keeps it</li>
-</ul></li>
+<li><p><strong>Emoji</strong> names should be wrapped in brackets: <code>🔥</code> → currently normalizes as <code>fire</code>, expected <code>[fire]</code>.</p></li>
+<li><p><strong>Punctuation</strong> should be replaced by a space, not deleted: <code>state-of-the-art</code> → currently normalizes as <code>stateoftheart</code>, expected <code>state of the art</code>.</p></li>
+<li><p><strong>Accented Latin Characters</strong> should be preserved, not removed (see <code>s1_0304</code> for an example): <code>café</code> → currently normalizes as <code>caf</code>, expected <code>café</code>.</p></li>
 </ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use OpenCode to fix each of the above normalization issues:</p>
+<ul>
+<li>Fix each issue in a new session (use <code>/new</code>)</li>
+<li>Use <strong>Plan</strong> mode with <strong>Gemini 3.1 Pro (Custom Tools)</strong> to create a plan.</li>
+<li>Make sure the plan includes a step to update the tests!</li>
+<li>Switch to <strong>Build</strong> mode and use <strong>Gemini 3.5 Flash</strong> to execute the plan</li>
+<li>Use the review server to check the re-normalized data.</li>
+</ul>
+</div>
+</div>
 
 
 </section>
