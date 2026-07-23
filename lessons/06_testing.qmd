@@ -161,5 +161,6 @@ Use OpenCode to fix each of the above normalization issues:
 - Make sure the plan includes a step to update the tests!
 - Switch to **Build** mode and use **Gemini 3.5 Flash** to execute the plan
 - Use the review server to check the re-normalized data.
+- Commit your work for each issue separately.
 
 :::
