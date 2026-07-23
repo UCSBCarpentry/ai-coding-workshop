@@ -62,8 +62,6 @@ What if there was a file the AI always has access to with the most relevant info
 AGENTS.md is a special file that is always included at the start of the conversation with the coding agent, 
 without the user having to mention it.
 
-Just like a README file describes a project to a human reader, the AGENTS.md file gives the AI a high-level description of the project so it doesn't have to read multiple files with every new conversation. It also gives the AI clear guidelines on conventions, coding styles, or workflows you want it to follow.
-
 Just like a README file describes a project to a human reader,
 the AGENTS.md file gives the AI a **high level description of the project** so it doesn't have to read multiple files with every new conversation.
 It also gives the AI clear **guidelines on conventions, coding styles, or workflows** you want it to follow.
