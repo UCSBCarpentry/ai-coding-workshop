@@ -8,7 +8,7 @@ Let's refresh some concepts on how to start OpenCode, switch models, and send a 
 
 1. If you have a `noaa-tides` folder you were working on last week, continue working on that one.
    
-   - If you don't, clone the repo we have set up for you using `git clone git@github.com:UCSBCarpentry/noaa-tides.git`
+   - If you don't, clone the repo we have set up for you using `git clone https://github.com/UCSBCarpentry/noaa-tides-example.git`
    (Or ask the AI to help)
 
 2. Start OpenCode in the `noaa-tides` folder
