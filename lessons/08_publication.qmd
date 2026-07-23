@@ -2,21 +2,21 @@
 title: "Using Agents for Data Visualization and Publication"
 ---
 
-Generating web pages and data dashboards is one of the tasks LLM agents excel at most, particularly when the data is already in hand and the architectural complexity is low. Because many analytical dashboards don't require complex backend servers, an LLM can easily package your data, interactive visual charts, and text explanations into a single, easily publishable web page.
+Generating web pages and data dashboards is one of the tasks LLM agents excel at, particularly when the data is already in hand and the architectural complexity is low. Because many analytical dashboards don't require complex backend servers, an LLM can easily package your data, interactive visual charts, and text explanations into a single, easily publishable web page.
 
 ## Prepare the required data and instructions
 
 As usual, the first step is to set up the data and instructions for the agent to follow. In this example, we will use the data already prepared in [this repository](https://github.com/jairomelo/NOAA-water-temp-CA):
 
-```html
-https://github.com/jairomelo/NOAA-water-temp-CA
+```bash
+git clone https://github.com/jairomelo/NOAA-water-temp-CA.git
 ```
 
-You can read the README file to understand the data and its structure, as well as the code used to download the data from NOAA.
+You can read the `README.md` file to understand the data and its structure, as well as the code used to download the data from NOAA.
 
 To summarize, the data consists of water temperature measurements from multiple stations along the California coast, collected over several years. The data is stored in CSV files, with each file corresponding to a specific station and containing columns for date, temperature, and other relevant information.
 
-After knowing what data we have, we can decide what type of framework we want to use for our dashboard and what type of infrastructure we want to use for hosting it. In this example, we will use `Shiny` and `WebAssembly` to create an interactive dashboard that can be hosted on GitHub Pages. The main programming language (`R` or `Python`) will depend on your preference, unless you have a specific requirement for one of them. In this example, we will use `Python` and `Shiny` to create the dashboard.
+Once we understand the data, we can decide what type of framework we want to use for our dashboard and what type of infrastructure we want to use for hosting it. In this example, we will use `Shiny` and `WebAssembly` to create an interactive dashboard that can be hosted on GitHub Pages. The main programming language (`R` or `Python`) will depend on your preference, unless you have a specific requirement for one of them. In this example, we will use `Python` and `Shiny` to create the dashboard.
 
 Summary of the prerequisites for this example:
 
@@ -24,10 +24,10 @@ Summary of the prerequisites for this example:
 2. Framework: `Shiny` + `WebAssembly` for creating the interactive dashboard.
 3. Hosting: GitHub Pages for hosting the dashboard.
 
-::: {.callout-note icon=false collapse="true"}
-## Do I need to prepare an AGENTS.md file for this task?
+:::{.callout-note icon=false collapse="true"}
+### Do I need to prepare an AGENTS.md file for this task?
 
-Not for this exercise. The agent will be able to handle the task without any additional instructions, as long as it has access to the data and knows what type of dashboard we want to create. However, if you want to customize the agent's behavior or add specific instructions for this task, you can create an AGENTS.md file and include it in the project.
+Not for this exercise. The agent will be able to handle the task without any additional instructions, as long as it has access to the data and knows what type of dashboard we want to create. However, if you want to customize the agent's behavior or add specific instructions for this task, you can create an `AGENTS.md` file and include it in the project.
 :::
 
 ## Setting up the project in your workspace
@@ -36,18 +36,22 @@ Not for this exercise. The agent will be able to handle the task without any add
 
 Type this command in a separate terminal to set your credentials for GitHub in the workspace:
 
-`gh auth login`
+```bash
+gh auth login
+```
 
 Follow the prompts to authenticate with your GitHub account. Select `https` if you want to log in with your username and password, or `ssh` if you want to use an SSH key. After logging in, you can verify that you are authenticated by running:
 
-`gh auth status`
+```bash
+gh auth status
+```
 
 ### Prepare the destination repository
 
-In GitHub, create a new, empty repository to host the dashboard. You can name it something like `water-temp-dashboard`. Do not initialize the repository with a README, .gitignore, or license file, as we will be pushing our local files to this repository later.Copy the URL of the repository, as we will need it later to push our local files to GitHub.
+In GitHub, create a new, empty repository to host the dashboard. You can name it something like `water-temp-dashboard`. Do not initialize the repository with a README, `.gitignore`, or license file, as we will be pushing our local files to this repository later. Copy the URL of the repository, as we will need it later to push our local files to GitHub.
 
-::: {.callout-tip icon=false collapse="true"}
-## How to create your GitHub repository
+:::{.callout-tip icon=false collapse="true"}
+### How to create your GitHub repository
 
 The planning mode can be used to create a new GitHub repository. The agent will ask you for the name of the repository and will create it for you. You can also create the repository manually in GitHub by following these steps:
 
@@ -55,7 +59,7 @@ The planning mode can be used to create a new GitHub repository. The agent will 
 2. Click on the "+" icon in the top right corner and select "New repository".
 3. Enter a name for your repository (e.g., `water-temp-dashboard`).
 4. Choose "Public" to facilitate publication.
-5. Do not initialize the repository with a README, .gitignore, or license file.
+5. Do not initialize the repository with a README, `.gitignore`, or license file.
 :::
 
 ## Planning the Dashboard
@@ -65,5 +69,4 @@ The planning mode can be used to create a new GitHub repository. The agent will 
 ## Review and polish the dashboard
 
 ## Publish!
-
 
