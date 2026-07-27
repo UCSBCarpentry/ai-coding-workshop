@@ -126,7 +126,7 @@ shiny run --port 8080
 You should see a message similar to this one:
 
 ```bash
-Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+Uvicorn running on http://127.0.0.1:8080 (Press CTRL+C to quit)
 ```
 
 Look at the logs, and work with the agent to fix any issues that arise. You can also ask the agent to add additional features or polish the dashboard's appearance.
@@ -139,4 +139,15 @@ Just for reference, this is what the final dashboard looks in our case:
 
 ## Publish!
 
+The next step involves publishing the dashboard to GitHub Pages. You can use GitHub Actions to automate the deployment process. The agent can help you set up the necessary workflow files and configurations to ensure that your dashboard is automatically deployed whenever you push changes to the repository.
+
+A suggested prompt for this step is:
+
+```bash
+Please implement phase 3 of the plan, including step-by-step instructions to configure GitHub to deploy the Dashboard via GitHub pages.
+```
+
+Depending on the previous configuration, the agent may ask you to provide your GitHub username and repository name, and possibly provide some instructions on how to set up GitHub Actions for automatic deployment.
+
+It's very plausible that you will need to work with your agent to troubleshoot any issues that arise during the deployment process. This may involve checking the GitHub Actions logs, verifying that the workflow files are correctly configured, and ensuring that the dashboard is being deployed to the correct branch and directory.
 
