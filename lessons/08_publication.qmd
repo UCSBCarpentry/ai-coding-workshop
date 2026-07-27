@@ -64,7 +64,7 @@ The planning mode can be used to create a new GitHub repository. The agent will 
 
 ## Planning the Dashboard
 
-Let's use Few-Shot Prompting as technique to instruct the agent on how to build the dashboard. We will provide a few examples of what we want the dashboard to look like, and the agent will use these examples to generate the code for our dashboard.
+Let's instruct the agent on how to build the dashboard. We will provide specific and direct instructions to reduce ambiguity, particularly about data and the features we are requesting.
 
 ```bash
 You are an expert software architect. I need a plan to build a data dashboard.
@@ -92,9 +92,51 @@ Intruct the agent to make any desired changes to the plan. When you are satisfie
 
 ## Instruct the agent to build the dashboard
 
+Implementation can be done in phases, as outlined in the plan. You can just ask the agent to implement all phases at once, or you can ask it to implement each phase separately. Depending on the complexity of the dashboard, it may be easier to implement each phase separately and test it before moving on to the next phase.
 
+For instance, for phase 1, you can use a prompt like this:
+
+```bash
+Let's start with Phase 1.
+
+Please write the code to implement only this first phase. Pay special attention to the data loading step—double-check your logic to ensure the data format and columns are retrieved and parsed correctly based on the repository.
+
+Stop after completing Phase 1. Do not write the code for the subsequent phases yet so I can test this basic foundation first.
+```
+
+For phase 2, you can use a prompt like this:
+
+```bash
+Let's move on to the next phase. Please provide the code to implement Phase 2 (Dashboard Implementation).
+
+Focus on adding the interactive elements: the summary cards, the interactive map, and the main temperature chart. Ensure the reactive logic is fully working—when I change the station dropdown or toggle the Celsius/Fahrenheit button, all the visualizations and cards should update accordingly.
+
+Please provide the updated, complete code for the application. Stop after Phase 2. Do not write the deployment/GitHub Actions code yet.
+```
 
 ## Review and polish the dashboard
 
+Before moving to the publication phase, you should review the dashboard and verify that is working correctly. Most of the time, the agent can check that the dashboard is running, but that doesn't mean it's working correctly. To visualy inspect the dashboard, open a new terminal window and run the following command to start the Shiny server:
+
+```bash
+source .venv/bin/activate
+shiny run --port 8080
+```
+
+You should see a message similar to this one:
+
+```bash
+Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+Look at the logs, and work with the agent to fix any issues that arise. You can also ask the agent to add additional features or polish the dashboard's appearance.
+
+This step is usually the most time-consuming, as it may require multiple iterations to get the dashboard working correctly and looking good. However, once you are satisfied with the dashboard, you can move on to the publication phase.
+
+Just for reference, this is what the final dashboard looks in our case:
+
+![Resulting dashboard](../images/08-dashboard.png)
+
 ## Publish!
+
 
