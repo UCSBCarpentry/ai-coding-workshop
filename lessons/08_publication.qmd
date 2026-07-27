@@ -81,7 +81,7 @@ Requirements:
 - Summary cards: Avg Temp, Hottest Day, Coolest Day.
 - An interactive map to select stations.
 
-I want to publish this to my own GitHub profile using GitHub Pages via GitHub Actions. Use this empty, public, repository: [Include your repository URL].
+I want to publish this to my own GitHub profile using GitHub Pages via GitHub Actions. Use this empty, public repository: [Include your repository URL].
 
 Please provide the architectural plan, broken down into 3 distinct implementation phases. Do not write the full application code yet.
 ```
