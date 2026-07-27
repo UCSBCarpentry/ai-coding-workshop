@@ -135,7 +135,7 @@ This step is usually the most time-consuming, as it may require multiple iterati
 
 Just for reference, this is what the final dashboard looks like in our case:
 
-![Resulting dashboard](../images/08-dashboard.png)
+![Resulting dashboard](../images/08-dashboard.png){.lightbox width="80%" fig-alt="Screenshot of the final water temperature dashboard showing a station selector, summary cards, a station map, and a water temperature time-series chart"}
 
 ## Publish!
 
