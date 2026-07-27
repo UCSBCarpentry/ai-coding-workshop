@@ -116,7 +116,7 @@ Please provide the updated, complete code for the application. Stop after Phase 
 
 ## Review and polish the dashboard
 
-Before moving to the publication phase, you should review the dashboard and verify that it is working correctly. Most of the time, the agent can check that the dashboard is running, but that doesn't mean it's working as expected. To visually inspect the dashboard, open a new terminal window and run the following commands to start the Shiny server:
+Before moving to the publication phase, you should review the dashboard and verify that it is working correctly. During development you’ll typically run it locally as a Shiny server; the WebAssembly/static GitHub Pages build comes later in the publication phase. To visually inspect the dashboard, open a new terminal window and run the following commands:
 
 ```bash
 source .venv/bin/activate
