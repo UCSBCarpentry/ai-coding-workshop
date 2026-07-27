@@ -64,7 +64,35 @@ The planning mode can be used to create a new GitHub repository. The agent will 
 
 ## Planning the Dashboard
 
+Let's use Few-Shot Prompting as technique to instruct the agent on how to build the dashboard. We will provide a few examples of what we want the dashboard to look like, and the agent will use these examples to generate the code for our dashboard.
+
+```bash
+You are an expert software architect. I need a plan to build a data dashboard.
+
+I want to create a Shiny + WebAssembly dashboard to visualize water temperatures for California stations. The data is here: https://github.com/jairomelo/NOAA-water-temp-CA.
+
+The data shape:
+- Range: June 19, 2026 to July 20, 2026.
+- Columns: StationID, StationName, Date_Time, Water_Temperature. (Ignore X, N, R columns).
+
+Requirements:
+- A dropdown to switch stations.
+- A button to toggle Celsius/Fahrenheit.
+- Summary cards: Avg Temp, Hottest Day, Coolest Day.
+- An interactive map to select stations.
+
+I want to publish this to my own GitHub profile using GitHub Pages via GitHub Actions. Use this empty, public, repository: [Include your repository URL].
+
+Please provide the architectural plan, broken down into 3 distinct implementation phases. Do not write the full application code yet.
+```
+
+Choose the options that you want for the dashboard (e.g., which program language would you prefer to use, type of charts, etc.). 
+
+Intruct the agent to make any desired changes to the plan. When you are satisfied with the plan, you can move to implementation.
+
 ## Instruct the agent to build the dashboard
+
+
 
 ## Review and polish the dashboard
 
