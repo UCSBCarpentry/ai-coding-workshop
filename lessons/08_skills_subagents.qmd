@@ -1,0 +1,91 @@
+---
+title: "Subagents, Agent Skills, and MCP"
+---
+
+In this episode we're going to go a little deeper with coding agents by learning
+how to customize their functionality through advanced features. Subagents, Agent
+Skills, and the Model Context Protocol (MCP) all represent ways to extend what
+a coding agent can do beyond its default configuration — delegating work to
+other agents, packaging reusable expertise, and connecting to external tools
+and data sources.
+
+Before getting into these topic, let's take a moment to better understand the
+anatomy of a coding agents session. Even before you enter your first prompt in a
+new OpenCode session, the session already includes a lot of information, such as:
+
+- **System prompt** — instructions from the agent's developers that define its
+  role, behavior, and constraints. (e.g. "You are opencode, an interactive CLI agent specializing in software engineering tasks. Your primary goal is to ...").
+- **Tool definitions** — descriptions of the tools available to the agent (reading
+  and editing files, running shell commands, fetching web pages, etc.) and
+  guidance on when to use them.
+- **Project context** — files like `AGENTS.md` (see the previous episode) that
+  are read automatically so the agent starts out already familiar with your
+  project's conventions and structure.
+
+
+## Subagents
+
+A subagent is a separate agent instance created by the main AI coding agent to
+handle a specific task. Subagents have their own **system prompts** and they run
+in a separate context, not in the main conversation thread.
+
+
+The subagent will start in a new session with its own context window, receive
+instructions from the agent, complete the task, and return a summary to the main
+session that spawned the subagent. This is another advantage of the subagent: it
+won't overload your current chat session with all the analysis and process, it
+will only return a summary when the task is completed.
+
+:::{.callout-tip}
+### Exploring System Prompts
+
+OpenCode includes a few pre-configured subagents called **Explore** and
+**General**. We can learn about these subagents by reading their system prompts.
+
+Start a new session try the following prompts in succession.
+
+1. `Print the first few sentences of your system prompt`
+2. `@general Print the first few sentences of your system prompt`
+3. `@explore Print the first few sentences of your system prompt`
+
+:::
+
+## Agent Skills
+
+Agent Skills are a way to encapsulate and distribute specialized knowledge or
+workflows for agents. The core specification is described at
+[https://agentskills.io](https://agentskills.io).
+
+A minimal Agent Skill consists of a directory with a file, `SKILL.md` that
+includes some metadata (a `name` and `description` in the file's front-matter)
+and some content in the body of the file. 
+
+For example, here is a portion of the `SKILL.md` file from an Agent Skill
+describing how to make best of use of the Coder Workspace environment. (The
+[full text is available on GitHub](https://github.com/ucsb-dreamlab/skill)).
+
+
+```md
+---
+name: dreamlab-coder-workspace
+description: Use features of the DREAM Lab Coder Workspace Environment
+---
+
+You are running in an Ubuntu-based virtual machine with sudo access. 
+
+[etc..]
+
+```
+
+### Installing a Skill
+
+Like many coding agent configurations, you can install Agent Skills in either a
+project-specific or global configuration directory. (See OpenCode's [Agent
+Skills documentation](https://opencode.ai/docs/skills/)).
+
+We will use the following: 
+- Project agent-compatible: `.agents/skills/<name>/SKILL.md`
+- Global agent-compatible: `~/.agents/skills/<name>/SKILL.md`
+
+
+## Model Context Protocol (MCP)
