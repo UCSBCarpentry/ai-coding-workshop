@@ -40,7 +40,7 @@ Type this command in a separate terminal to set your credentials for GitHub in t
 gh auth login
 ```
 
-Follow the prompts to authenticate with your GitHub account. Select `https` if you want to log in with your username and password, or `ssh` if you want to use an SSH key. After logging in, you can verify that you are authenticated by running:
+Follow the prompts to authenticate with your GitHub account. Select `https` to authenticate the GitHub CLI via the browser (or by pasting a personal access token), or `ssh` if you plan to use an SSH key for Git operations. After logging in, you can verify that you are authenticated by running:
 
 ```bash
 gh auth status
