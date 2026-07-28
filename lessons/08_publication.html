@@ -336,13 +336,33 @@ Please provide the architectural plan, broken down into 3 distinct implementatio
 
 Please write the code to implement only this first phase. Pay special attention to the data loading step—double-check your logic to ensure the data format and columns are retrieved and parsed correctly based on the repository.
 
+If you need to preview or test the dashboard, run the server in the background using tmux or `&amp;`. Remember to manually stop the server afterward.
+
 Stop after completing Phase 1. Do not write the code for the subsequent phases yet so I can test this basic foundation first.</code></pre>
 <p>For phase 2, you can use a prompt like this:</p>
 <pre class="text"><code>Let's move on to the next phase. Please provide the code to implement Phase 2 (Dashboard Implementation).
 
 Focus on adding the interactive elements: the summary cards, the interactive map, and the main temperature chart. Ensure the reactive logic is fully working—when I change the station dropdown or toggle the Celsius/Fahrenheit button, all the visualizations and cards should update accordingly.
 
+If you need to preview or test the dashboard, run the server in the background using tmux or `&amp;`. Remember to manually stop the server afterward.
+
 Please provide the updated, complete code for the application. Stop after Phase 2. Do not write the deployment/GitHub Actions code yet.</code></pre>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout" role="button">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why do we tell the agent to run the server in the background?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Agents like OpenCode are proactive and may try to test the application by starting the server themselves. Because server commands like <code>shiny run</code> block the terminal, the agent’s terminal will hang, causing it to get “stuck”. Instructing the agent to use <code>tmux</code> or a background process (using <code>&amp;</code>) prevents this issue.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="review-and-polish-the-dashboard" class="level2">
 <h2 class="anchored" data-anchor-id="review-and-polish-the-dashboard">Review and polish the dashboard</h2>
