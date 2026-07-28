@@ -101,6 +101,8 @@ Let's start with Phase 1.
 
 Please write the code to implement only this first phase. Pay special attention to the data loading step—double-check your logic to ensure the data format and columns are retrieved and parsed correctly based on the repository.
 
+If you need to preview or test the dashboard, run the server in the background using tmux or `&`. Remember to manually stop the server afterward.
+
 Stop after completing Phase 1. Do not write the code for the subsequent phases yet so I can test this basic foundation first.
 ```
 
@@ -111,8 +113,16 @@ Let's move on to the next phase. Please provide the code to implement Phase 2 (D
 
 Focus on adding the interactive elements: the summary cards, the interactive map, and the main temperature chart. Ensure the reactive logic is fully working—when I change the station dropdown or toggle the Celsius/Fahrenheit button, all the visualizations and cards should update accordingly.
 
+If you need to preview or test the dashboard, run the server in the background using tmux or `&`. Remember to manually stop the server afterward.
+
 Please provide the updated, complete code for the application. Stop after Phase 2. Do not write the deployment/GitHub Actions code yet.
 ```
+
+:::{.callout-tip icon=false collapse="true"}
+### Why do we tell the agent to run the server in the background?
+
+Agents like OpenCode are proactive and may try to test the application by starting the server themselves. Because server commands like `shiny run` block the terminal, the agent's terminal will hang, causing it to get "stuck". Instructing the agent to use `tmux` or a background process (using `&`) prevents this issue.
+:::
 
 ## Review and polish the dashboard
 
