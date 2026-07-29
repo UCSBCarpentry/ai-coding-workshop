@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Using Agents for Data Visualization and Publication – AI-Assisted Coding for Research</title>
+<title>Subagents, Agent Skills, and MCP – AI-Assisted Coding for Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -81,9 +81,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-77029b932f14f60c810d11513ce52d2c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -165,6 +162,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../lessons/06_testing.html">
  <span class="dropdown-text">Automated Testing</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/07_publication.html">
+ <span class="dropdown-text">Using Agents for Data Visualization and Publication</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/08_skills_subagents.html">
+ <span class="dropdown-text">Subagents, Agent Skills, and MCP</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -202,16 +207,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#prepare-the-required-data-and-instructions" id="toc-prepare-the-required-data-and-instructions" class="nav-link active" data-scroll-target="#prepare-the-required-data-and-instructions">Prepare the required data and instructions</a></li>
-  <li><a href="#setting-up-the-project-in-your-workspace" id="toc-setting-up-the-project-in-your-workspace" class="nav-link" data-scroll-target="#setting-up-the-project-in-your-workspace">Setting up the project in your workspace</a>
+  <li><a href="#subagents" id="toc-subagents" class="nav-link active" data-scroll-target="#subagents">Subagents</a></li>
+  <li><a href="#agent-skills" id="toc-agent-skills" class="nav-link" data-scroll-target="#agent-skills">Agent Skills</a>
   <ul class="collapse">
-  <li><a href="#set-your-credentials-for-github-in-the-workspace" id="toc-set-your-credentials-for-github-in-the-workspace" class="nav-link" data-scroll-target="#set-your-credentials-for-github-in-the-workspace">Set your credentials for GitHub in the workspace</a></li>
-  <li><a href="#prepare-the-destination-repository" id="toc-prepare-the-destination-repository" class="nav-link" data-scroll-target="#prepare-the-destination-repository">Prepare the destination repository</a></li>
+  <li><a href="#installing-skills" id="toc-installing-skills" class="nav-link" data-scroll-target="#installing-skills">Installing Skills</a></li>
+  <li><a href="#using-skills" id="toc-using-skills" class="nav-link" data-scroll-target="#using-skills">Using Skills</a></li>
   </ul></li>
-  <li><a href="#planning-the-dashboard" id="toc-planning-the-dashboard" class="nav-link" data-scroll-target="#planning-the-dashboard">Planning the Dashboard</a></li>
-  <li><a href="#instruct-the-agent-to-build-the-dashboard" id="toc-instruct-the-agent-to-build-the-dashboard" class="nav-link" data-scroll-target="#instruct-the-agent-to-build-the-dashboard">Instruct the agent to build the dashboard</a></li>
-  <li><a href="#review-and-polish-the-dashboard" id="toc-review-and-polish-the-dashboard" class="nav-link" data-scroll-target="#review-and-polish-the-dashboard">Review and polish the dashboard</a></li>
-  <li><a href="#publish" id="toc-publish" class="nav-link" data-scroll-target="#publish">Publish!</a></li>
+  <li><a href="#model-context-protocol-mcp" id="toc-model-context-protocol-mcp" class="nav-link" data-scroll-target="#model-context-protocol-mcp">Model Context Protocol (MCP)</a></li>
   </ul>
 </nav>
     </div>
@@ -220,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Using Agents for Data Visualization and Publication</h1>
+<h1 class="title">Subagents, Agent Skills, and MCP</h1>
 </div>
 
 
@@ -237,157 +239,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Generating web pages and data dashboards is one of the tasks LLM agents excel at, particularly when the data is already in hand and the architectural complexity is low. Because many analytical dashboards don’t require complex backend servers, an LLM can easily package your data, interactive visual charts, and text explanations into a single, easily publishable web page.</p>
-<section id="prepare-the-required-data-and-instructions" class="level2">
-<h2 class="anchored" data-anchor-id="prepare-the-required-data-and-instructions">Prepare the required data and instructions</h2>
-<p>As usual, the first step is to set up the data and instructions for the agent to follow. In this example, we will use the data already prepared in <a href="https://github.com/jairomelo/NOAA-water-temp-CA">this repository</a>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/jairomelo/NOAA-water-temp-CA.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You can read the <code>README.md</code> file to understand the data and its structure, as well as the code used to download the data from NOAA.</p>
-<p>To summarize, the data consists of water temperature measurements from multiple stations along the California coast, collected over several years. The data is stored in CSV files, with each file corresponding to a specific station and containing columns for date, temperature, and other relevant information.</p>
-<p>Once we understand the data, we can decide what type of framework we want to use for our dashboard and what type of infrastructure we want to use for hosting it. In this example, we will use <code>Shiny</code> and <code>WebAssembly</code> to create an interactive dashboard that can be hosted on GitHub Pages. The main programming language (<code>R</code> or <code>Python</code>) will depend on your preference, unless you have a specific requirement for one of them. In this example, we will use <code>Python</code> and <code>Shiny</code> to create the dashboard.</p>
-<p>Summary of the prerequisites for this example:</p>
-<ol type="1">
-<li>Data: Water temperature measurements from multiple stations along the California coast, stored in CSV files.</li>
-<li>Framework: <code>Shiny</code> + <code>WebAssembly</code> for creating the interactive dashboard.</li>
-<li>Hosting: GitHub Pages for hosting the dashboard.</li>
-</ol>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout" role="button">
+<p>In this episode we’re going to go a little deeper with coding agents by learning how to customize their functionality through advanced features. Subagents, Agent Skills, and the Model Context Protocol (MCP) all represent ways to extend what a coding agent can do beyond its default configuration — delegating work to other agents, packaging reusable expertise, and connecting to external tools and data sources.</p>
+<p>Before getting into these topics, let’s take a moment to better understand the anatomy of a coding agent session. Even before you enter your first prompt in a new OpenCode session, the session <strong>context</strong> already includes a lot of information, such as:</p>
+<ul>
+<li><strong>System prompt</strong> — instructions from the agent’s developers that define its role, behavior, and constraints. (e.g.&nbsp;“You are opencode, an interactive CLI agent specializing in software engineering tasks. Your primary goal is to …”).</li>
+<li><strong>Tool definitions</strong> — descriptions of the tools available to the agent (reading and editing files, running shell commands, fetching web pages, etc.) and guidance on when to use them.</li>
+<li><strong>Project context</strong> — files like <code>AGENTS.md</code> (see the previous episode) that are read automatically so the agent starts out already familiar with your project’s conventions and structure.</li>
+</ul>
+<section id="subagents" class="level2">
+<h2 class="anchored" data-anchor-id="subagents">Subagents</h2>
+<p>A subagent is a separate agent instance created by the main AI coding agent to handle a specific task. Subagents have their own <strong>system prompts</strong> and they run in a separate context, not in the main conversation thread.</p>
+<p>The subagent will start in a new session with its own context window, receive instructions from the main agent, complete the task, and return a summary to the session that spawned it. This is another advantage of the subagent: it won’t overload your current chat session with all of the intermediate analysis and tool calls; it only returns a summary once the task is completed.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Do I need to prepare an AGENTS.md file for this task?
+<span class="screen-reader-only">Tip</span>Exploring System Prompts
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Not for this exercise. The agent will be able to handle the task without any additional instructions, as long as it has access to the data and knows what type of dashboard we want to create. However, if you want to customize the agent’s behavior or add specific instructions for this task, you can create an <code>AGENTS.md</code> file and include it in the project.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="setting-up-the-project-in-your-workspace" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-the-project-in-your-workspace">Setting up the project in your workspace</h2>
-<section id="set-your-credentials-for-github-in-the-workspace" class="level3">
-<h3 class="anchored" data-anchor-id="set-your-credentials-for-github-in-the-workspace">Set your credentials for GitHub in the workspace</h3>
-<p>Type this command in a separate terminal to set your credentials for GitHub in the workspace:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Follow the prompts to authenticate with your GitHub account. Select <code>https</code> to authenticate the GitHub CLI via the browser (or by pasting a personal access token), or <code>ssh</code> if you plan to use an SSH key for Git operations. After logging in, you can verify that you are authenticated by running:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="prepare-the-destination-repository" class="level3">
-<h3 class="anchored" data-anchor-id="prepare-the-destination-repository">Prepare the destination repository</h3>
-<p>In GitHub, create a new, empty repository to host the dashboard. You can name it something like <code>water-temp-dashboard</code>. Do not initialize the repository with a README, <code>.gitignore</code>, or license file, as we will be pushing our local files to this repository later. Copy the URL of the repository, as we will need it later to push our local files to GitHub.</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout" role="button">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>How to create your GitHub repository
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The planning mode can be used to create a new GitHub repository. The agent will ask you for the name of the repository and will create it for you. You can also create the repository manually in GitHub by following these steps:</p>
+<p>OpenCode includes two pre-configured subagents called <strong>Explore</strong> and <strong>General</strong>. We can learn about these subagents by reading their system prompts.</p>
+<p>Start a new session and try the following prompts in succession.</p>
 <ol type="1">
-<li>Go to <a href="https://github.com/">GitHub</a> and log in to your account.</li>
-<li>Click on the “+” icon in the top right corner and select “New repository”.</li>
-<li>Enter a name for your repository (e.g., <code>water-temp-dashboard</code>).</li>
-<li>Choose “Public” to facilitate publication.</li>
-<li>Do not initialize the repository with a README, <code>.gitignore</code>, or license file.</li>
+<li><code>Print the first few sentences of your system prompt</code></li>
+<li><code>@general Print the first few sentences of your system prompt</code></li>
+<li><code>@explore Print the first few sentences of your system prompt</code></li>
 </ol>
 </div>
 </div>
-</div>
 </section>
-</section>
-<section id="planning-the-dashboard" class="level2">
-<h2 class="anchored" data-anchor-id="planning-the-dashboard">Planning the Dashboard</h2>
-<p>Let’s instruct the agent on how to build the dashboard. We will provide specific and direct instructions to reduce ambiguity, particularly about data and the features we are requesting.</p>
-<pre class="text"><code>You are an expert software architect. I need a plan to build a data dashboard.
-
-I want to create a Shiny + WebAssembly dashboard to visualize water temperatures for California stations. The data is here: https://github.com/jairomelo/NOAA-water-temp-CA.
-
-The data shape:
-- Range: June 19, 2026 to July 20, 2026.
-- Columns: StationID, StationName, Date_Time, Water_Temperature. (Ignore X, N, R columns).
-
-Requirements:
-- A dropdown to switch stations.
-- A button to toggle Celsius/Fahrenheit.
-- Summary cards: Avg Temp, Hottest Day, Coolest Day.
-- An interactive map to select stations.
-
-I want to publish this to my own GitHub profile using GitHub Pages via GitHub Actions. Use this empty, public repository: [Include your repository URL].
-
-Please provide the architectural plan, broken down into 3 distinct implementation phases. Do not write the full application code yet.</code></pre>
-<p>Choose the options that you want for the dashboard (e.g., which programming language you prefer to use, type of charts, etc.).</p>
-<p>Instruct the agent to make any desired changes to the plan. When you are satisfied with the plan, you can move to implementation.</p>
-</section>
-<section id="instruct-the-agent-to-build-the-dashboard" class="level2">
-<h2 class="anchored" data-anchor-id="instruct-the-agent-to-build-the-dashboard">Instruct the agent to build the dashboard</h2>
-<p>Implementation can be done in phases, as outlined in the plan. You can just ask the agent to implement all phases at once, or you can ask it to implement each phase separately. Depending on the complexity of the dashboard, it may be easier to implement each phase separately and test it before moving on to the next phase.</p>
-<p>For instance, for phase 1, you can use a prompt like this:</p>
-<pre class="text"><code>Let's start with Phase 1.
-
-Please write the code to implement only this first phase. Pay special attention to the data loading step—double-check your logic to ensure the data format and columns are retrieved and parsed correctly based on the repository.
-
-If you need to preview or test the dashboard, run the server in the background using tmux or `&amp;`. Remember to manually stop the server afterward.
-
-Stop after completing Phase 1. Do not write the code for the subsequent phases yet so I can test this basic foundation first.</code></pre>
-<p>For phase 2, you can use a prompt like this:</p>
-<pre class="text"><code>Let's move on to the next phase. Please provide the code to implement Phase 2 (Dashboard Implementation).
-
-Focus on adding the interactive elements: the summary cards, the interactive map, and the main temperature chart. Ensure the reactive logic is fully working—when I change the station dropdown or toggle the Celsius/Fahrenheit button, all the visualizations and cards should update accordingly.
-
-If you need to preview or test the dashboard, run the server in the background using tmux or `&amp;`. Remember to manually stop the server afterward.
-
-Please provide the updated, complete code for the application. Stop after Phase 2. Do not write the deployment/GitHub Actions code yet.</code></pre>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout" role="button">
+<section id="agent-skills" class="level2">
+<h2 class="anchored" data-anchor-id="agent-skills">Agent Skills</h2>
+<p>Agent Skills are a way to encapsulate and distribute specialized knowledge or workflows for agents. The core specification is described at <a href="https://agentskills.io">https://agentskills.io</a>.</p>
+<p>A minimal Agent Skill consists of a directory with a file, <code>SKILL.md</code>, that includes some metadata (a <code>name</code> and <code>description</code> in the file’s front matter) and some content in the body of the file.</p>
+<p>For example, here is a portion of the <code>SKILL.md</code> file from an Agent Skill describing how to make best use of the Coder Workspace environment. (The <a href="https://github.com/ucsb-dreamlab/skill">full text is available on GitHub</a>).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">name:</span><span class="co"> dreamlab-coder-workspace</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Use features of the DREAM Lab Coder Workspace Environment</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>You are running in an Ubuntu-based virtual machine with sudo access. </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">etc..</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Skills are meant to be shared between projects. Sites like <a href="https://www.skills.sh">https://www.skills.sh</a> are useful for searching available skills. <strong>Be warned: skills have been used to distribute malware!</strong> It’s very important to review the source code for a skill before installing it.</p>
+<section id="installing-skills" class="level3">
+<h3 class="anchored" data-anchor-id="installing-skills">Installing Skills</h3>
+<p>Like many coding agent configurations, you can install Agent Skills in either a project-specific or global configuration directory. (See OpenCode’s <a href="https://opencode.ai/docs/skills/">Agent Skills documentation</a>).</p>
+<p>We will use the following: - Project agent-compatible: <code>.agents/skills/&lt;name&gt;/SKILL.md</code> - Global agent-compatible: <code>~/.agents/skills/&lt;name&gt;/SKILL.md</code></p>
+<p>You can install skills manually, but we’ll use Vercel’s command line utility called, appropriately enough, <a href="https://github.com/vercel-labs/skills"><code>skills</code></a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Why do we tell the agent to run the server in the background?
+Note
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Agents like OpenCode are proactive and may try to test the application by starting the server themselves. Because server commands like <code>shiny run</code> block the terminal, the agent’s terminal will hang, causing it to get “stuck”. Instructing the agent to use <code>tmux</code> or a background process (using <code>&amp;</code>) prevents this issue.</p>
+<p>The <code>skills</code> utility requires the NodeJS Package Manager, which may not be installed on your Coder Workspace. To install it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="at">-y</span> <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt install <span class="at">-y</span> nodejs npm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-</div>
+<p>Let’s install a few Agent Skills from the DREAM Lab (see the code: <a href="https://github.com/ucsb-dreamlab/skills">https://github.com/ucsb-dreamlab/skills</a>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> skills add ucsb-dreamlab/skills</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use the text interface to install the <strong>dreamlab-coder-workspace</strong> and <strong>web-a11y</strong> skills to your local project. You will need to restart any OpenCode sessions to enable the skills. You should see the new skills listed when you use OpenCode’s <code>/skills</code> command.</p>
 </section>
-<section id="review-and-polish-the-dashboard" class="level2">
-<h2 class="anchored" data-anchor-id="review-and-polish-the-dashboard">Review and polish the dashboard</h2>
-<p>Before moving to the publication phase, you should review the dashboard and verify that it is working correctly. During development you’ll typically run it locally as a Shiny server; the WebAssembly/static GitHub Pages build comes later in the publication phase. To visually inspect the dashboard, open a new terminal window and run the following commands:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run <span class="at">--port</span> 8080</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You should see a message similar to this one:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Uvicorn</span> running on http://127.0.0.1:8080 <span class="er">(</span><span class="ex">Press</span> CTRL+C to quit<span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Look at the logs, and work with the agent to fix any issues that arise. You can also ask the agent to add additional features or polish the dashboard’s appearance.</p>
-<p>This step is usually the most time-consuming, as it may require multiple iterations to get the dashboard working correctly and looking good. However, once you are satisfied with the dashboard, you can move on to the publication phase.</p>
-<p>Just for reference, this is what the final dashboard looks like in our case:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="../images/08-dashboard.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Resulting dashboard"><img src="../images/08-dashboard.png" class="img-fluid figure-img" style="width:80.0%" alt="Screenshot of the final water temperature dashboard showing a station selector, summary cards, a station map, and a water temperature time-series chart"></a></p>
-<figcaption>Resulting dashboard</figcaption>
-</figure>
-</div>
+<section id="using-skills" class="level3">
+<h3 class="anchored" data-anchor-id="using-skills">Using Skills</h3>
+<p>When a skill is installed, only its name and description are loaded into session context. The LLM may choose to ‘invoke’ the skill, in which case the body of the <code>SKILL.md</code> file is loaded into context. This doesn’t always work, however! If the agent doesn’t load a relevant skill on its own, you can invoke the skill explicitly with the <code>/skill-name</code> command, for example:</p>
+<blockquote class="blockquote">
+<p><code>/dreamlab-coder-workspace what is the public URL for my Shiny dashboard?</code></p>
+</blockquote>
 </section>
-<section id="publish" class="level2">
-<h2 class="anchored" data-anchor-id="publish">Publish!</h2>
-<p>The next step involves publishing the dashboard to GitHub Pages. You can use GitHub Actions to automate the deployment process. The agent can help you set up the necessary workflow files and configurations to ensure that your dashboard is automatically deployed whenever you push changes to the repository.</p>
-<p>A suggested prompt for this step is:</p>
-<pre class="text"><code>Please implement phase 3 of the plan, including step-by-step instructions to configure GitHub to deploy the Dashboard via GitHub pages.</code></pre>
-<p>Depending on the previous configuration, the agent may ask you to provide your GitHub username and repository name, and possibly provide some instructions on how to set up GitHub Actions for automatic deployment.</p>
-<p>It’s very plausible that you will need to work with your agent to troubleshoot any issues that arise during the deployment process. This may involve checking the GitHub Actions logs, verifying that the workflow files are correctly configured, and ensuring that the dashboard is being deployed to the correct branch and directory.</p>
+</section>
+<section id="model-context-protocol-mcp" class="level2">
+<h2 class="anchored" data-anchor-id="model-context-protocol-mcp">Model Context Protocol (MCP)</h2>
+<p><a href="https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro">Model Context Protocol</a> provides a way to give agents additional tools, beyond those that may be built-in. For example, you can augment OpenCode’s <a href="https://opencode.ai/docs/tools/#built-in">built-in tools</a> with specialized capabilities.</p>
+<p>A very common use of MCP is to give coding agents the ability to directly control a web browser.</p>
+<p>The Coder Workspace skill we installed above includes <a href="https://github.com/ucsb-dreamlab/skills/blob/main/skills/dreamlab-coder-workspace/docs/browser-mcp.md">instructions</a> for installing a “headless” web browser (a browser that can be used on a computer without a monitor or a graphical interface) and enabling the <code>chrome-devtools</code> MCP server.</p>
+<p>Try the following prompts:</p>
+<blockquote class="blockquote">
+<p><code>/dreamlab-coder-workspace enable the chrome-devtools mcp server for opencode</code></p>
+</blockquote>
+<p>When it’s done, restart OpenCode and use the <code>/mcp</code> command to confirm the <code>chrome-devtools</code> MCP server is installed. Then, try the following prompt:</p>
+<blockquote class="blockquote">
+<p><code>Take a screenshot of my Shiny data dashboard and describe it to me</code></p>
+</blockquote>
 
 
 </section>
@@ -794,38 +734,6 @@ Please provide the updated, complete code for the application. Stop after Phase 
   });
   </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 

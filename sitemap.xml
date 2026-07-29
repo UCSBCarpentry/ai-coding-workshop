@@ -2,62 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/setup.html</loc>
-    <lastmod>2026-07-28T19:51:28.749Z</lastmod>
+    <lastmod>2026-07-29T22:10:36.854Z</lastmod>
   </url>
   <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/topics/browser-mcp.html</loc>
-    <lastmod>2026-07-28T19:51:28.749Z</lastmod>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/07_publication.html</loc>
+    <lastmod>2026-07-29T22:10:36.842Z</lastmod>
   </url>
   <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/06_testing.html</loc>
-    <lastmod>2026-07-28T19:51:28.738Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/07_skills_subagents.html</loc>
-    <lastmod>2026-07-28T19:51:28.738Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/04_agents_md.html</loc>
-    <lastmod>2026-07-28T19:51:28.738Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/projects/index.html</loc>
-    <lastmod>2026-07-28T19:51:28.747Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/projects/geo-viz/index.html</loc>
-    <lastmod>2026-07-28T19:51:28.747Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/projects/bikability/index.html</loc>
-    <lastmod>2026-07-28T19:51:28.740Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/projects/fish/index.html</loc>
-    <lastmod>2026-07-28T19:51:28.740Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/projects/archival-collections/index.html</loc>
-    <lastmod>2026-07-28T19:51:28.740Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/01_intro.html</loc>
-    <lastmod>2026-07-28T19:51:28.738Z</lastmod>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/08_skills_subagents.html</loc>
+    <lastmod>2026-07-29T22:10:36.842Z</lastmod>
   </url>
   <url>
     <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/03_planning.html</loc>
-    <lastmod>2026-07-28T19:51:28.738Z</lastmod>
+    <lastmod>2026-07-29T22:10:36.842Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/01_intro.html</loc>
+    <lastmod>2026-07-29T22:10:36.841Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/projects/archival-collections/index.html</loc>
+    <lastmod>2026-07-29T22:10:36.843Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/projects/fish/index.html</loc>
+    <lastmod>2026-07-29T22:10:36.843Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/projects/bikability/index.html</loc>
+    <lastmod>2026-07-29T22:10:36.843Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/projects/geo-viz/index.html</loc>
+    <lastmod>2026-07-29T22:10:36.851Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/projects/index.html</loc>
+    <lastmod>2026-07-29T22:10:36.851Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/04_agents_md.html</loc>
+    <lastmod>2026-07-29T22:10:36.842Z</lastmod>
   </url>
   <url>
     <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/02_agent.html</loc>
-    <lastmod>2026-07-28T19:51:28.738Z</lastmod>
+    <lastmod>2026-07-29T22:10:36.842Z</lastmod>
   </url>
   <url>
-    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/08_publication.html</loc>
-    <lastmod>2026-07-28T19:51:28.739Z</lastmod>
+    <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/lessons/06_testing.html</loc>
+    <lastmod>2026-07-29T22:10:36.842Z</lastmod>
   </url>
   <url>
     <loc>https://UCSBCarpentry.github.io/ai-coding-workshop/index.html</loc>
-    <lastmod>2026-07-28T19:51:28.738Z</lastmod>
+    <lastmod>2026-07-29T22:10:36.841Z</lastmod>
   </url>
 </urlset>
