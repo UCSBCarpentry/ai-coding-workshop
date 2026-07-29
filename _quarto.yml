@@ -18,6 +18,8 @@ website:
           - href: lessons/03_planning.qmd
           - href: lessons/04_agents_md.qmd
           - href: lessons/06_testing.qmd
+          - href: lessons/07_publication.qmd
+          - href: lessons/08_skills_subagents.qmd
       - href: projects/index.qmd
         text: Projects
     tools:
