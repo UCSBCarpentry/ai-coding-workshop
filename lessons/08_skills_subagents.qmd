@@ -9,8 +9,8 @@ a coding agent can do beyond its default configuration — delegating work to
 other agents, packaging reusable expertise, and connecting to external tools
 and data sources.
 
-Before getting into these topic, let's take a moment to better understand the
-anatomy of a coding agents session. Even before you enter your first prompt in a
+Before getting into these topics, let's take a moment to better understand the
+anatomy of a coding agent session. Even before you enter your first prompt in a
 new OpenCode session, the session **context** already includes a lot of
 information, such as:
 
@@ -31,18 +31,18 @@ handle a specific task. Subagents have their own **system prompts** and they run
 in a separate context, not in the main conversation thread.
 
 The subagent will start in a new session with its own context window, receive
-instructions from the agent, complete the task, and return a summary to the main
-session that spawned the subagent. This is another advantage of the subagent: it
-won't overload your current chat session with all the analysis and process, it
-will only return a summary when the task is completed.
+instructions from the main agent, complete the task, and return a summary to the
+session that spawned it. This is another advantage of the subagent: it won't
+overload your current chat session with all of the intermediate analysis and
+tool calls; it only returns a summary once the task is completed.
 
 :::{.callout-tip}
 ### Exploring System Prompts
 
-OpenCode includes a few pre-configured subagents called **Explore** and
+OpenCode includes two pre-configured subagents called **Explore** and
 **General**. We can learn about these subagents by reading their system prompts.
 
-Start a new session try the following prompts in succession.
+Start a new session and try the following prompts in succession.
 
 1. `Print the first few sentences of your system prompt`
 2. `@general Print the first few sentences of your system prompt`
@@ -56,12 +56,12 @@ Agent Skills are a way to encapsulate and distribute specialized knowledge or
 workflows for agents. The core specification is described at
 [https://agentskills.io](https://agentskills.io).
 
-A minimal Agent Skill consists of a directory with a file, `SKILL.md` that
-includes some metadata (a `name` and `description` in the file's front-matter)
-and some content in the body of the file. 
+A minimal Agent Skill consists of a directory with a file, `SKILL.md`, that
+includes some metadata (a `name` and `description` in the file's front matter)
+and some content in the body of the file.
 
 For example, here is a portion of the `SKILL.md` file from an Agent Skill
-describing how to make best of use of the Coder Workspace environment. (The
+describing how to make best use of the Coder Workspace environment. (The
 [full text is available on GitHub](https://github.com/ucsb-dreamlab/skill)).
 
 
@@ -106,21 +106,48 @@ sudo apt update -y && sudo apt install -y nodejs npm
 
 :::
 
-Let's install a few Agent Skills from the DREAM Lab (see the code: [https://github.com/ucsb-dreamlab/skills](https://github.com/ucsb-dreamlab/skills)): 
+Let's install a few Agent Skills from the DREAM Lab (see the code:
+[https://github.com/ucsb-dreamlab/skills](https://github.com/ucsb-dreamlab/skills)): 
 
 ```sh
 npx skills add ucsb-dreamlab/skills
 
 ```
 
-Use the text interface, to install the **dreamlab-coder-workspace** and
-**web-a11y** skills to your local project. We need to restart any OpenCode
+Use the text interface to install the **dreamlab-coder-workspace** and
+**web-a11y** skills to your local project. You will need to restart any OpenCode
 sessions to enable the skills. You should see the new skills listed when you use
 OpenCode's `/skills` command.
 
 ### Using Skills
 
 
+When a skill is installed, only its name and description are loaded into session
+context. The LLM may choose to 'invoke' the skill, in which case the body of the
+`SKILL.md` file is loaded into context. This doesn't always work, however! If the
+agent doesn't load a relevant skill on its own, you can invoke the skill
+explicitly with the `/skill-name` command, for example:
+
+> `/dreamlab-coder-workspace what is the public URL for my Shiny dashboard?`
 
 
 ## Model Context Protocol (MCP)
+
+[Model Context Protocol](https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro)
+provides a way to give agents additional tools, beyond those that may be
+built-in. For example, you can augment OpenCode's [built-in
+tools](https://opencode.ai/docs/tools/#built-in) with specialized capabilities. 
+
+A very common use of MCP is to give coding agents the ability to directly control
+a web browser.
+
+The Coder Workspace skill we installed above includes [instructions](https://github.com/ucsb-dreamlab/skills/blob/main/skills/dreamlab-coder-workspace/docs/browser-mcp.md) for installing a "headless" web browser (a browser that can be used on a computer without a monitor or a graphical interface) and enabling the `chrome-devtools` MCP server.
+
+Try the following prompts:
+
+> `/dreamlab-coder-workspace enable the chrome-devtools mcp server for opencode`
+
+When it's done, restart OpenCode and use the `/mcp` command to confirm the
+`chrome-devtools` MCP server is installed. Then, try the following prompt:
+
+> `Take a screenshot of my Shiny data dashboard and describe it to me`
