@@ -11,7 +11,8 @@ and data sources.
 
 Before getting into these topic, let's take a moment to better understand the
 anatomy of a coding agents session. Even before you enter your first prompt in a
-new OpenCode session, the session already includes a lot of information, such as:
+new OpenCode session, the session **context** already includes a lot of
+information, such as:
 
 - **System prompt** — instructions from the agent's developers that define its
   role, behavior, and constraints. (e.g. "You are opencode, an interactive CLI agent specializing in software engineering tasks. Your primary goal is to ...").
@@ -28,7 +29,6 @@ new OpenCode session, the session already includes a lot of information, such as
 A subagent is a separate agent instance created by the main AI coding agent to
 handle a specific task. Subagents have their own **system prompts** and they run
 in a separate context, not in the main conversation thread.
-
 
 The subagent will start in a new session with its own context window, receive
 instructions from the agent, complete the task, and return a summary to the main
@@ -77,7 +77,12 @@ You are running in an Ubuntu-based virtual machine with sudo access.
 
 ```
 
-### Installing a Skill
+Skills are meant to be shared between projects. Sites like
+[https://www.skills.sh](https://www.skills.sh) are useful for searching
+available skills. **Be warned: skills have been used to distribute malware!**
+It's very important to review the source code for a skill before installing it.
+
+### Installing Skills
 
 Like many coding agent configurations, you can install Agent Skills in either a
 project-specific or global configuration directory. (See OpenCode's [Agent
@@ -86,6 +91,36 @@ Skills documentation](https://opencode.ai/docs/skills/)).
 We will use the following: 
 - Project agent-compatible: `.agents/skills/<name>/SKILL.md`
 - Global agent-compatible: `~/.agents/skills/<name>/SKILL.md`
+
+You can install skills manually, but we'll use Vercel's command line utility
+called, appropriately enough, [`skills`](https://github.com/vercel-labs/skills).
+
+:::{.callout-note }
+
+The `skills` utility requires the NodeJS Package Manager, which may not be
+installed on your Coder Workspace. To install it:
+
+```sh
+sudo apt update -y && sudo apt install -y nodejs npm
+```
+
+:::
+
+Let's install a few Agent Skills from the DREAM Lab (see the code: [https://github.com/ucsb-dreamlab/skills](https://github.com/ucsb-dreamlab/skills)): 
+
+```sh
+npx skills add ucsb-dreamlab/skills
+
+```
+
+Use the text interface, to install the **dreamlab-coder-workspace** and
+**web-a11y** skills to your local project. We need to restart any OpenCode
+sessions to enable the skills. You should see the new skills listed when you use
+OpenCode's `/skills` command.
+
+### Using Skills
+
+
 
 
 ## Model Context Protocol (MCP)
