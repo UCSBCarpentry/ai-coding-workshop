@@ -207,7 +207,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#subagents" id="toc-subagents" class="nav-link active" data-scroll-target="#subagents">Subagents</a></li>
+  <li><a href="#subagents" id="toc-subagents" class="nav-link active" data-scroll-target="#subagents">Subagents</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-subagent" id="toc-creating-a-subagent" class="nav-link" data-scroll-target="#creating-a-subagent">Creating a Subagent</a></li>
+  </ul></li>
   <li><a href="#agent-skills" id="toc-agent-skills" class="nav-link" data-scroll-target="#agent-skills">Agent Skills</a>
   <ul class="collapse">
   <li><a href="#installing-skills" id="toc-installing-skills" class="nav-link" data-scroll-target="#installing-skills">Installing Skills</a></li>
@@ -269,20 +272,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </div>
 </div>
+<section id="creating-a-subagent" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-subagent">Creating a Subagent</h3>
+<p>OpenCode has a built-in tool to create subagents:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">opencode</span> agent create</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Challenge: A dependency analysis subagent
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Create a subagent to analyze a codebase and report dependencies.</p>
+</div>
+</div>
+</section>
 </section>
 <section id="agent-skills" class="level2">
 <h2 class="anchored" data-anchor-id="agent-skills">Agent Skills</h2>
 <p>Agent Skills are a way to encapsulate and distribute specialized knowledge or workflows for agents. The core specification is described at <a href="https://agentskills.io">https://agentskills.io</a>.</p>
 <p>A minimal Agent Skill consists of a directory with a file, <code>SKILL.md</code>, that includes some metadata (a <code>name</code> and <code>description</code> in the file’s front matter) and some content in the body of the file.</p>
 <p>For example, here is a portion of the <code>SKILL.md</code> file from an Agent Skill describing how to make best use of the Coder Workspace environment. (The <a href="https://github.com/ucsb-dreamlab/skill">full text is available on GitHub</a>).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">name:</span><span class="co"> dreamlab-coder-workspace</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Use features of the DREAM Lab Coder Workspace Environment</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>You are running in an Ubuntu-based virtual machine with sudo access. </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">etc..</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">name:</span><span class="co"> dreamlab-coder-workspace</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Use features of the DREAM Lab Coder Workspace Environment</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>You are running in an Ubuntu-based virtual machine with sudo access. </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">etc..</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Skills are meant to be shared between projects. Sites like <a href="https://www.skills.sh">https://www.skills.sh</a> are useful for searching available skills. <strong>Be warned: skills have been used to distribute malware!</strong> It’s very important to review the source code for a skill before installing it.</p>
 <section id="installing-skills" class="level3">
 <h3 class="anchored" data-anchor-id="installing-skills">Installing Skills</h3>
@@ -300,11 +321,11 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>The <code>skills</code> utility requires the NodeJS Package Manager, which may not be installed on your Coder Workspace. To install it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="at">-y</span> <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt install <span class="at">-y</span> nodejs npm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="at">-y</span> <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt install <span class="at">-y</span> nodejs npm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <p>Let’s install a few Agent Skills from the DREAM Lab (see the code: <a href="https://github.com/ucsb-dreamlab/skills">https://github.com/ucsb-dreamlab/skills</a>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> skills add ucsb-dreamlab/skills</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> skills add ucsb-dreamlab/skills</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Use the text interface to install the <strong>dreamlab-coder-workspace</strong> and <strong>web-a11y</strong> skills to your local project. You will need to restart any OpenCode sessions to enable the skills. You should see the new skills listed when you use OpenCode’s <code>/skills</code> command.</p>
 </section>
 <section id="using-skills" class="level3">
