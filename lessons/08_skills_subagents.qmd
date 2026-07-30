@@ -50,6 +50,24 @@ Start a new session and try the following prompts in succession.
 
 :::
 
+
+### Creating a Subagent
+
+OpenCode has a built-in tool to create subagents:
+
+```sh
+opencode agent create
+```
+
+:::{.callout-tip}
+
+### Challenge: A dependency analysis subagent
+
+Create a subagent to analyze a codebase and report dependencies. 
+
+:::
+
+
 ## Agent Skills
 
 Agent Skills are a way to encapsulate and distribute specialized knowledge or
