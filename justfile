@@ -22,3 +22,8 @@ diagrams:
 		./node_modules/.bin/mmdc -p diagrams/puppeteer-config.json -i "$file" -o "${file%.mmd}.png"; \
 		./node_modules/.bin/mmdc -p diagrams/puppeteer-config.json -i "$file" -o "${file%.mmd}.svg"; \
 	done
+
+# Regenerate OpenCode interface screenshots for documentation
+opencode-screenshots:
+	python3 .opencode/skills/workshop-screenshots/scripts/generate_opencode_screenshots.py
+
