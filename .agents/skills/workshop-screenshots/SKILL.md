@@ -13,7 +13,7 @@ Supported output formats: **PNG**, **SVG**, **WebP**.
 
 ## Bundled Scripts
 
-All scripts are located in `scripts/` within this skill directory (`.opencode/skills/workshop-screenshots/scripts/`):
+All scripts are located in `scripts/` within this skill directory (`.agents/skills/workshop-screenshots/scripts/`):
 
 1. `generate_opencode_screenshots.py`:
    Automates generation of all OpenCode interface screenshots for `lessons/02_agent.qmd`:
@@ -32,7 +32,7 @@ All scripts are located in `scripts/` within this skill directory (`.opencode/sk
 To regenerate all OpenCode lesson screenshots in one step:
 
 ```bash
-python3 .opencode/skills/workshop-screenshots/scripts/generate_opencode_screenshots.py
+python3 .agents/skills/workshop-screenshots/scripts/generate_opencode_screenshots.py
 ```
 
 Or via `just`:
@@ -51,14 +51,14 @@ This spins up fresh headless tmux instances, launches `opencode`, navigates the 
 Run any shell command and capture formatted output with full syntax colors:
 
 ```bash
-python3 .opencode/skills/workshop-screenshots/scripts/capture_terminal.py \
+python3 .agents/skills/workshop-screenshots/scripts/capture_terminal.py \
   --command "git status" \
   -o images/git_status.png
 ```
 
 Vector format:
 ```bash
-python3 .opencode/skills/workshop-screenshots/scripts/capture_terminal.py \
+python3 .agents/skills/workshop-screenshots/scripts/capture_terminal.py \
   --command "ls -la" \
   -o images/ls.svg
 ```
@@ -67,7 +67,7 @@ python3 .opencode/skills/workshop-screenshots/scripts/capture_terminal.py \
 To show a prompt entered into OpenCode without executing it:
 
 ```bash
-python3 .opencode/skills/workshop-screenshots/scripts/capture_terminal.py \
+python3 .agents/skills/workshop-screenshots/scripts/capture_terminal.py \
   --prompt "Tell me about the machine you're running on: OS, resources, etc." \
   -o images/staged_prompt.png
 ```
@@ -76,7 +76,7 @@ python3 .opencode/skills/workshop-screenshots/scripts/capture_terminal.py \
 Capture what is currently active in a specific tmux pane:
 
 ```bash
-python3 .opencode/skills/workshop-screenshots/scripts/capture_terminal.py \
+python3 .agents/skills/workshop-screenshots/scripts/capture_terminal.py \
   --pane "%0" \
   -o images/pane_capture.png
 ```
