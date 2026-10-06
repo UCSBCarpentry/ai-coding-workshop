@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# /// script
+# dependencies = [
+#     "pillow",
+# ]
+# ///
 """
 generate_opencode_screenshots.py - Automated generator for OpenCode lesson screenshots.
 
@@ -18,14 +23,37 @@ import subprocess
 import sys
 import time
 
+# Ensure Pillow (PIL) is available, re-execing with uv if needed
+try:
+    from PIL import Image
+except ImportError:
+    uv_bin = shutil.which("uv")
+    if uv_bin:
+        os.execvp(uv_bin, ["uv", "run", "--with", "pillow", "python"] + sys.argv)
+    raise RuntimeError("Pillow is required for image resizing. Please install pillow or ensure 'uv' is in PATH.")
+
+MAX_WIDTH = 1600
+MAX_HEIGHT = 960
+
 
 def find_freeze() -> str:
-    freeze_bin = shutil.which("freeze") or "/home/coder/.pixi/bin/freeze"
-    if not os.path.exists(freeze_bin) and not shutil.which("freeze"):
-        raise RuntimeError(
-            "freeze binary not found. Please install freeze or ensure /home/coder/.pixi/bin/freeze exists."
-        )
+    freeze_bin = shutil.which("freeze")
+    if not freeze_bin:
+        raise RuntimeError("freeze binary not found in PATH.")
     return freeze_bin
+
+
+def resize_image_to_bounds(path: str, max_width: int = MAX_WIDTH, max_height: int = MAX_HEIGHT):
+    """Resize image to fit within max_width x max_height while preserving aspect ratio."""
+    if not path.lower().endswith((".png", ".webp", ".jpg", ".jpeg")):
+        return
+
+    with Image.open(path) as im:
+        if im.width > max_width or im.height > max_height:
+            orig_size = (im.width, im.height)
+            im.thumbnail((max_width, max_height), Image.Resampling.LANCZOS)
+            im.save(path, optimize=True)
+            print(f"Resized {path}: {orig_size[0]}x{orig_size[1]} -> {im.width}x{im.height} px")
 
 
 def capture_session(setup_fn, output_path: str, width: int = 100, height: int = 28, freeze_bin: str = "freeze"):
@@ -63,6 +91,7 @@ def capture_session(setup_fn, output_path: str, width: int = 100, height: int = 
         if p2.returncode != 0:
             raise RuntimeError(f"freeze failed: {stderr.decode('utf-8', errors='replace')}")
 
+        resize_image_to_bounds(output_path, max_width=MAX_WIDTH, max_height=MAX_HEIGHT)
         print(f"Captured: {output_path}")
     finally:
         subprocess.run(["tmux", "kill-session", "-t", session_id], capture_output=True)

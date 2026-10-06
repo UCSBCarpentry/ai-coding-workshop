@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# /// script
+# dependencies = [
+#     "pillow",
+# ]
+# ///
 """
 capture_terminal.py - Standalone terminal screenshot utility for ai-coding-workshop.
 Captures terminal commands, active tmux panes, interactive TUIs, and Opencode sessions
@@ -14,13 +19,36 @@ import sys
 import time
 import uuid
 
+# Ensure Pillow (PIL) is available, re-execing with uv if needed
+try:
+    from PIL import Image
+except ImportError:
+    uv_bin = shutil.which("uv")
+    if uv_bin:
+        os.execvp(uv_bin, ["uv", "run", "--with", "pillow", "python"] + sys.argv)
+    raise RuntimeError("Pillow is required for image resizing. Please install pillow or ensure 'uv' is in PATH.")
+
+DEFAULT_MAX_WIDTH = 1600
+DEFAULT_MAX_HEIGHT = 960
+
+
+def resize_image_to_bounds(path: str, max_width: int = DEFAULT_MAX_WIDTH, max_height: int = DEFAULT_MAX_HEIGHT):
+    """Resize image to fit within max_width x max_height while preserving aspect ratio."""
+    if not os.path.exists(path) or not path.lower().endswith((".png", ".webp", ".jpg", ".jpeg")):
+        return
+
+    with Image.open(path) as im:
+        if im.width > max_width or im.height > max_height:
+            orig_size = (im.width, im.height)
+            im.thumbnail((max_width, max_height), Image.Resampling.LANCZOS)
+            im.save(path, optimize=True)
+            print(f"Resized {path}: {orig_size[0]}x{orig_size[1]} -> {im.width}x{im.height} px")
+
 
 def find_freeze() -> str:
-    freeze_bin = shutil.which("freeze") or "/home/coder/.pixi/bin/freeze"
-    if not os.path.exists(freeze_bin) and not shutil.which("freeze"):
-        raise RuntimeError(
-            "freeze binary not found. Install it via 'pixi global install freeze'."
-        )
+    freeze_bin = shutil.which("freeze")
+    if not freeze_bin:
+        raise RuntimeError("freeze binary not found in PATH.")
     return freeze_bin
 
 
@@ -227,6 +255,23 @@ def main():
         default=0,
         help="Number of lines of scrollback history to capture.",
     )
+    parser.add_argument(
+        "--max-width",
+        type=int,
+        default=DEFAULT_MAX_WIDTH,
+        help=f"Max image width in pixels (default: {DEFAULT_MAX_WIDTH}).",
+    )
+    parser.add_argument(
+        "--max-height",
+        type=int,
+        default=DEFAULT_MAX_HEIGHT,
+        help=f"Max image height in pixels (default: {DEFAULT_MAX_HEIGHT}).",
+    )
+    parser.add_argument(
+        "--no-resize",
+        action="store_true",
+        help="Disable automatic resizing to max dimensions.",
+    )
 
     args = parser.parse_args()
     freeze_bin = find_freeze()
@@ -242,6 +287,8 @@ def main():
         stdin_data = sys.stdin.buffer.read()
         if stdin_data:
             render_pipe(stdin_data, args.output, window=not args.no_window, freeze_bin=freeze_bin)
+            if not args.no_resize:
+                resize_image_to_bounds(args.output, max_width=args.max_width, max_height=args.max_height)
             return
 
     if args.delay > 0:
@@ -282,6 +329,9 @@ def main():
             scrollback=args.scrollback,
             freeze_bin=freeze_bin,
         )
+
+    if not args.no_resize:
+        resize_image_to_bounds(args.output, max_width=args.max_width, max_height=args.max_height)
 
 
 if __name__ == "__main__":

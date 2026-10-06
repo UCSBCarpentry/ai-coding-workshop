@@ -8,6 +8,7 @@ description: Capture terminal, CLI, and OpenCode screenshots for the workshop do
 Project-specific skill for generating clean, publication-ready terminal and OpenCode screenshots for the AI Coding Workshop curriculum. Uses isolated headless `tmux` sessions and Charmbracelet's `freeze` renderer.
 
 Supported output formats: **PNG**, **SVG**, **WebP**.
+Standard max dimensions for web & lightbox viewing: **1600 × 960 px** (automatically resized with aspect ratio preserved).
 
 ---
 
@@ -96,7 +97,7 @@ time.sleep(1)
 
 # Capture pane buffer into freeze
 p1 = subprocess.Popen(["tmux", "capture-pane", "-e", "-p", "-t", session], stdout=subprocess.PIPE)
-subprocess.run(["/home/coder/.pixi/bin/freeze", "--window", "-o", "images/custom.png"], stdin=p1.stdout)
+subprocess.run(["freeze", "--window", "-o", "images/custom.png"], stdin=p1.stdout)
 p1.stdout.close()
 subprocess.run(["tmux", "kill-session", "-t", session])
 ```
