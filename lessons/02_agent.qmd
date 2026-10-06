@@ -100,8 +100,7 @@ your UCSB email account.
 ![Entering your API key](../images/opencode_connect_apikey.png){.lightbox width="80%" fig-alt="OpenCode prompt entering an API key"}
 
 **4. Select a model.** Choose **Gemini 3.8 Flash** from the list of available
-models. You can use <kbd>Ctrl+F</kbd> to "favorite" a model. We will use both Gemini 3.8
-Flash and Gemini 3.1 Pro -- you might want to favorite both of these to make
+models. You can use <kbd>Ctrl+F</kbd> to "favorite" a model to make
 switching models a little easier.
 
 ![Selecting the Gemini 3.8 Flash
@@ -193,7 +192,6 @@ provided through the DREAM Lab. These are grouped by provider:
 
 - Gemini 3.8 Flash
 - Gemini 3.5 Flash Lite
-- Gemini 3.1 Pro
 
 **UCSB College IT** (CIT) AI Gateway provides several **open weights** models:
 
@@ -203,7 +201,6 @@ provided through the DREAM Lab. These are grouped by provider:
 
 Ordering these models by their coding capability (roughly):
 
-- Gemini 3.1 Pro
 - Gemini 3.8 Flash
 - Gemini 3.5 Flash Lite / Qwen-3.8 27B
 - Gemma 4 26B / gpt-oss-120b
@@ -275,7 +272,6 @@ Complete the exercise individually but discuss results in small groups (2-5 peop
 
 Use `/models` to select one of the models:
 
-- Gemini 3.1 Pro
 - Gemini 3.8 Flash
 - Gemini 3.5 Flash Lite
 - Qwen-3.8 27B
