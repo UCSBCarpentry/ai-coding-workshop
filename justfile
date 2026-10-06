@@ -25,5 +25,5 @@ diagrams:
 
 # Regenerate OpenCode interface screenshots for documentation
 opencode-screenshots:
-	python3 .opencode/skills/workshop-screenshots/scripts/generate_opencode_screenshots.py
+	python3 .agents/skills/workshop-screenshots/scripts/generate_opencode_screenshots.py
 
