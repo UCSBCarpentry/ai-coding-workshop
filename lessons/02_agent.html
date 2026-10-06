@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -77,10 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-77029b932f14f60c810d11513ce52d2c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9a9bba6001db4233b839d39253bf7561.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -347,11 +347,11 @@ Figure&nbsp;1: Creating a new terminal in VS Code (click to expand screenshots)
 <figcaption>Entering your API key</figcaption>
 </figure>
 </div>
-<p><strong>4. Select a model.</strong> Choose <strong>Gemini 3.5 Flash</strong> from the list of available models. You can use <kbd>Ctrl+F</kbd> to “favorite” a model. We will use both Gemini 3.5 Flash and Gemini 3.1 Pro (Custom Tools) – you might want to favorite both of these to make switching models a little easier.</p>
+<p><strong>4. Select a model.</strong> Choose <strong>Gemini 3.8 Flash</strong> from the list of available models. You can use <kbd>Ctrl+F</kbd> to “favorite” a model to make switching models a little easier.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../images/opencode_connect_model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Selecting the Gemini 3.5 Flash model"><img src="../images/opencode_connect_model.png" class="img-fluid figure-img" style="width:80.0%" alt="OpenCode model selection dropdown with Gemini 3.5 Flash highlighted"></a></p>
-<figcaption>Selecting the Gemini 3.5 Flash model</figcaption>
+<p><a href="../images/opencode_connect_model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Selecting the Gemini 3.8 Flash model"><img src="../images/opencode_connect_model.png" class="img-fluid figure-img" style="width:80.0%" alt="OpenCode model selection dropdown with Gemini 3.8 Flash highlighted"></a></p>
+<figcaption>Selecting the Gemini 3.8 Flash model</figcaption>
 </figure>
 </div>
 <p>OpenCode is now configured and ready to use the DREAM Lab AI Gateway.</p>
@@ -447,23 +447,20 @@ Figure&nbsp;1: Creating a new terminal in VS Code (click to expand screenshots)
 <p>Your Coder Workspace includes configurations for several models, not just those provided through the DREAM Lab. These are grouped by provider:</p>
 <p><strong>DREAM Lab</strong> AI Gateway provides Google models:</p>
 <ul>
-<li>Gemini 3.5 Flash</li>
-<li>Gemini 3 Flash</li>
-<li>Gemini 3.1 Pro</li>
-<li>Gemini 3.1 Pro (Custom Tools)</li>
+<li>Gemini 3.8 Flash</li>
+<li>Gemini 3.5 Flash Lite</li>
 </ul>
 <p><strong>UCSB College IT</strong> (CIT) AI Gateway provides several <strong>open weights</strong> models:</p>
 <ul>
-<li>Gemma 4</li>
-<li>Qwen3-Coder-Next</li>
-<li>GPT-OSS-120b</li>
+<li>Gemma 4 26B</li>
+<li>Qwen-3.8 27B</li>
+<li>gpt-oss-120b</li>
 </ul>
 <p>Ordering these models by their coding capability (roughly):</p>
 <ul>
-<li>Gemini 3.1 Pro [(Custom Tools)]</li>
-<li>Gemini 3.5 Flash</li>
-<li>Gemini 3 Flash / Qwen3-Coder-Next</li>
-<li>Gemma 4 / GPT-OSS-120b</li>
+<li><strong>Gemini 3.8 Flash</strong> (we will generally use this one)</li>
+<li>Gemini 3.5 Flash Lite / Qwen-3.8 27B</li>
+<li>Gemma 4 26B / gpt-oss-120b</li>
 </ul>
 <p>To switch models, type <code>/models</code> and press Enter. Type the name of the model to filter the list, and use the arrow keys to move through the list (models are grouped by provider). Press Enter to select the model. OpenCode will use the selected model for the rest of the session. The active model appears at the bottom of the OpenCode interface.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -478,7 +475,7 @@ Figure&nbsp;1: Creating a new terminal in VS Code (click to expand screenshots)
 <div class="callout-body-container callout-body">
 <p>We will soon start using git to track changes in our generated code. First, there are a few things to configure. Typically, we would do these directly with <code>git config --global</code>, but let’s just use OpenCode!</p>
 <ul>
-<li>Switch to an open weights model from CIT: <strong>Qwen3-Coder-Next</strong> (because this is not a difficult task and the models are running on campus).</li>
+<li>Switch to an open weights model from CIT: <strong>Qwen-3.8 27B</strong> (because this is not a difficult task and the models are running on campus).</li>
 <li>Use OpenCode to set git’s <strong>default branch</strong> to main and the <strong>name and email</strong> configurations to your name and email. Try to come up with the prompt yourself!</li>
 <li>It might not work on the first try. Hint: Did the model even ask for your name and email?</li>
 <li>Ask OpenCode to confirm that the configurations are correct.</li>
@@ -534,10 +531,9 @@ Note
 </div>
 <p>Use <code>/models</code> to select one of the models:</p>
 <ul>
-<li>Gemini 3.1 Pro (Custom Tools)</li>
-<li>Gemini 3.5 Flash</li>
-<li>Gemini 3 Flash</li>
-<li>Qwen3-Coder-Next</li>
+<li>Gemini 3.8 Flash</li>
+<li>Gemini 3.5 Flash Lite</li>
+<li>Qwen-3.8 27B</li>
 </ul>
 <p>Try to use a different model from other members of your group. Paste the following prompt into OpenCode:</p>
 <blockquote class="blockquote">
@@ -554,7 +550,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Weaker models (Qwen3-Coder-Next, Gemini 3 Flash), may get stuck or take too long. In that case, you can press <code>Escape</code> to interrupt the work, switch to a higher model, and ask OpenCode to continue.</p>
+<p>Weaker models (Qwen-3.8 27B, Gemini 3.5 Flash Lite), may get stuck or take too long. In that case, you can press <code>Escape</code> to interrupt the work, switch to a higher model, and ask OpenCode to continue.</p>
 </div>
 </div>
 <p>In your group, discuss the following questions:</p>

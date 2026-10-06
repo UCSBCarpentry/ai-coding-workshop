@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -42,10 +42,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-77029b932f14f60c810d11513ce52d2c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9a9bba6001db4233b839d39253bf7561.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -240,7 +240,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>After toggling between modes, <strong>always check which model you are using</strong>, as Plan and Build modes can use different models. For the purposes of this workshop, we generally recommend planning with <strong>Gemini 3.1 Pro (Custom Tools)</strong> and building with <strong>Gemini 3.5 Flash</strong>. But you can always explore other combinations!</p>
+<p>After toggling between modes, <strong>always check which model you are using</strong>, as Plan and Build modes can use different models. You can sometimes save money/tokens by planning with a larger, more expensive model and then implementing with a smaller model. For the purposes of this workshop, we will use <strong>Gemini 3.8 Flash</strong> for both planning and code generation.</p>
 </div>
 </div>
 </section>
@@ -251,7 +251,7 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li>Start OpenCode in the <code>noaa-tides</code> project folder. If you have an existing OpenCode session, start a new OpenCode session with <code>/new</code>.</li>
 <li>Switch to Plan mode by pressing the <kbd>tab</kbd> key until you see “Plan” below the text input cursor.</li>
-<li>Select your planning model with the <code>/models</code> command and choose the <strong>Gemini 3.1 Pro (Custom Tools)</strong> model.</li>
+<li>Select your planning model with the <code>/models</code> command and choose the <strong>Gemini 3.8 Flash</strong> model.</li>
 </ol>
 <p>To kick off the planning process, enter your initial prompt:</p>
 <blockquote class="blockquote">
@@ -294,13 +294,12 @@ ul.task-list li input[type="checkbox"] {
 <p>Perhaps you’ve heard about a cool new package manager for Python called <a href="https://docs.astral.sh/uv/">uv</a>, and you’d like to use it to manage dependencies for your NOAA tides project. You also realized that with the number of files growing in your project folder, you might want to reorganize it. For this exercise, use Plan mode to convert your project to using uv for its dependencies:</p>
 <ol type="1">
 <li>Make sure you are running OpenCode in the <code>noaa-tides</code> folder. If you have an existing OpenCode session, start a new OpenCode session with <code>/new</code>.</li>
-<li>Enter Plan mode and switch to the <strong>Gemini 3.1 Pro (Custom Tools)</strong> model if necessary.</li>
+<li>Enter Plan mode and make sure you are using <strong>Gemini 3.8 Flash</strong>.</li>
 <li>Make a plan to “migrate this project to uv, for dependency management”.</li>
 <li>Inspect and iterate.</li>
-<li>Add reorganizing our files with all the scripts in a “code” folder and plots in a “output” folder.</li>
+<li>Add reorganizing our files with all the scripts in a “code” folder and plots in an “output” folder.</li>
 <li>Inspect and iterate.</li>
-<li>Switch to build mode and switch to the <strong>Gemini 3.5 Flash</strong> model.</li>
-<li>Execute the plan</li>
+<li>Switch to build mode and execute the plan</li>
 <li>Make sure you commit your work. (You can also add that to the plan!)</li>
 </ol>
 <section id="explore-further" class="level4">
