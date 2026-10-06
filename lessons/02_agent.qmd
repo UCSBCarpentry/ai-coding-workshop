@@ -99,13 +99,13 @@ your UCSB email account.
 
 ![Entering your API key](../images/opencode_connect_apikey.png){.lightbox width="80%" fig-alt="OpenCode prompt entering an API key"}
 
-**4. Select a model.** Choose **Gemini 3.5 Flash** from the list of available
-models. You can use <kbd>Ctrl+F</kbd> to "favorite" a model. We will use both Gemini 3.5
-Flash and Gemini 3.1 Pro (Custom Tools) -- you might want to favorite
-both of these to make switching models a little easier.
+**4. Select a model.** Choose **Gemini 3.8 Flash** from the list of available
+models. You can use <kbd>Ctrl+F</kbd> to "favorite" a model. We will use both Gemini 3.8
+Flash and Gemini 3.1 Pro -- you might want to favorite both of these to make
+switching models a little easier.
 
-![Selecting the Gemini 3.5 Flash
-model](../images/opencode_connect_model.png){.lightbox width="80%" fig-alt="OpenCode model selection dropdown with Gemini 3.5 Flash highlighted"}
+![Selecting the Gemini 3.8 Flash
+model](../images/opencode_connect_model.png){.lightbox width="80%" fig-alt="OpenCode model selection dropdown with Gemini 3.8 Flash highlighted"}
 
 OpenCode is now configured and ready to use the DREAM Lab AI Gateway.
 
@@ -191,23 +191,22 @@ provided through the DREAM Lab. These are grouped by provider:
 
 **DREAM Lab** AI Gateway provides Google models:
 
-- Gemini 3.5 Flash
-- Gemini 3 Flash
+- Gemini 3.8 Flash
+- Gemini 3.5 Flash Lite
 - Gemini 3.1 Pro
-- Gemini 3.1 Pro (Custom Tools)
 
 **UCSB College IT** (CIT) AI Gateway provides several **open weights** models:
 
-- Gemma 4
-- Qwen3-Coder-Next
-- GPT-OSS-120b
+- Gemma 4 26B
+- Qwen-3.8 27B
+- gpt-oss-120b
 
 Ordering these models by their coding capability (roughly):
 
-- Gemini 3.1 Pro [(Custom Tools)]
-- Gemini 3.5 Flash
-- Gemini 3 Flash / Qwen3-Coder-Next
-- Gemma 4 / GPT-OSS-120b
+- Gemini 3.1 Pro
+- Gemini 3.8 Flash
+- Gemini 3.5 Flash Lite / Qwen-3.8 27B
+- Gemma 4 26B / gpt-oss-120b
 
 
 To switch models, type `/models` and press Enter. Type the name of the model to
@@ -223,7 +222,7 @@ We will soon start using git to track changes in our generated code. First,
 there are a few things to configure. Typically, we would do these directly with
 `git config --global`, but let's just use OpenCode!
 
-- Switch to an open weights model from CIT: **Qwen3-Coder-Next** (because this
+- Switch to an open weights model from CIT: **Qwen-3.8 27B** (because this
   is not a difficult task and the models are running on campus).
 - Use OpenCode to set git's **default branch** to main and the **name and
   email** configurations to your name and email. Try to come up with the prompt yourself!
@@ -276,10 +275,10 @@ Complete the exercise individually but discuss results in small groups (2-5 peop
 
 Use `/models` to select one of the models:
 
-- Gemini 3.1 Pro (Custom Tools)
-- Gemini 3.5 Flash
-- Gemini 3 Flash
-- Qwen3-Coder-Next
+- Gemini 3.1 Pro
+- Gemini 3.8 Flash
+- Gemini 3.5 Flash Lite
+- Qwen-3.8 27B
 
 Try to use a different model from other members of your group. Paste the
 following prompt into OpenCode:
@@ -292,7 +291,7 @@ Wait for the agent to complete the task (it may take a few minutes).
 
 :::{.callout-warning}
 
-Weaker models (Qwen3-Coder-Next, Gemini 3 Flash), may get stuck or take too
+Weaker models (Qwen-3.8 27B, Gemini 3.5 Flash Lite), may get stuck or take too
 long. In that case, you can press `Escape` to interrupt the work, switch to a
 higher model, and ask OpenCode to continue.
 
