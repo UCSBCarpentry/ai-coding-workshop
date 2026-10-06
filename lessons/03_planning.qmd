@@ -82,6 +82,65 @@ To kick off the planning process, enter your initial prompt:
 
 > I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.
 
+````markdown
+Here is the plan for downloading Monthly Mean High Water (MHW) data for NOAA stations in California using the NOAA CO-OPS API and Python.
+
+---
+
+### Key API Findings & Technical Grounding
+
+1. **Station Discovery (Metadata API)**:
+   - **Active stations (`type=waterlevels`)**: **19 stations** in California (e.g., San Francisco, San Diego, Los Angeles, Monterey). These are long-term, continuous NWLON stations with decades of records (e.g., San Francisco has records dating back to 1854).
+   - **All water level stations (`type=historicwl`)**: **178 stations** in California, including historical and short-term subordinate tide gauges (some spanning 1–12 months, others multiple years).
+   - Endpoint: `https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations.json?type={historicwl|waterlevels}`
+
+2. **Data Retrieval API (`datagetter`)**:
+   - Product: `product=monthly_mean`
+   - Data fields returned: `year`, `month`, `MHW` (Mean High Water), along with `MHHW`, `MSL`, `MTL`, `MLW`, `MLLW`, `highest`, `lowest`.
+   - Endpoint:
+     ```
+     https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station={station_id}&begin_date={begin}&end_date={end}&product=monthly_mean&datum={datum}&units={units}&time_zone=GMT&format=json
+     ```
+   - Performance: The API supports retrieving the entire historical record per station in a single request. Using multithreading (`ThreadPoolExecutor`), all 178 stations can be fetched in under 10 seconds.
+
+---
+
+### Proposed Implementation Plan
+
+#### 1. Python Architecture & Dependencies
+- Implement a modular, production-ready CLI script (e.g., `download_noaa_mhw.py`).
+- **Dependencies**: Built on Python's standard library (`urllib.request`, `json`, `csv`, `concurrent.futures`, `argparse`), making it completely zero-dependency and runnable immediately with standard `python3` or `uv run`. Optional integration with `pandas` if data analysis is desired.
+
+#### 2. Key Features & CLI Options
+- `--scope`: Choice between `active` (19 NWLON stations) or `all` (178 historical + active stations, default).
+- `--datum`: Default to `STND` (Station Datum — supported universally across all stations), with options for `MLLW`, `NAVD`, or `MSL`.
+- `--units`: Default to `metric` (meters), with option for `english` (feet).
+- `--start-date` & `--end-date`: Default to retrieving all available historical data (e.g., 1850 to present), with customizable date ranges (format `YYYYMMDD`).
+- `--workers`: Configurable concurrent worker threads (default `8`–`10`) with retry handling and exponential backoff.
+- `--output-dir`: Destination folder for output files.
+
+#### 3. Output Data Structure
+- **Combined CSV** (`ca_noaa_mhw_combined.csv`):
+  Columns: `station_id`, `station_name`, `latitude`, `longitude`, `year`, `month`, `date` (YYYY-MM-01), `mhw`, `datum`, `units`, plus optional secondary monthly metrics.
+- **Individual Station CSVs** (under `data/stations/{station_id}_{station_slug}.csv`): Clean per-station time-series files.
+- **Station Summary Metadata** (`ca_stations_summary.csv`): Summary table of all CA stations, their record counts, start year, end year, and status.
+
+---
+
+### Questions & Preferences
+
+Before moving to the execution phase, please confirm your preferences on the following:
+
+1. **Station Scope**:
+   - Would you prefer **all 178 stations** (includes historical & short-term subordinate stations) or only the **19 active, permanent NWLON stations**?
+2. **Date Range**:
+   - Do you want the **entire historical record** (from station inception to present) or a **specific time window** (e.g., 2000–present, or the latest tidal epoch)?
+3. **Vertical Datum & Units**:
+   - Default to **STND** (Station Datum, meters)? Or a tidal/geodetic datum like **MLLW** or **NAVD88**?
+4. **Output Format**:
+   - Is a **single combined CSV** preferred, **individual station CSV files**, or **both**?
+````
+
 ![Plan mode example - First prompt answer](../images/03-plan_mode-prompt1.png){fig-alt="Plan mode prompt answer showing the various proposed steps and supplemental information requests"}
 
 In this case, OpenCode responded with a set of clarifying questions. We can
@@ -95,6 +154,59 @@ missing details:
 > project folder
 
 And here is the updated plan:
+
+````markdown
+I have analyzed the NOAA API endpoints, tested California station availability, and verified the data retrieval for the requested parameters.
+
+Here is the implementation plan:
+
+---
+
+### 1. Requirements & Configuration Summary
+
+| Parameter | Value | Details |
+|---|---|---|
+| **API Endpoints** | Metadata API (`mdapi`) & Data Retrieval API (`datagetter`) | Official NOAA CO-OPS REST APIs |
+| **Product** | `monthly_mean` | Returns monthly tidal statistics including `MHW` |
+| **Datum** | `MLLW` | Mean Lower Low Water reference |
+| **Units** | `metric` | Meters |
+| **Timeframe** | Last Decade (2016-01-01 to present) | Dynamic 10-year span (capturing ~128 monthly readings per long-term station) |
+| **Station Scope** | All California stations with water level records | Scans all CA stations (19 active continuous NWLON stations + 9 temporary/subordinate stations with observations in this decade = 28 stations with data) |
+| **Script Location** | `code/download_mhw.py` | Top-level `code/` folder |
+| **Output Location** | `data/data-raw/` | Top-level `data/` folder with `data-raw/` subfolder |
+
+---
+
+### 2. Output Data Structure
+
+Inside `data/data-raw/`:
+1. **`ca_monthly_mean_high_water_last_decade.csv`**: Master consolidated dataset in tidy format containing all California stations, with columns:
+   - `station_id`
+   - `station_name`
+   - `latitude`, `longitude`
+   - `year`, `month`, `date` (`YYYY-MM-01`)
+   - `mhw` (Monthly Mean High Water in meters above MLLW)
+   - `datum` (`MLLW`), `units` (`meters`)
+   - Complete monthly tidal metrics (`mhhw`, `msl`, `mtl`, `mlw`, `mllw`, `highest`, `lowest`)
+2. **`stations/` subfolder**: Individual CSV files for each station (e.g., `9414290_San_Francisco.csv`, `9410170_San_Diego.csv`) for convenient station-by-station access.
+3. **`station_catalog_ca.csv`**: Manifest of all queried California stations, coordinates, status (active/historic), and records found.
+
+---
+
+### 3. Script Design (`code/download_mhw.py`)
+
+- **Zero External Dependencies**: Built with Python standard library (`urllib.request`, `json`, `csv`, `concurrent.futures`, `argparse`, `pathlib`) so it runs out-of-the-box on any Python 3 installation without requiring `pip install`.
+- **Parallel Fetching**: Uses `ThreadPoolExecutor` with polite concurrency (8 threads) and retry logic with exponential backoff for high performance (downloads the entire state in ~2–3 seconds).
+- **Flexible CLI**:
+  ```bash
+  python3 code/download_mhw.py [--start-year 2016] [--end-year 2026] [--datum MLLW] [--units metric] [--outdir data/data-raw]
+  ```
+- **Robust Error Handling**: Automatically handles stations without active deployments in the requested window, logs progress, and outputs clear summary statistics upon completion.
+
+---
+
+Would you like me to proceed with implementing the script and downloading the data?
+````
 
 ![Plan mode example - Updated plan](../images/03-plan_mode-prompt2.png){fig-alt="Plan mode prompt answer update to incorporate the new information"}
 
