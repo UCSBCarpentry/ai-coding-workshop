@@ -159,7 +159,7 @@ Use OpenCode to fix each of the above normalization issues:
 - Fix each issue in a new session (use `/new`)
 - Use **Plan** mode with **Gemini 3.8 Flash** to create a plan.
 - Make sure the plan includes a step to update the tests!
-- Switch to **Build** mode and use **Gemini 3.5 Flash** to execute the plan
+- Switch to **Build** mode and execute the plan
 - Use the review server to check the re-normalized data.
 - Commit your work for each issue separately.
 

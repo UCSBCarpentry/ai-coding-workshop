@@ -201,7 +201,7 @@ provided through the DREAM Lab. These are grouped by provider:
 
 Ordering these models by their coding capability (roughly):
 
-- Gemini 3.8 Flash
+- **Gemini 3.8 Flash** (we will generally use this one)
 - Gemini 3.5 Flash Lite / Qwen-3.8 27B
 - Gemma 4 26B / gpt-oss-120b
 
