@@ -12,7 +12,7 @@ Let's refresh some concepts on how to start OpenCode, switch models, and send a 
    (Or ask the AI to help)
 
 2. Start OpenCode in the `noaa-tides` folder
-3. Select `Gemini 3.5 Flash` as your model
+3. Select `Gemini 3.8 Flash` as your model
 
 Imagine you are new to this project and want to understand it. You ask OpenCode:
 

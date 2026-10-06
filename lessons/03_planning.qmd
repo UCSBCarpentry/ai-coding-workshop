@@ -55,10 +55,10 @@ tasks can lead to a more efficient use of your resources.
 ### Models for Planning
 
 After toggling between modes, **always check which model you are using**, as
-Plan and Build modes can use different models. For the purposes of this
-workshop, we generally recommend planning with **Gemini 3.8 Flash**
-and building with **Gemini 3.5 Flash**. But you can always explore other
-combinations!
+Plan and Build modes can use different models. You can sometimes save
+money/tokens by planning with a larger, more expensive model and then
+implementing with a smaller model. For the purposes of this workshop, we will
+use **Gemini 3.8 Flash** for both planning and code generation.
 
 :::
 
@@ -119,14 +119,12 @@ convert your project to using uv for its dependencies:
 
 1. Make sure you are running OpenCode in the `noaa-tides` folder. If you have an
    existing OpenCode session, start a new OpenCode session with `/new`.
-1. Enter Plan mode and switch to the **Gemini 3.8 Flash** model if
-   necessary.
+1. Enter Plan mode and make sure you are using **Gemini 3.8 Flash**.
 1. Make a plan to "migrate this project to uv, for dependency management".
 1. Inspect and iterate.
-1. Add reorganizing our files with all the scripts in a "code" folder and plots in a "output" folder.
+1. Add reorganizing our files with all the scripts in a "code" folder and plots in an "output" folder.
 1. Inspect and iterate.
-1. Switch to build mode and switch to the **Gemini 3.5 Flash** model.
-1. Execute the plan
+1. Switch to build mode and execute the plan
 1. Make sure you commit your work. (You can also add that to the plan!)
 
 
