@@ -14,7 +14,7 @@ AI-assisted coding agent can help us construct scripts for downloading large dat
 
 ### Data and Setup
 
-- **Data source:** We will use the SBC LTER dataset: [Reef: Kelp Forest Community Dynamics: Fish abundance (knb-lter-sbc.17)](https://sbclter.msi.ucsb.edu/data/catalog/package/?package=knb-lter-sbc.17). You can download the data directly using this [data download link](https://pasta.lternet.edu/package/data/eml/knb-lter-sbc/17/41/a7899f2e57ea29a240be2c00cce7a0d4) in case your agent falls to do so. 
+- **Data source:** We will use the SBC LTER dataset: [Reef: Kelp Forest Community Dynamics: Fish abundance (knb-lter-sbc.17)](https://sbclter.msi.ucsb.edu/data/catalog/package/?package=knb-lter-sbc.17). You can download the data directly by going to the "Files and Data Links" tab on the dataset landing page in case your agent falls to do so. 
 - **Data storage and check:** Save the downloaded CSV data to your local directory (e.g., `data/annual_fish.csv`) to prevent repeated downloads of the ~20MB file. Ensure that the downloaded dataset is complete by verifying that the `YEAR` column spans from 2000 to 2025. If it is only a partial download, it is time to ask agent to double check its work.
 - **AGENTS.md:** Create an `AGENTS.md` file to instruct your coding agent on project conventions, the dataset landing page, and visualization color palettes.
 
