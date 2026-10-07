@@ -23,11 +23,16 @@ programming language.
 
 ## Schedule
 
-| Day | Topics |
-|:---|:---| 
-| **Day 1** | [Introduction](lessons/01_intro.qmd) <br /> [Getting Started with an Agent](lessons/02_agent.qmd) <br /> [Planning Mode](lessons/03_planning.qmd) <br /> Introduce Projects |
-| **Day 2** | Review <br /> [`AGENTS.md` file](lessons/04_agents_md.qmd) <br /> [Automated Testing](lessons/06_testing.qmd) <br /> Project work and report out |
-| **Day 3** | Review <br /> [Sharing / publishing](lessons/07_publication.qmd) <br /> [Subagents, Agent Skills, and MCP](lessons/08_skills_subagents.qmd) <br /> Project work and report out |
+- [Introduction to Coding with LLMs](lessons/01_intro.qmd)
+- [Getting Started with an Agent](lessons/02_agent.qmd)
+- [Planning/Build Modes](lessons/03_planning.qmd)
+- [`AGENTS.md` file](lessons/04_agents_md.qmd)
+
+<!--  
+- [Automated Testing](lessons/06_testing.qmd)
+- [Sharing / publishing](lessons/07_publication.qmd)
+- [Subagents, Agent Skills, and MCP](lessons/08_skills_subagents.qmd)
+-->
 
 ## Contributors
 

@@ -11,13 +11,18 @@ called a [Coder Workspace](https://coder.dreamlab.ucsb.edu). It can take a few
 minutes to create your workspace so we recommend doing it before the workshop.
 To create your workspace:
 
-1. Log in to the [Coder Workspaces](https://coder.dreamlab.ucsb.edu) environment using your UCSB NetID.
-2. Click the **New Workspace** button and then **Coder Workspace (Summer
-   2026)**.
-3. On the New Workspace form:
+1. Log in to DREAM Lab's [AI Gateway API Key
+   Manager](https://litellm.dreamlab.ucsb.edu/dreamlab-keys/) and generate an
+   API key to use during the workshop. You will need to copy and paste the key
+   in the steps below.
+1. Log in to the [Coder Workspaces](https://coder.dreamlab.ucsb.edu) environment
+   using your UCSB NetID.
+1. Click the **New Workspace** button and then **Coder Workspace (Fall 2026)**.
+1. On the New Workspace form:
    - Enter a **name** for your workspace (or use the suggested name).
    - Review the usage policies and click "**I understand the usage policies**".
    - Click **Yes** for "**Include Visual Studio Code (Web)**"
+   - Copy and paste your API key from step 1 into the **DREAM Lab LLM API Key** field.
    - (**Optional**) Click **Yes** for "Include Visual Studio Code (Desktop)"
    - Click the **Create Workspace** button
    - Wait for the workspace to be created.
