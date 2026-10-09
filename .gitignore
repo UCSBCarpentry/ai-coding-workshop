@@ -5,3 +5,4 @@ _site
 .vscode
 node_modules/
 a11y-report/
+.DS_Store
