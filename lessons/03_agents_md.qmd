@@ -113,9 +113,9 @@ Keep it short and descriptive, e.g. `add sliding window aggregation for signal p
 - If `ruff` reports errors that can't be auto-fixed, stop and explain the issue rather than silently ignoring or suppressing it.
 ```
 
-After adjustmenting it, make sure the project is actually following these conventions and test how it works. Let's use this prompt:
+After adjusting it, make sure the project is actually following these conventions and test how it works. Let's use this prompt:
 
-> Make sure my project follows the guidelines stated on the @AGENTS.md file.
+> Make sure my project follows the guidelines stated in the @AGENTS.md file.
 
 :::{.callout-tip}
 ## Challenge: Testing our AI Agent
