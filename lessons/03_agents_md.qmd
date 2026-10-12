@@ -16,9 +16,7 @@ You can ask *OpenCode* to get you started with an `AGENTS.md` file using the `/i
 
 You can also pass custom constraints directly with the command:
 
-```shell
-/init use uv as the package manager, and ruff as the linter. Do not use pip, conda, or poetry directly.
-```
+> /init use uv as the package manager, and ruff as the linter. Do not use pip, conda, or poetry directly.
 
 The resulting prompt sent to the agent will look similar to this:
 
@@ -65,6 +63,7 @@ Discuss with the person next to you:
 ## Customize the AGENTS.md file
 
 The `/init` command was a great start, but you should personalize it and add important considerations for your project.
+
 Let's add the following to the AGENTS.md file we have until now.
 
 ```md
@@ -80,14 +79,15 @@ Let's add the following to the AGENTS.md file we have until now.
 ## Directory structure
 
 Always consider this directory structure to find and create files in this project:
-- data
-  - data-raw
-  - data-processed
-- code
-- docs
-- output
-  - figures
-  - tables
+.
+├── code/
+├── data/
+│   ├── data-processed/
+│   └── data-raw/ # should never be overwritten
+├── docs/
+└── output/
+    ├── figures/
+    └── tables/
 
 ## Workflows
 
@@ -115,7 +115,8 @@ Keep it short and descriptive, e.g. `add sliding window aggregation for signal p
 
 After adjusting it, make sure the project is actually following these conventions and test how it works. Let's use this prompt:
 
-> Make sure my project follows the guidelines stated in the @AGENTS.md file.
+> Audit the repository against @AGENTS.md. Run the pre-commit linter checks and list any code formatting or 
+> structural violations, but don't move or refactor files without asking first.
 
 :::{.callout-tip}
 ## Challenge: Testing our AI Agent
