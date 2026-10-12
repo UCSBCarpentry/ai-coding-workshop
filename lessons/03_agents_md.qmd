@@ -89,6 +89,15 @@ Always consider this directory structure to find and create files in this projec
     ├── figures/
     └── tables/
 
+## Session & Context Management
+
+To keep chat sessions lightweight and avoid context bloat (>250k tokens):
+
+- **Minimal file outputs:** Never reprint full files or large codeblocks. Always output concise targeted line edits or `git diff` snippets.
+- **Truncate command outputs:** Summarize test/build outputs. Do not dump massive stack traces or long terminal logs unless directly relevant to an error.
+- **Task modularity & session resets:** Treat each chat session as single-task focused. Upon completing a distinct task, pull request, or major bugfix, remind the user to start a new chat session (e.g., `/new`) before moving to the next task.
+- **Summarize progress:** When context feels long or complex, provide a 3-bullet task summary so the user can easily copy it into a fresh session.
+
 ## Workflows
 
 ### Before committing any changes
