@@ -117,7 +117,7 @@ The plan looks fine -- isn't it useful to see what the agent would do before it
 does it? We're ready to build:
 
 1. Switch to **Build mode** by pressing the <kbd>tab</kbd> key
-2. Enter a prompt to kick off the build process: "The plan looks good. Go ahead!"
+2. Enter a prompt to kick off the build process, explicitly requesting that the plan be saved first: "The plan looks good. Before implementing any code, please save this plan to `.opencode/plans/noaa-refactor-plan.md`. Once saved, go ahead and implement it!"
 
 That's it. Now it's your turn to try Plan mode.
 
@@ -135,10 +135,11 @@ Perhaps you've noticed that downloading data using the default `STND` datum prov
 3. Make a plan to refactor your code. You can use a prompt like this: "Refactor our existing download script so that it explicitly fetches the **MHW** (Mean High Water) product for the **last decade** using the **MLLW datum** as the vertical reference and the **metric system** for units. Ensure the updated script and its data outputs strictly comply with the directory structure and conventions defined in `AGENTS.md`."
 4. Inspect the resulting plan and answer any clarifying questions the agent might ask.
 5. Iterate on the plan if needed (e.g., you can ask the agent to add a reorganization of your files, moving plots to an `output` folder).
-6. Switch to build mode and execute the plan.
-7. **Validate your changes** by running the script from your terminal (e.g., `uv run code/download.py`) to ensure the data is fetched and formatted correctly.
-8. Ask the agent to generate a `README.md` file with a minimal description of the project and basic instructions on how to run the code.
-9. Make sure you commit your work (the refactored code and the new README). You can even ask the agent to help you write the commit message!
+6. Switch to build mode.
+7. Kick off the build process by explicitly asking the agent to save the plan first: "Looks great. Before doing anything else, save this plan to `.opencode/plans/mllw-refactor.md`. Then go ahead and execute it."
+8. **Validate your changes** by running the script from your terminal (e.g., `uv run code/download.py`) to ensure the data is fetched and formatted correctly.
+9. Ask the agent to generate a `README.md` file with a minimal description of the project and basic instructions on how to run the code.
+10. Make sure you commit your work (the refactored code, the saved plan, and the new README). You can even ask the agent to help you write the commit message!
 
 
 #### Explore further
