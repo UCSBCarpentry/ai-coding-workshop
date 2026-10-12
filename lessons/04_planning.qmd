@@ -134,13 +134,13 @@ convert your project to using uv for its dependencies:
 
 1. Make sure you are running OpenCode in the `noaa-tides` folder. If you have an
    existing OpenCode session, start a new OpenCode session with `/new`.
-1. Enter Plan mode and make sure you are using **Gemini 3.8 Flash**.
-1. Make a plan to "migrate this project to uv, for dependency management".
-1. Inspect and iterate.
-1. Add reorganizing our files with all the scripts in a "code" folder and plots in an "output" folder.
-1. Inspect and iterate.
-1. Switch to build mode and execute the plan
-1. Make sure you commit your work. (You can also add that to the plan!)
+2. Enter Plan mode and make sure you are using **Gemini 3.8 Flash**.
+3. Make a plan to "migrate this project to uv, for dependency management".
+4. Inspect and iterate.
+5. Add reorganizing our files with all the scripts in a "code" folder and plots in an "output" folder.
+6. Inspect and iterate.
+7. Switch to build mode and execute the plan
+8. Make sure you commit your work. (You can also add that to the plan!)
 
 
 #### Explore further
