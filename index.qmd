@@ -25,8 +25,8 @@ programming language.
 
 - [Introduction to Coding with LLMs](lessons/01_intro.qmd)
 - [Getting Started with an Agent](lessons/02_agent.qmd)
-- [Planning/Build Modes](lessons/03_planning.qmd)
-- [`AGENTS.md` file](lessons/04_agents_md.qmd)
+- [`AGENTS.md` file](lessons/03_agents_md.qmd)
+- [Planning/Build Modes](lessons/04_planning.qmd)
 
 <!--  
 - [Automated Testing](lessons/06_testing.qmd)
