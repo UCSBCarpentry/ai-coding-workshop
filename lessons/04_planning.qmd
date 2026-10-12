@@ -2,7 +2,7 @@
 title: "Planning"
 ---
 
-What we just did in the previous section, letting the agent have full control of
+What we just did in the previous sections, letting the agent have full control of
 a multi-step process, is not the best way to fully leverage agentic coding
 capabilities. Instead, it is recommended to break down your workflow into
 smaller, distinct increments that are easier to verify and iterate on.
@@ -10,11 +10,14 @@ smaller, distinct increments that are easier to verify and iterate on.
 
 ## Plan mode overview
 
-This is precisely where "Plan mode" becomes invaluable. Plan mode allows you to
-refine your instructions for your agent, resolve potential ambiguities, and
-quickly redirect overeager agents. This gives you better control over the
-different components of your analytical workflow before any code or files are
-modified in your project.
+While it is easy to think of Plan mode merely as a “read-only” or Q&A mode, its primary goal is actually to 
+**develop a highly refined prompt**—aka. *the plan*—that will guide the agent during actual implementation.
+
+The structure and quality of this plan depend on several factors, for example:
+
+- **The agent tool**: The structure of the plan is defined by the underlying tool or “harness” guiding the agent. Two different harnesses can produce substantially different plans from the same initial prompt.
+- **The Model**: The quality of the resulting plan is closely tied to the model you use. While a *frontier* (most advanced) model doesn’t strictly guarantee a better prompt, the chances of generating a comprehensive, well-reasoned plan are much higher.
+- **Your Instructions**: The prompt you send during the planning phase is critical. More detailed instructions and context lead to a better, more accurate plan.
 
 To effectively integrate agentic AI into your work, consider following this
 structured approach:
@@ -26,6 +29,15 @@ structured approach:
 - Ask for separate scripts for the primary components of your workflow
 - Once satisfied, switch to Build mode for actual implementation
 - Leverage version control to create snapshots of your work before and after major changes
+
+## Best Practices for Planning and Execution
+
+A good practice is to reserve the plan for specific tasks, bug fixes, or new features, rathen than
+attempting to plan out a massive, open-ended project all at once.
+
+Similarly, it is advisable to implement the plan incrementally, verifying each step, task or phase before proceeding 
+to the next. This approach allows for early detection of issues, and keep each step in a separate, manageable context. 
+It also allows for more effective use of version control, as each step can be committed and reviewed independently.
 
 When reviewing the plan, you might consider questions such as:
 
