@@ -4,12 +4,11 @@ title: "The AGENTS.md file"
 
 ## The AGENTS.md file
 
-AGENTS.md is a special file that is always included at the start of the conversation with the coding agent, 
-without the user having to mention it.
+AGENTS.md is a **dedicated instruction file** automatically loaded into an AI coding agent's context at the start of a session.
 
-Just like a README file describes a project to a human reader,
-the AGENTS.md file gives the AI a **high level description of the project** so it doesn't have to read multiple files with every new conversation.
-It also gives the AI clear **guidelines on conventions, coding styles, or workflows** you want it to follow.
+Just as a README file describes a project to a human developer,
+`AGENTS.md` provides an AI model with essential **high-level project architecture, coding conventions and workflow guidelines**.
+It also supplies critical operational commands (like how to run tests, build, or lint), **preventing the AI from burning tokens scanning files or guessing project rules**.
 
 We can ask our AI Agent to get us started with an AGENTS.md using the `/init` command.
 
