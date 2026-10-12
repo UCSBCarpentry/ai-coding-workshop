@@ -2,7 +2,7 @@
 title: "Planning"
 ---
 
-What we just did in the previous section, letting the agent have full control of
+What we just did in the previous sections, letting the agent have full control of
 a multi-step process, is not the best way to fully leverage agentic coding
 capabilities. Instead, it is recommended to break down your workflow into
 smaller, distinct increments that are easier to verify and iterate on.
@@ -10,11 +10,14 @@ smaller, distinct increments that are easier to verify and iterate on.
 
 ## Plan mode overview
 
-This is precisely where "Plan mode" becomes invaluable. Plan mode allows you to
-refine your instructions for your agent, resolve potential ambiguities, and
-quickly redirect overeager agents. This gives you better control over the
-different components of your analytical workflow before any code or files are
-modified in your project.
+While it is easy to think of Plan mode merely as a “read-only” or Q&A mode, its primary goal is actually to 
+**develop a highly refined prompt**—aka. *the plan*—that will guide the agent during actual implementation.
+
+The structure and quality of this plan depend on several factors, for example:
+
+- **The agent tool**: The structure of the plan is defined by the underlying tool or “harness” guiding the agent. Two different harnesses can produce substantially different plans from the same initial prompt.
+- **The Model**: The quality of the resulting plan is closely tied to the model you use. While a *frontier* (most advanced) model doesn’t strictly guarantee a better prompt, the chances of generating a comprehensive, well-reasoned plan are much higher.
+- **Your Instructions**: The prompt you send during the planning phase is critical. More detailed instructions and context lead to a better, more accurate plan.
 
 To effectively integrate agentic AI into your work, consider following this
 structured approach:
@@ -26,6 +29,15 @@ structured approach:
 - Ask for separate scripts for the primary components of your workflow
 - Once satisfied, switch to Build mode for actual implementation
 - Leverage version control to create snapshots of your work before and after major changes
+
+## Best Practices for Planning and Execution
+
+A good practice is to reserve the plan for specific tasks, bug fixes, or new features, rathen than
+attempting to plan out a massive, open-ended project all at once.
+
+Similarly, it is advisable to implement the plan incrementally, verifying each step, task or phase before proceeding 
+to the next. This approach allows for early detection of issues, and keep each step in a separate, manageable context. 
+It also allows for more effective use of version control, as each step can be committed and reviewed independently.
 
 When reviewing the plan, you might consider questions such as:
 
@@ -45,11 +57,6 @@ In OpenCode, you can use the <kbd>tab</kbd> key to switch between Plan and Build
 modes. Build mode is the default when you start OpenCode. The active mode
 appears right below the cursor in the prompt input area.
 
-For complex, multi-step problem planning, it is advisable to leverage the most
-advanced model available, keeping token costs in mind. After the initial steps
-are laid out, transitioning to a less advanced model to execute those predefined
-tasks can lead to a more efficient use of your resources.
-
 :::{.callout-tip}
 
 ### Models for Planning
@@ -57,7 +64,7 @@ tasks can lead to a more efficient use of your resources.
 After toggling between modes, **always check which model you are using**, as
 Plan and Build modes can use different models. You can sometimes save
 money/tokens by planning with a larger, more expensive model and then
-implementing with a smaller model. For the purposes of this workshop, we will
+implementing with a smaller one. For the purposes of this workshop, we will
 use **Gemini 3.8 Flash** for both planning and code generation.
 
 :::
@@ -78,143 +85,39 @@ To use Plan mode:
 3. Select your planning model with the `/models` command and choose the **Gemini
    3.8 Flash** model.
 
-To kick off the planning process, enter your initial prompt:
+To kick off the planning process, let's begin with a plan to refactor the download logic for the NOAA tides data, 
+ensuring it aligns with the structure described in our `AGENTS.md` file. 
 
-> I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.
+You can start with a prompt like this (be sure to replace `[name_of_your_script.py]` with your actual file name):
 
-````markdown
-Here is the plan for downloading Monthly Mean High Water (MHW) data for NOAA stations in California using the NOAA CO-OPS API and Python.
+> I would like to refactor our Python script that downloads the monthly mean high water for California NOAA stations. 
+> 
+> The current download logic is in `[name_of_your_script.py]`. Please review the code and propose a plan to improve it. Use the `AGENTS.md` file as a reference for project structure, coding conventions, and workflow guidelines. Please include any missing details or clarifying questions needed to ensure a successful implementation before we begin.
 
----
+During the development of the plan, you may find that the agent asks for additional information or clarification. The agent will typically include these questions at the end of its proposed plan. The following is an example of what the agent might ask:
 
-### Key API Findings & Technical Grounding
+```md
+## Clarifying Questions & Design Choices
 
-1. **Station Discovery (Metadata API)**:
-   - **Active stations (`type=waterlevels`)**: **19 stations** in California (e.g., San Francisco, San Diego, Los Angeles, Monterey). These are long-term, continuous NWLON stations with decades of records (e.g., San Francisco has records dating back to 1854).
-   - **All water level stations (`type=historicwl`)**: **178 stations** in California, including historical and short-term subordinate tide gauges (some spanning 1–12 months, others multiple years).
-   - Endpoint: `https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations.json?type={historicwl|waterlevels}`
+Before proceeding with the refactoring, please clarify your preferences on the following:
 
-2. **Data Retrieval API (`datagetter`)**:
-   - Product: `product=monthly_mean`
-   - Data fields returned: `year`, `month`, `MHW` (Mean High Water), along with `MHHW`, `MSL`, `MTL`, `MLW`, `MLLW`, `highest`, `lowest`.
-   - Endpoint:
-     ```
-     https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station={station_id}&begin_date={begin}&end_date={end}&product=monthly_mean&datum={datum}&units={units}&time_zone=GMT&format=json
-     ```
-   - Performance: The API supports retrieving the entire historical record per station in a single request. Using multithreading (`ThreadPoolExecutor`), all 178 stations can be fetched in under 10 seconds.
+1. **File Locations & Entrypoints**:
+   - Would you like your Python scripts moved to `code/` (e.g., `code/download.py`), or should they remain at the root as entrypoints?
+2. **Data Output Destination**:
+   - Should the output be directed to `data/data-raw/ca_monthly_mean_high_water_10yrs.csv` per the `AGENTS.md` file? (If so, should `plot_tides.py` be updated to match, while maintaining backward-compatibility fallback?)
+```
 
----
+:::{.callout-caution}
+The plan can be implemented without addressing these questions, but it is highly recommended to answer them to reduce the risk of misalignment between your expectations and the agent's implementation.
 
-### Proposed Implementation Plan
-
-#### 1. Python Architecture & Dependencies
-- Implement a modular, production-ready CLI script (e.g., `download_noaa_mhw.py`).
-- **Dependencies**: Built on Python's standard library (`urllib.request`, `json`, `csv`, `concurrent.futures`, `argparse`), making it completely zero-dependency and runnable immediately with standard `python3` or `uv run`. Optional integration with `pandas` if data analysis is desired.
-
-#### 2. Key Features & CLI Options
-- `--scope`: Choice between `active` (19 NWLON stations) or `all` (178 historical + active stations, default).
-- `--datum`: Default to `STND` (Station Datum — supported universally across all stations), with options for `MLLW`, `NAVD`, or `MSL`.
-- `--units`: Default to `metric` (meters), with option for `english` (feet).
-- `--start-date` & `--end-date`: Default to retrieving all available historical data (e.g., 1850 to present), with customizable date ranges (format `YYYYMMDD`).
-- `--workers`: Configurable concurrent worker threads (default `8`–`10`) with retry handling and exponential backoff.
-- `--output-dir`: Destination folder for output files.
-
-#### 3. Output Data Structure
-- **Combined CSV** (`ca_noaa_mhw_combined.csv`):
-  Columns: `station_id`, `station_name`, `latitude`, `longitude`, `year`, `month`, `date` (YYYY-MM-01), `mhw`, `datum`, `units`, plus optional secondary monthly metrics.
-- **Individual Station CSVs** (under `data/stations/{station_id}_{station_slug}.csv`): Clean per-station time-series files.
-- **Station Summary Metadata** (`ca_stations_summary.csv`): Summary table of all CA stations, their record counts, start year, end year, and status.
-
----
-
-### Questions & Preferences
-
-Before moving to the execution phase, please confirm your preferences on the following:
-
-1. **Station Scope**:
-   - Would you prefer **all 178 stations** (includes historical & short-term subordinate stations) or only the **19 active, permanent NWLON stations**?
-2. **Date Range**:
-   - Do you want the **entire historical record** (from station inception to present) or a **specific time window** (e.g., 2000–present, or the latest tidal epoch)?
-3. **Vertical Datum & Units**:
-   - Default to **STND** (Station Datum, meters)? Or a tidal/geodetic datum like **MLLW** or **NAVD88**?
-4. **Output Format**:
-   - Is a **single combined CSV** preferred, **individual station CSV files**, or **both**?
-````
-
-![Plan mode example - First prompt answer](../images/03-plan_mode-prompt1.png){fig-alt="Plan mode prompt answer showing the various proposed steps and supplemental information requests"}
-
-In this case, OpenCode responded with a set of clarifying questions. We can
-address these questions individually or revise our initial prompt to include the
-missing details:
-
-> Download data for the **last decade**, use the **MLLW datum** as reference,
-> use the **metric system** for units, create a data folder with a subfolder
-> data-raw in it and save the downloaded data in this subfolder. Write a Python
-> script to download the data and save it in a code folder at the top of our
-> project folder
-
-And here is the updated plan:
-
-````markdown
-I have analyzed the NOAA API endpoints, tested California station availability, and verified the data retrieval for the requested parameters.
-
-Here is the implementation plan:
-
----
-
-### 1. Requirements & Configuration Summary
-
-| Parameter | Value | Details |
-|---|---|---|
-| **API Endpoints** | Metadata API (`mdapi`) & Data Retrieval API (`datagetter`) | Official NOAA CO-OPS REST APIs |
-| **Product** | `monthly_mean` | Returns monthly tidal statistics including `MHW` |
-| **Datum** | `MLLW` | Mean Lower Low Water reference |
-| **Units** | `metric` | Meters |
-| **Timeframe** | Last Decade (2016-01-01 to present) | Dynamic 10-year span (capturing ~128 monthly readings per long-term station) |
-| **Station Scope** | All California stations with water level records | Scans all CA stations (19 active continuous NWLON stations + 9 temporary/subordinate stations with observations in this decade = 28 stations with data) |
-| **Script Location** | `code/download_mhw.py` | Top-level `code/` folder |
-| **Output Location** | `data/data-raw/` | Top-level `data/` folder with `data-raw/` subfolder |
-
----
-
-### 2. Output Data Structure
-
-Inside `data/data-raw/`:
-1. **`ca_monthly_mean_high_water_last_decade.csv`**: Master consolidated dataset in tidy format containing all California stations, with columns:
-   - `station_id`
-   - `station_name`
-   - `latitude`, `longitude`
-   - `year`, `month`, `date` (`YYYY-MM-01`)
-   - `mhw` (Monthly Mean High Water in meters above MLLW)
-   - `datum` (`MLLW`), `units` (`meters`)
-   - Complete monthly tidal metrics (`mhhw`, `msl`, `mtl`, `mlw`, `mllw`, `highest`, `lowest`)
-2. **`stations/` subfolder**: Individual CSV files for each station (e.g., `9414290_San_Francisco.csv`, `9410170_San_Diego.csv`) for convenient station-by-station access.
-3. **`station_catalog_ca.csv`**: Manifest of all queried California stations, coordinates, status (active/historic), and records found.
-
----
-
-### 3. Script Design (`code/download_mhw.py`)
-
-- **Zero External Dependencies**: Built with Python standard library (`urllib.request`, `json`, `csv`, `concurrent.futures`, `argparse`, `pathlib`) so it runs out-of-the-box on any Python 3 installation without requiring `pip install`.
-- **Parallel Fetching**: Uses `ThreadPoolExecutor` with polite concurrency (8 threads) and retry logic with exponential backoff for high performance (downloads the entire state in ~2–3 seconds).
-- **Flexible CLI**:
-  ```bash
-  python3 code/download_mhw.py [--start-year 2016] [--end-year 2026] [--datum MLLW] [--units metric] [--outdir data/data-raw]
-  ```
-- **Robust Error Handling**: Automatically handles stations without active deployments in the requested window, logs progress, and outputs clear summary statistics upon completion.
-
----
-
-Would you like me to proceed with implementing the script and downloading the data?
-````
-
-![Plan mode example - Updated plan](../images/03-plan_mode-prompt2.png){fig-alt="Plan mode prompt answer update to incorporate the new information"}
+Also, it is okay to tell the agent that you are not sure how to address a question or that you don't have a preference. The agent can provide suggestions and recommendations based on best practices.
+:::
 
 The plan looks fine -- isn't it useful to see what the agent would do before it
 does it? We're ready to build:
 
 1. Switch to **Build mode** by pressing the <kbd>tab</kbd> key
-2. Enter a prompt to kick off the build process: "The plan looks good. Go ahead!"
+2. Enter a prompt to kick off the build process, explicitly requesting that the plan be saved first: "The plan looks good. Before implementing any code, please save this plan to `.opencode/plans/noaa-refactor-plan.md`. Once saved, go ahead and implement it!"
 
 That's it. Now it's your turn to try Plan mode.
 
@@ -224,20 +127,19 @@ That's it. Now it's your turn to try Plan mode.
 _As before, please complete this exercise individually but discuss issues and
 results in small groups (2-5 people)._
 
-Perhaps you've heard about a cool new package manager for Python called
-[uv](https://docs.astral.sh/uv/), and you'd like to use it to manage
-dependencies for your NOAA tides project. You also realized that with the number of files growing in your project folder, you might want to reorganize it. For this exercise, use Plan mode to
-convert your project to using uv for its dependencies:
+Perhaps you've noticed that downloading data using the default `STND` datum provides data relative to a local station datum, which makes it difficult to compare water levels across different locations. Also, depending on how your code was generated, you might be downloading the `MHW` (Mean High Water) product, or a mix of metrics. Let's use Plan mode to refactor the script to explicitly use a standardized vertical datum:
 
 1. Make sure you are running OpenCode in the `noaa-tides` folder. If you have an
    existing OpenCode session, start a new OpenCode session with `/new`.
-1. Enter Plan mode and make sure you are using **Gemini 3.8 Flash**.
-1. Make a plan to "migrate this project to uv, for dependency management".
-1. Inspect and iterate.
-1. Add reorganizing our files with all the scripts in a "code" folder and plots in an "output" folder.
-1. Inspect and iterate.
-1. Switch to build mode and execute the plan
-1. Make sure you commit your work. (You can also add that to the plan!)
+2. Enter Plan mode and make sure you are using **Gemini 3.8 Flash**.
+3. Make a plan to refactor your code. You can use a prompt like this: "Refactor our existing download script so that it explicitly fetches the **MHW** (Mean High Water) product for the **last decade** using the **MLLW datum** as the vertical reference and the **metric system** for units. Ensure the updated script and its data outputs strictly comply with the directory structure and conventions defined in `AGENTS.md`."
+4. Inspect the resulting plan and answer any clarifying questions the agent might ask.
+5. Iterate on the plan if needed (e.g., you can ask the agent to add a reorganization of your files, moving plots to an `output` folder).
+6. Switch to build mode.
+7. Kick off the build process by explicitly asking the agent to save the plan first: "Looks great. Before doing anything else, save this plan to `.opencode/plans/mllw-refactor.md`. Then go ahead and execute it."
+8. **Validate your changes** by running the script from your terminal (e.g., `uv run code/download.py`) to ensure the data is fetched and formatted correctly.
+9. Ask the agent to generate a `README.md` file with a minimal description of the project and basic instructions on how to run the code.
+10. Make sure you commit your work (the refactored code, the saved plan, and the new README). You can even ask the agent to help you write the commit message!
 
 
 #### Explore further
@@ -289,28 +191,9 @@ practice is to **ask the agent to write the plan to a markdown file** (for
 example, `plan.md` or `docs/plan-uv-migration.md`), then start a new session with
 `/new` and prompt the agent to implement the plan from that file. 
 
-
-## Project documentation
-
-Before we end our work on this project for the day, we want to make sure to
-document what we have done so far.
-
-1. Check that the current folder and file structure of your project matches what
-   you had in mind
-1. Make sure that all the scripts that have been created have been committed to
-   your git history
-1. Write a concise `README.md` with information about the project: goals, file
-   structure, and how to run the scripts are good elements to include. Add and
-   commit this file to your git history.
-
-
-**All the information you are adding in your project directory will be included
-in the context that is sent to the model with your prompts, so it is beneficial
-to add as much information as you have while working on your project.**
-
-::: {.callout-note}
-OpenCode can assist you with all these various steps!
-:::
+**Saving and committing your plans** into your version control repository is also excellent for reproducibility. 
+These markdown files serve as living documentation that helps you (and your collaborators) 
+understand the specific decisions and actions that affected the codebase over time.
 
 
 
