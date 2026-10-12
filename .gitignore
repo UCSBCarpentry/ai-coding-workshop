@@ -6,3 +6,5 @@ _site
 node_modules/
 a11y-report/
 .DS_Store
+pyproject.toml
+uv.lock
