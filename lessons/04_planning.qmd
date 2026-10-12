@@ -127,20 +127,16 @@ That's it. Now it's your turn to try Plan mode.
 _As before, please complete this exercise individually but discuss issues and
 results in small groups (2-5 people)._
 
-Perhaps you've heard about a cool new package manager for Python called
-[uv](https://docs.astral.sh/uv/), and you'd like to use it to manage
-dependencies for your NOAA tides project. You also realized that with the number of files growing in your project folder, you might want to reorganize it. For this exercise, use Plan mode to
-convert your project to using uv for its dependencies:
+Perhaps you've noticed that downloading data using the default `STND` datum provides data relative to a local station datum, which makes it difficult to compare water levels across different locations. Also, depending on how your code was generated, you might be downloading the `MHW` (Mean High Water) product, or a mix of metrics. Let's use Plan mode to refactor the script to explicitly use a standardized vertical datum:
 
 1. Make sure you are running OpenCode in the `noaa-tides` folder. If you have an
    existing OpenCode session, start a new OpenCode session with `/new`.
 2. Enter Plan mode and make sure you are using **Gemini 3.8 Flash**.
-3. Make a plan to "migrate this project to uv, for dependency management".
-4. Inspect and iterate.
-5. Add reorganizing our files with all the scripts in a "code" folder and plots in an "output" folder.
-6. Inspect and iterate.
-7. Switch to build mode and execute the plan
-8. Make sure you commit your work. (You can also add that to the plan!)
+3. Make a plan to refactor your code. You can use a prompt like this: "Refactor our existing download script so that it explicitly fetches the **MHW** (Mean High Water) product for the **last decade** using the **MLLW datum** as the vertical reference and the **metric system** for units. Ensure the updated script and its data outputs strictly comply with the directory structure and conventions defined in `AGENTS.md`."
+4. Inspect the resulting plan and answer any clarifying questions the agent might ask.
+5. Iterate on the plan if needed (e.g., you can ask the agent to add a reorganization of your files, moving plots to an `output` folder).
+6. Switch to build mode and execute the plan.
+7. Make sure you commit your work. (You can also add that to the plan!)
 
 
 #### Explore further
@@ -192,6 +188,9 @@ practice is to **ask the agent to write the plan to a markdown file** (for
 example, `plan.md` or `docs/plan-uv-migration.md`), then start a new session with
 `/new` and prompt the agent to implement the plan from that file. 
 
+**Saving and committing your plans** into your version control repository is also excellent for reproducibility. 
+These markdown files serve as living documentation that helps you (and your collaborators) 
+understand the specific decisions and actions that affected the codebase over time.
 
 ## Project documentation
 
