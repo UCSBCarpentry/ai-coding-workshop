@@ -81,9 +81,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-9a9bba6001db4233b839d39253bf7561.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -211,10 +208,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#plan-mode-overview" id="toc-plan-mode-overview" class="nav-link active" data-scroll-target="#plan-mode-overview">Plan mode overview</a></li>
+  <li><a href="#best-practices-for-planning-and-execution" id="toc-best-practices-for-planning-and-execution" class="nav-link" data-scroll-target="#best-practices-for-planning-and-execution">Best Practices for Planning and Execution</a></li>
   <li><a href="#switching-to-plan-mode" id="toc-switching-to-plan-mode" class="nav-link" data-scroll-target="#switching-to-plan-mode">Switching to plan mode</a></li>
   <li><a href="#planning-our-noaa-tides-example" id="toc-planning-our-noaa-tides-example" class="nav-link" data-scroll-target="#planning-our-noaa-tides-example">Planning our NOAA tides example</a></li>
   <li><a href="#session-management" id="toc-session-management" class="nav-link" data-scroll-target="#session-management">Session management</a></li>
-  <li><a href="#project-documentation" id="toc-project-documentation" class="nav-link" data-scroll-target="#project-documentation">Project documentation</a></li>
   </ul>
 </nav>
     </div>
@@ -240,10 +237,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>What we just did in the previous section, letting the agent have full control of a multi-step process, is not the best way to fully leverage agentic coding capabilities. Instead, it is recommended to break down your workflow into smaller, distinct increments that are easier to verify and iterate on.</p>
+<p>What we just did in the previous sections, letting the agent have full control of a multi-step process, is not the best way to fully leverage agentic coding capabilities. Instead, it is recommended to break down your workflow into smaller, distinct increments that are easier to verify and iterate on.</p>
 <section id="plan-mode-overview" class="level2">
 <h2 class="anchored" data-anchor-id="plan-mode-overview">Plan mode overview</h2>
-<p>This is precisely where “Plan mode” becomes invaluable. Plan mode allows you to refine your instructions for your agent, resolve potential ambiguities, and quickly redirect overeager agents. This gives you better control over the different components of your analytical workflow before any code or files are modified in your project.</p>
+<p>While it is easy to think of Plan mode merely as a “read-only” or Q&amp;A mode, its primary goal is actually to <strong>develop a highly refined prompt</strong>—aka. <em>the plan</em>—that will guide the agent during actual implementation.</p>
+<p>The structure and quality of this plan depend on several factors, for example:</p>
+<ul>
+<li><strong>The agent tool</strong>: The structure of the plan is defined by the underlying tool or “harness” guiding the agent. Two different harnesses can produce substantially different plans from the same initial prompt.</li>
+<li><strong>The Model</strong>: The quality of the resulting plan is closely tied to the model you use. While a <em>frontier</em> (most advanced) model doesn’t strictly guarantee a better prompt, the chances of generating a comprehensive, well-reasoned plan are much higher.</li>
+<li><strong>Your Instructions</strong>: The prompt you send during the planning phase is critical. More detailed instructions and context lead to a better, more accurate plan.</li>
+</ul>
 <p>To effectively integrate agentic AI into your work, consider following this structured approach:</p>
 <ul>
 <li>Begin in Plan mode (read-only)</li>
@@ -254,6 +257,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Once satisfied, switch to Build mode for actual implementation</li>
 <li>Leverage version control to create snapshots of your work before and after major changes</li>
 </ul>
+</section>
+<section id="best-practices-for-planning-and-execution" class="level2">
+<h2 class="anchored" data-anchor-id="best-practices-for-planning-and-execution">Best Practices for Planning and Execution</h2>
+<p>A good practice is to reserve the plan for specific tasks, bug fixes, or new features, rathen than attempting to plan out a massive, open-ended project all at once.</p>
+<p>Similarly, it is advisable to implement the plan incrementally, verifying each step, task or phase before proceeding to the next. This approach allows for early detection of issues, and keep each step in a separate, manageable context. It also allows for more effective use of version control, as each step can be committed and reviewed independently.</p>
 <p>When reviewing the plan, you might consider questions such as:</p>
 <ul>
 <li>Does the plan <strong>reveal gaps in your understanding</strong> that need to be resolved before moving ahead? If you read the plan and think to yourself, “Wow, this is more complicated than I imagined!”, then this might be the case. You might want to cancel the plan or rethink your approach.</li>
@@ -264,7 +272,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="switching-to-plan-mode" class="level2">
 <h2 class="anchored" data-anchor-id="switching-to-plan-mode">Switching to plan mode</h2>
 <p>In OpenCode, you can use the <kbd>tab</kbd> key to switch between Plan and Build modes. Build mode is the default when you start OpenCode. The active mode appears right below the cursor in the prompt input area.</p>
-<p>For complex, multi-step problem planning, it is advisable to leverage the most advanced model available, keeping token costs in mind. After the initial steps are laid out, transitioning to a less advanced model to execute those predefined tasks can lead to a more efficient use of your resources.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -275,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>After toggling between modes, <strong>always check which model you are using</strong>, as Plan and Build modes can use different models. You can sometimes save money/tokens by planning with a larger, more expensive model and then implementing with a smaller model. For the purposes of this workshop, we will use <strong>Gemini 3.8 Flash</strong> for both planning and code generation.</p>
+<p>After toggling between modes, <strong>always check which model you are using</strong>, as Plan and Build modes can use different models. You can sometimes save money/tokens by planning with a larger, more expensive model and then implementing with a smaller one. For the purposes of this workshop, we will use <strong>Gemini 3.8 Flash</strong> for both planning and code generation.</p>
 </div>
 </div>
 </section>
@@ -288,137 +295,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Switch to Plan mode by pressing the <kbd>tab</kbd> key until you see “Plan” below the text input cursor.</li>
 <li>Select your planning model with the <code>/models</code> command and choose the <strong>Gemini 3.8 Flash</strong> model.</li>
 </ol>
-<p>To kick off the planning process, enter your initial prompt:</p>
+<p>To kick off the planning process, let’s begin with a plan to refactor the download logic for the NOAA tides data, ensuring it aligns with the structure described in our <code>AGENTS.md</code> file.</p>
+<p>You can start with a prompt like this (be sure to replace <code>[name_of_your_script.py]</code> with your actual file name):</p>
 <blockquote class="blockquote">
-<p>I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.</p>
+<p>I would like to refactor our Python script that downloads the monthly mean high water for California NOAA stations.</p>
+<p>The current download logic is in <code>[name_of_your_script.py]</code>. Please review the code and propose a plan to improve it. Use the <code>AGENTS.md</code> file as a reference for project structure, coding conventions, and workflow guidelines. Please include any missing details or clarifying questions needed to ensure a successful implementation before we begin.</p>
 </blockquote>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Here is the plan for downloading Monthly Mean High Water (MHW) data for NOAA stations in California using the NOAA CO-OPS API and Python.</span>
+<p>During the development of the plan, you may find that the agent asks for additional information or clarification. The agent will typically include these questions at the end of its proposed plan. The following is an example of what the agent might ask:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Clarifying Questions &amp; Design Choices</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Before proceeding with the refactoring, please clarify your preferences on the following:</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Key API Findings &amp; Technical Grounding</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Station Discovery (Metadata API)**:</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>**Active stations (`type=waterlevels`)**: **19 stations** in California (e.g., San Francisco, San Diego, Los Angeles, Monterey). These are long-term, continuous NWLON stations with decades of records (e.g., San Francisco has records dating back to 1854).</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>**All water level stations (`type=historicwl`)**: **178 stations** in California, including historical and short-term subordinate tide gauges (some spanning 1–12 months, others multiple years).</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Endpoint: <span class="in">`https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations.json?type={historicwl|waterlevels}`</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Data Retrieval API (`datagetter`)**:</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Product: <span class="in">`product=monthly_mean`</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Data fields returned: <span class="in">`year`</span>, <span class="in">`month`</span>, <span class="in">`MHW`</span> (Mean High Water), along with <span class="in">`MHHW`</span>, <span class="in">`MSL`</span>, <span class="in">`MTL`</span>, <span class="in">`MLW`</span>, <span class="in">`MLLW`</span>, <span class="in">`highest`</span>, <span class="in">`lowest`</span>.</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Endpoint:</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>     <span class="in">```</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">     https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station={station_id}&amp;begin_date={begin}&amp;end_date={end}&amp;product=monthly_mean&amp;datum={datum}&amp;units={units}&amp;time_zone=GMT&amp;format=json</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">     ```</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Performance: The API supports retrieving the entire historical record per station in a single request. Using multithreading (<span class="in">`ThreadPoolExecutor`</span>), all 178 stations can be fetched in under 10 seconds.</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### Proposed Implementation Plan</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 1. Python Architecture &amp; Dependencies</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implement a modular, production-ready CLI script (e.g., <span class="in">`download_noaa_mhw.py`</span>).</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dependencies**: Built on Python's standard library (<span class="in">`urllib.request`</span>, <span class="in">`json`</span>, <span class="in">`csv`</span>, <span class="in">`concurrent.futures`</span>, <span class="in">`argparse`</span>), making it completely zero-dependency and runnable immediately with standard <span class="in">`python3`</span> or <span class="in">`uv run`</span>. Optional integration with <span class="in">`pandas`</span> if data analysis is desired.</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 2. Key Features &amp; CLI Options</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--scope`</span>: Choice between <span class="in">`active`</span> (19 NWLON stations) or <span class="in">`all`</span> (178 historical + active stations, default).</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--datum`</span>: Default to <span class="in">`STND`</span> (Station Datum — supported universally across all stations), with options for <span class="in">`MLLW`</span>, <span class="in">`NAVD`</span>, or <span class="in">`MSL`</span>.</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--units`</span>: Default to <span class="in">`metric`</span> (meters), with option for <span class="in">`english`</span> (feet).</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--start-date`</span> &amp; <span class="in">`--end-date`</span>: Default to retrieving all available historical data (e.g., 1850 to present), with customizable date ranges (format <span class="in">`YYYYMMDD`</span>).</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--workers`</span>: Configurable concurrent worker threads (default <span class="in">`8`</span>–<span class="in">`10`</span>) with retry handling and exponential backoff.</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--output-dir`</span>: Destination folder for output files.</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 3. Output Data Structure</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Combined CSV** (<span class="in">`ca_noaa_mhw_combined.csv`</span>):</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  Columns: <span class="in">`station_id`</span>, <span class="in">`station_name`</span>, <span class="in">`latitude`</span>, <span class="in">`longitude`</span>, <span class="in">`year`</span>, <span class="in">`month`</span>, <span class="in">`date`</span> (YYYY-MM-01), <span class="in">`mhw`</span>, <span class="in">`datum`</span>, <span class="in">`units`</span>, plus optional secondary monthly metrics.</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Individual Station CSVs** (under <span class="in">`data/stations/{station_id}_{station_slug}.csv`</span>): Clean per-station time-series files.</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Station Summary Metadata** (<span class="in">`ca_stations_summary.csv`</span>): Summary table of all CA stations, their record counts, start year, end year, and status.</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">### Questions &amp; Preferences</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>Before moving to the execution phase, please confirm your preferences on the following:</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Station Scope**:</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Would you prefer **all 178 stations** (includes historical &amp; short-term subordinate stations) or only the **19 active, permanent NWLON stations**?</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Date Range**:</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Do you want the **entire historical record** (from station inception to present) or a **specific time window** (e.g., 2000–present, or the latest tidal epoch)?</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Vertical Datum &amp; Units**:</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Default to **STND** (Station Datum, meters)? Or a tidal/geodetic datum like **MLLW** or **NAVD88**?</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Output Format**:</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Is a **single combined CSV** preferred, **individual station CSV files**, or **both**?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="../images/03-plan_mode-prompt1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Plan mode example - First prompt answer"><img src="../images/03-plan_mode-prompt1.png" class="img-fluid figure-img" alt="Plan mode prompt answer showing the various proposed steps and supplemental information requests"></a></p>
-<figcaption>Plan mode example - First prompt answer</figcaption>
-</figure>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**File Locations &amp; Entrypoints**:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Would you like your Python scripts moved to <span class="in">`code/`</span> (e.g., <span class="in">`code/download.py`</span>), or should they remain at the root as entrypoints?</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Data Output Destination**:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Should the output be directed to <span class="in">`data/data-raw/ca_monthly_mean_high_water_10yrs.csv`</span> per the <span class="in">`AGENTS.md`</span> file? (If so, should <span class="in">`plot_tides.py`</span> be updated to match, while maintaining backward-compatibility fallback?)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>In this case, OpenCode responded with a set of clarifying questions. We can address these questions individually or revise our initial prompt to include the missing details:</p>
-<blockquote class="blockquote">
-<p>Download data for the <strong>last decade</strong>, use the <strong>MLLW datum</strong> as reference, use the <strong>metric system</strong> for units, create a data folder with a subfolder data-raw in it and save the downloaded data in this subfolder. Write a Python script to download the data and save it in a code folder at the top of our project folder</p>
-</blockquote>
-<p>And here is the updated plan:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>I have analyzed the NOAA API endpoints, tested California station availability, and verified the data retrieval for the requested parameters.</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Here is the implementation plan:</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. Requirements &amp; Configuration Summary</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Parameter <span class="pp">|</span> Value <span class="pp">|</span> Details <span class="pp">|</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **API Endpoints** <span class="pp">|</span> Metadata API (<span class="in">`mdapi`</span>) &amp; Data Retrieval API (<span class="in">`datagetter`</span>) <span class="pp">|</span> Official NOAA CO-OPS REST APIs <span class="pp">|</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Product** <span class="pp">|</span> <span class="in">`monthly_mean`</span> <span class="pp">|</span> Returns monthly tidal statistics including <span class="in">`MHW`</span> <span class="pp">|</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Datum** <span class="pp">|</span> <span class="in">`MLLW`</span> <span class="pp">|</span> Mean Lower Low Water reference <span class="pp">|</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Units** <span class="pp">|</span> <span class="in">`metric`</span> <span class="pp">|</span> Meters <span class="pp">|</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Timeframe** <span class="pp">|</span> Last Decade (2016-01-01 to present) <span class="pp">|</span> Dynamic 10-year span (capturing ~128 monthly readings per long-term station) <span class="pp">|</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Station Scope** <span class="pp">|</span> All California stations with water level records <span class="pp">|</span> Scans all CA stations (19 active continuous NWLON stations + 9 temporary/subordinate stations with observations in this decade = 28 stations with data) <span class="pp">|</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Script Location** <span class="pp">|</span> <span class="in">`code/download_mhw.py`</span> <span class="pp">|</span> Top-level <span class="in">`code/`</span> folder <span class="pp">|</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Output Location** <span class="pp">|</span> <span class="in">`data/data-raw/`</span> <span class="pp">|</span> Top-level <span class="in">`data/`</span> folder with <span class="in">`data-raw/`</span> subfolder <span class="pp">|</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. Output Data Structure</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>Inside <span class="in">`data/data-raw/`</span>:</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**`ca_monthly_mean_high_water_last_decade.csv`**: Master consolidated dataset in tidy format containing all California stations, with columns:</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`station_id`</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`station_name`</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`latitude`</span>, <span class="in">`longitude`</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`year`</span>, <span class="in">`month`</span>, <span class="in">`date`</span> (<span class="in">`YYYY-MM-01`</span>)</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`mhw`</span> (Monthly Mean High Water in meters above MLLW)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`datum`</span> (<span class="in">`MLLW`</span>), <span class="in">`units`</span> (<span class="in">`meters`</span>)</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Complete monthly tidal metrics (<span class="in">`mhhw`</span>, <span class="in">`msl`</span>, <span class="in">`mtl`</span>, <span class="in">`mlw`</span>, <span class="in">`mllw`</span>, <span class="in">`highest`</span>, <span class="in">`lowest`</span>)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**`stations/` subfolder**: Individual CSV files for each station (e.g., <span class="in">`9414290_San_Francisco.csv`</span>, <span class="in">`9410170_San_Diego.csv`</span>) for convenient station-by-station access.</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**`station_catalog_ca.csv`**: Manifest of all queried California stations, coordinates, status (active/historic), and records found.</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. Script Design (`code/download_mhw.py`)</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Zero External Dependencies**: Built with Python standard library (<span class="in">`urllib.request`</span>, <span class="in">`json`</span>, <span class="in">`csv`</span>, <span class="in">`concurrent.futures`</span>, <span class="in">`argparse`</span>, <span class="in">`pathlib`</span>) so it runs out-of-the-box on any Python 3 installation without requiring <span class="in">`pip install`</span>.</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Parallel Fetching**: Uses <span class="in">`ThreadPoolExecutor`</span> with polite concurrency (8 threads) and retry logic with exponential backoff for high performance (downloads the entire state in ~2–3 seconds).</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Flexible CLI**:</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="in">```bash</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="ex">python3</span> code/download_mhw.py [--start-year 2016] [--end-year 2026] [--datum MLLW] [--units metric] [--outdir data/data-raw]</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="in">```</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Robust Error Handling**: Automatically handles stations without active deployments in the requested window, logs progress, and outputs clear summary statistics upon completion.</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>Would you like me to proceed with implementing the script and downloading the data?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="../images/03-plan_mode-prompt2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Plan mode example - Updated plan"><img src="../images/03-plan_mode-prompt2.png" class="img-fluid figure-img" alt="Plan mode prompt answer update to incorporate the new information"></a></p>
-<figcaption>Plan mode example - Updated plan</figcaption>
-</figure>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The plan can be implemented without addressing these questions, but it is highly recommended to answer them to reduce the risk of misalignment between your expectations and the agent’s implementation.</p>
+<p>Also, it is okay to tell the agent that you are not sure how to address a question or that you don’t have a preference. The agent can provide suggestions and recommendations based on best practices.</p>
+</div>
 </div>
 <p>The plan looks fine – isn’t it useful to see what the agent would do before it does it? We’re ready to build:</p>
 <ol type="1">
 <li>Switch to <strong>Build mode</strong> by pressing the <kbd>tab</kbd> key</li>
-<li>Enter a prompt to kick off the build process: “The plan looks good. Go ahead!”</li>
+<li>Enter a prompt to kick off the build process, explicitly requesting that the plan be saved first: “The plan looks good. Before implementing any code, please save this plan to <code>.opencode/plans/noaa-refactor-plan.md</code>. Once saved, go ahead and implement it!”</li>
 </ol>
 <p>That’s it. Now it’s your turn to try Plan mode.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -432,16 +341,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <p><em>As before, please complete this exercise individually but discuss issues and results in small groups (2-5 people).</em></p>
-<p>Perhaps you’ve heard about a cool new package manager for Python called <a href="https://docs.astral.sh/uv/">uv</a>, and you’d like to use it to manage dependencies for your NOAA tides project. You also realized that with the number of files growing in your project folder, you might want to reorganize it. For this exercise, use Plan mode to convert your project to using uv for its dependencies:</p>
+<p>Perhaps you’ve noticed that downloading data using the default <code>STND</code> datum provides data relative to a local station datum, which makes it difficult to compare water levels across different locations. Also, depending on how your code was generated, you might be downloading the <code>MHW</code> (Mean High Water) product, or a mix of metrics. Let’s use Plan mode to refactor the script to explicitly use a standardized vertical datum:</p>
 <ol type="1">
 <li>Make sure you are running OpenCode in the <code>noaa-tides</code> folder. If you have an existing OpenCode session, start a new OpenCode session with <code>/new</code>.</li>
 <li>Enter Plan mode and make sure you are using <strong>Gemini 3.8 Flash</strong>.</li>
-<li>Make a plan to “migrate this project to uv, for dependency management”.</li>
-<li>Inspect and iterate.</li>
-<li>Add reorganizing our files with all the scripts in a “code” folder and plots in an “output” folder.</li>
-<li>Inspect and iterate.</li>
-<li>Switch to build mode and execute the plan</li>
-<li>Make sure you commit your work. (You can also add that to the plan!)</li>
+<li>Make a plan to refactor your code. You can use a prompt like this: “Refactor our existing download script so that it explicitly fetches the <strong>MHW</strong> (Mean High Water) product for the <strong>last decade</strong> using the <strong>MLLW datum</strong> as the vertical reference and the <strong>metric system</strong> for units. Ensure the updated script and its data outputs strictly comply with the directory structure and conventions defined in <code>AGENTS.md</code>.”</li>
+<li>Inspect the resulting plan and answer any clarifying questions the agent might ask.</li>
+<li>Iterate on the plan if needed (e.g., you can ask the agent to add a reorganization of your files, moving plots to an <code>output</code> folder).</li>
+<li>Switch to build mode.</li>
+<li>Kick off the build process by explicitly asking the agent to save the plan first: “Looks great. Before doing anything else, save this plan to <code>.opencode/plans/mllw-refactor.md</code>. Then go ahead and execute it.”</li>
+<li><strong>Validate your changes</strong> by running the script from your terminal (e.g., <code>uv run code/download.py</code>) to ensure the data is fetched and formatted correctly.</li>
+<li>Ask the agent to generate a <code>README.md</code> file with a minimal description of the project and basic instructions on how to run the code.</li>
+<li>Make sure you commit your work (the refactored code, the saved plan, and the new README). You can even ask the agent to help you write the commit message!</li>
 </ol>
 <section id="explore-further" class="level4">
 <h4 class="anchored" data-anchor-id="explore-further">Explore further</h4>
@@ -479,29 +390,7 @@ Warning
 </ul>
 <p>Resuming is useful when you’re returning to a task you left half-finished, like a very detailed planning session. Starting fresh with <code>/new</code> is usually the better choice when you switch to a new task, when the agent seems confused or keeps circling back to earlier (now-irrelevant) decisions, or when the session has simply grown long. A clean context is cheaper, faster, and easier for the model to work with.</p>
 <p>This connects directly to Plan mode. Planning is a conversation: you brainstorm, ask questions, change your mind, and reject a few approaches before settling on one. All of that dead-end discussion stays in the context when you switch to Build mode. If your planning session runs long or eats a lot of context, a good practice is to <strong>ask the agent to write the plan to a markdown file</strong> (for example, <code>plan.md</code> or <code>docs/plan-uv-migration.md</code>), then start a new session with <code>/new</code> and prompt the agent to implement the plan from that file.</p>
-</section>
-<section id="project-documentation" class="level2">
-<h2 class="anchored" data-anchor-id="project-documentation">Project documentation</h2>
-<p>Before we end our work on this project for the day, we want to make sure to document what we have done so far.</p>
-<ol type="1">
-<li>Check that the current folder and file structure of your project matches what you had in mind</li>
-<li>Make sure that all the scripts that have been created have been committed to your git history</li>
-<li>Write a concise <code>README.md</code> with information about the project: goals, file structure, and how to run the scripts are good elements to include. Add and commit this file to your git history.</li>
-</ol>
-<p><strong>All the information you are adding in your project directory will be included in the context that is sent to the model with your prompts, so it is beneficial to add as much information as you have while working on your project.</strong></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>OpenCode can assist you with all these various steps!</p>
-</div>
-</div>
+<p><strong>Saving and committing your plans</strong> into your version control repository is also excellent for reproducibility. These markdown files serve as living documentation that helps you (and your collaborators) understand the specific decisions and actions that affected the codebase over time.</p>
 
 
 </section>
@@ -908,38 +797,6 @@ Note
   });
   </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
