@@ -57,11 +57,6 @@ In OpenCode, you can use the <kbd>tab</kbd> key to switch between Plan and Build
 modes. Build mode is the default when you start OpenCode. The active mode
 appears right below the cursor in the prompt input area.
 
-For complex, multi-step problem planning, it is advisable to leverage the most
-advanced model available, keeping token costs in mind. After the initial steps
-are laid out, transitioning to a less advanced model to execute those predefined
-tasks can lead to a more efficient use of your resources.
-
 :::{.callout-tip}
 
 ### Models for Planning
@@ -69,7 +64,7 @@ tasks can lead to a more efficient use of your resources.
 After toggling between modes, **always check which model you are using**, as
 Plan and Build modes can use different models. You can sometimes save
 money/tokens by planning with a larger, more expensive model and then
-implementing with a smaller model. For the purposes of this workshop, we will
+implementing with a smaller one. For the purposes of this workshop, we will
 use **Gemini 3.8 Flash** for both planning and code generation.
 
 :::
@@ -90,9 +85,14 @@ To use Plan mode:
 3. Select your planning model with the `/models` command and choose the **Gemini
    3.8 Flash** model.
 
-To kick off the planning process, enter your initial prompt:
+To kick off the planning process, let's begin with a plan to refactor the download logic for the NOAA tides data, 
+ensuring it aligns with the structure described in our `AGENTS.md` file. 
 
-> I would like to download the monthly mean high water for all NOAA stations in California using the NOAA API and python.
+You can start with a prompt like this (be sure to replace `[name_of_your_script.py]` with your actual file name):
+
+> I would like to refactor our Python script that downloads the monthly mean high water for California NOAA stations. 
+> 
+> The current download logic is in `[name_of_your_script.py]`. Please review the code and propose a plan to improve it. Use the `AGENTS.md` file as a reference for project structure, coding conventions, and workflow guidelines. Please include any missing details or clarifying questions needed to ensure a successful implementation before we begin.
 
 ````markdown
 Here is the plan for downloading Monthly Mean High Water (MHW) data for NOAA stations in California using the NOAA CO-OPS API and Python.
