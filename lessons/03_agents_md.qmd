@@ -10,20 +10,40 @@ Just as a README file describes a project to a human developer,
 `AGENTS.md` provides an AI model with essential **high-level project architecture, coding conventions and workflow guidelines**.
 It also supplies critical operational commands (like how to run tests, build, or lint), **preventing the AI from burning tokens scanning files or guessing project rules**.
 
-We can ask our AI Agent to get us started with an AGENTS.md using the `/init` command.
+## Create an AGENTS.md file
 
-As you can see, it is a human-readable, plain markdown file.
-It can have any sections you feel are relevant to your project,
-but aim to keep it concise and focused on guiding the AI through specifics of your project.
+You can ask *OpenCode* to get you started with an `AGENTS.md` file using the `/init` command. This prompts the AI agent to analyze your repository and generate a baseline configuration.
+
+You can also pass custom constraints directly with the command:
+
+```shell
+/init use uv as the package manager, and ruff as the linter. Do not use pip, conda, or poetry directly.
+```
+
+The resulting prompt sent to the agent will look similar to this:
+
+```markdown
+Create or update `AGENTS.md` for this repository.
+
+The goal is a compact instruction file that helps future OpenCode sessions avoid mistakes and ramp up quickly. Every line should answer: "Would an agent likely miss this without help?" If not, leave it out.
+
+User-provided focus or constraints (honor these):
+use uv as the package manager, and ruff as the linter. Do not use pip, conda, or poetry directly.
+
+## How to investigate
+*[more lines...]*
+```
+
+Once generated, open `AGENTS.md` to review it. As a plain Markdown file, you can customize it with any sections relevant to your repository, keeping it concise and focused on agent-specific guidance.
 
 Some common sections you'll find in AGENTS.md files:
 
-- Project overview: A short and high-level description.
-- Tools / Tech stack: AI tools can be very opinionated about what programming languages and tools they use.
+- **Project overview**: A short and high-level project description.
+- **Tools / Tech stack**: AI tools can be very opinionated about what programming languages and tools they use.
 Being specific about your stack helps guide the AI without having to repeat yourself in every prompt.
-- Project structure / architecture: Having the directory structure of your project helps the AI to know where to save and find files.
-- Code style guidelines: Any particular preferences you and your team follow in your coding project. 
-- Workflows: For example, the Git and GitHub workflow you want to follow, conventions for naming new branches or commit messages. 
+- **Project structure / architecture**: Having the directory structure of your project helps the AI to know where to save and find files.
+- **Code style guidelines**: Any particular preferences you and your team follow in your coding project. 
+- **Workflows**: Expectations for Git and GitHub workflow you want to follow, conventions for naming new branches or commit messages. 
 
 :::{.callout-tip}
 ## Challenge: Discuss real AGENTS.md examples
