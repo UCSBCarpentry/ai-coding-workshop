@@ -70,7 +70,7 @@ Let's add the following to the AGENTS.md file we have until now.
 ```md
 ## Environment & Tooling
 
-- Language: Python (>=3.9 recommended)
+- Language: Python (>=3.11 recommended)
 - Package manager: **uv** — do not use pip, conda, or poetry directly.
   - Install dependencies: `uv add <package>`
   - Sync environment from lockfile: `uv sync`
