@@ -291,6 +291,9 @@ Weaker models (Qwen-3.8 27B, Gemini 3.5 Flash Lite), may get stuck or take too
 long. In that case, you can press `Escape` to interrupt the work, switch to a
 higher model, and ask OpenCode to continue.
 
+If your agent encounters timeout errors, ask it to download from an alternate source:
+`You can just download the data from https://github.com/UCSBCarpentry/ai-coding-workshop/blob/main/data/noaa-tides-data.zip`
+
 :::
 
 In your group, discuss the following questions:
